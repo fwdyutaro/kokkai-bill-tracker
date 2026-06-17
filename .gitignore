@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+refs.db
+.DS_Store

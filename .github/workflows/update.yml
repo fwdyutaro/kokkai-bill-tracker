@@ -1,0 +1,39 @@
+name: update-bill-data
+# 毎日 06:00 JST に法案ステータスと参考リンクを更新し、GitHub Pages へ反映する。
+on:
+  schedule:
+    - cron: "0 21 * * *"      # 21:00 UTC = 06:00 JST
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install requests beautifulsoup4 lxml feedparser PyYAML scikit-learn
+
+      - name: Run pipeline
+        env:
+          # LLMゲートを使う場合のみ。未設定なら match_refs はゲートをスキップ。
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python collect.py --diet 221 --sleep 0.3
+          python crawl.py
+          python match_refs.py --no-semantic   # CIではe5を使わず軽量運用（必要ならキャッシュして有効化）
+
+      - name: Commit updated data
+        run: |
+          git config user.name "bill-tracker-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data_collected.js bills.json
+          git diff --cached --quiet || git commit -m "chore: update bill data ($(date -u +%F))"
+          git push

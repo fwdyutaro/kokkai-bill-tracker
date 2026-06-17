@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>国会 法律案トラッカー（プロトタイプ）</title>
+<style>
+  :root{
+    --bg:#0f1729; --panel:#16213a; --panel2:#1d2b48; --line:#2b3a5c;
+    --txt:#e7ecf5; --muted:#9aa8c4; --accent:#4f9cff; --accent2:#7c5cff;
+    --ok:#27c093; --warn:#f0a93b; --info:#4f9cff; --gray:#8492ad; --danger:#ff6b6b;
+    --chip:#22314f;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;
+       background:var(--bg);color:var(--txt);line-height:1.6}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header{padding:20px 28px;border-bottom:1px solid var(--line);
+         background:linear-gradient(120deg,#16213a,#1b1340)}
+  header h1{margin:0;font-size:20px;letter-spacing:.02em}
+  header p{margin:4px 0 0;color:var(--muted);font-size:13px}
+  .wrap{max-width:1180px;margin:0 auto;padding:22px 28px 60px}
+
+  /* dashboard */
+  .dash{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card .num{font-size:30px;font-weight:700}
+  .card .lbl{color:var(--muted);font-size:13px}
+  .card.s-成立 .num{color:var(--ok)} .card.s-審議中 .num{color:var(--info)}
+  .card.s-継続審査 .num{color:var(--warn)} .card.s-合計 .num{color:var(--txt)}
+
+  /* filters */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+  .filters select,.filters input{background:var(--panel2);color:var(--txt);
+      border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:13px}
+  .filters input{min-width:240px}
+  .count{color:var(--muted);font-size:13px;margin-left:auto}
+
+  /* list */
+  .bill{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+        padding:16px 18px;margin-bottom:12px;cursor:pointer;transition:.15s}
+  .bill:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .bill .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+  .badge{font-size:11.5px;padding:2px 9px;border-radius:999px;font-weight:600;white-space:nowrap}
+  .b-成立{background:rgba(39,192,147,.16);color:var(--ok)}
+  .b-審議中{background:rgba(79,156,255,.16);color:var(--info)}
+  .b-継続審査{background:rgba(240,169,59,.16);color:var(--warn)}
+  .b-廃案{background:rgba(255,107,107,.16);color:var(--danger)}
+  .badge.type{background:var(--chip);color:var(--muted)}
+  .badge.minis{background:var(--chip);color:#bcd0f5}
+  .bill h3{margin:2px 0 4px;font-size:15.5px}
+  .bill .meta{color:var(--muted);font-size:12.5px}
+  .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:11px;color:var(--muted);background:var(--chip);padding:2px 8px;border-radius:6px}
+  .conf{font-size:12px;color:var(--muted)}
+  .conf b{color:var(--txt)}
+
+  /* drawer */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;z-index:40}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(680px,94vw);background:var(--bg);
+          border-left:1px solid var(--line);overflow-y:auto;transform:translateX(100%);
+          transition:.25s;z-index:50;padding:0}
+  .drawer.open{transform:translateX(0)}
+  .overlay.open{display:block}
+  .dhead{padding:20px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;
+         background:var(--bg);z-index:2}
+  .dhead .x{float:right;cursor:pointer;color:var(--muted);font-size:22px;line-height:1}
+  .dbody{padding:20px 24px}
+  .section{margin-bottom:26px}
+  .section h4{font-size:13px;color:var(--muted);text-transform:none;letter-spacing:.04em;
+              border-left:3px solid var(--accent);padding-left:8px;margin:0 0 12px}
+  .ai{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .ai .note{font-size:11.5px;color:var(--warn);margin-top:8px}
+
+  /* timeline */
+  .tl{position:relative;margin-left:8px;padding-left:22px;border-left:2px solid var(--line)}
+  .tl .it{position:relative;padding:0 0 16px}
+  .tl .it::before{content:"";position:absolute;left:-29px;top:4px;width:11px;height:11px;
+                  border-radius:50%;background:var(--gray);border:2px solid var(--bg)}
+  .tl .it.now::before{background:var(--info);box-shadow:0 0 0 4px rgba(79,156,255,.2)}
+  .tl .it.ok::before{background:var(--ok)}
+  .tl .it.warn::before{background:var(--warn)}
+  .tl .d{font-size:12px;color:var(--muted)}
+  .tl .e{font-size:13.5px}
+  .tl .hs{font-size:11px;background:var(--chip);color:#bcd0f5;padding:1px 7px;border-radius:5px;margin-right:6px}
+  .tl .res{font-size:11.5px;font-weight:600;margin-left:6px}
+  .res.可決,.res.成立{color:var(--ok)} .res.継続{color:var(--warn)} .res.予定{color:var(--info)}
+
+  /* refs */
+  .ref{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+       padding:11px 13px;margin-bottom:9px}
+  .ref .r1{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .ref .cat{font-size:10.5px;padding:1px 8px;border-radius:999px;font-weight:600}
+  .tier1{background:rgba(39,192,147,.16);color:var(--ok)}
+  .tier2{background:rgba(124,92,255,.18);color:#b3a4ff}
+  .tier3{background:rgba(79,156,255,.16);color:var(--info)}
+  .tier4{background:rgba(240,169,59,.16);color:var(--warn)}
+  .ref .pub{font-size:11.5px;color:var(--muted)}
+  .ref a.t{font-size:13.5px;display:block;margin-top:3px}
+  .ref .cf{font-size:11px;color:var(--muted);margin-top:4px}
+  .bar{display:inline-block;width:60px;height:6px;background:var(--chip);border-radius:3px;
+       overflow:hidden;vertical-align:middle;margin:0 6px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+  .footer{color:var(--muted);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
+  @media(max-width:680px){.dash{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <h1>🏛 国会 法律案トラッカー <span style="font-size:12px;color:var(--muted)">— プロトタイプ</span></h1>
+  <p>提出された法律案のステータスを自動整理し、参考情報（立法補佐機関・審議会・シンクタンク・専門家解説）を付して提供する</p>
+</header>
+
+<div class="wrap">
+  <div class="dash" id="dash"></div>
+
+  <div class="filters">
+    <select id="fSrc" title="表示するデータソース">
+      <option value="curated">データ：キュレーション版(data.js)</option>
+      <option value="collected">データ：自動収集版(collect.py出力)</option>
+    </select>
+    <select id="fStatus">
+      <option value="">ステータス：すべて</option>
+      <option>成立</option><option>審議中</option><option>継続審査</option><option>廃案</option>
+    </select>
+    <select id="fType">
+      <option value="">提出区分：すべて</option>
+      <option>閣法</option><option>衆法</option><option>参法</option>
+    </select>
+    <select id="fMinis">
+      <option value="">所管：すべて</option>
+    </select>
+    <input id="fText" placeholder="キーワード（法案名・タグ）">
+    <span class="count" id="count"></span>
+  </div>
+
+  <div id="list"></div>
+
+  <div class="footer">
+    データ出典：参議院 議案情報 / 衆議院 審査経過 / 内閣法制局（第221回国会・特別会）。<br>
+    本ページはデザイン検証用プロトタイプ。「概要」「参考情報の確信度」はAI付与の例であり、一次資料での確認が必要です。
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="drawer"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+let bills=[];
+const fmt=d=>{if(!d)return"";const[y,m,da]=d.split("-");return `${y}.${+m}.${+da}`};
+
+// dashboard
+function dash(){
+  const c={成立:0,審議中:0,継続審査:0};
+  bills.forEach(b=>c[b.status]!==undefined&&c[b.status]++);
+  $("#dash").innerHTML=`
+    <div class="card s-合計"><div class="num">${bills.length}</div><div class="lbl">収録法案</div></div>
+    <div class="card s-審議中"><div class="num">${c.審議中}</div><div class="lbl">審議中</div></div>
+    <div class="card s-成立"><div class="num">${c.成立}</div><div class="lbl">成立・公布済</div></div>
+    <div class="card s-継続審査"><div class="num">${c.継続審査}</div><div class="lbl">継続審査</div></div>`;
+}
+// ministry filter options（データ読み込み後に再構築）
+function setupMinistry(){
+  const sel=$("#fMinis");
+  sel.length=1; // 「すべて」だけ残す
+  [...new Set(bills.map(b=>b.ministry))].sort().forEach(m=>{
+    const o=document.createElement("option");o.textContent=m;o.value=m;sel.appendChild(o);
+  });
+}
+
+function render(){
+  const fs=$("#fStatus").value,ft=$("#fType").value,fm=$("#fMinis").value,
+        q=$("#fText").value.trim();
+  const out=bills.filter(b=>
+    (!fs||b.status===fs)&&(!ft||b.type===ft)&&(!fm||b.ministry===fm)&&
+    (!q||(b.title+b.shortTitle+(b.tags||[]).join("")).includes(q)));
+  $("#count").textContent=`${out.length} 件`;
+  $("#list").innerHTML=out.map(b=>`
+    <div class="bill" onclick="openBill('${b.id}')">
+      <div class="top">
+        <span class="badge b-${b.status}">${b.status}</span>
+        <span class="badge type">${b.no}</span>
+        <span class="badge minis">${b.ministry}</span>
+        <span class="conf" style="margin-left:auto">成立確度 <b>${b.confidence}%</b></span>
+      </div>
+      <h3>${b.shortTitle}</h3>
+      <div class="meta">${b.dietLabel}｜提出 ${fmt(b.submittedOn)}｜${b.statusDetail}</div>
+      <div class="tags">${(b.tags||[]).map(t=>`<span class="tag">#${t}</span>`).join("")}</div>
+    </div>`).join("")||`<p style="color:var(--muted)">該当する法案がありません。</p>`;
+}
+["#fStatus","#fType","#fMinis","#fText"].forEach(s=>$(s).addEventListener("input",render));
+
+function tlClass(it){
+  if(it.event.includes("待ち"))return"now";
+  if(["可決","成立"].includes(it.result))return"ok";
+  if(it.result==="継続")return"warn";
+  return"";
+}
+function refTier(r){return{1:"一次・準一次",2:"立法補佐機関",3:"シンクタンク",4:"専門家解説"}[r]||""}
+
+function openBill(id){
+  const b=bills.find(x=>x.id===id);
+  const refsByTier={};
+  b.refs.forEach(r=>{(refsByTier[r.tier]=refsByTier[r.tier]||[]).push(r)});
+  const refHtml=[1,2,3,4].filter(t=>refsByTier[t]).map(t=>`
+    ${refsByTier[t].map(r=>`
+      <div class="ref">
+        <div class="r1">
+          <span class="cat tier${r.tier}">${r.cat}</span>
+          <span class="pub">${r.pub}</span>
+        </div>
+        <a class="t" href="${r.url}" target="_blank" rel="noopener">${r.title} ↗</a>
+        ${r.conf?`<div class="cf">自動紐付け確信度 <span class="bar"><i style="width:${r.conf}%"></i></span> ${r.conf}%</div>`:
+          r.confNote?`<div class="cf">⚙ ${r.confNote}</div>`:``}
+      </div>`).join("")}`).join("");
+
+  $("#drawer").innerHTML=`
+    <div class="dhead">
+      <span class="x" onclick="closeBill()">✕</span>
+      <div class="top" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <span class="badge b-${b.status}">${b.status}・${b.statusDetail}</span>
+        <span class="badge type">${b.no}</span>
+        <span class="badge minis">${b.ministry}</span>
+      </div>
+      <h2 style="margin:0;font-size:17px">${b.title}</h2>
+      <p style="margin:6px 0 0;color:var(--muted);font-size:12.5px">
+        ${b.dietLabel}｜提出 ${fmt(b.submittedOn)}｜成立確度（機械推定）<b style="color:var(--txt)">${b.confidence}%</b></p>
+    </div>
+    <div class="dbody">
+      <div class="section">
+        <h4>概要（AI生成）</h4>
+        <div class="ai">${b.summary}<div class="note">⚠ ${b.summaryNote}</div></div>
+      </div>
+      <div class="section">
+        <h4>審議のタイムライン</h4>
+        <div class="tl">${b.timeline.map(it=>`
+          <div class="it ${tlClass(it)}">
+            <div class="d">${fmt(it.date)}</div>
+            <div class="e"><span class="hs">${it.house}</span>${it.event}
+              ${it.result?`<span class="res ${it.result}">【${it.result}】</span>`:``}</div>
+          </div>`).join("")}</div>
+      </div>
+      <div class="section">
+        <h4>参考情報（信頼度別）</h4>
+        ${refHtml}
+      </div>
+    </div>`;
+  $("#drawer").classList.add("open");$("#overlay").classList.add("open");
+}
+function closeBill(){$("#drawer").classList.remove("open");$("#overlay").classList.remove("open")}
+$("#overlay").addEventListener("click",closeBill);
+document.addEventListener("keydown",e=>e.key==="Escape"&&closeBill());
+
+// データソースの動的読み込み（curated=data.js / collected=data_collected.js）
+function loadData(src){
+  const file=src==="collected"?"data_collected.js":"data.js";
+  const old=document.getElementById("dataScript");
+  if(old)old.remove();
+  window.BILLS=null;
+  const s=document.createElement("script");
+  s.id="dataScript";s.src=file+"?t="+Date.now();
+  s.onload=()=>{
+    if(!window.BILLS){$("#list").innerHTML=`<p style="color:var(--danger)">${file} を読み込めませんでした（collect.py を実行してください）。</p>`;return;}
+    bills=window.BILLS;setupMinistry();dash();render();
+  };
+  s.onerror=()=>{$("#list").innerHTML=`<p style="color:var(--danger)">${file} が見つかりません。「自動収集版」は collect.py 実行後に表示されます。</p>`;};
+  document.body.appendChild(s);
+}
+const initSrc=new URLSearchParams(location.search).get("src")||"collected";
+$("#fSrc").value=initSrc;
+$("#fSrc").addEventListener("change",e=>loadData(e.target.value));
+loadData(initSrc);
+</script>
+</body>
+</html>

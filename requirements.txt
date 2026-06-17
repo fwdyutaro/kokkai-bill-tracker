@@ -1,0 +1,9 @@
+# 収集・補強・参考リンク
+requests
+beautifulsoup4
+lxml
+feedparser
+PyYAML
+# 意味マッチ（任意・推奨）: 入れると build_semantic() が自動で e5 を使う
+scikit-learn
+sentence-transformers

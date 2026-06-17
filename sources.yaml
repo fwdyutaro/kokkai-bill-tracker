@@ -1,0 +1,114 @@
+# 参考リンク収集 ソース台帳
+# method: rss | ndl_archive | sangiin_rippou
+# tier:   2 = 立法補佐機関
+sources:
+  # --- 国会図書館 調査及び立法考査局 ---------------------------------------
+  # 年次アーカイブ（期間を広めに。法案は提出の1〜2年前から論点化されるため）
+  - id: ndl_issue_brief_archive
+    tier: 2
+    category: 立法補佐機関
+    publisher: 国立国会図書館 調査及び立法考査局（調査と情報）
+    method: ndl_archive
+    kind: issue
+    years: [2026, 2025, 2024]
+
+  - id: ndl_refer_archive
+    tier: 2
+    category: 立法補佐機関
+    publisher: 国立国会図書館 調査及び立法考査局（レファレンス）
+    method: ndl_archive
+    kind: refer
+    years: [2026, 2025, 2024]
+
+  # 最新号は RSS で精緻な発行日も取得（アーカイブと pid で重複排除）
+  - id: ndl_issue_brief_rss
+    tier: 2
+    category: 立法補佐機関
+    publisher: 国立国会図書館 調査及び立法考査局（調査と情報）
+    method: rss
+    url: https://ndlsearch.ndl.go.jp/rss/ndls/bureau-rss-issue.xml
+
+  - id: ndl_refer_rss
+    tier: 2
+    category: 立法補佐機関
+    publisher: 国立国会図書館 調査及び立法考査局（レファレンス）
+    method: rss
+    url: https://ndlsearch.ndl.go.jp/rss/ndls/bureau-rss-refer.xml
+
+  # --- 省庁の審議会・検討会（所管が既知なので省ごとに絞り込める） ----------
+  - id: soumu_kenkyu
+    tier: 1
+    category: 審議会・検討会
+    publisher: 総務省
+    ministry: 総務省
+    method: ministry_index
+    mode: links
+    url: https://www.soumu.go.jp/menu_sosiki/kenkyu/kenkyu.html
+
+  - id: soumu_kenkyu_back
+    tier: 1
+    category: 審議会・検討会
+    publisher: 総務省
+    ministry: 総務省
+    method: ministry_index
+    mode: links
+    url: https://www.soumu.go.jp/menu_sosiki/kenkyu/kenkyu_back.html
+
+  - id: npa_drone_council
+    tier: 1
+    category: 審議会・検討会
+    publisher: 警察庁
+    ministry: 警察庁
+    method: ministry_index
+    mode: page
+    url: https://www.npa.go.jp/bureau/security/kogatamujinki/council/council.html
+
+  # 実質的な議論が行われた個別検討会（一覧に出にくいものは直接指定）
+  - id: soumu_ict_services
+    tier: 1
+    category: 審議会・検討会
+    publisher: 総務省
+    ministry: 総務省
+    method: ministry_index
+    mode: page
+    url: https://www.soumu.go.jp/main_sosiki/kenkyu/ICT_services/index.html
+
+  - id: soumu_yubin_ryokin
+    tier: 1
+    category: 審議会・検討会
+    publisher: 総務省
+    ministry: 総務省
+    method: ministry_index
+    mode: page
+    url: https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/yubinryokin_seisakuiinkai.html
+
+  # --- 各省の審議会・研究会インデックス（所管フィルタで誤マッチを抑制） --------
+  # 文科省(403)・経産省(接続拒否)・内閣府(統一indexなし)は現状未対応
+  - {id: mhlw_shingi,  tier: 1, category: 審議会・検討会, publisher: 厚生労働省, ministry: 厚生労働省, method: ministry_index, mode: links, url: https://www.mhlw.go.jp/stf/shingi/}
+  - {id: mlit_shingi,  tier: 1, category: 審議会・検討会, publisher: 国土交通省, ministry: 国土交通省, method: ministry_index, mode: links, url: https://www.mlit.go.jp/policy/shingikai/}
+  - {id: fsa_singi,    tier: 1, category: 審議会・検討会, publisher: 金融庁,     ministry: 金融庁,     method: ministry_index, mode: links, url: https://www.fsa.go.jp/singi/index.html}
+  - {id: maff_council, tier: 1, category: 審議会・検討会, publisher: 農林水産省, ministry: 農林水産省, method: ministry_index, mode: links, url: https://www.maff.go.jp/j/council/}
+  - {id: maff_study,   tier: 1, category: 審議会・検討会, publisher: 農林水産省, ministry: 農林水産省, method: ministry_index, mode: links, url: https://www.maff.go.jp/j/study/}
+  - {id: mof_councils, tier: 1, category: 審議会・検討会, publisher: 財務省,     ministry: 財務省,     method: ministry_index, mode: links, url: https://www.mof.go.jp/about_mof/councils/index.htm}
+  - {id: moj_shingi,   tier: 1, category: 審議会・検討会, publisher: 法務省,     ministry: 法務省,     method: ministry_index, mode: links, url: https://www.moj.go.jp/shingikai_index.html}
+  - {id: env_council,  tier: 1, category: 審議会・検討会, publisher: 環境省,     ministry: 環境省,     method: ministry_index, mode: links, url: https://www.env.go.jp/council/index.html}
+
+  # --- シンクタンク等（Tier3。e5/趣旨KWで照合。同様にRSSを追加していく） ----
+  - id: rieti_rss
+    tier: 3
+    category: シンクタンク
+    publisher: RIETI（経済産業研究所）
+    method: rss
+    url: https://www.rieti.go.jp/jp/rss/index.rdf
+    limit: 150        # ノイズ抑制のため新着のみ
+    note: 法律事務所ニュースレター(Selenium)等もここに追加していく
+
+  # --- 参議院 常任委員会調査室「立法と調査」 ------------------------------
+  - id: sangiin_rippou_chousa
+    tier: 2
+    category: 立法補佐機関
+    publisher: 参議院 常任委員会調査室「立法と調査」
+    method: sangiin_rippou
+    url: https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/index.html
+    issues: 12
+    note: 各号の記事タイトルに法案名が副題で入るため部分一致が効く
