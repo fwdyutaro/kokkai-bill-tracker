@@ -95,15 +95,57 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財務金融委員会／「財政運営」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E5%8B%99%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E8%B2%A1%E6%94%BF%E9%81%8B%E5%96%B6&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00120260303"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財政金融委員会／「財政運営」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E6%94%BF%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E8%B2%A1%E6%94%BF%E9%81%8B%E5%96%B6&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00320260306"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00420260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00520260313"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00120260319"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00220260324"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00320260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00420260331"
       },
       {
         "tier": 1,
@@ -156,10 +198,10 @@ window.BILLS = [
       "成立",
       "財務省",
       "東日本大震災",
-      "資金確保",
-      "支援体制",
+      "実施期間",
       "復興状況",
-      "実施期間"
+      "資金確保",
+      "支援体制"
     ],
     "timeline": [
       {
@@ -236,15 +278,57 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財務金融委員会／「特別措置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E5%8B%99%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%89%B9%E5%88%A5%E6%8E%AA%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00120260303"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財政金融委員会／「特別措置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E6%94%BF%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%89%B9%E5%88%A5%E6%8E%AA%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00320260306"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00420260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00520260313"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00120260319"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00220260324"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00320260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00420260331"
       },
       {
         "tier": 1,
@@ -287,11 +371,11 @@ window.BILLS = [
     "tags": [
       "成立",
       "財務省",
-      "住宅購入",
-      "中所得者",
       "優遇措置",
+      "中所得者",
       "設備投資",
-      "研究開発"
+      "研究開発",
+      "住宅購入"
     ],
     "timeline": [
       {
@@ -368,15 +452,64 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財務金融委員会／「所得税法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E5%8B%99%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%89%80%E5%BE%97%E7%A8%8E%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00120260303"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財政金融委員会／「所得税法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E6%94%BF%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%89%80%E5%BE%97%E7%A8%8E%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00220260304"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00320260306"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00420260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00520260313"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00120260319"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00220260324"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00320260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00420260331"
       },
       {
         "tier": 1,
@@ -420,9 +553,9 @@ window.BILLS = [
       "成立",
       "総務省",
       "自動車関連",
+      "支援強化",
       "税制見直",
-      "経済状況",
-      "支援強化"
+      "経済状況"
     ],
     "timeline": [
       {
@@ -499,8 +632,36 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・総務委員会／「地方税法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%B7%8F%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9C%B0%E6%96%B9%E7%A8%8E%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 総務委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00220260305"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 総務委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00320260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 総務委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00520260313"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 総務委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114601X00320260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 総務委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114601X00420260331"
       },
       {
         "tier": 1,
@@ -545,8 +706,8 @@ window.BILLS = [
       "総務省",
       "地方交付税法",
       "地方交付金",
-      "公営企業",
-      "計算方法"
+      "計算方法",
+      "公営企業"
     ],
     "timeline": [
       {
@@ -623,8 +784,36 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・総務委員会／「地方交付税法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%B7%8F%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9C%B0%E6%96%B9%E4%BA%A4%E4%BB%98%E7%A8%8E%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 総務委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00220260305"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 総務委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00320260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 総務委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00520260313"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 総務委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114601X00320260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 総務委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114601X00420260331"
       },
       {
         "tier": 1,
@@ -678,10 +867,10 @@ window.BILLS = [
       "財務省",
       "関税定率法",
       "個人用荷物",
-      "経済情勢",
+      "暫定関税",
+      "通関業務",
       "管理体制",
-      "適用期限",
-      "通関業務"
+      "保税倉庫"
     ],
     "timeline": [
       {
@@ -758,15 +947,50 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財務金融委員会／「関税定率法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E5%8B%99%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%96%A2%E7%A8%8E%E5%AE%9A%E7%8E%87%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00120260303"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財政金融委員会／「関税定率法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E6%94%BF%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%96%A2%E7%A8%8E%E5%AE%9A%E7%8E%87%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00320260306"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00420260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00520260313"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00120260319"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00320260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00420260331"
       },
       {
         "tier": 1,
@@ -809,12 +1033,12 @@ window.BILLS = [
     "tags": [
       "成立",
       "金融庁",
-      "経営基盤",
       "社会情勢",
-      "協同組織",
+      "経営基盤",
       "資金提供",
-      "金融機関",
-      "資本増強"
+      "資本増強",
+      "協同組織",
+      "人口減少"
     ],
     "timeline": [
       {
@@ -891,15 +1115,43 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財務金融委員会／「金融機能」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E5%8B%99%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%87%91%E8%9E%8D%E6%A9%9F%E8%83%BD&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00120260303"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財政金融委員会／「金融機能」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E6%94%BF%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%87%91%E8%9E%8D%E6%A9%9F%E8%83%BD&maximumRecords=30"
+        "title": "第221回 参議院 財政金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00120260319"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00620260410"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 財務金融委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00720260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00720260421"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第8号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00820260423"
       },
       {
         "tier": 1,
@@ -1020,15 +1272,43 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・文部科学委員会／「高等学校等就学支援金」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%96%87%E9%83%A8%E7%A7%91%E5%AD%A6%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%AB%98%E7%AD%89%E5%AD%A6%E6%A0%A1%E7%AD%89%E5%B0%B1%E5%AD%A6%E6%94%AF%E6%8F%B4%E9%87%91&maximumRecords=30"
+        "title": "第221回 衆議院 文部科学委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105124X00320260309"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・文教科学委員会／「高等学校等就学支援金」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%96%87%E6%95%99%E7%A7%91%E5%AD%A6%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%AB%98%E7%AD%89%E5%AD%A6%E6%A0%A1%E7%AD%89%E5%B0%B1%E5%AD%A6%E6%94%AF%E6%8F%B4%E9%87%91&maximumRecords=30"
+        "title": "第221回 衆議院 文部科学委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105124X00420260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 文部科学委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105124X00620260313"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 文教科学委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115104X00120260324"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 文教科学委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115104X00220260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 文教科学委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115104X00320260331"
       },
       {
         "tier": 1,
@@ -1150,15 +1430,36 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・文部科学委員会／「公立義務教育諸学校」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%96%87%E9%83%A8%E7%A7%91%E5%AD%A6%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%85%AC%E7%AB%8B%E7%BE%A9%E5%8B%99%E6%95%99%E8%82%B2%E8%AB%B8%E5%AD%A6%E6%A0%A1&maximumRecords=30"
+        "title": "第221回 衆議院 文部科学委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105124X00420260310"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・文教科学委員会／「公立義務教育諸学校」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%96%87%E6%95%99%E7%A7%91%E5%AD%A6%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%85%AC%E7%AB%8B%E7%BE%A9%E5%8B%99%E6%95%99%E8%82%B2%E8%AB%B8%E5%AD%A6%E6%A0%A1&maximumRecords=30"
+        "title": "第221回 衆議院 文部科学委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105124X00520260311"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 文部科学委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105124X00620260313"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 文教科学委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115104X00220260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 文教科学委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115104X00320260331"
       },
       {
         "tier": 1,
@@ -1283,15 +1584,36 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・外務委員会／「在外公館」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%A4%96%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9C%A8%E5%A4%96%E5%85%AC%E9%A4%A8&maximumRecords=30"
+        "title": "第221回 衆議院 外務委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103968X00220260306"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・外交防衛委員会／「在外公館」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%A4%96%E4%BA%A4%E9%98%B2%E8%A1%9B%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9C%A8%E5%A4%96%E5%85%AC%E9%A4%A8&maximumRecords=30"
+        "title": "第221回 衆議院 外務委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103968X00320260311"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 外務委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103968X00420260313"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 外交防衛委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122113950X00120260324"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 外交防衛委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122113950X00220260331"
       },
       {
         "tier": 1,
@@ -1414,8 +1736,43 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・農林水産委員会／「臨時措置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E8%87%A8%E6%99%82%E6%8E%AA%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 農林水産委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00120260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00220260311"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00320260312"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00220260324"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00320260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00420260331"
       },
       {
         "tier": 1,
@@ -1459,9 +1816,9 @@ window.BILLS = [
       "成立",
       "農林水産省",
       "日本中央競馬会法",
-      "持続可能",
+      "運営体制",
       "外部利用",
-      "運営体制"
+      "持続可能"
     ],
     "timeline": [
       {
@@ -1538,8 +1895,43 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・農林水産委員会／「日本中央競馬会法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%97%A5%E6%9C%AC%E4%B8%AD%E5%A4%AE%E7%AB%B6%E9%A6%AC%E4%BC%9A%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 農林水産委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00120260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00220260311"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00320260312"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00220260324"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00320260326"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00420260331"
       },
       {
         "tier": 1,
@@ -1583,9 +1975,9 @@ window.BILLS = [
       "審議中",
       "内閣官房",
       "防災庁設置法",
+      "行政運営",
       "専門組織",
-      "スムーズ",
-      "行政運営"
+      "スムーズ"
     ],
     "timeline": [
       {
@@ -1644,15 +2036,64 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・災害対策特別委員会／「防災庁設置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%81%BD%E5%AE%B3%E5%AF%BE%E7%AD%96%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%98%B2%E7%81%BD%E5%BA%81%E8%A8%AD%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 災害対策特別委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00220260310"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・災害対策及び東日本大震災復興特別委員会／「防災庁設置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%81%BD%E5%AE%B3%E5%AF%BE%E7%AD%96%E5%8F%8A%E3%81%B3%E6%9D%B1%E6%97%A5%E6%9C%AC%E5%A4%A7%E9%9C%87%E7%81%BD%E5%BE%A9%E8%88%88%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%98%B2%E7%81%BD%E5%BA%81%E8%A8%AD%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 災害対策特別委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00320260312"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 災害対策及び東日本大震災復興特別委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115384X00220260331"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00420260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00520260416"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00620260423"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00720260428"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第8号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00820260512"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第9号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00920260514"
       },
       {
         "tier": 1,
@@ -1704,8 +2145,8 @@ window.BILLS = [
     "tags": [
       "審議中",
       "内閣官房",
-      "体制構築",
-      "役割分担"
+      "役割分担",
+      "体制構築"
     ],
     "timeline": [
       {
@@ -1764,15 +2205,43 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・災害対策特別委員会／「防災庁設置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%81%BD%E5%AE%B3%E5%AF%BE%E7%AD%96%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%98%B2%E7%81%BD%E5%BA%81%E8%A8%AD%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 災害対策特別委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00420260414"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・災害対策及び東日本大震災復興特別委員会／「防災庁設置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%81%BD%E5%AE%B3%E5%AF%BE%E7%AD%96%E5%8F%8A%E3%81%B3%E6%9D%B1%E6%97%A5%E6%9C%AC%E5%A4%A7%E9%9C%87%E7%81%BD%E5%BE%A9%E8%88%88%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%98%B2%E7%81%BD%E5%BA%81%E8%A8%AD%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 災害対策特別委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00520260416"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00620260423"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00720260428"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第8号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00820260512"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 災害対策特別委員会 第9号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104339X00920260514"
       },
       {
         "tier": 1,
@@ -1815,12 +2284,12 @@ window.BILLS = [
     "tags": [
       "成立",
       "経済産業省",
-      "安定確保",
-      "海外市場",
-      "重要物資",
       "貿易保険",
+      "海外市場",
+      "安定確保",
       "事業内容",
-      "国際情勢"
+      "国際情勢",
+      "認定制度"
     ],
     "timeline": [
       {
@@ -1897,8 +2366,36 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・経済産業委員会／「産業競争力強化法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%B5%8C%E6%B8%88%E7%94%A3%E6%A5%AD%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%94%A3%E6%A5%AD%E7%AB%B6%E4%BA%89%E5%8A%9B%E5%BC%B7%E5%8C%96%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 経済産業委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104080X00320260415"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 経済産業委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104080X00420260417"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 経済産業委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104080X00520260422"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 経済産業委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104080X00620260424"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 経済産業委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104080X00720260513"
       },
       {
         "tier": 1,
@@ -1951,8 +2448,8 @@ window.BILLS = [
       "成立",
       "国土交通省",
       "物資の流通の効率化",
-      "中継輸送",
       "トラック",
+      "中継輸送",
       "運送体制"
     ],
     "timeline": [
@@ -2030,8 +2527,22 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・国土交通委員会／「物資の流通の効率化に」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%9B%BD%E5%9C%9F%E4%BA%A4%E9%80%9A%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%89%A9%E8%B3%87%E3%81%AE%E6%B5%81%E9%80%9A%E3%81%AE%E5%8A%B9%E7%8E%87%E5%8C%96%E3%81%AB&maximumRecords=30"
+        "title": "第221回 衆議院 国土交通委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104319X00320260408"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 国土交通委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104319X00420260410"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 国土交通委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114319X00620260423"
       },
       {
         "tier": 1,
@@ -2075,9 +2586,9 @@ window.BILLS = [
       "成立",
       "環境省",
       "環境省設置法",
-      "スムーズ",
+      "行政運営",
       "地方拠点",
-      "行政運営"
+      "スムーズ"
     ],
     "timeline": [
       {
@@ -2154,8 +2665,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・環境委員会／「環境省設置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%92%B0%E5%A2%83%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%92%B0%E5%A2%83%E7%9C%81%E8%A8%AD%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 環境委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104006X00220260410"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 環境委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104006X00320260414"
       },
       {
         "tier": 1,
@@ -2200,10 +2718,10 @@ window.BILLS = [
       "防衛省",
       "防衛省設置法",
       "防衛副大臣",
-      "人材確保",
-      "任務遂行",
+      "人員調整",
       "組織再編",
-      "人員調整"
+      "任務遂行",
+      "人材確保"
     ],
     "timeline": [
       {
@@ -2256,8 +2774,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・安全保障委員会／「防衛省設置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%98%B2%E8%A1%9B%E7%9C%81%E8%A8%AD%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 安全保障委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103815X00120260403"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 安全保障委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103815X00320260416"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 安全保障委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103815X00420260421"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 安全保障委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103815X00520260424"
       },
       {
         "tier": 1,
@@ -2387,8 +2926,22 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・法務委員会／「裁判所職員定員法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%B3%95%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E8%A3%81%E5%88%A4%E6%89%80%E8%81%B7%E5%93%A1%E5%AE%9A%E5%93%A1%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 法務委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105206X00220260410"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 法務委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105206X00320260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 法務委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115206X00620260421"
       },
       {
         "tier": 1,
@@ -2433,10 +2986,10 @@ window.BILLS = [
       "法務省",
       "短期滞在者",
       "出入国管理",
-      "入国審査",
-      "在留資格",
       "管理体制",
-      "認証制度"
+      "認証制度",
+      "在留資格",
+      "入国審査"
     ],
     "timeline": [
       {
@@ -2513,8 +3066,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・法務委員会／「難民認定法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%B3%95%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%9B%A3%E6%B0%91%E8%AA%8D%E5%AE%9A%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 法務委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105206X00320260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 法務委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105206X00420260415"
       },
       {
         "tier": 1,
@@ -2557,8 +3117,8 @@ window.BILLS = [
     "tags": [
       "成立",
       "外務省",
-      "発行手数料",
       "パスポート",
+      "発行手数料",
       "事務費用"
     ],
     "timeline": [
@@ -2636,15 +3196,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・外務委員会／「旅券法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%A4%96%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%97%85%E5%88%B8%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 外務委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103968X00520260408"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・外交防衛委員会／「旅券法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%A4%96%E4%BA%A4%E9%98%B2%E8%A1%9B%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%97%85%E5%88%B8%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 外務委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103968X00620260410"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 外交防衛委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122113950X00520260421"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 外交防衛委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122113950X00620260423"
       },
       {
         "tier": 1,
@@ -2689,9 +3263,9 @@ window.BILLS = [
       "国土交通省",
       "都市再生特別措置法",
       "所有者不明",
-      "地域主導",
       "管理体制",
-      "公共施設"
+      "公共施設",
+      "地域主導"
     ],
     "timeline": [
       {
@@ -2768,8 +3342,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・国土交通委員会／「都市再生特別措置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%9B%BD%E5%9C%9F%E4%BA%A4%E9%80%9A%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%83%BD%E5%B8%82%E5%86%8D%E7%94%9F%E7%89%B9%E5%88%A5%E6%8E%AA%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 国土交通委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104319X00520260415"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 国土交通委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104319X00620260422"
       },
       {
         "tier": 1,
@@ -2814,8 +3395,8 @@ window.BILLS = [
       "国土交通省",
       "地域公共交通の活性化",
       "代用輸送",
-      "交通課題",
-      "鉄道事業"
+      "鉄道事業",
+      "交通課題"
     ],
     "timeline": [
       {
@@ -2892,8 +3473,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・国土交通委員会／「地域公共交通」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%9B%BD%E5%9C%9F%E4%BA%A4%E9%80%9A%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9C%B0%E5%9F%9F%E5%85%AC%E5%85%B1%E4%BA%A4%E9%80%9A&maximumRecords=30"
+        "title": "第221回 衆議院 国土交通委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104319X00720260424"
       },
       {
         "tier": 1,
@@ -3016,8 +3597,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・内閣委員会／「国家情報会議設置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%86%85%E9%96%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9B%BD%E5%AE%B6%E6%83%85%E5%A0%B1%E4%BC%9A%E8%AD%B0%E8%A8%AD%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 参議院 内閣委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114889X00220260402"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 内閣委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104889X00120260403"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 内閣委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104889X00220260408"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 内閣委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104889X00320260410"
       },
       {
         "tier": 1,
@@ -3063,9 +3665,9 @@ window.BILLS = [
       "健康保険法",
       "労働環境改善",
       "医療保険制度",
-      "持続可能",
+      "スタッフ",
       "医療機関",
-      "スタッフ"
+      "持続可能"
     ],
     "timeline": [
       {
@@ -3142,8 +3744,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・厚生労働委員会／「健康保険法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%81%A5%E5%BA%B7%E4%BF%9D%E9%99%BA%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 厚生労働委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104260X00220260410"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 厚生労働委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104260X00320260415"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 厚生労働委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104260X00420260417"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 厚生労働委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104260X00520260421"
       },
       {
         "tier": 1,
@@ -3205,11 +3828,11 @@ window.BILLS = [
       "審議中",
       "経済産業省",
       "産業技術力強化法",
-      "認定手続",
-      "研究機関",
       "産業技術",
+      "認定手続",
+      "研究開発",
       "支援体制",
-      "研究開発"
+      "研究機関"
     ],
     "timeline": [
       {
@@ -3280,8 +3903,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・経済産業委員会／「産業技術力強化法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%B5%8C%E6%B8%88%E7%94%A3%E6%A5%AD%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%94%A3%E6%A5%AD%E6%8A%80%E8%A1%93%E5%8A%9B%E5%BC%B7%E5%8C%96%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 経済産業委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104080X00720260513"
       },
       {
         "tier": 1,
@@ -3403,15 +4026,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財務金融委員会／「外国貿易法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E5%8B%99%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%A4%96%E5%9B%BD%E8%B2%BF%E6%98%93%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00120260303"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財政金融委員会／「外国貿易法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E6%94%BF%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%A4%96%E5%9B%BD%E8%B2%BF%E6%98%93%E6%B3%95&maximumRecords=30"
+        "title": "第221回 参議院 財政金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00120260319"
       },
       {
         "tier": 1,
@@ -3534,8 +4157,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・農林水産委員会／「農林中央金庫法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E8%BE%B2%E6%9E%97%E4%B8%AD%E5%A4%AE%E9%87%91%E5%BA%AB%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 農林水産委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00420260409"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00520260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00620260421"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00720260423"
       },
       {
         "tier": 1,
@@ -3580,9 +4224,9 @@ window.BILLS = [
       "農林水産省",
       "農業近代化資金融通法",
       "生産性向上",
-      "スムーズ",
+      "規模拡大",
       "長期融資",
-      "規模拡大"
+      "スムーズ"
     ],
     "timeline": [
       {
@@ -3659,8 +4303,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・農林水産委員会／「農業近代化資金融通法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E8%BE%B2%E6%A5%AD%E8%BF%91%E4%BB%A3%E5%8C%96%E8%B3%87%E9%87%91%E8%9E%8D%E9%80%9A%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 農林水産委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00420260409"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00520260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00620260421"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00720260423"
       },
       {
         "tier": 1,
@@ -3706,9 +4371,9 @@ window.BILLS = [
       "株式会社国際協力銀行法",
       "安全保障環境",
       "輸送網強化",
-      "重要物資",
       "官民連携",
-      "基盤整備"
+      "調査研究",
+      "医療分野"
     ],
     "timeline": [
       {
@@ -3780,13 +4445,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/h0802210302210010.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・内閣委員会／「株式会社国際協力銀行法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%86%85%E9%96%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E5%9B%BD%E9%9A%9B%E5%8D%94%E5%8A%9B%E9%8A%80%E8%A1%8C%E6%B3%95&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -3902,8 +4560,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・内閣委員会／「重要施設」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%86%85%E9%96%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%87%8D%E8%A6%81%E6%96%BD%E8%A8%AD&maximumRecords=30"
+        "title": "第221回 参議院 内閣委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114889X00120260324"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 内閣委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104889X00120260403"
       },
       {
         "tier": 1,
@@ -3957,9 +4622,9 @@ window.BILLS = [
       "総務省",
       "関連事業者",
       "経営安定",
-      "国内企業",
+      "処分期限",
       "支援機構",
-      "処分期限"
+      "国内企業"
     ],
     "timeline": [
       {
@@ -4036,8 +4701,22 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・総務委員会／「郵便事業支援機構法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%B7%8F%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%83%B5%E4%BE%BF%E4%BA%8B%E6%A5%AD%E6%94%AF%E6%8F%B4%E6%A9%9F%E6%A7%8B%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 総務委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00620260409"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 総務委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00720260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 総務委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114601X00620260421"
       },
       {
         "tier": 1,
@@ -4098,10 +4777,10 @@ window.BILLS = [
     "tags": [
       "成立",
       "総務省",
-      "本人確認",
-      "音声以外",
       "不正利用",
-      "携帯電話"
+      "携帯電話",
+      "音声以外",
+      "本人確認"
     ],
     "timeline": [
       {
@@ -4178,8 +4857,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・総務委員会／「携帯音声通信事業者」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%B7%8F%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%90%BA%E5%B8%AF%E9%9F%B3%E5%A3%B0%E9%80%9A%E4%BF%A1%E4%BA%8B%E6%A5%AD%E8%80%85&maximumRecords=30"
+        "title": "第221回 衆議院 総務委員会 第9号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00920260428"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 総務委員会 第10号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X01020260512"
       },
       {
         "tier": 1,
@@ -4270,9 +4956,9 @@ window.BILLS = [
       "郵便事業者",
       "民間事業者",
       "定形郵便物",
+      "経営状況",
       "競争環境",
-      "価格上限",
-      "経営状況"
+      "価格上限"
     ],
     "timeline": [
       {
@@ -4343,8 +5029,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・総務委員会／「郵便法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%B7%8F%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%83%B5%E4%BE%BF%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 総務委員会 第11号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X01120260526"
       },
       {
         "tier": 1,
@@ -4426,8 +5112,8 @@ window.BILLS = [
       "家畜伝染病予防法",
       "ランピースキン",
       "感染症対策",
-      "ワクチン",
-      "防疫体制"
+      "防疫体制",
+      "ワクチン"
     ],
     "timeline": [
       {
@@ -4498,8 +5184,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・農林水産委員会／「家畜伝染病予防法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%AE%B6%E7%95%9C%E4%BC%9D%E6%9F%93%E7%97%85%E4%BA%88%E9%98%B2%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 農林水産委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00620260416"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00720260422"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第8号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00820260512"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第9号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00920260514"
       },
       {
         "tier": 1,
@@ -4545,9 +5252,9 @@ window.BILLS = [
       "電力供給体制",
       "大規模発電所",
       "協力義務付",
-      "メーカー",
       "安定供給",
-      "資金確保"
+      "メーカー",
+      "送電設備"
     ],
     "timeline": [
       {
@@ -4577,13 +5284,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210362210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・経済産業委員会／「電気事業法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%B5%8C%E6%B8%88%E7%94%A3%E6%A5%AD%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%9B%BB%E6%B0%97%E4%BA%8B%E6%A5%AD%E6%B3%95&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -4721,15 +5421,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・地域活性化・こども政策・デジタル社会形成に関する特別委員会／「地域の自主性及び自立」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%9C%B0%E5%9F%9F%E6%B4%BB%E6%80%A7%E5%8C%96%E3%83%BB%E3%81%93%E3%81%A9%E3%82%82%E6%94%BF%E7%AD%96%E3%83%BB%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%A4%BE%E4%BC%9A%E5%BD%A2%E6%88%90%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9C%B0%E5%9F%9F%E3%81%AE%E8%87%AA%E4%B8%BB%E6%80%A7%E5%8F%8A%E3%81%B3%E8%87%AA%E7%AB%8B&maximumRecords=30"
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00320260416"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・沖縄・北方問題及び地方に関する特別委員会／「地域の自主性及び自立」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%B2%96%E7%B8%84%E3%83%BB%E5%8C%97%E6%96%B9%E5%95%8F%E9%A1%8C%E5%8F%8A%E3%81%B3%E5%9C%B0%E6%96%B9%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9C%B0%E5%9F%9F%E3%81%AE%E8%87%AA%E4%B8%BB%E6%80%A7%E5%8F%8A%E3%81%B3%E8%87%AA%E7%AB%8B&maximumRecords=30"
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00420260423"
       },
       {
         "tier": 1,
@@ -4773,11 +5473,11 @@ window.BILLS = [
       "審議中",
       "国土交通省",
       "下水道体制",
-      "自治体間",
-      "持続可能",
       "連携強化",
+      "自治体間",
+      "管理状況",
       "維持管理",
-      "人口減少"
+      "持続可能"
     ],
     "timeline": [
       {
@@ -4825,13 +5525,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210382210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・国土交通委員会／「下水道法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%9B%BD%E5%9C%9F%E4%BA%A4%E9%80%9A%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E4%B8%8B%E6%B0%B4%E9%81%93%E6%B3%95&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -4894,9 +5587,9 @@ window.BILLS = [
       "国土交通省",
       "炭素排出量",
       "エネルギー",
-      "計画策定",
       "脱炭素化",
-      "認証制度"
+      "認証制度",
+      "計画策定"
     ],
     "timeline": [
       {
@@ -4944,13 +5637,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210392210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・国土交通委員会／「建築物」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%9B%BD%E5%9C%9F%E4%BA%A4%E9%80%9A%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%BB%BA%E7%AF%89%E7%89%A9&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -5030,9 +5716,9 @@ window.BILLS = [
       "成立",
       "内閣府",
       "ロケット",
+      "損害賠償",
       "宇宙開発",
-      "人工衛星",
-      "損害賠償"
+      "人工衛星"
     ],
     "timeline": [
       {
@@ -5103,15 +5789,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・内閣委員会／「人工衛星等」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%86%85%E9%96%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E4%BA%BA%E5%B7%A5%E8%A1%9B%E6%98%9F%E7%AD%89&maximumRecords=30"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・デジタル社会の形成及び人工知能の活用等に関する特別委員会／「人工衛星等」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%BD%A2%E6%88%90%E5%8F%8A%E3%81%B3%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E3%81%AE%E6%B4%BB%E7%94%A8%E7%AD%89%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E4%BA%BA%E5%B7%A5%E8%A1%9B%E6%98%9F%E7%AD%89&maximumRecords=30"
+        "title": "第221回 参議院 デジタル社会の形成及び人工知能の活用等に関する特別委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115385X00320260415"
       },
       {
         "tier": 1,
@@ -5156,9 +5835,9 @@ window.BILLS = [
       "内閣府",
       "最先端技術",
       "関係者同士",
+      "ビジネス",
       "研究成果",
-      "先端技術",
-      "ビジネス"
+      "先端技術"
     ],
     "timeline": [
       {
@@ -5188,13 +5867,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210412210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・内閣委員会／「科学技術・イノベーション」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%86%85%E9%96%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%A7%91%E5%AD%A6%E6%8A%80%E8%A1%93%E3%83%BB%E3%82%A4%E3%83%8E%E3%83%99%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -5290,8 +5962,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・法務委員会／「道路交通法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%B3%95%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%81%93%E8%B7%AF%E4%BA%A4%E9%80%9A%E6%B3%95&maximumRecords=30"
+        "title": "第221回 参議院 法務委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115206X00420260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 法務委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115206X00520260416"
       },
       {
         "tier": 1,
@@ -5335,8 +6014,8 @@ window.BILLS = [
       "審議中",
       "法務省",
       "成年後見制度",
-      "単身世帯",
-      "サポート"
+      "サポート",
+      "単身世帯"
     ],
     "timeline": [
       {
@@ -5407,8 +6086,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・法務委員会／「民法等」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%B3%95%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%B0%91%E6%B3%95%E7%AD%89&maximumRecords=30"
+        "title": "第221回 参議院 法務委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115206X00420260414"
       },
       {
         "tier": 1,
@@ -5529,13 +6208,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・法務委員会／「民法等」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%B3%95%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%B0%91%E6%B3%95%E7%AD%89&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -5577,10 +6249,10 @@ window.BILLS = [
       "厚生労働省",
       "社会福祉法",
       "人口減少地域",
-      "有料老人",
       "スタッフ",
+      "有料老人",
       "資格制度",
-      "ホーム"
+      "ニーズ"
     ],
     "timeline": [
       {
@@ -5637,13 +6309,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・厚生労働委員会／「社会福祉法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%A4%BE%E4%BC%9A%E7%A6%8F%E7%A5%89%E6%B3%95&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -5686,8 +6351,8 @@ window.BILLS = [
       "重要品種の育成",
       "その種苗の生産の振興",
       "生産性向上",
-      "研究設備",
       "生産環境",
+      "供給体制",
       "気候変動"
     ],
     "timeline": [
@@ -5724,13 +6389,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210462210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・農林水産委員会／「重要品種」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%87%8D%E8%A6%81%E5%93%81%E7%A8%AE&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -5774,8 +6432,8 @@ window.BILLS = [
       "審議中",
       "農林水産省",
       "損害賠償額",
-      "有効期間",
-      "計算方法"
+      "計算方法",
+      "有効期間"
     ],
     "timeline": [
       {
@@ -5811,13 +6469,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210472210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・農林水産委員会／「種苗法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%A8%AE%E8%8B%97%E6%B3%95&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -5861,10 +6512,10 @@ window.BILLS = [
       "審議中",
       "農林水産省",
       "主要食糧の需給",
-      "加工業者",
-      "生産調整",
       "在庫確保",
-      "価格高騰"
+      "加工業者",
+      "価格高騰",
+      "生産調整"
     ],
     "timeline": [
       {
@@ -5923,8 +6574,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・農林水産委員会／「主要食糧」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E4%B8%BB%E8%A6%81%E9%A3%9F%E7%B3%A7&maximumRecords=30"
+        "title": "第221回 衆議院 農林水産委員会 第8号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00820260512"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第9号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00920260513"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第10号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X01020260520"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 農林水産委員会 第11号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X01120260526"
       },
       {
         "tier": 1,
@@ -5978,9 +6650,9 @@ window.BILLS = [
       "環境省",
       "太陽電池廃棄物の再資源化",
       "リサイクル",
+      "再資源化",
       "太陽電池",
       "処理体制",
-      "再資源化",
       "報告制度"
     ],
     "timeline": [
@@ -6058,8 +6730,22 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・環境委員会／「太陽電池廃棄物」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%92%B0%E5%A2%83%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%A4%AA%E9%99%BD%E9%9B%BB%E6%B1%A0%E5%BB%83%E6%A3%84%E7%89%A9&maximumRecords=30"
+        "title": "第221回 衆議院 環境委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104006X00420260417"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 環境委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104006X00520260421"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 環境委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104006X00620260424"
       },
       {
         "tier": 1,
@@ -6189,15 +6875,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・安全保障委員会／「予備自衛官等」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E4%BA%88%E5%82%99%E8%87%AA%E8%A1%9B%E5%AE%98%E7%AD%89&maximumRecords=30"
+        "title": "第221回 参議院 外交防衛委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122113950X00120260324"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・外交防衛委員会／「予備自衛官等」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%A4%96%E4%BA%A4%E9%98%B2%E8%A1%9B%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E4%BA%88%E5%82%99%E8%87%AA%E8%A1%9B%E5%AE%98%E7%AD%89&maximumRecords=30"
+        "title": "第221回 衆議院 安全保障委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103815X00120260403"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 安全保障委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103815X00620260512"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 安全保障委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122103815X00720260515"
       },
       {
         "tier": 1,
@@ -6322,8 +7022,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・内閣委員会／「犯罪による収益の移転」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%86%85%E9%96%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%8A%AF%E7%BD%AA%E3%81%AB%E3%82%88%E3%82%8B%E5%8F%8E%E7%9B%8A%E3%81%AE%E7%A7%BB%E8%BB%A2&maximumRecords=30"
+        "title": "第221回 参議院 内閣委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114889X00120260324"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 内閣委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104889X00120260403"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 内閣委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114889X00320260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 内閣委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114889X00420260416"
       },
       {
         "tier": 1,
@@ -6367,10 +7088,10 @@ window.BILLS = [
       "成立",
       "環境省",
       "南極地域の環境の保護",
+      "緊急事態",
       "対応義務",
       "事前確認",
-      "科学調査",
-      "緊急事態"
+      "科学調査"
     ],
     "timeline": [
       {
@@ -6441,8 +7162,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・環境委員会／「南極地域」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%92%B0%E5%A2%83%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%8D%97%E6%A5%B5%E5%9C%B0%E5%9F%9F&maximumRecords=30"
+        "title": "第221回 参議院 環境委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114006X00420260414"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 環境委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114006X00520260416"
       },
       {
         "tier": 1,
@@ -6566,15 +7294,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・地域活性化・こども政策・デジタル社会形成に関する特別委員会／「情報通信技術」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%9C%B0%E5%9F%9F%E6%B4%BB%E6%80%A7%E5%8C%96%E3%83%BB%E3%81%93%E3%81%A9%E3%82%82%E6%94%BF%E7%AD%96%E3%83%BB%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%A4%BE%E4%BC%9A%E5%BD%A2%E6%88%90%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%83%85%E5%A0%B1%E9%80%9A%E4%BF%A1%E6%8A%80%E8%A1%93&maximumRecords=30"
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00420260423"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・デジタル社会の形成及び人工知能の活用等に関する特別委員会／「情報通信技術」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%BD%A2%E6%88%90%E5%8F%8A%E3%81%B3%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E3%81%AE%E6%B4%BB%E7%94%A8%E7%AD%89%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%83%85%E5%A0%B1%E9%80%9A%E4%BF%A1%E6%8A%80%E8%A1%93&maximumRecords=30"
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00520260508"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00620260512"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00720260514"
       },
       {
         "tier": 1,
@@ -6618,9 +7360,9 @@ window.BILLS = [
       "審議中",
       "個人情報保護委員会",
       "身体的特徴",
-      "統計作成",
       "バランス",
-      "情報提供"
+      "情報提供",
+      "統計作成"
     ],
     "timeline": [
       {
@@ -6679,15 +7421,29 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・地域活性化・こども政策・デジタル社会形成に関する特別委員会／「個人情報」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%9C%B0%E5%9F%9F%E6%B4%BB%E6%80%A7%E5%8C%96%E3%83%BB%E3%81%93%E3%81%A9%E3%82%82%E6%94%BF%E7%AD%96%E3%83%BB%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%A4%BE%E4%BC%9A%E5%BD%A2%E6%88%90%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%80%8B%E4%BA%BA%E6%83%85%E5%A0%B1&maximumRecords=30"
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00420260423"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・デジタル社会の形成及び人工知能の活用等に関する特別委員会／「個人情報」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%A4%BE%E4%BC%9A%E3%81%AE%E5%BD%A2%E6%88%90%E5%8F%8A%E3%81%B3%E4%BA%BA%E5%B7%A5%E7%9F%A5%E8%83%BD%E3%81%AE%E6%B4%BB%E7%94%A8%E7%AD%89%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%80%8B%E4%BA%BA%E6%83%85%E5%A0%B1&maximumRecords=30"
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00520260508"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00620260512"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105367X00720260514"
       },
       {
         "tier": 1,
@@ -6809,15 +7565,22 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・文部科学委員会／「学校教育法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%96%87%E9%83%A8%E7%A7%91%E5%AD%A6%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%AD%A6%E6%A0%A1%E6%95%99%E8%82%B2%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 文部科学委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105124X00720260422"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・文教科学委員会／「学校教育法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%96%87%E6%95%99%E7%A7%91%E5%AD%A6%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%AD%A6%E6%A0%A1%E6%95%99%E8%82%B2%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 文部科学委員会 第8号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105124X00820260424"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 文教科学委員会 第8号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115104X00820260602"
       },
       {
         "tier": 1,
@@ -6862,10 +7625,10 @@ window.BILLS = [
       "厚生労働省",
       "労働者災害補償保険法",
       "セーフティネット",
-      "労働災害",
-      "事業形態",
       "年金支給",
-      "加入要件"
+      "暫定措置",
+      "加入要件",
+      "労働災害"
     ],
     "timeline": [
       {
@@ -6913,13 +7676,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210562210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・厚生労働委員会／「労働者災害補償保険法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%8A%B4%E5%83%8D%E8%80%85%E7%81%BD%E5%AE%B3%E8%A3%9C%E5%84%9F%E4%BF%9D%E9%99%BA%E6%B3%95&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -6973,10 +7729,10 @@ window.BILLS = [
       "金融庁",
       "金融商品取引法",
       "不正取引",
-      "資金供給",
+      "金融商品",
       "暗号資産",
-      "有価証券",
-      "金融商品"
+      "資金供給",
+      "有価証券"
     ],
     "timeline": [
       {
@@ -7035,15 +7791,22 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財務金融委員会／「金融商品取引法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E5%8B%99%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%87%91%E8%9E%8D%E5%95%86%E5%93%81%E5%8F%96%E5%BC%95%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00120260303"
       },
       {
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・財政金融委員会／「金融商品取引法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%B2%A1%E6%94%BF%E9%87%91%E8%9E%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%87%91%E8%9E%8D%E5%95%86%E5%93%81%E5%8F%96%E5%BC%95%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 財務金融委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104376X00220260304"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 財政金融委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114370X00120260319"
       },
       {
         "tier": 1,
@@ -7106,8 +7869,8 @@ window.BILLS = [
       "厚生労働省",
       "ヒトゲノム編集胚",
       "遺伝子変化",
-      "管理指針",
       "原則禁止",
+      "管理指針",
       "ゲノム"
     ],
     "timeline": [
@@ -7156,13 +7919,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210582210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・厚生労働委員会／「ヒトゲノム編集胚等」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E3%83%92%E3%83%88%E3%82%B2%E3%83%8E%E3%83%A0%E7%B7%A8%E9%9B%86%E8%83%9A%E7%AD%89&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -7217,9 +7973,9 @@ window.BILLS = [
       "廃棄物の処理",
       "清掃に関する法律",
       "プラスチック",
+      "連携強化",
       "処分場所",
-      "体制整備",
-      "連携強化"
+      "健康被害"
     ],
     "timeline": [
       {
@@ -7285,13 +8041,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210592210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・環境委員会／「廃棄物」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%92%B0%E5%A2%83%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%BB%83%E6%A3%84%E7%89%A9&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -7412,13 +8161,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・環境委員会／「特別措置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%92%B0%E5%A2%83%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E7%89%B9%E5%88%A5%E6%8E%AA%E7%BD%AE%E6%B3%95&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -7511,8 +8253,22 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・法務委員会／「刑事訴訟法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%B3%95%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%88%91%E4%BA%8B%E8%A8%B4%E8%A8%9F%E6%B3%95&maximumRecords=30"
+        "title": "第221回 参議院 法務委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115206X00320260402"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 法務委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105206X00220260410"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 法務委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115206X00620260421"
       },
       {
         "tier": 1,
@@ -7623,20 +8379,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・文部科学委員会／「著作権法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%96%87%E9%83%A8%E7%A7%91%E5%AD%A6%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E8%91%97%E4%BD%9C%E6%A8%A9%E6%B3%95&maximumRecords=30"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・文教科学委員会／「著作権法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%96%87%E6%95%99%E7%A7%91%E5%AD%A6%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E8%91%97%E4%BD%9C%E6%A8%A9%E6%B3%95&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -7678,8 +8420,8 @@ window.BILLS = [
       "厚生労働省",
       "医薬品技術",
       "長期間持続",
-      "ワクチン",
-      "予防接種"
+      "予防接種",
+      "ワクチン"
     ],
     "timeline": [
       {
@@ -7703,13 +8445,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0802210632210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「予防接種法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E4%BA%88%E9%98%B2%E6%8E%A5%E7%A8%AE%E6%B3%95&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -7788,8 +8523,8 @@ window.BILLS = [
     "tags": [
       "審議中",
       "政治資金規正法",
-      "労働組合",
-      "政治活動"
+      "政治活動",
+      "労働組合"
     ],
     "timeline": [
       {
@@ -7822,13 +8557,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・政治改革に関する特別委員会／「政治資金規正法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%94%BF%E6%B2%BB%E6%94%B9%E9%9D%A9%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%94%BF%E6%B2%BB%E8%B3%87%E9%87%91%E8%A6%8F%E6%AD%A3%E6%B3%95&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -7854,8 +8582,8 @@ window.BILLS = [
     "tags": [
       "審議中",
       "国債発行",
-      "財政状況",
-      "予算運営"
+      "予算運営",
+      "財政状況"
     ],
     "timeline": [
       {
@@ -7879,13 +8607,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t0902210022210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「令和八年度」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E4%BB%A4%E5%92%8C%E5%85%AB%E5%B9%B4%E5%BA%A6&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -7923,9 +8644,9 @@ window.BILLS = [
     "tags": [
       "廃案",
       "情報収集能力",
-      "基本方針",
       "国際情勢",
-      "体制整備"
+      "体制整備",
+      "基本方針"
     ],
     "timeline": [
       {
@@ -7972,8 +8693,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・内閣委員会／「インテリジェンス」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%86%85%E9%96%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E3%82%A4%E3%83%B3%E3%83%86%E3%83%AA%E3%82%B8%E3%82%A7%E3%83%B3%E3%82%B9&maximumRecords=30"
+        "title": "第221回 衆議院 内閣委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104889X00320260410"
       },
       {
         "tier": 1,
@@ -8067,8 +8788,15 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・国土交通委員会／「運輸事業」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%9B%BD%E5%9C%9F%E4%BA%A4%E9%80%9A%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%81%8B%E8%BC%B8%E4%BA%8B%E6%A5%AD&maximumRecords=30"
+        "title": "第221回 衆議院 国土交通委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104319X00220260310"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 国土交通委員会 第4号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122114319X00420260331"
       },
       {
         "tier": 1,
@@ -8162,8 +8890,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・災害対策及び東日本大震災復興特別委員会／「地震防災対策特別措置法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%81%BD%E5%AE%B3%E5%AF%BE%E7%AD%96%E5%8F%8A%E3%81%B3%E6%9D%B1%E6%97%A5%E6%9C%AC%E5%A4%A7%E9%9C%87%E7%81%BD%E5%BE%A9%E8%88%88%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9C%B0%E9%9C%87%E9%98%B2%E7%81%BD%E5%AF%BE%E7%AD%96%E7%89%B9%E5%88%A5%E6%8E%AA%E7%BD%AE%E6%B3%95&maximumRecords=30"
+        "title": "第221回 参議院 災害対策及び東日本大震災復興特別委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115384X00220260331"
       },
       {
         "tier": 1,
@@ -8227,13 +8955,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「障害者及びそ」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E9%9A%9C%E5%AE%B3%E8%80%85%E5%8F%8A%E3%81%B3%E3%81%9D&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -8293,8 +9014,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・厚生労働委員会／「全ての国民が安心して」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E5%8E%9A%E7%94%9F%E5%8A%B4%E5%83%8D%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%85%A8%E3%81%A6%E3%81%AE%E5%9B%BD%E6%B0%91%E3%81%8C%E5%AE%89%E5%BF%83%E3%81%97%E3%81%A6&maximumRecords=30"
+        "title": "第221回 衆議院 厚生労働委員会 第5号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104260X00520260421"
       },
       {
         "tier": 1,
@@ -8322,8 +9043,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "成立",
-      "安定確保",
-      "農林水産"
+      "農林水産",
+      "安定確保"
     ],
     "timeline": [
       {
@@ -8388,8 +9109,22 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・農林水産委員会／「食育基本法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%BE%B2%E6%9E%97%E6%B0%B4%E7%94%A3%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%A3%9F%E8%82%B2%E5%9F%BA%E6%9C%AC%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 農林水産委員会 第7号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105007X00720260422"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第8号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X00820260512"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 農林水産委員会 第10号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115007X01020260519"
       },
       {
         "tier": 1,
@@ -8473,8 +9208,22 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・法務委員会／「刑事訴訟法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%B3%95%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%88%91%E4%BA%8B%E8%A8%B4%E8%A8%9F%E6%B3%95&maximumRecords=30"
+        "title": "第221回 参議院 法務委員会 第3号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115206X00320260402"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 衆議院 法務委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122105206X00220260410"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第221回 参議院 法務委員会 第6号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122115206X00620260421"
       },
       {
         "tier": 1,
@@ -8505,9 +9254,9 @@ window.BILLS = [
       "国会議員の歳費、旅費",
       "法律改正前",
       "一定期間据",
+      "期末手当",
       "支給割合",
-      "国会議員",
-      "期末手当"
+      "国会議員"
     ],
     "timeline": [
       {
@@ -8572,8 +9321,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・議院運営委員会／「国会議員」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E8%AD%B0%E9%99%A2%E9%81%8B%E5%96%B6%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E5%9B%BD%E4%BC%9A%E8%AD%B0%E5%93%A1&maximumRecords=30"
+        "title": "第221回 衆議院 議院運営委員会 第24号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104024X02420260526"
       },
       {
         "tier": 1,
@@ -8603,10 +9352,10 @@ window.BILLS = [
       "審議中",
       "日本国憲法の改正手続",
       "超短波放送",
-      "広報活動",
       "憲法改正",
-      "スムーズ",
-      "国民投票"
+      "広報活動",
+      "国民投票",
+      "スムーズ"
     ],
     "timeline": [
       {
@@ -8641,8 +9390,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・憲法審査会／「日本国憲法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%86%B2%E6%B3%95%E5%AF%A9%E6%9F%BB%E4%BC%9A&any=%E6%97%A5%E6%9C%AC%E5%9B%BD%E6%86%B2%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 憲法審査会 第9号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104183X00920260611"
       },
       {
         "tier": 1,
@@ -8705,13 +9454,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・政治改革に関する特別委員会／「政党等」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%94%BF%E6%B2%BB%E6%94%B9%E9%9D%A9%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%94%BF%E5%85%9A%E7%AD%89&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -8737,9 +9479,9 @@ window.BILLS = [
     "tags": [
       "審議中",
       "郵政民営化法",
+      "支援拡充",
       "社会情勢",
       "株式売却",
-      "支援拡充",
       "地域貢献"
     ],
     "timeline": [
@@ -8780,8 +9522,8 @@ window.BILLS = [
         "tier": 1,
         "cat": "会議録",
         "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・総務委員会／「郵政民営化法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E7%B7%8F%E5%8B%99%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E9%83%B5%E6%94%BF%E6%B0%91%E5%96%B6%E5%8C%96%E6%B3%95&maximumRecords=30"
+        "title": "第221回 衆議院 総務委員会 第2号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122104601X00220260305"
       },
       {
         "tier": 1,
@@ -8811,8 +9553,8 @@ window.BILLS = [
       "審議中",
       "政治資金規正法",
       "パーティー",
-      "政治団体",
-      "政治活動"
+      "政治活動",
+      "政治団体"
     ],
     "timeline": [
       {
@@ -8835,13 +9577,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "議案情報（審議経過）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/meisai/m221090221014.htm"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・政治改革に関する特別委員会／「政治資金規正法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%94%BF%E6%B2%BB%E6%94%B9%E9%9D%A9%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E7%89%B9%E5%88%A5%E5%A7%94%E5%93%A1%E4%BC%9A&any=%E6%94%BF%E6%B2%BB%E8%B3%87%E9%87%91%E8%A6%8F%E6%AD%A3%E6%B3%95&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -8871,8 +9606,8 @@ window.BILLS = [
       "審議中",
       "国立国会図書館法",
       "スクリプト",
-      "提案理由",
-      "自動要約"
+      "自動要約",
+      "提案理由"
     ],
     "timeline": [
       {
@@ -8901,13 +9636,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "議案情報（審議経過）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/meisai/m221090221015.htm"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「国立国会図書館法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E5%9B%BD%E7%AB%8B%E5%9B%BD%E4%BC%9A%E5%9B%B3%E6%9B%B8%E9%A4%A8%E6%B3%95&maximumRecords=30"
       }
     ]
   },
@@ -8929,8 +9657,8 @@ window.BILLS = [
     "tags": [
       "審議中",
       "スクリプト",
-      "提案理由",
-      "自動要約"
+      "自動要約",
+      "提案理由"
     ],
     "timeline": [
       {
@@ -8947,13 +9675,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "議案情報（審議経過）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/meisai/m221090221016.htm"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「自動車税及び軽自動車税」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E8%87%AA%E5%8B%95%E8%BB%8A%E7%A8%8E%E5%8F%8A%E3%81%B3%E8%BB%BD%E8%87%AA%E5%8B%95%E8%BB%8A%E7%A8%8E&maximumRecords=30"
       }
     ]
   },
@@ -8993,13 +9714,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "議案情報（審議経過）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/meisai/m221090221017.htm"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「自動車重量税率」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E8%87%AA%E5%8B%95%E8%BB%8A%E9%87%8D%E9%87%8F%E7%A8%8E%E7%8E%87&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -9044,13 +9758,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "議案情報（審議経過）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/meisai/m221090221018.htm"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「国旗の損壊等の処罰に」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E5%9B%BD%E6%97%97%E3%81%AE%E6%90%8D%E5%A3%8A%E7%AD%89%E3%81%AE%E5%87%A6%E7%BD%B0%E3%81%AB&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -9107,13 +9814,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「政党交付金」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E6%94%BF%E5%85%9A%E4%BA%A4%E4%BB%98%E9%87%91&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -9164,13 +9864,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t1002210022210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「特別児童扶養手当等」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E7%89%B9%E5%88%A5%E5%85%90%E7%AB%A5%E6%89%B6%E9%A4%8A%E6%89%8B%E5%BD%93%E7%AD%89&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -9226,13 +9919,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「所得税法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E6%89%80%E5%BE%97%E7%A8%8E%E6%B3%95&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -9281,13 +9967,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t1002210042210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「地方税法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E5%9C%B0%E6%96%B9%E7%A8%8E%E6%B3%95&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -9344,13 +10023,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「防諜に関する施策の推」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E9%98%B2%E8%AB%9C%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E6%96%BD%E7%AD%96%E3%81%AE%E6%8E%A8&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -9385,12 +10057,12 @@ window.BILLS = [
     "tags": [
       "審議中",
       "重要経済安保情報の保護",
-      "調査項目",
-      "情報漏洩",
       "重要書類",
+      "情報漏洩",
+      "保護体制",
       "機密情報",
-      "外国政府",
-      "保護体制"
+      "調査項目",
+      "外国政府"
     ],
     "timeline": [
       {
@@ -9414,13 +10086,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t1002210062210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「特定秘密」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E7%89%B9%E5%AE%9A%E7%A7%98%E5%AF%86&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -9471,13 +10136,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "提出法律案（PDF）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/pdf/t1002210072210.pdf"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「刑法」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E5%88%91%E6%B3%95&maximumRecords=30"
       },
       {
         "tier": 1,
@@ -9532,13 +10190,6 @@ window.BILLS = [
       },
       {
         "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「内密出産」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E5%86%85%E5%AF%86%E5%87%BA%E7%94%A3&maximumRecords=30"
-      },
-      {
-        "tier": 1,
         "cat": "一次資料",
         "pub": "衆議院",
         "title": "提出時法律案・本文",
@@ -9565,8 +10216,8 @@ window.BILLS = [
       "審議中",
       "外国人総合政策庁の設置",
       "スクリプト",
-      "提案理由",
-      "自動要約"
+      "自動要約",
+      "提案理由"
     ],
     "timeline": [
       {
@@ -9583,13 +10234,6 @@ window.BILLS = [
         "pub": "参議院",
         "title": "議案情報（審議経過）",
         "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/221/meisai/m221100221009.htm"
-      },
-      {
-        "tier": 1,
-        "cat": "会議録",
-        "pub": "国立国会図書館",
-        "title": "会議録検索（第221回・本会議／「外国人総合政策庁」）",
-        "url": "https://kokkai.ndl.go.jp/api/meeting_list?sessionFrom=221&sessionTo=221&nameOfMeeting=%E6%9C%AC%E4%BC%9A%E8%AD%B0&any=%E5%A4%96%E5%9B%BD%E4%BA%BA%E7%B7%8F%E5%90%88%E6%94%BF%E7%AD%96%E5%BA%81&maximumRecords=30"
       }
     ]
   }

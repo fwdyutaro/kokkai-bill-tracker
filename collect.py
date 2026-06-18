@@ -20,37 +20,49 @@ from bs4 import BeautifulSoup
 import enrich as clb
 
 KOKKAI_API = "https://kokkai.ndl.go.jp/api/meeting_list"
+KOKKAI_UA = {"User-Agent": "Mozilla/5.0 (compatible; bill-tracker/0.1; research)"}
 
 
-def kokkai_keyword(title):
-    """会議録検索用の簡潔キーワードを件名から抽出（〇〇法、無ければ先頭の内容語）。"""
-    t = re.sub(r"(の一部を改正する等の法律案|の一部を改正する法律案|法律案|案)$", "", title)
-    m = re.search(r"([一-龥ァ-ヴー]{2,14}法)(?:及び|等|の一部|に関する|施行|$)", t)
-    if m:
-        return m.group(1)
-    m = re.match(r"([^のにをはがと、　]{3,12})", t)
-    return m.group(1) if m else t[:10]
+def _kokkai_query(diet_no, meeting, keyword):
+    """会議録検索APIで該当会議の一覧を取得（件名そのものをキーワードに）。"""
+    url = (f"{KOKKAI_API}?sessionFrom={diet_no}&sessionTo={diet_no}"
+           f"&nameOfMeeting={quote(meeting)}&any={quote(keyword)}"
+           f"&recordPacking=json&maximumRecords=30")
+    try:
+        d = requests.get(url, timeout=30, headers=KOKKAI_UA).json()
+        time.sleep(0.3)
+        return d.get("meetingRecord") or []
+    except Exception:
+        return []
 
 
 def kokkai_refs(title, diet, sections):
-    """法案名＋会期＋（付託委員会／本会議）で国会会議録検索APIを叩くリンクを生成。"""
+    """件名(正式名称)＋会期＋付託委員会でAPIを叩き、該当会議録を個別リンク化。
+    リンクは #/detail?minId=<issueID>。0件の会議は出さない（空リンク回避）。"""
     diet_no = re.sub(r"\D", "", diet)
-    kw = kokkai_keyword(title)
-    meetings = []
+    committees = []
     for k in ("衆議院委員会等経過", "参議院委員会等経過"):
         c = sections.get(k, {}).get("付託委員会等")
-        if c and c not in meetings:
-            meetings.append(c)
-    if not meetings:               # 付託委員会が無い（委員長提出等）は本会議
-        meetings = ["本会議"]
-    # nameOfMeeting は1値ずつ（複数指定はORにならないため会議ごとにリンク）
-    refs = []
-    for m in meetings:
-        url = (f"{KOKKAI_API}?sessionFrom={diet_no}&sessionTo={diet_no}"
-               f"&nameOfMeeting={quote(m)}&any={quote(kw)}&maximumRecords=30")
-        refs.append({"tier": 1, "cat": "会議録", "pub": "国立国会図書館",
-                     "title": f"会議録検索（第{diet_no}回・{m}／「{kw}」）", "url": url})
-    return refs
+        if c and c not in committees:
+            committees.append(c)
+    if not committees:                 # 付託委員会が無い（委員長提出等）は本会議
+        committees = ["本会議"]
+
+    seen, rows = set(), []
+    for c in committees:
+        for m in _kokkai_query(diet_no, c, title):
+            iid = m.get("issueID")
+            if not iid or iid in seen:
+                continue
+            seen.add(iid)
+            label = f"第{m.get('session')}回 {m.get('nameOfHouse','')} " \
+                    f"{m.get('nameOfMeeting','')} {m.get('issue','')}".strip()
+            rows.append((m.get("date", ""), {
+                "tier": 1, "cat": "会議録", "pub": "国立国会図書館",
+                "title": re.sub(r"\s+", " ", label),
+                "url": f"https://kokkai.ndl.go.jp/#/detail?minId={iid}"}))
+    rows.sort(key=lambda x: x[0])      # 開催日順
+    return [r for _, r in rows]
 
 BASE = "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/{diet}/gian.htm"
 UA = {"User-Agent": "bill-tracker/0.1 (research; contact: example@example.com)"}
