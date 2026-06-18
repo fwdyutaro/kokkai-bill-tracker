@@ -117,10 +117,6 @@
   <div class="dash" id="dash"></div>
 
   <div class="filters">
-    <select id="fSrc" title="表示するデータソース">
-      <option value="curated">データ：キュレーション版(data.js)</option>
-      <option value="collected">データ：自動収集版(collect.py出力)</option>
-    </select>
     <select id="fStatus">
       <option value="">ステータス：すべて</option>
       <option>成立</option><option>審議中</option><option>継続審査</option><option>廃案</option>
@@ -262,25 +258,17 @@ function closeBill(){$("#drawer").classList.remove("open");$("#overlay").classLi
 $("#overlay").addEventListener("click",closeBill);
 document.addEventListener("keydown",e=>e.key==="Escape"&&closeBill());
 
-// データソースの動的読み込み（curated=data.js / collected=data_collected.js）
-function loadData(src){
-  const file=src==="collected"?"data_collected.js":"data.js";
-  const old=document.getElementById("dataScript");
-  if(old)old.remove();
-  window.BILLS=null;
+// データ読み込み（収集パイプライン出力）
+(function loadData(){
   const s=document.createElement("script");
-  s.id="dataScript";s.src=file+"?t="+Date.now();
+  s.src="data_collected.js?t="+Date.now();
   s.onload=()=>{
-    if(!window.BILLS){$("#list").innerHTML=`<p style="color:var(--danger)">${file} を読み込めませんでした（collect.py を実行してください）。</p>`;return;}
+    if(!window.BILLS){$("#list").innerHTML=`<p style="color:var(--danger)">データを読み込めませんでした。</p>`;return;}
     bills=window.BILLS;setupMinistry();dash();render();
   };
-  s.onerror=()=>{$("#list").innerHTML=`<p style="color:var(--danger)">${file} が見つかりません。「自動収集版」は collect.py 実行後に表示されます。</p>`;};
+  s.onerror=()=>{$("#list").innerHTML=`<p style="color:var(--danger)">データが見つかりません。</p>`;};
   document.body.appendChild(s);
-}
-const initSrc=new URLSearchParams(location.search).get("src")||"collected";
-$("#fSrc").value=initSrc;
-$("#fSrc").addEventListener("change",e=>loadData(e.target.value));
-loadData(initSrc);
+})();
 </script>
 </body>
 </html>

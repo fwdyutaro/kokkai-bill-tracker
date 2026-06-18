@@ -14,8 +14,7 @@ collect.py → crawl.py → match_refs.py      index.html + data_collected.js
 
 1. `bill-tracker/` をリポジトリのルートとして push。
 2. Settings → Pages で「GitHub Actions」または `main` ブランチを公開元に設定。
-3. `index.html` の既定データを収集版にする場合は、初期表示を `?src=collected` 相当に
-   （`loadData("collected")` を既定化）。
+3. `index.html` は `data_collected.js`（収集パイプライン出力）を既定で読み込む。
 4. `.github/workflows/update.yml`（同梱）が**毎日**パイプラインを実行し、
    更新された `data_collected.js` を自動コミット → Pages が再デプロイ。
 

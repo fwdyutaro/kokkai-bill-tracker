@@ -14,10 +14,43 @@
   python collect.py --limit 5  # 先頭5件だけ（動作確認用）
 """
 import argparse, json, re, sys, time
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 import requests
 from bs4 import BeautifulSoup
 import enrich as clb
+
+KOKKAI_API = "https://kokkai.ndl.go.jp/api/meeting_list"
+
+
+def kokkai_keyword(title):
+    """会議録検索用の簡潔キーワードを件名から抽出（〇〇法、無ければ先頭の内容語）。"""
+    t = re.sub(r"(の一部を改正する等の法律案|の一部を改正する法律案|法律案|案)$", "", title)
+    m = re.search(r"([一-龥ァ-ヴー]{2,14}法)(?:及び|等|の一部|に関する|施行|$)", t)
+    if m:
+        return m.group(1)
+    m = re.match(r"([^のにをはがと、　]{3,12})", t)
+    return m.group(1) if m else t[:10]
+
+
+def kokkai_refs(title, diet, sections):
+    """法案名＋会期＋（付託委員会／本会議）で国会会議録検索APIを叩くリンクを生成。"""
+    diet_no = re.sub(r"\D", "", diet)
+    kw = kokkai_keyword(title)
+    meetings = []
+    for k in ("衆議院委員会等経過", "参議院委員会等経過"):
+        c = sections.get(k, {}).get("付託委員会等")
+        if c and c not in meetings:
+            meetings.append(c)
+    if not meetings:               # 付託委員会が無い（委員長提出等）は本会議
+        meetings = ["本会議"]
+    # nameOfMeeting は1値ずつ（複数指定はORにならないため会議ごとにリンク）
+    refs = []
+    for m in meetings:
+        url = (f"{KOKKAI_API}?sessionFrom={diet_no}&sessionTo={diet_no}"
+               f"&nameOfMeeting={quote(m)}&any={quote(kw)}&maximumRecords=30")
+        refs.append({"tier": 1, "cat": "会議録", "pub": "国立国会図書館",
+                     "title": f"会議録検索（第{diet_no}回・{m}／「{kw}」）", "url": url})
+    return refs
 
 BASE = "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/{diet}/gian.htm"
 UA = {"User-Agent": "bill-tracker/0.1 (research; contact: example@example.com)"}
@@ -223,8 +256,7 @@ def normalize(raw, type_hint=None):
     if raw.get("pdf"):
         refs.append({"tier": 1, "cat": "一次資料", "pub": "参議院",
                      "title": "提出法律案（PDF）", "url": raw["pdf"]})
-    refs.append({"tier": 1, "cat": "会議録", "pub": "国立国会図書館",
-                 "title": "会議録検索（質疑）", "url": "https://kokkai.ndl.go.jp/"})
+    refs += kokkai_refs(raw["title"], raw["diet"], raw["sections"])
     return {
         "id": f"{raw['diet'].replace('回','')}-{kind}-{raw['no']}",
         "diet": raw["diet"],
