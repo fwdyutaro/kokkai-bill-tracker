@@ -103,6 +103,17 @@
   .bar{display:inline-block;width:60px;height:6px;background:var(--chip);border-radius:3px;
        overflow:hidden;vertical-align:middle;margin:0 6px}
   .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+  /* 会議録 折りたたみ */
+  .kaigi{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:9px}
+  .kaigi summary{list-style:none;cursor:pointer;padding:11px 13px;font-size:13px;color:var(--txt);
+       display:flex;align-items:center;gap:8px;user-select:none}
+  .kaigi summary::-webkit-details-marker{display:none}
+  .kaigi summary:hover{background:var(--panel2)}
+  .kaigi .chev{margin-left:auto;color:var(--muted);font-size:10px;transition:transform .15s}
+  .kaigi[open] .chev{transform:rotate(90deg)}
+  .kaigi-list{border-top:1px solid var(--line);padding:6px 13px 10px}
+  .kaigi-item{display:block;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line)}
+  .kaigi-item:last-child{border-bottom:none}
   .footer{color:var(--muted);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
   @media(max-width:680px){.dash{grid-template-columns:repeat(2,1fr)}}
 </style>
@@ -199,8 +210,9 @@ function refTier(r){return{1:"一次・準一次",2:"立法補佐機関",3:"シ�
 
 function openBill(id){
   const b=bills.find(x=>x.id===id);
+  const kaigi=b.refs.filter(r=>r.cat==="会議録");        // 会議録は折りたたみにまとめる
   const refsByTier={};
-  b.refs.forEach(r=>{(refsByTier[r.tier]=refsByTier[r.tier]||[]).push(r)});
+  b.refs.filter(r=>r.cat!=="会議録").forEach(r=>{(refsByTier[r.tier]=refsByTier[r.tier]||[]).push(r)});
   const refHtml=[1,2,3,4].filter(t=>refsByTier[t]).map(t=>`
     ${refsByTier[t].map(r=>`
       <div class="ref">
@@ -212,6 +224,12 @@ function openBill(id){
         ${r.conf?`<div class="cf">自動紐付け確信度 <span class="bar"><i style="width:${r.conf}%"></i></span> ${r.conf}%</div>`:
           r.confNote?`<div class="cf">⚙ ${r.confNote}</div>`:``}
       </div>`).join("")}`).join("");
+  const kaigiHtml=kaigi.length?`
+    <details class="kaigi">
+      <summary><span class="cat tier1">会議録</span> 国会会議録 <b>${kaigi.length}</b>件 <span class="chev">▶</span></summary>
+      <div class="kaigi-list">${kaigi.map(r=>`
+        <a class="kaigi-item" href="${r.url}" target="_blank" rel="noopener">${r.title} ↗</a>`).join("")}</div>
+    </details>`:``;
 
   $("#drawer").innerHTML=`
     <div class="dhead">
@@ -242,6 +260,7 @@ function openBill(id){
       <div class="section">
         <h4>参考情報（信頼度別）</h4>
         ${refHtml}
+        ${kaigiHtml}
       </div>
       <div class="section">
         <h4>参考情報の提供</h4>
