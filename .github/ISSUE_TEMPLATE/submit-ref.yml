@@ -1,0 +1,33 @@
+name: 参考情報の提供
+description: 法案に関連する参考URL（NDLサーチ/CiNiiの書誌、ネット記事など）を提供します。
+title: "[情報提供] "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        法案の審議に役立つ参考情報のURLを提供してください。
+        内容は自動で書誌情報・関連度を推定し、メンテナの確認後に掲載します。
+  - type: input
+    id: bill
+    attributes:
+      label: 対象法案
+      description: "例: 閣法 第31号（サイトの「参考情報を提供する」ボタンから来た場合は自動入力されます）"
+      placeholder: 閣法 第31号
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 参考URL
+      description: NDLサーチ/CiNiiの書誌URL、または記事のURL
+      placeholder: https://...
+    validations:
+      required: true
+  - type: textarea
+    id: comment
+    attributes:
+      label: 補足（任意）
+      description: 関連する理由や、自動取得できない場合の正しいタイトルなど
+    validations:
+      required: false

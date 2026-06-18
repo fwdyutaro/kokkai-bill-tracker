@@ -1,0 +1,70 @@
+name: submit-reference
+# 参考情報の提供Issueを処理する。
+#  - 投稿/編集時: 書誌メタと関連度を自動推定し、結果をコメント＋ needs-review ラベル付与
+#  - approved ラベル付与時: submissions.json に取り込み、サイトデータへ反映してIssueをクローズ
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  ingest:
+    if: contains(join(github.event.issue.labels.*.name), 'submission') && github.event.action != 'labeled'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests beautifulsoup4 lxml PyYAML
+      - name: 自動処理（書誌＋関連度）
+        env:
+          T: ${{ github.event.issue.title }}
+          B: ${{ github.event.issue.body }}
+        run: |
+          python ingest_submission.py --issue-title "$T" --issue-body "$B" --out rec.json > comment.md || true
+      - name: コメント＋ラベル
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUM: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$NUM" -F comment.md
+          gh issue edit "$NUM" --add-label needs-review
+
+  publish:
+    if: github.event.action == 'labeled' && github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests beautifulsoup4 lxml PyYAML
+      - name: レコード生成→submissions.jsonへ追加
+        env:
+          T: ${{ github.event.issue.title }}
+          B: ${{ github.event.issue.body }}
+        run: |
+          python ingest_submission.py --issue-title "$T" --issue-body "$B" --out rec.json > /dev/null || true
+          python - <<'PY'
+          import json, os
+          rec = json.load(open("rec.json", encoding="utf-8"))
+          rec["status"] = "approved"
+          subs = json.load(open("submissions.json", encoding="utf-8")) if os.path.exists("submissions.json") else []
+          if not any(s.get("url") == rec["url"] for s in subs):
+              subs.append(rec)
+          json.dump(subs, open("submissions.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+          PY
+          python merge_submissions.py
+      - name: コミット＆クローズ
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUM: ${{ github.event.issue.number }}
+        run: |
+          git config user.name "bill-tracker-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add submissions.json data_collected.js bills.json
+          git diff --cached --quiet || git commit -m "feat: 提供情報を掲載 (#$NUM)"
+          git push
+          gh issue close "$NUM" -c "掲載しました。ご提供ありがとうございます。"

@@ -247,6 +247,13 @@ function openBill(id){
         <h4>参考情報（信頼度別）</h4>
         ${refHtml}
       </div>
+      <div class="section">
+        <h4>参考情報の提供</h4>
+        <div class="ref">
+          <a class="t" href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=submit-ref.yml&title=${encodeURIComponent('[情報提供] '+b.no)}&bill=${encodeURIComponent(b.no)}" target="_blank" rel="noopener">＋ この法案の参考情報（NDLサーチ／CiNii／記事URL）を提供する ↗</a>
+          <div class="cf">投稿（GitHub Issue）後、書誌情報と関連度を自動推定し、確認のうえ掲載します。</div>
+        </div>
+      </div>
     </div>`;
   $("#drawer").classList.add("open");$("#overlay").classList.add("open");
 }

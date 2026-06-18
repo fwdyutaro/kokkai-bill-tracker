@@ -31,6 +31,7 @@ jobs:
           python collect.py --diet 221 --sleep 0.3 --llm-summary
           python crawl.py
           python match_refs.py --no-semantic   # CIではe5を使わず軽量運用（必要ならキャッシュして有効化）
+          python merge_submissions.py          # 承認済みユーザー提供情報を反映
           python tag.py                        # 検索用タグ付与
 
       - name: Commit updated data
