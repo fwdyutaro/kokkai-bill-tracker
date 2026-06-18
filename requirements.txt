@@ -7,3 +7,6 @@ PyYAML
 # 意味マッチ（任意・推奨）: 入れると build_semantic() が自動で e5 を使う
 scikit-learn
 sentence-transformers
+# 概要の要約は Ollama（別途インストール: https://ollama.com, 既定モデル gemma4:12b）を使用。
+# 任意で anthropic（ANTHROPIC_API_KEY があればフォールバック/LLMゲートに使用）
+anthropic

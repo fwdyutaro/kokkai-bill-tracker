@@ -144,7 +144,8 @@ def bill_keywords(bill, aliases):
 PURPOSE_STOP = set(
     "法律案 法律 法令 改正 規定 措置 必要 整備 推進 関係 制度 事業 場合 一部 施行 理由 規制 対策 "
     "状況 確保 向上 実施 適正 防止 促進 円滑 観点 内容 見直 拡大 強化 導入 創設 充実 増進 提出 "
-    "当該 一環 我国 近年 最近 鑑 法律案提出 提出理由 システム 運営 管理 利用 業務 機関 措置等".split())
+    "当該 一環 我国 近年 最近 鑑 法律案提出 提出理由 システム 運営 管理 利用 業務 機関 措置等 "
+    "ルール サービス ネットワーク データ ケース".split())
 # カタカナ語(3字以上) または 漢字連続(2〜8字)
 KW_RE = re.compile(r"[ァ-ヴー]{3,}|[一-龠々〆ヶ]{2,8}")
 
@@ -157,8 +158,9 @@ def keywords_from_purpose(summary):
         return set()
     out = set()
     for c in KW_RE.findall(norm(summary)):
-        if re.fullmatch(r"[ァ-ヴー]{3,}", c):     # カタカナ語(3字以上)はそのまま採用
-            out.add(c)
+        if re.fullmatch(r"[ァ-ヴー]{3,}", c):     # カタカナ語(3字以上)
+            if c not in PURPOSE_STOP:
+                out.add(c)
             continue
         c = re.sub(r"[等及並的]+$", "", c)         # 末尾の接続辞・形容辞を除去（進展等/総合的→…）
         # 漢字は4字以上のみ採用（3字以下は語境界をまたぐ断片や汎用が多い）

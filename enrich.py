@@ -7,15 +7,17 @@
 - 主管省庁: 一覧ページ id=<clb_id> の表（閣法番号・成立・法案名・主管省庁＋詳細/省庁リンク）
 - 提出理由: 各法案の詳細ページ（dt/dd 形式）の「提出理由」
 
-概要(summary)は既定で「提出理由」の公式原文を使う（ハルシネーション回避）。
-ANTHROPIC_API_KEY があり --llm-summary 指定時のみ、3行の平易な要約に変換する。
+概要(summary)は --llm-summary 指定時、ローカルLLM(Ollama)→Anthropic の順で平易な要約に変換する
+（著作権配慮で提出理由の原文を転載しない）。要約は summaries.json にキャッシュし再実行を高速化。
+フラグ無し（開発時）は提出理由の原文をそのまま入れる。
 """
-import os, re, time
+import os, re, time, json, hashlib
 from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
 UA = {"User-Agent": "bill-tracker/0.1 (research)"}
+SUMCACHE = "summaries.json"   # 提出理由ハッシュ→要約。再実行時の重複生成を回避
 
 # 国会回次 → 内閣法制局 一覧ページID（会期ごとに採番。新会期は要追加 or --clb-id で指定）
 CLB_INDEX = {"221": "5144"}
@@ -114,38 +116,79 @@ def fetch_shugiin_reason(houan_url):
     return (m.group(1).strip() + "である。") if m else None
 
 
-def llm_summarize(reason_text, title, model="claude-haiku-4-5-20251001"):
-    """提出理由を3行の平易な要約に変換（要 ANTHROPIC_API_KEY）。失敗時 None。"""
-    if not reason_text or not os.environ.get("ANTHROPIC_API_KEY"):
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "gemma4:12b")
+SUMMARY_INSTR = ("次の法律案の提出理由を、一般市民向けに3行以内・平易な日本語で要約してください。"
+                 "誇張や憶測を加えず事実のみに基づき、原文の表現をそのまま写さず自分の言葉で書くこと。"
+                 "前置きや見出しは不要、要約本文のみ出力。")
+
+
+def _ollama_summarize(prompt):
+    """ローカルLLM(Ollama)で要約。著作権配慮で原文転載を避けるための既定経路。"""
+    try:
+        r = requests.post(f"{OLLAMA_URL}/api/generate",
+                          json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False,
+                                "options": {"temperature": 0.2}}, timeout=180)
+        if r.status_code == 200:
+            return (r.json().get("response") or "").strip() or None
+    except Exception:
+        return None
+    return None
+
+
+def llm_summarize(reason_text, title):
+    """提出理由を平易な要約に変換。ローカルLLM(Ollama)→Anthropicの順。失敗時 None。"""
+    if not reason_text:
+        return None
+    prompt = f"{SUMMARY_INSTR}\n\n法案名: {title}\n提出理由:\n{reason_text}"
+    out = _ollama_summarize(prompt)          # 1) ローカルLLM（無料・原文非転載）
+    if out:
+        return out
+    if not os.environ.get("ANTHROPIC_API_KEY"):   # 2) Anthropic（キーがあれば）
         return None
     try:
         import anthropic
-    except ImportError:
-        return None
-    try:
-        client = anthropic.Anthropic()
-        msg = client.messages.create(
-            model=model,
-            max_tokens=300,
-            system=("あなたは立法情報サイトの編集者です。法律案の『提出理由』を、"
-                    "一般市民向けに3行以内・平易な日本語で要約してください。"
-                    "誇張や憶測を加えず、原文の事実のみに基づくこと。"),
-            messages=[{"role": "user",
-                       "content": f"法案名: {title}\n提出理由:\n{reason_text}"}],
-        )
+        msg = anthropic.Anthropic().messages.create(
+            model="claude-haiku-4-5-20251001", max_tokens=300,
+            system="あなたは立法情報サイトの編集者です。" + SUMMARY_INSTR,
+            messages=[{"role": "user", "content": f"法案名: {title}\n提出理由:\n{reason_text}"}])
         return msg.content[0].text.strip()
     except Exception as e:
         print(f"      ! LLM要約失敗: {e}")
         return None
 
 
-def _set_summary(rec, reason, source, use_llm):
-    """概要を設定。LLM要約が使えれば平易化、無ければ原文。"""
-    summ = llm_summarize(reason, rec["title"]) if use_llm else None
+def load_summary_cache():
+    if os.path.exists(SUMCACHE):
+        try:
+            return json.load(open(SUMCACHE, encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+
+def save_summary_cache(cache):
+    json.dump(cache, open(SUMCACHE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+
+
+def _set_summary(rec, reason, source, use_llm, cache=None):
+    """概要を設定。use_llm時はローカルLLM要約（原文非転載／キャッシュ利用）。"""
+    summ = None
+    if use_llm:
+        key = hashlib.sha1(reason.encode("utf-8")).hexdigest()[:16]
+        if cache is not None and key in cache:
+            summ = cache[key]
+        else:
+            summ = llm_summarize(reason, rec["title"])
+            if summ and cache is not None:
+                cache[key] = summ
     if summ:
         rec["summary"], rec["summaryNote"] = summ, f"{source}をAIが要約（一次資料で要確認）"
     else:
-        rec["summary"], rec["summaryNote"] = reason, f"{source}（原文）"
+        # LLM不可時は転載を避け、要約は付けず一次資料リンクへ誘導
+        rec["summary"] = "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）" if use_llm \
+            else reason
+        rec["summaryNote"] = f"{source}（要約未生成）" if use_llm else f"{source}（原文）"
 
 
 def _no(rec):
@@ -165,6 +208,7 @@ def enrich(records, diet, clb_id=None, use_llm=False, sleep=0.4):
         smap = {}
     if not mmap:
         print("      ! 内閣法制局の一覧が取得できず、省庁補完をスキップ")
+    cache = load_summary_cache() if use_llm else None
 
     for rec in records:
         no = _no(rec)
@@ -187,7 +231,7 @@ def enrich(records, diet, clb_id=None, use_llm=False, sleep=0.4):
                                     "title": "提案理由・概要（詳細ページ）", "url": info["detail_url"]})
             reason = fetch_reason(info.get("detail_url")).get("提出理由")
             if reason:
-                _set_summary(rec, reason, "内閣法制局『提出理由』", use_llm)
+                _set_summary(rec, reason, "内閣法制局『提出理由』", use_llm, cache)
             time.sleep(sleep)
 
         elif rec["type"] in ("衆法", "参法"):
@@ -196,10 +240,12 @@ def enrich(records, diet, clb_id=None, use_llm=False, sleep=0.4):
                 try:
                     reason = fetch_shugiin_reason(sinfo["houan"])
                     if reason:
-                        _set_summary(rec, reason, "衆議院 提出法律案の『理由』", use_llm)
+                        _set_summary(rec, reason, "衆議院 提出法律案の『理由』", use_llm, cache)
                 except Exception as e:
                     print(f"      ! 衆議院理由の取得失敗 ({rec['no']}): {e}")
                 time.sleep(sleep)
+    if cache is not None:
+        save_summary_cache(cache)
     return records
 
 

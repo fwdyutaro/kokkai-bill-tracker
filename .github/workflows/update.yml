@@ -26,14 +26,17 @@ jobs:
           # LLMゲートを使う場合のみ。未設定なら match_refs はゲートをスキップ。
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          python collect.py --diet 221 --sleep 0.3
+          # 概要要約は summaries.json（ローカルでOllama生成・コミット済）を再利用。
+          # CIにOllamaは無いが、キャッシュ済み法案は要約が維持される（著作権配慮で原文転載しない）。
+          python collect.py --diet 221 --sleep 0.3 --llm-summary
           python crawl.py
           python match_refs.py --no-semantic   # CIではe5を使わず軽量運用（必要ならキャッシュして有効化）
+          python tag.py                        # 検索用タグ付与
 
       - name: Commit updated data
         run: |
           git config user.name "bill-tracker-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add data_collected.js bills.json
+          git add data_collected.js bills.json summaries.json
           git diff --cached --quiet || git commit -m "chore: update bill data ($(date -u +%F))"
           git push
