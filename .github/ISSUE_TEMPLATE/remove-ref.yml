@@ -1,0 +1,31 @@
+name: 参考情報の取り下げ依頼
+description: 法案に自動で紐付いた審議会・論文等が無関係な場合に、取り下げを依頼します。
+title: "[取り下げ依頼] "
+labels: ["removal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        自動紐付けされた参考情報が、その法案と関係がない場合に取り下げを依頼できます。
+        確認のうえ、該当する紐付けをサイトから除外します。
+  - type: input
+    id: bill
+    attributes:
+      label: 対象法案
+      description: "例: 閣法 第31号（サイトの「取り下げ依頼」ボタンから来た場合は自動入力されます）"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: 取り下げ対象のURL
+      description: 関係がないと思われる参考情報のリンク先URL
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: 理由（任意）
+      description: 関係がないと考える理由など
+    validations:
+      required: false

@@ -18,6 +18,7 @@ echo [3/4] 参考リンク紐付け＋タグ付与 ...
 python match_refs.py
 if errorlevel 1 echo   ! match 失敗
 python merge_submissions.py
+python apply_suppressions.py
 python tag.py
 
 echo [4/4] リンク死活チェック ...

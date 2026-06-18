@@ -34,7 +34,7 @@ jobs:
           gh issue edit "$NUM" --add-label needs-review
 
   publish:
-    if: github.event.action == 'labeled' && github.event.label.name == 'approved'
+    if: github.event.action == 'labeled' && github.event.label.name == 'approved' && contains(join(github.event.issue.labels.*.name), 'submission')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
