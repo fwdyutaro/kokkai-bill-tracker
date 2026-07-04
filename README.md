@@ -35,9 +35,10 @@
 - `match_refs.py` … 参考文書を法案に紐付け（語彙＋所管＋趣旨＋意味類似でスコア化）
 - `llm_gate.py` … 弱い候補をLLMで関連性検証（任意・要APIキー）
 - `linkcheck.py` … 参考リンクの死活チェック（＋Wayback提案）
-- `run_all.bat` … 日次パイプライン（収集→クロール→照合→死活）一括実行
+- `run_all.bat` … 日次パイプライン（収集→クロール→照合→提供反映→取り下げ反映→タグ→死活）一括実行
 - `tag.py` … 検索用タグ付与（ステータス／所管／法令名／主題キーワード）
 - `ingest_submission.py` / `merge_submissions.py` … 参考情報の提供（Issue）処理と掲載反映
+- `apply_suppressions.py` … 承認済みの取り下げ依頼を反映して該当refを除外（`suppressions.json`）
 - `requirements.txt` … 依存パッケージ
 - `DEPLOY.md` / `.github/workflows/` … 公開方法・CI自動更新・情報提供Issue処理
 - `bills.json` / `data_collected.js` … パイプラインの出力（`window.BILLS` に直接流用可）
@@ -86,8 +87,14 @@ python match_refs.py       # refs.db の文書を bills.json に紐付け → da
 python match_refs.py --dry # 書き込まずレポートのみ
 python match_refs.py --no-semantic  # 意味類似を無効化
 python match_refs.py --llm-gate     # 弱い候補をLLMで関連性検証（要 ANTHROPIC_API_KEY）
-run_all.bat                # 収集→クロール→照合→死活 を一括（Windowsタスクスケジューラ向け）
+python merge_submissions.py         # 承認済みユーザー提供情報（Tier4）を反映
+python apply_suppressions.py        # 承認済み取り下げ依頼を反映（除外）
+python tag.py                       # 検索用タグ付与
+run_all.bat                # 収集→クロール→照合→提供反映→取り下げ反映→タグ→死活 を一括（Windowsタスクスケジューラ向け）
 ```
+
+実行順は `collect.py` → `crawl.py` → `match_refs.py` → `merge_submissions.py` →
+`apply_suppressions.py` → `tag.py`（`run_all.bat` / `.github/workflows/update.yml` と同一）。
 
 公開方法（GitHub Pages + Actions 等）は `DEPLOY.md` を参照。
 
@@ -101,7 +108,8 @@ run_all.bat                # 収集→クロール→照合→死活 を一括�
    （NDLデジコレ等のJS描画ページはタイトル自動取得不可→コメントで手動補完）
 2. メンテナが内容を確認し `approved` ラベル → `submissions.json` に取り込み、
    `merge_submissions.py` がサイトデータへ「提供情報」(Tier4)として反映、Issueをクローズ。
-3. 日次ビルドは match→**merge_submissions**→tag の順で、再生成後も提供情報を維持。
+3. 日次ビルドは match→**merge_submissions**→**apply_suppressions**→tag の順で、
+   再生成後も提供情報の掲載・取り下げ依頼の除外を維持。
 
 ### クローラ（`crawl.py` / `sources.yaml`）
 

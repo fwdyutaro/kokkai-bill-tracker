@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+# 会期が変わったら、この1箇所（DIET）だけ書き換えればよい。
+env:
+  DIET: "221"
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -28,7 +32,7 @@ jobs:
         run: |
           # 概要要約は summaries.json（ローカルでOllama生成・コミット済）を再利用。
           # CIにOllamaは無いが、キャッシュ済み法案は要約が維持される（著作権配慮で原文転載しない）。
-          python collect.py --diet 221 --sleep 0.3 --llm-summary
+          python collect.py --diet $DIET --sleep 0.3 --llm-summary
           python crawl.py
           python match_refs.py --no-semantic   # CIではe5を使わず軽量運用（必要ならキャッシュして有効化）
           python merge_submissions.py          # 承認済みユーザー提供情報を反映

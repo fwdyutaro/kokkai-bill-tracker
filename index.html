@@ -23,12 +23,13 @@
   .wrap{max-width:1180px;margin:0 auto;padding:22px 28px 60px}
 
   /* dashboard */
-  .dash{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+  .dash{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
   .card .num{font-size:30px;font-weight:700}
   .card .lbl{color:var(--muted);font-size:13px}
   .card.s-成立 .num{color:var(--ok)} .card.s-審議中 .num{color:var(--info)}
   .card.s-継続審査 .num{color:var(--warn)} .card.s-合計 .num{color:var(--txt)}
+  .card.s-廃案 .num{color:var(--danger)}
 
   /* filters */
   .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
@@ -160,16 +161,18 @@
 const $=s=>document.querySelector(s);
 let bills=[];
 const fmt=d=>{if(!d)return"";const[y,m,da]=d.split("-");return `${y}.${+m}.${+da}`};
+const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
 
 // dashboard
 function dash(){
-  const c={成立:0,審議中:0,継続審査:0};
+  const c={成立:0,審議中:0,継続審査:0,廃案:0};
   bills.forEach(b=>c[b.status]!==undefined&&c[b.status]++);
   $("#dash").innerHTML=`
     <div class="card s-合計"><div class="num">${bills.length}</div><div class="lbl">収録法案</div></div>
     <div class="card s-審議中"><div class="num">${c.審議中}</div><div class="lbl">審議中</div></div>
     <div class="card s-成立"><div class="num">${c.成立}</div><div class="lbl">成立・公布済</div></div>
-    <div class="card s-継続審査"><div class="num">${c.継続審査}</div><div class="lbl">継続審査</div></div>`;
+    <div class="card s-継続審査"><div class="num">${c.継続審査}</div><div class="lbl">継続審査</div></div>
+    <div class="card s-廃案"><div class="num">${c.廃案}</div><div class="lbl">廃案</div></div>`;
 }
 // ministry filter options（データ読み込み後に再構築）
 function setupMinistry(){
@@ -188,19 +191,26 @@ function render(){
     (!q||(b.title+b.shortTitle+(b.tags||[]).join("")).includes(q)));
   $("#count").textContent=`${out.length} 件`;
   $("#list").innerHTML=out.map(b=>`
-    <div class="bill" onclick="openBill('${b.id}')">
+    <div class="bill" data-id="${esc(b.id)}">
       <div class="top">
-        <span class="badge b-${b.status}">${b.status}</span>
-        <span class="badge type">${b.no}</span>
-        <span class="badge minis">${b.ministry}</span>
-        <span class="conf" style="margin-left:auto">成立確度 <b>${b.confidence}%</b></span>
+        <span class="badge b-${b.status}">${esc(b.status)}</span>
+        <span class="badge type">${esc(b.no)}</span>
+        <span class="badge minis">${esc(b.ministry)}</span>
+        <span class="conf" style="margin-left:auto">成立確度 <b>${esc(b.confidence)}%</b></span>
       </div>
-      <h3>${b.shortTitle}</h3>
-      <div class="meta">${b.dietLabel}｜提出 ${fmt(b.submittedOn)}｜${b.statusDetail}</div>
-      <div class="tags">${(b.tags||[]).map(t=>`<span class="tag" onclick="event.stopPropagation();filterTag('${t}')">#${t}</span>`).join("")}</div>
+      <h3>${esc(b.shortTitle)}</h3>
+      <div class="meta">${esc(b.dietLabel)}｜提出 ${fmt(b.submittedOn)}｜${esc(b.statusDetail)}</div>
+      <div class="tags">${(b.tags||[]).map(t=>`<span class="tag" data-tag="${esc(t)}">#${esc(t)}</span>`).join("")}</div>
     </div>`).join("")||`<p style="color:var(--muted)">該当する法案がありません。</p>`;
 }
 ["#fStatus","#fType","#fMinis","#fText"].forEach(s=>$(s).addEventListener("input",render));
+// リストのクリックはイベントデリゲーションで処理（タグはfilterTag、それ以外はドロワー展開）
+$("#list").addEventListener("click",e=>{
+  const tag=e.target.closest(".tag");
+  if(tag){e.stopPropagation();filterTag(tag.dataset.tag);return;}
+  const bill=e.target.closest(".bill");
+  if(bill)openBill(bill.dataset.id);
+});
 
 function tlClass(it){
   if(it.event.includes("待ち"))return"now";
@@ -219,12 +229,12 @@ function openBill(id){
     ${refsByTier[t].map(r=>`
       <div class="ref">
         <div class="r1">
-          <span class="cat tier${r.tier}">${r.cat}</span>
-          <span class="pub">${r.pub}</span>
+          <span class="cat tier${r.tier}">${esc(r.cat)}</span>
+          <span class="pub">${esc(r.pub)}</span>
         </div>
-        <a class="t" href="${r.url}" target="_blank" rel="noopener">${r.title} ↗</a>
-        ${r.conf?`<div class="cf">自動紐付け確信度 <span class="bar"><i style="width:${r.conf}%"></i></span> ${r.conf}%</div>`:
-          r.confNote?`<div class="cf">⚙ ${r.confNote}</div>`:``}
+        <a class="t" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)} ↗</a>
+        ${r.conf?`<div class="cf">自動紐付け確信度 <span class="bar"><i style="width:${esc(r.conf)}%"></i></span> ${esc(r.conf)}%</div>`:
+          r.confNote?`<div class="cf">⚙ ${esc(r.confNote)}</div>`:``}
         ${String(r.confNote||"").startsWith("自動紐付け")?`<a class="rm" target="_blank" rel="noopener"
            href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=remove-ref.yml&labels=removal&title=${encodeURIComponent('[取り下げ依頼] '+b.no)}&bill=${encodeURIComponent(b.no)}&url=${encodeURIComponent(r.url)}&reftitle=${encodeURIComponent(r.title)}">この紐付けは関係ない → 取り下げ依頼</a>`:``}
       </div>`).join("")}`).join("");
@@ -232,33 +242,33 @@ function openBill(id){
     <details class="kaigi">
       <summary><span class="cat tier1">会議録</span> 国会会議録 <b>${kaigi.length}</b>件 <span class="chev">▶</span></summary>
       <div class="kaigi-list">${kaigi.map(r=>`
-        <a class="kaigi-item" href="${r.url}" target="_blank" rel="noopener">${r.title} ↗</a>`).join("")}</div>
+        <a class="kaigi-item" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)} ↗</a>`).join("")}</div>
     </details>`:``;
 
   $("#drawer").innerHTML=`
     <div class="dhead">
       <span class="x" onclick="closeBill()">✕</span>
       <div class="top" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
-        <span class="badge b-${b.status}">${b.status}・${b.statusDetail}</span>
-        <span class="badge type">${b.no}</span>
-        <span class="badge minis">${b.ministry}</span>
+        <span class="badge b-${b.status}">${esc(b.status)}・${esc(b.statusDetail)}</span>
+        <span class="badge type">${esc(b.no)}</span>
+        <span class="badge minis">${esc(b.ministry)}</span>
       </div>
-      <h2 style="margin:0;font-size:17px">${b.title}</h2>
+      <h2 style="margin:0;font-size:17px">${esc(b.title)}</h2>
       <p style="margin:6px 0 0;color:var(--muted);font-size:12.5px">
-        ${b.dietLabel}｜提出 ${fmt(b.submittedOn)}｜成立確度（機械推定）<b style="color:var(--txt)">${b.confidence}%</b></p>
+        ${esc(b.dietLabel)}｜提出 ${fmt(b.submittedOn)}｜成立確度（機械推定）<b style="color:var(--txt)">${esc(b.confidence)}%</b></p>
     </div>
     <div class="dbody">
       <div class="section">
         <h4>概要（AI生成）</h4>
-        <div class="ai">${b.summary}<div class="note">⚠ ${b.summaryNote}</div></div>
+        <div class="ai">${esc(b.summary)}<div class="note">⚠ ${esc(b.summaryNote)}</div></div>
       </div>
       <div class="section">
         <h4>審議のタイムライン</h4>
         <div class="tl">${b.timeline.map(it=>`
           <div class="it ${tlClass(it)}">
             <div class="d">${fmt(it.date)}</div>
-            <div class="e"><span class="hs">${it.house}</span>${it.event}
-              ${it.result?`<span class="res ${it.result}">【${it.result}】</span>`:``}</div>
+            <div class="e"><span class="hs">${esc(it.house)}</span>${esc(it.event)}
+              ${it.result?`<span class="res ${esc(it.result)}">【${esc(it.result)}】</span>`:``}</div>
           </div>`).join("")}</div>
       </div>
       <div class="section">

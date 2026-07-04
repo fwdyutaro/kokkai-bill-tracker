@@ -45,8 +45,17 @@ jobs:
         env:
           T: ${{ github.event.issue.title }}
           B: ${{ github.event.issue.body }}
+          GH_TOKEN: ${{ github.token }}
+          NUM: ${{ github.event.issue.number }}
         run: |
           python ingest_submission.py --issue-title "$T" --issue-body "$B" --out rec.json > /dev/null || true
+          # ingestが法案番号/URLを解釈できない、対象法案が無い等で失敗すると rec.json が生成されない。
+          # その場合は手動対応が必要な旨を通知して正常終了する（後続ステップのクラッシュを防ぐ）。
+          if [ ! -f rec.json ]; then
+            gh issue comment "$NUM" -b "自動処理に失敗したため（法案番号・URLの解釈不能、または対象法案が見つからない等）、手動対応が必要です。approved ラベルによる自動掲載は行われませんでした。"
+            echo "rec.json not generated; skipping publish." >&2
+            exit 0
+          fi
           python - <<'PY'
           import json, os
           rec = json.load(open("rec.json", encoding="utf-8"))

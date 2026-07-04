@@ -18,7 +18,8 @@ def alive(url):
     try:
         r = requests.head(url, timeout=15, headers=UA, allow_redirects=True)
         if r.status_code >= 400 or r.status_code == 405:  # 一部はHEAD非対応
-            r = requests.get(url, timeout=15, headers=UA, stream=True)
+            with requests.get(url, timeout=15, headers=UA, stream=True) as r:
+                return r.status_code < 400, r.status_code
         return r.status_code < 400, r.status_code
     except Exception as e:
         return False, str(e)[:40]

@@ -180,11 +180,12 @@ def build_timeline(d):
 
     add(head.get("提出日"), "提出", "国会に法律案を提出", rank=0)
 
-    def house_block(prefix, com_key, hon_key, recv=None):
+    def house_block(prefix, com_key, hon_key, recv=None, recv_label=None):
         com = s.get(com_key, {})
         hon = s.get(hon_key, {})
         if recv:
-            add(head.get(recv), prefix, f"{prefix}議院 受領／送付", rank=STAGE_RANK.get(prefix+"受領", 4))
+            add(head.get(recv), prefix, recv_label or f"{prefix}議院 受領／送付",
+                rank=STAGE_RANK.get(prefix+"受領", 4))
         add(com.get("本付託日"), prefix, f"{com.get('付託委員会等','委員会')}に付託",
             rank=STAGE_RANK.get(prefix+"委付託", 1))
         add(com.get("議決日"), prefix, f"{com.get('付託委員会等','委員会')} 議決",
@@ -197,12 +198,17 @@ def build_timeline(d):
             res, rank=STAGE_RANK.get(prefix+"本", 3))
 
     sengi = head.get("先議区分", "")
-    if "参先議" in sengi:
+    # 参議院サイトでは参先議を「本院先議」と表記する（「参先議」表記の他会期にも備え両対応）。
+    if "参先議" in sengi or "本院先議" in sengi:
+        # 参先議: 参議院で先議 → 第二院=衆議院。衆側の受領日は
+        # 明細ページの「衆議院へ送付／提出日」フィールドに入る。
         house_block("参", "参議院委員会等経過", "参議院本会議経過")
-        house_block("衆", "衆議院委員会等経過", "衆議院本会議経過", recv="衆議院から受領／提出日")
-    else:  # 既定: 衆先議
+        house_block("衆", "衆議院委員会等経過", "衆議院本会議経過",
+                    recv="衆議院へ送付／提出日", recv_label="衆議院へ送付")
+    else:  # 既定: 衆先議 → 第二院=参議院。参側の受領日は「衆議院から受領／提出日」。
         house_block("衆", "衆議院委員会等経過", "衆議院本会議経過")
-        house_block("参", "参議院委員会等経過", "参議院本会議経過", recv="衆議院から受領／提出日")
+        house_block("参", "参議院委員会等経過", "参議院本会議経過",
+                    recv="衆議院から受領／提出日")
 
     other = s.get("その他", {})
     promu = other.get("公布年月日")

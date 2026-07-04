@@ -22,6 +22,13 @@ body:
       description: 関係がないと思われる参考情報のリンク先URL
     validations:
       required: true
+  - type: input
+    id: reftitle
+    attributes:
+      label: 対象の資料名
+      description: "取り下げ対象の資料名（サイトのボタンから来た場合は自動入力されます）"
+    validations:
+      required: false
   - type: textarea
     id: reason
     attributes:

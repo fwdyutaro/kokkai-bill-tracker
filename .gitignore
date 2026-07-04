@@ -4,3 +4,4 @@ refs.db
 .DS_Store
 
 build.log
+.claude/
