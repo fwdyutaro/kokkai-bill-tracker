@@ -33,7 +33,7 @@ jobs:
           # 概要要約は summaries.json（ローカルでOllama生成・コミット済）を再利用。
           # CIにOllamaは無いが、キャッシュ済み法案は要約が維持される（著作権配慮で原文転載しない）。
           python collect.py --diet $DIET --sleep 0.3 --llm-summary
-          python crawl.py
+          python crawl.py --no-abstracts       # 要旨(PDF)はローカルで抽出。CIは毎晩の大量DLを避ける
           python match_refs.py --no-semantic   # CIではe5を使わず軽量運用（必要ならキャッシュして有効化）
           python merge_submissions.py          # 承認済みユーザー提供情報を反映
           python apply_suppressions.py         # 承認済み取り下げ依頼を反映（除外）

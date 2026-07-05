@@ -4,6 +4,7 @@ beautifulsoup4
 lxml
 feedparser
 PyYAML
+pypdf              # 要旨抽出（立法と調査・NDLのPDF冒頭）
 # 意味マッチ（任意・推奨）: 入れると build_semantic() が自動で e5 を使う
 scikit-learn
 sentence-transformers

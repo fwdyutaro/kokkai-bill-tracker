@@ -22,6 +22,10 @@ def db_init(con):
         id TEXT PRIMARY KEY, source_id TEXT, tier INTEGER, category TEXT,
         publisher TEXT, title TEXT, url TEXT, published_at TEXT, ministry TEXT,
         content_hash TEXT, fetched_at TEXT)""")
+    try:  # 要旨列（PDF冒頭から抽出。意味マッチとLLM判定の材料）
+        con.execute("ALTER TABLE documents ADD COLUMN abstract TEXT")
+    except sqlite3.OperationalError:
+        pass  # 追加済み
     con.commit()
 
 
@@ -194,9 +198,66 @@ PARSERS = {"rss": crawl_rss, "ndl_archive": crawl_ndl_archive,
            "ministry_index": crawl_ministry_index}
 
 
+# ---- 要旨抽出（PDF冒頭テキスト） -------------------------------------------
+# 立法と調査: url が直接PDF。NDLデジコレ: pid から prepareDownload でPDF取得。
+NDL_PID = re.compile(r"dl\.ndl\.go\.jp/pid/(\d+)")
+
+
+def _pdf_url(doc_url):
+    if doc_url.lower().endswith(".pdf"):
+        return doc_url
+    m = NDL_PID.search(doc_url)
+    if m:
+        return f"https://dl.ndl.go.jp/view/prepareDownload?itemId=info:ndljp/pid/{m.group(1)}"
+    return None
+
+
+def _extract_first_page(pdf_bytes, max_chars=700):
+    from io import BytesIO
+    from pypdf import PdfReader
+    reader = PdfReader(BytesIO(pdf_bytes))
+    txt = ""
+    for page in reader.pages[:2]:
+        txt += (page.extract_text() or "") + " "
+        if len(txt) >= max_chars:
+            break
+    return re.sub(r"\s+", " ", txt).strip()[:max_chars]
+
+
+def enrich_abstracts(con, sleep=0.6, limit=0):
+    """abstract未取得の対象文書(NDL・立法と調査)のPDF冒頭を抽出して保存。増分実行。"""
+    rows = con.execute(
+        """SELECT id,url FROM documents WHERE abstract IS NULL AND
+           (url LIKE '%dl.ndl.go.jp/pid/%' OR url LIKE '%.pdf')""").fetchall()
+    if limit:
+        rows = rows[:limit]
+    ok = fail = 0
+    for i, (doc_id_, url) in enumerate(rows, 1):
+        pdf = _pdf_url(url)
+        text = ""
+        if pdf:
+            try:
+                r = requests.get(pdf, timeout=40, headers=UA)
+                if r.status_code == 200 and r.content[:4] == b"%PDF":
+                    text = _extract_first_page(r.content)
+            except Exception:
+                pass
+        # 失敗は '' を保存（IS NULL条件から外し、毎回の再試行を防ぐ）
+        con.execute("UPDATE documents SET abstract=? WHERE id=?", (text, doc_id_))
+        ok += bool(text); fail += not text
+        if i % 20 == 0:
+            con.commit()
+            print(f"    要旨 {i}/{len(rows)} (成功{ok})", file=sys.stderr)
+        time.sleep(sleep)
+    con.commit()
+    print(f"  [abstracts] 対象{len(rows)}件 成功{ok} 失敗{fail}", file=sys.stderr)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stats", action="store_true")
+    ap.add_argument("--no-abstracts", action="store_true", help="要旨(PDF冒頭)抽出を行わない")
+    ap.add_argument("--abstracts-only", action="store_true", help="巡回せず要旨抽出のみ")
     args = ap.parse_args()
     con = sqlite3.connect(DB)
     db_init(con)
@@ -208,21 +269,24 @@ def main():
         print("  合計:", con.execute("SELECT COUNT(*) FROM documents").fetchone()[0])
         return
 
-    cfg = yaml.safe_load(open("sources.yaml", encoding="utf-8"))
-    total = 0
-    for src in cfg["sources"]:
-        parser = PARSERS.get(src["method"])
-        if not parser:
-            print(f"  ! 未対応の method: {src['method']}", file=sys.stderr)
-            continue
-        try:
-            n = parser(con, src)
-            con.commit()
-            print(f"  [{src['id']}] {n}件 取り込み", file=sys.stderr)
-            total += n
-        except Exception as e:
-            print(f"  ! {src['id']} 失敗: {e}", file=sys.stderr)
-    print(f"完了: {total}件（refs.db）", file=sys.stderr)
+    if not args.abstracts_only:
+        cfg = yaml.safe_load(open("sources.yaml", encoding="utf-8"))
+        total = 0
+        for src in cfg["sources"]:
+            parser = PARSERS.get(src["method"])
+            if not parser:
+                print(f"  ! 未対応の method: {src['method']}", file=sys.stderr)
+                continue
+            try:
+                n = parser(con, src)
+                con.commit()
+                print(f"  [{src['id']}] {n}件 取り込み", file=sys.stderr)
+                total += n
+            except Exception as e:
+                print(f"  ! {src['id']} 失敗: {e}", file=sys.stderr)
+        print(f"完了: {total}件（refs.db）", file=sys.stderr)
+    if not args.no_abstracts:
+        enrich_abstracts(con)
 
 
 if __name__ == "__main__":

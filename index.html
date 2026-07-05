@@ -233,8 +233,8 @@ function openBill(id){
           <span class="pub">${esc(r.pub)}</span>
         </div>
         <a class="t" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)} ↗</a>
-        ${r.conf?`<div class="cf">自動紐付け確信度 <span class="bar"><i style="width:${esc(r.conf)}%"></i></span> ${esc(r.conf)}%</div>`:
-          r.confNote?`<div class="cf">⚙ ${esc(r.confNote)}</div>`:``}
+        ${r.conf?`<div class="cf">自動紐付け確信度 <span class="bar"><i style="width:${esc(r.conf)}%"></i></span> ${esc(r.conf)}%</div>`:``}
+        ${r.confNote?`<div class="cf">⚙ ${esc(r.confNote)}</div>`:``}
         ${String(r.confNote||"").startsWith("自動紐付け")?`<a class="rm" target="_blank" rel="noopener"
            href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=remove-ref.yml&labels=removal&title=${encodeURIComponent('[取り下げ依頼] '+b.no)}&bill=${encodeURIComponent(b.no)}&url=${encodeURIComponent(r.url)}&reftitle=${encodeURIComponent(r.title)}">この紐付けは関係ない → 取り下げ依頼</a>`:``}
       </div>`).join("")}`).join("");

@@ -13,7 +13,7 @@ refs.db の文書を法案(bills.json)に紐付け、Tier2参考リンクとし�
   弱  : 文字3-gram Jaccard ≥ 0.22                          → conf 0.4+
 Tier2は score ≥ 0.55 で自動採用（DESIGN_refs.md のスコア方針に準拠）。
 """
-import argparse, json, os, re, sqlite3
+import argparse, json, os, re, sqlite3, sys
 from datetime import date, timedelta
 try:
     import yaml
@@ -127,7 +127,8 @@ def build_semantic(bills, docs):
     """
     # 法案側は趣旨(提出理由)を使うと表現が豊かになり精度が上がる（件名は短く汎用的）
     bill_texts = [norm((b.get("summary") or "") + " " + b["title"])[:400] for b in bills]
-    doc_texts = [norm(d["title"]) for d in docs]
+    # 文書側も要旨(PDF冒頭)があれば連結して長文比較に（短文同士の値域圧縮を緩和）
+    doc_texts = [norm(d["title"] + " " + (d.get("abstract") or ""))[:500] for d in docs]
 
     # 1) multilingual-e5（インストールされていれば最良）
     try:
@@ -152,9 +153,14 @@ def build_semantic(bills, docs):
 
 def load_docs(db="refs.db"):
     con = sqlite3.connect(db)
-    return [dict(zip(["tier", "category", "publisher", "title", "url", "published_at", "ministry"], r))
-            for r in con.execute(
-        "SELECT tier,category,publisher,title,url,published_at,ministry FROM documents")]
+    cols = ["tier", "category", "publisher", "title", "url", "published_at", "ministry", "abstract"]
+    try:
+        rows = con.execute(
+            "SELECT tier,category,publisher,title,url,published_at,ministry,abstract FROM documents")
+    except sqlite3.OperationalError:   # abstract列が無い旧DB
+        rows = ((*r, None) for r in con.execute(
+            "SELECT tier,category,publisher,title,url,published_at,ministry FROM documents"))
+    return [dict(zip(cols, r)) for r in rows]
 
 
 def load_aliases():
@@ -201,6 +207,54 @@ def keywords_from_purpose(summary):
     return out
 
 
+# ---- 審議会の開催時期検証（候補になった会議ページのみ取得・キャッシュ） ------
+MEETING_DATE_CACHE = "meeting_dates.json"
+_DATE_PAT = re.compile(r"(20\d\d)\s*[年./-]\s*(\d{1,2})")
+
+
+def load_meeting_dates():
+    if os.path.exists(MEETING_DATE_CACHE):
+        try:
+            return json.load(open(MEETING_DATE_CACHE, encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+
+def latest_meeting_month(url, cache):
+    """会議ページ内の最新の年月(YYYY-MM)を返す。取得不可は '' をキャッシュ。"""
+    if url in cache:
+        return cache[url]
+    try:
+        from crawl import get_html
+        html = get_html(url)
+        months = [f"{y}-{int(m):02d}" for y, m in _DATE_PAT.findall(html)
+                  if 1 <= int(m) <= 12 and 2000 <= int(y) <= 2099]
+        val = max(months) if months else ""
+    except Exception:
+        val = ""
+    cache[url] = val
+    return val
+
+
+def shingikai_time_ok(doc, submitted_on, cache):
+    """審議会候補の開催時期チェック。最新活動が提出の3年前〜6か月後の窓に収まるか。
+    ページ未取得・日付不明・報告書PDFは除外しない（安全側）。"""
+    if doc["category"] != "審議会・検討会":
+        return True
+    url = doc["url"].split("#")[0]
+    if url.lower().endswith(".pdf"):
+        return True
+    s = _pdate(submitted_on)
+    if not s:
+        return True
+    ym = latest_meeting_month(url, cache)
+    if not ym:
+        return True
+    last = date(int(ym[:4]), int(ym[5:7]), 28)
+    return s - timedelta(days=1095) <= last <= s + timedelta(days=180)
+
+
 def score_shingikai(bill, doc, keywords):
     """審議会・検討会: 所管一致を前提に、通称キーワード or 語彙類似で判定。"""
     hit = next((k for k in keywords if k in doc["title"]), None)
@@ -219,11 +273,17 @@ def main():
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--no-semantic", action="store_true", help="意味類似を無効化")
     ap.add_argument("--llm-gate", action="store_true",
-                    help="弱い候補をLLMで関連性検証（要 ANTHROPIC_API_KEY）")
+                    help="(互換用・現在は自動判定) LLMゲートを強制有効化")
+    ap.add_argument("--no-llm-gate", action="store_true", help="LLMゲートを無効化")
     args = ap.parse_args()
-    llm = None
-    if args.llm_gate:
-        import llm_gate as llm
+    # LLMゲート: Ollama か ANTHROPIC_API_KEY が使えれば既定で有効
+    gate = None
+    if not args.no_llm_gate:
+        from llm_gate import Gate
+        g = Gate()
+        if g.available():
+            gate = g
+            print(f"LLMゲート有効（{g.backend}）", file=sys.stderr)
 
     bills = json.load(open(args.infile, encoding="utf-8"))
     docs = load_docs(args.db)
@@ -240,6 +300,17 @@ def main():
     sims, sem_th, sem_backend = sem if sem else (None, 1.0, None)
     print(f"法案 {len(bills)} 件 × 文書 {len(docs)} 件で照合"
           f"{f'（意味類似: {sem_backend}, 閾値{sem_th}）' if sims is not None else ''} ...\n")
+
+    # 却下済み(bill,url)ペアは候補から除外（取り下げ依頼の還流。top-5枠も空けられる）
+    suppressed = set()
+    if os.path.exists("suppressions.json"):
+        try:
+            for x in json.load(open("suppressions.json", encoding="utf-8")):
+                if x.get("status") == "approved" and x.get("url"):
+                    suppressed.add((x.get("bill_no"), x["url"]))
+        except Exception:
+            pass
+    mcache = load_meeting_dates()
 
     total_attached = 0
     for bi, b in enumerate(bills):
@@ -263,6 +334,7 @@ def main():
                     if hit:
                         sc, why = min(0.8, 0.58 + len(hit) / 30), f"趣旨キーワード一致（{hit}）"
             if sc >= ATTACH_THRESHOLD and d["url"] not in existing \
+                    and (b["no"], d["url"]) not in suppressed \
                     and time_ok(d, b.get("submittedOn")):
                 cands.append((sc, why, d))
 
@@ -287,13 +359,19 @@ def main():
                     continue
                 if not time_ok(d, b.get("submittedOn")):
                     continue
+                if (b["no"], d["url"]) in suppressed:
+                    continue
                 cands.append((min(0.7, 0.4 + cos / 3),
                               f"意味類似・要確認候補（{sem_backend} {cos:.2f}）", d))
                 picked += 1
-                if picked >= 1:          # 法案ごとtop-1のみ（短文e5は精度がまちまちのため）
+                # ゲート有効時は候補生成を緩めてLLM検証に委ねる（再現↑・精度はゲートが担保）
+                if picked >= (3 if gate else 1):
                     break
-        if llm:
-            cands = llm.gate(b, cands, verbose=args.dry)
+        # 審議会候補の開催時期チェック（候補になった会議ページのみ取得）
+        cands = [(sc, why, d) for sc, why, d in cands
+                 if shingikai_time_ok(d, b.get("submittedOn"), mcache)]
+        if gate:
+            cands = gate.filter(b, cands, verbose=args.dry)
         cands.sort(key=lambda x: -x[0])
         for sc, why, d in cands[:5]:               # 1法案あたり上位5件まで
             b["refs"].append({
@@ -307,6 +385,12 @@ def main():
             for sc, why, d in cands[:5]:
                 print(f"    {round(sc*100):3d}%  [{d['publisher'][:12]}] {d['title'][:46]}  〈{why}〉")
 
+    json.dump(mcache, open(MEETING_DATE_CACHE, "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+    if gate:
+        gate.save()
+        st = gate.stats
+        print(f"\nLLMゲート: 採用{st['pass']} 除外{st['drop']} (キャッシュ命中{st['cached']})")
     print(f"\n紐付け {total_attached} 件")
     if not args.dry:
         json.dump(bills, open(args.infile, "w", encoding="utf-8"),
