@@ -1,8 +1,8 @@
 name: update-bill-data
-# 毎日 06:00 JST に法案ステータスと参考リンクを更新し、GitHub Pages へ反映する。
+# 毎日 00:01 JST 頃に法案ステータスと参考リンクを更新し、GitHub Pages へ反映する。
 on:
   schedule:
-    - cron: "0 21 * * *"      # 21:00 UTC = 06:00 JST
+    - cron: "1 15 * * *"      # 15:01 UTC = 翌日 00:01 JST
   workflow_dispatch: {}
 
 permissions:

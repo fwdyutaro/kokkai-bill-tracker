@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   ingest:
-    if: contains(join(github.event.issue.labels.*.name), 'submission') && github.event.action != 'labeled'
+    if: (contains(join(github.event.issue.labels.*.name), 'submission') || startsWith(github.event.issue.title, '[情報提供]')) && github.event.action != 'labeled'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,11 +45,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           NUM: ${{ github.event.issue.number }}
         run: |
+          gh label create submission -R "$GITHUB_REPOSITORY" --color "1D76DB" --description "参考情報の提供" --force
+          gh label create needs-review -R "$GITHUB_REPOSITORY" --color "FBCA04" --description "メンテナによる確認が必要" --force
           gh issue comment "$NUM" -F comment.md
-          gh issue edit "$NUM" --add-label needs-review
+          gh issue edit "$NUM" --add-label submission --add-label needs-review
 
   publish:
-    if: github.event.action == 'labeled' && github.event.label.name == 'approved' && contains(join(github.event.issue.labels.*.name), 'submission')
+    if: github.event.action == 'labeled' && github.event.label.name == 'approved' && (contains(join(github.event.issue.labels.*.name), 'submission') || startsWith(github.event.issue.title, '[情報提供]'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
