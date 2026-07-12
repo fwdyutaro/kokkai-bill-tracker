@@ -1,13 +1,13 @@
 @echo off
 chcp 65001 >nul
-rem 法律案トラッカー 日次パイプライン（Windowsタスクスケジューラ向け）
+rem 法律案トラッカー 週次高品質パイプライン（Ollama・e5・PDF抽出を使用）
 setlocal
 cd /d %~dp0
 set PYTHONIOENCODING=utf-8
 set DIET=221
 
 echo [1/4] 議案ステータス収集・補強 ...
-call :run collect.py python collect.py --diet %DIET% --sleep 1.0
+call :run collect.py python collect.py --diet %DIET% --sleep 1.0 --llm-summary
 if errorlevel 1 exit /b %errorlevel%
 
 echo [2/4] 参考文書クロール ...

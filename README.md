@@ -35,7 +35,8 @@
 - `match_refs.py` … 参考文書を法案に紐付け（語彙＋所管＋趣旨＋意味類似でスコア化）
 - `llm_gate.py` … 弱い候補をLLMで関連性検証（任意・要APIキー）
 - `linkcheck.py` … 参考リンクの死活チェック（＋Wayback提案）
-- `run_all.bat` … 日次パイプライン（収集→クロール→照合→提供反映→取り下げ反映→タグ→死活）一括実行
+- `run_all.bat` … 週次高品質パイプライン（Ollama要約・PDF抽出・e5照合を含む）一括実行
+- `run_weekly.ps1` … 月曜のローカル週次処理を安全に更新・検証・commit/pushするラッパー
 - `tag.py` … 検索用タグ付与（ステータス／所管／法令名／主題キーワード）
 - `ingest_submission.py` / `merge_submissions.py` … 参考情報の提供（Issue）処理と掲載反映
 - `apply_suppressions.py` … 承認済みの取り下げ依頼を反映して該当refを除外（`suppressions.json`）
@@ -59,7 +60,7 @@ python -m http.server 8777 --directory bill-tracker
 python collect.py --diet 221                      # 全法律案（省庁・提出理由も補完）
 python collect.py --diet 221 --only 31,32,33,13 --output tmp/sample.json --allow-partial-output  # 安全な部分実行
 python collect.py --diet 221 --no-enrich          # 参議院データのみ（高速）
-python collect.py --diet 221 --llm-summary        # 提出理由をLLMで3行要約（要 ANTHROPIC_API_KEY）
+python collect.py --diet 221 --llm-summary        # 提出理由をLLMで3行要約（既定はローカルOllama）
 python collect.py --diet 222 --clb-id <id>        # 新会期は内閣法制局の一覧IDを指定
 ```
 
@@ -92,13 +93,28 @@ python match_refs.py --llm-gate     # 弱い候補をLLMで関連性検証（要
 python merge_submissions.py         # 承認済みユーザー提供情報（Tier4）を反映
 python apply_suppressions.py        # 承認済み取り下げ依頼を反映（除外）
 python tag.py                       # 検索用タグ付与
-run_all.bat                # 収集→クロール→照合→提供反映→取り下げ反映→タグ→死活 を一括（Windowsタスクスケジューラ向け）
+run_all.bat                # Ollama要約→PDF抽出→e5照合→提供/取り下げ反映→タグ→死活（週次高品質）
 ```
 
 実行順は `collect.py` → `crawl.py` → `match_refs.py` → `merge_submissions.py` →
 `apply_suppressions.py` → `tag.py`（`run_all.bat` / `.github/workflows/update.yml` と同一）。
 
 公開方法（GitHub Pages + Actions 等）は `DEPLOY.md` を参照。
+
+### 自動更新の運用
+
+- GitHub Actionsの軽量更新は **JST火〜日 01:01頃** に実行する。
+- **月曜 00:00** はローカルWindowsの `run_weekly.ps1` が担当し、Ollama要約、PDF要旨抽出、
+  multilingual-e5による意味類似を含む高品質処理を公開する。これにより全体では毎日更新となる。
+- ローカル処理には、起動済みのOllama、`OLLAMA_MODEL`（未指定時 `gemma4:12b`）の導入、
+  `requirements-semantic.txt` と `requirements-dev.txt` の依存関係、GitHubへのpush権限が必要。
+  Ollamaまたはモデルを利用できない場合は、品質を落として続行せず失敗する。
+- タスクスケジューラの操作例は、プログラムを `powershell.exe`、引数を
+  `-NoProfile -ExecutionPolicy Bypass -File "D:\py\bill-tracker\run_weekly.ps1"` とし、毎週月曜00:00に設定する。
+  開始フォルダーは `D:\py\bill-tracker` とする。
+
+週次スクリプトは開始時の未コミット変更と処理中のリモート更新を検出すると、安全のためcommit/pushせず
+非ゼロで終了する。ログはUTF-8で `build.log` に保存し、commit対象は公開用生成物だけに限定する。
 
 ## 参考情報の提供（ユーザー投稿）
 
@@ -110,7 +126,7 @@ run_all.bat                # 収集→クロール→照合→提供反映→取
    （NDLデジコレ等のJS描画ページはタイトル自動取得不可→コメントで手動補完）
 2. メンテナが内容を確認し `approved` ラベル → `submissions.json` に取り込み、
    `merge_submissions.py` がサイトデータへ「提供情報」(Tier4)として反映、Issueをクローズ。
-3. 日次ビルドは match→**merge_submissions**→**apply_suppressions**→tag の順で、
+3. 日次・週次ビルドは match→**merge_submissions**→**apply_suppressions**→tag の順で、
    再生成後も提供情報の掲載・取り下げ依頼の除外を維持。
 
 ### クローラ（`crawl.py` / `sources.yaml`）
@@ -167,7 +183,7 @@ run_all.bat                # 収集→クロール→照合→提供反映→取
 [収集]  参議院 議案情報 / 衆議院 審査経過（HTMLスクレイピング）
         国会会議録検索 API（JSON）… 質疑・論点
         内閣法制局 / 所管省庁 … 提案理由・要綱・新旧対照
-            │  日次バッチ（weekly_check と同方式）
+            │  日次軽量更新／月曜ローカル週次高品質更新
 [正規化] イベント列 → ステートマシンで現在ステータス・成立確度を算出
 [付与]   所管省庁×時期×テーマで審議会・検討会を逆引き
         主要シンクタンク／法律事務所のRSS・更新ページをインデックス化
