@@ -8127,6 +8127,15 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5281"
+      },
+      {
+        "tier": 4,
+        "cat": "提供情報",
+        "pub": "TMI総合法律事務所",
+        "title": "[連載] 令和8年改正個人情報保護法研究：《第1回》改正法案の概要と実務上の着眼点 | ブログ | Our Eyes",
+        "url": "https://www.tmi.gr.jp/eyes/blog/2026/18288.html",
+        "conf": 71,
+        "confNote": "ユーザー提供（承認済）"
       }
     ]
   },
