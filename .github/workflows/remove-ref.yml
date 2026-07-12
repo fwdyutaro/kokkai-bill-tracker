@@ -1,7 +1,7 @@
 name: remove-reference
 # 取り下げ依頼Issueを処理する。
 #  - 投稿時: 内容を確認用にコメント＋ needs-review ラベル
-#  - approved ラベル付与時: suppressions.json に追加し、サイトから除外してIssueをHクローズ
+#  - approved ラベル付与時: suppressions.json に追加し、サイトから除外してIssueをクローズ
 on:
   issues:
     types: [opened, edited, labeled]
@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
   issues: write
+
+concurrency:
+  group: bill-tracker-data-update
+  cancel-in-progress: false
 
 jobs:
   ack:
@@ -30,35 +34,48 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - run: pip install -r requirements-core.txt
       - name: suppressions.json へ追加→除外を適用
+        id: prepare
         env:
           T: ${{ github.event.issue.title }}
           B: ${{ github.event.issue.body }}
         run: |
-          python - "$T" "$B" <<'PY'
-          import json, os, re, sys
-          title, body = sys.argv[1], sys.argv[2]
-          text = title + "\n" + body
-          bm = re.search(r"(閣法|衆法|参法)\s*第?\s*(\d+)\s*号", text)
-          um = re.search(r"https?://[^\s)>\]」]+", body)
-          if not bm or not um:
-              print("法案番号またはURLを解釈できませんでした"); sys.exit(0)
-          rec = {"bill_no": f"{bm.group(1)} 第{int(bm.group(2))}号",
-                 "url": um.group(0), "status": "approved"}
-          sup = json.load(open("suppressions.json", encoding="utf-8")) if os.path.exists("suppressions.json") else []
-          if not any(s.get("bill_no")==rec["bill_no"] and s.get("url")==rec["url"] for s in sup):
-              sup.append(rec)
-          json.dump(sup, open("suppressions.json","w",encoding="utf-8"), ensure_ascii=False, indent=2)
-          PY
+          if ! python issue_workflow.py approve-removal --title "$T" --body "$B"; then
+            echo "result=failed" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+      - name: 取り下げを公開データへ適用
+        if: steps.prepare.outputs.result == 'published-ready'
+        env:
+          T: ${{ github.event.issue.title }}
+          B: ${{ github.event.issue.body }}
+        run: |
           python apply_suppressions.py
-      - name: コミット＆クローズ
+          python issue_workflow.py verify-removal --title "$T" --body "$B"
+      - name: 手動確認へ戻す
+        if: steps.prepare.outputs.result == 'manual_review'
         env:
           GH_TOKEN: ${{ github.token }}
+          NUM: ${{ github.event.issue.number }}
+        run: |
+          gh issue edit "$NUM" -R "$GITHUB_REPOSITORY" --remove-label approved --add-label needs-review
+          gh issue comment "$NUM" -R "$GITHUB_REPOSITORY" -b "${{ steps.prepare.outputs.detail }}。Issueは閉じず、取り下げも行っていません。"
+      - name: コミット＆push
+        if: steps.prepare.outputs.result == 'published-ready'
+        env:
           NUM: ${{ github.event.issue.number }}
         run: |
           git config user.name "bill-tracker-bot"
           git config user.email "bot@users.noreply.github.com"
           git add suppressions.json data_collected.js bills.json
           git diff --cached --quiet || git commit -m "chore: 取り下げ依頼を反映 (#$NUM)"
+          git pull --rebase origin "$GITHUB_REF_NAME"
           git push
+      - name: Issueをクローズ
+        if: steps.prepare.outputs.result == 'published-ready'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUM: ${{ github.event.issue.number }}
+        run: |
           gh issue close "$NUM" -R "$GITHUB_REPOSITORY" -c "該当の紐付けを取り下げました。ご指摘ありがとうございます。"

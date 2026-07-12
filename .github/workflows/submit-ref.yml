@@ -10,6 +10,10 @@ permissions:
   contents: write
   issues: write
 
+concurrency:
+  group: bill-tracker-data-update
+  cancel-in-progress: false
+
 jobs:
   ingest:
     if: contains(join(github.event.issue.labels.*.name), 'submission') && github.event.action != 'labeled'
@@ -18,13 +22,24 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install requests beautifulsoup4 lxml PyYAML
+      - run: pip install -r requirements-core.txt
       - name: 自動処理（書誌＋関連度）
         env:
           T: ${{ github.event.issue.title }}
           B: ${{ github.event.issue.body }}
         run: |
-          python ingest_submission.py --issue-title "$T" --issue-body "$B" --out rec.json > comment.md || true
+          set +e
+          python ingest_submission.py --issue-title "$T" --issue-body "$B" --out rec.json > comment.md 2>&1
+          result=$?
+          set -e
+          if [ "$result" -gt 2 ]; then
+            echo "予期しない自動処理エラー（終了コード: $result）" >&2
+            exit "$result"
+          fi
+          if [ ! -s comment.md ]; then
+            echo "自動処理できませんでした。手動確認が必要です。" > comment.md
+          fi
+          echo "自動処理の終了コード: $result"
       - name: コメント＋ラベル
         env:
           GH_TOKEN: ${{ github.token }}
@@ -40,40 +55,60 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install requests beautifulsoup4 lxml PyYAML
+      - run: pip install -r requirements-core.txt
       - name: レコード生成→submissions.jsonへ追加
+        id: prepare
         env:
           T: ${{ github.event.issue.title }}
           B: ${{ github.event.issue.body }}
+        run: |
+          set +e
+          python ingest_submission.py --issue-title "$T" --issue-body "$B" --out rec.json > ingest-comment.md 2>&1
+          ingest_result=$?
+          set -e
+          if [ "$ingest_result" -gt 2 ]; then
+            echo "result=failed" >> "$GITHUB_OUTPUT"
+            exit "$ingest_result"
+          fi
+          if [ "$ingest_result" -ne 0 ] || [ ! -f rec.json ]; then
+            echo "result=manual_review" >> "$GITHUB_OUTPUT"
+            echo "detail=自動処理に失敗したため、手動確認が必要です" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if ! python issue_workflow.py approve-submission; then
+            echo "result=failed" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+          python merge_submissions.py
+      - name: 手動確認へ戻す
+        if: steps.prepare.outputs.result == 'manual_review'
+        env:
           GH_TOKEN: ${{ github.token }}
           NUM: ${{ github.event.issue.number }}
         run: |
-          python ingest_submission.py --issue-title "$T" --issue-body "$B" --out rec.json > /dev/null || true
-          # ingestが法案番号/URLを解釈できない、対象法案が無い等で失敗すると rec.json が生成されない。
-          # その場合は手動対応が必要な旨を通知して正常終了する（後続ステップのクラッシュを防ぐ）。
-          if [ ! -f rec.json ]; then
-            gh issue comment "$NUM" -b "自動処理に失敗したため（法案番号・URLの解釈不能、または対象法案が見つからない等）、手動対応が必要です。approved ラベルによる自動掲載は行われませんでした。"
-            echo "rec.json not generated; skipping publish." >&2
-            exit 0
-          fi
-          python - <<'PY'
-          import json, os
-          rec = json.load(open("rec.json", encoding="utf-8"))
-          rec["status"] = "approved"
-          subs = json.load(open("submissions.json", encoding="utf-8")) if os.path.exists("submissions.json") else []
-          if not any(s.get("url") == rec["url"] for s in subs):
-              subs.append(rec)
-          json.dump(subs, open("submissions.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-          PY
-          python merge_submissions.py
-      - name: コミット＆クローズ
+          gh issue edit "$NUM" -R "$GITHUB_REPOSITORY" --remove-label approved --add-label needs-review
+          gh issue comment "$NUM" -R "$GITHUB_REPOSITORY" -b "${{ steps.prepare.outputs.detail }}。Issueは閉じず、掲載も行っていません。"
+      - name: コミット＆push
+        if: steps.prepare.outputs.result == 'published-ready'
         env:
-          GH_TOKEN: ${{ github.token }}
           NUM: ${{ github.event.issue.number }}
         run: |
           git config user.name "bill-tracker-bot"
           git config user.email "bot@users.noreply.github.com"
           git add submissions.json data_collected.js bills.json
           git diff --cached --quiet || git commit -m "feat: 提供情報を掲載 (#$NUM)"
+          git pull --rebase origin "$GITHUB_REF_NAME"
           git push
-          gh issue close "$NUM" -c "掲載しました。ご提供ありがとうございます。"
+      - name: Issueをクローズ
+        if: steps.prepare.outputs.result == 'published-ready'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUM: ${{ github.event.issue.number }}
+          DETAIL: ${{ steps.prepare.outputs.detail }}
+        run: |
+          # 差分なしの重複投稿は「既掲載」として閉じ、新規掲載とは表示しない（FR-3）。
+          if [ "$DETAIL" = "already-listed" ]; then
+            gh issue close "$NUM" -R "$GITHUB_REPOSITORY" -c "この参考情報は既に掲載済みのため、重複としてクローズします。ご確認ありがとうございます。"
+          else
+            gh issue close "$NUM" -R "$GITHUB_REPOSITORY" -c "掲載しました。ご提供ありがとうございます。"
+          fi

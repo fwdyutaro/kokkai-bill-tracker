@@ -18,8 +18,15 @@
   a:hover{text-decoration:underline}
   header{padding:20px 28px;border-bottom:1px solid var(--line);
          background:linear-gradient(120deg,#16213a,#1b1340)}
+  .header-row{max-width:1180px;margin:0 auto;display:flex;align-items:flex-start;
+              justify-content:space-between;gap:24px}
+  .header-copy{min-width:0}
   header h1{margin:0;font-size:20px;letter-spacing:.02em}
   header p{margin:4px 0 0;color:var(--muted);font-size:13px}
+  .cabinet-rate{flex:0 0 auto;text-align:right;border:1px solid rgba(79,156,255,.32);
+                background:rgba(15,23,41,.38);border-radius:10px;padding:9px 12px;
+                font-size:13px;color:var(--muted);white-space:nowrap}
+  .cabinet-rate b{color:var(--txt);font-size:15px}
   .wrap{max-width:1180px;margin:0 auto;padding:22px 28px 60px}
 
   /* dashboard */
@@ -118,13 +125,22 @@
   .kaigi-item{display:block;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line)}
   .kaigi-item:last-child{border-bottom:none}
   .footer{color:var(--muted);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
-  @media(max-width:680px){.dash{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:680px){
+    .dash{grid-template-columns:repeat(2,1fr)}
+    .header-row{display:block}
+    .cabinet-rate{margin-top:12px;text-align:left;white-space:normal}
+  }
 </style>
 </head>
 <body>
 <header>
-  <h1>🏛 国会 法律案トラッカー <span style="font-size:12px;color:var(--muted)">— プロトタイプ</span></h1>
-  <p>提出された法律案のステータスを自動整理し、参考情報（立法補佐機関・審議会・シンクタンク・専門家解説）を付して提供する</p>
+  <div class="header-row">
+    <div class="header-copy">
+      <h1>🏛 国会 法律案トラッカー <span style="font-size:12px;color:var(--muted)">— プロトタイプ</span></h1>
+      <p>提出された法律案のステータスを自動整理し、参考情報（立法補佐機関・審議会・シンクタンク・専門家解説）を付して提供する</p>
+    </div>
+    <div class="cabinet-rate" id="cabinetRate" aria-live="polite">閣法成立率を計算中…</div>
+  </div>
 </header>
 
 <div class="wrap">
@@ -170,9 +186,22 @@ function dash(){
   $("#dash").innerHTML=`
     <div class="card s-合計"><div class="num">${bills.length}</div><div class="lbl">収録法案</div></div>
     <div class="card s-審議中"><div class="num">${c.審議中}</div><div class="lbl">審議中</div></div>
-    <div class="card s-成立"><div class="num">${c.成立}</div><div class="lbl">成立・公布済</div></div>
+    <div class="card s-成立"><div class="num">${c.成立}</div><div class="lbl">成立</div></div>
     <div class="card s-継続審査"><div class="num">${c.継続審査}</div><div class="lbl">継続審査</div></div>
     <div class="card s-廃案"><div class="num">${c.廃案}</div><div class="lbl">廃案</div></div>`;
+}
+function renderCabinetRate(){
+  const cabinet=bills.filter(b=>b.type==="閣法"),
+        enacted=cabinet.filter(b=>b.status==="成立").length,
+        total=cabinet.length,
+        pct=total?Math.round(enacted/total*100):0,
+        updated=String(window.BILLS_UPDATED_AT||"");
+  let dateLabel="更新日不明";
+  if(/^\d{4}-\d{2}-\d{2}$/.test(updated)){
+    const [,month,day]=updated.split("-");
+    dateLabel=`${Number(month)}月${Number(day)}日現在`;
+  }
+  $("#cabinetRate").innerHTML=`閣法成立率 <b>${pct}%（${enacted}/${total}）</b>（${dateLabel}）`;
 }
 // ministry filter options（データ読み込み後に再構築）
 function setupMinistry(){
@@ -297,7 +326,7 @@ document.addEventListener("keydown",e=>e.key==="Escape"&&closeBill());
   s.src="data_collected.js?t="+Date.now();
   s.onload=()=>{
     if(!window.BILLS){$("#list").innerHTML=`<p style="color:var(--danger)">データを読み込めませんでした。</p>`;return;}
-    bills=window.BILLS;setupMinistry();dash();render();
+    bills=window.BILLS;setupMinistry();dash();renderCabinetRate();render();
   };
   s.onerror=()=>{$("#list").innerHTML=`<p style="color:var(--danger)">データが見つかりません。</p>`;};
   document.body.appendChild(s);

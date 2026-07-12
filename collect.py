@@ -10,17 +10,20 @@
 
 使い方:
   python collect.py            # 第221回・全法律案
-  python collect.py --diet 221 --only 31,32,33,13   # 議案番号で絞り込み
-  python collect.py --limit 5  # 先頭5件だけ（動作確認用）
+  python collect.py --diet 221 --only 31,32,33,13 --output tmp/sample.json --allow-partial-output
+  python collect.py --limit 5 --output tmp/sample.json --allow-partial-output
 """
-import argparse, json, re, sys, time
+import argparse, json, os, re, sys, tempfile, time
+from pathlib import Path
 from urllib.parse import urljoin, quote
 import requests
 from bs4 import BeautifulSoup
 import enrich as clb
+from data_output import render_data_js
 
 KOKKAI_API = "https://kokkai.ndl.go.jp/api/meeting_list"
 KOKKAI_UA = {"User-Agent": "Mozilla/5.0 (compatible; bill-tracker/0.1; research)"}
+KOKKAI_REQUEST_DELAY = float(os.environ.get("KOKKAI_REQUEST_DELAY", "1.0"))
 
 
 def _kokkai_query(diet_no, meeting, keyword):
@@ -30,7 +33,7 @@ def _kokkai_query(diet_no, meeting, keyword):
            f"&recordPacking=json&maximumRecords=30")
     try:
         d = requests.get(url, timeout=30, headers=KOKKAI_UA).json()
-        time.sleep(0.3)
+        time.sleep(KOKKAI_REQUEST_DELAY)
         return d.get("meetingRecord") or []
     except Exception:
         return []
@@ -65,7 +68,7 @@ def kokkai_refs(title, diet, sections):
     return [r for _, r in rows]
 
 BASE = "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/{diet}/gian.htm"
-UA = {"User-Agent": "bill-tracker/0.1 (research; contact: example@example.com)"}
+UA = {"User-Agent": "bill-tracker/0.1 (research; https://github.com/fwdyutaro/kokkai-bill-tracker)"}
 SESSION = requests.Session()
 SESSION.headers.update(UA)
 
@@ -226,15 +229,19 @@ def derive_status(d, timeline, promu):
     """成立 / 継続審査 / 廃案 / 審議中 を判定し、ステータス詳細も返す。"""
     s = d["sections"]
     head = d.get("head", {})
-    results = [s.get(k, {}).get("議決・継続結果", "") for k in
+    committee_results = [s.get(k, {}).get("議決・継続結果", "") for k in
                ("衆議院委員会等経過", "参議院委員会等経過")]
-    results += [s.get(k, {}).get("議決", "") for k in
-                ("衆議院本会議経過", "参議院本会議経過")]
+    plenary_results = [s.get(k, {}).get("議決", "") for k in
+                       ("衆議院本会議経過", "参議院本会議経過")]
+    results = committee_results + plenary_results
     blob = " ".join(results) + head.get("継続区分", "")
 
     if wareki_to_iso(promu):
         lawno = s.get("その他", {}).get("法律番号", "")
         return "成立", f"公布済（法律第{lawno}号）" if lawno else "公布済"
+    # 法律案は両院の本会議で可決された時点で成立する。公布は成立後の別段階。
+    if all(result and "可決" in result for result in plenary_results):
+        return "成立", "両院可決（公布待ち）"
     if "継続" in blob:
         return "継続審査", "継続審査中"
     if "否決" in blob or "廃案" in blob:
@@ -296,6 +303,113 @@ def normalize(raw, type_hint=None):
     }
 
 
+REQUIRED_RECORD_FIELDS = ("id", "no", "title", "status", "refs")
+
+
+def validate_records(records, detected_count, attempted_count, success_count,
+                     existing_count=0, existing_meeting_ref_count=0,
+                     allow_large_decrease=False, partial=False):
+    """公開前に収集結果の最低限の完全性を検証する。"""
+    errors = []
+    if detected_count < 1:
+        errors.append("一覧ページから法案を1件も検出できませんでした")
+    success_rate = success_count / attempted_count if attempted_count else 0
+    if success_rate < 0.95:
+        errors.append(f"詳細解析の成功率が95%未満です ({success_count}/{attempted_count}, {success_rate:.1%})")
+    seen = set()
+    for index, record in enumerate(records):
+        missing = [field for field in REQUIRED_RECORD_FIELDS if field not in record]
+        if missing:
+            errors.append(f"レコード{index + 1}に必須項目がありません: {', '.join(missing)}")
+        record_id = record.get("id")
+        if record_id in seen:
+            errors.append(f"idが重複しています: {record_id}")
+        seen.add(record_id)
+        if "refs" in record and not isinstance(record["refs"], list):
+            errors.append(f"refsが配列ではありません: {record_id or index + 1}")
+    if (not partial and existing_count and len(records) < existing_count * 0.9
+            and not allow_large_decrease):
+        errors.append(
+            f"既存データから10%以上減少します ({existing_count}件 -> {len(records)}件)。"
+            "正当な会期変更なら --allow-large-decrease を指定してください"
+        )
+    meeting_ref_count = sum(
+        1 for record in records for ref in record.get("refs", [])
+        if ref.get("cat") == "会議録"
+    )
+    if (not partial and existing_meeting_ref_count >= 10
+            and meeting_ref_count < existing_meeting_ref_count * 0.5
+            and not allow_large_decrease):
+        errors.append(
+            "会議録リンクが既存データから50%以上減少します "
+            f"({existing_meeting_ref_count}件 -> {meeting_ref_count}件)。"
+            "国会会議録APIの障害を確認してください"
+        )
+    return errors
+
+
+def _stage_text(path, text):
+    """置換対象と同じディレクトリに一時ファイルを作る。"""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as f:
+            f.write(text)
+            f.flush()
+            os.fsync(f.fileno())
+        return Path(name)
+    except Exception:
+        try:
+            os.close(fd)
+        except OSError:
+            pass
+        Path(name).unlink(missing_ok=True)
+        raise
+
+
+def save_records(records, output, write_public_js=False):
+    """検証済みデータを原子的に置換し、ペア更新失敗時はJSONを戻す。"""
+    output = Path(output)
+    json_text = json.dumps(records, ensure_ascii=False, indent=2) + "\n"
+    json_tmp = _stage_text(output, json_text)
+    js_path = output.with_name("data_collected.js") if write_public_js else None
+    js_tmp = _stage_text(js_path, render_data_js(records)) if js_path else None
+    old_json = output.read_bytes() if output.exists() else None
+    rollback_tmp = None
+    if old_json is not None and js_path:
+        rollback_tmp = _stage_text(output, old_json.decode("utf-8"))
+    try:
+        os.replace(json_tmp, output)
+        if js_tmp:
+            try:
+                os.replace(js_tmp, js_path)
+            except Exception:
+                if rollback_tmp:
+                    os.replace(rollback_tmp, output)
+                    rollback_tmp = None
+                else:
+                    output.unlink(missing_ok=True)
+                raise
+    finally:
+        json_tmp.unlink(missing_ok=True)
+        if js_tmp:
+            js_tmp.unlink(missing_ok=True)
+        if rollback_tmp:
+            rollback_tmp.unlink(missing_ok=True)
+
+
+def _load_existing(path):
+    path = Path(path)
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8") as f:
+        data = json.load(f)
+    if not isinstance(data, list):
+        raise ValueError("既存の出力がJSON配列ではありません")
+    return data
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--diet", default="221")
@@ -307,42 +421,110 @@ def main():
     ap.add_argument("--clb-id", default=None, help="内閣法制局 一覧ページID（新会期用）")
     ap.add_argument("--llm-summary", action="store_true",
                     help="提出理由をLLMで3行要約（要 ANTHROPIC_API_KEY）")
+    ap.add_argument("--output", default="bills.json", help="JSONの出力先")
+    ap.add_argument("--allow-partial-output", action="store_true",
+                    help="--only/--limit の結果を明示した出力先へ保存する")
+    ap.add_argument("--allow-large-decrease", action="store_true",
+                    help="既存データから10%以上減少する更新を許可する")
     args = ap.parse_args()
+
+    partial = bool(args.only or args.limit)
+    default_output = Path(args.output).resolve() == Path("bills.json").resolve()
+    if args.limit < 0:
+        ap.error("--limit は0以上で指定してください")
+    if partial and (default_output or not args.allow_partial_output):
+        ap.error("--only/--limit には、既定以外の --output と --allow-partial-output が必要です")
+    try:
+        existing = _load_existing(args.output)
+    except Exception as e:
+        print(f"エラー: 既存出力を読み込めません: {e}", file=sys.stderr)
+        return 1
+    existing_by_id = {record.get("id"): record for record in existing if record.get("id")}
+    existing_meeting_ref_count = sum(
+        1 for record in existing for ref in record.get("refs", [])
+        if ref.get("cat") == "会議録"
+    )
 
     only = set(x.strip() for x in args.only.split(",") if x.strip())
     print(f"[1/3] 一覧取得: 第{args.diet}回国会 ...", file=sys.stderr)
-    bills = discover_bills(args.diet)
+    try:
+        bills = discover_bills(args.diet)
+    except Exception as e:
+        print(f"エラー: 一覧取得に失敗しました: {e}", file=sys.stderr)
+        print("検出件数=0 成功件数=0", file=sys.stderr)
+        return 1
     print(f"      法律案 {len(bills)} 件を検出", file=sys.stderr)
 
-    records = []
-    for i, b in enumerate(bills):
+    targets = []
+    for b in bills:
         no = b["url"].rsplit(".", 1)[0][-3:].lstrip("0")
         if only and no not in only:
             continue
-        if args.limit and len(records) >= args.limit:
+        targets.append((b, no))
+        if args.limit and len(targets) >= args.limit:
             break
+
+    parsed_records, ordered_results, failures = [], [], []
+    for b, no in targets:
         print(f"[2/3] 解析 {b['type']} {no}: {b['title'][:30]} ...", file=sys.stderr)
         try:
             raw = parse_bill(b["url"])
             rec = normalize(raw, type_hint=b["type"])
-            records.append(rec)
+            parsed_records.append(rec)
+            ordered_results.append(rec)
         except Exception as e:
             print(f"      ! 失敗: {e}", file=sys.stderr)
+            failures.append((no, str(e)))
+            fallback = None
+            if not partial:
+                fallback = existing_by_id.get(f"{args.diet}-{b['type']}-{no}")
+            if fallback:
+                print(f"      ! 既存レコードを維持: {fallback['id']}", file=sys.stderr)
+                ordered_results.append(fallback)
+            else:
+                print(f"      ! 既存レコードで補完できません: {b['type']} {no}", file=sys.stderr)
         time.sleep(args.sleep)
 
     if not args.no_enrich:
         print("[2.5/3] 内閣法制局: 省庁名・提出理由を補完 ...", file=sys.stderr)
-        clb.enrich(records, args.diet, clb_id=args.clb_id,
-                   use_llm=args.llm_summary, sleep=max(args.sleep, 0.3))
+        try:
+            clb.enrich(parsed_records, args.diet, clb_id=args.clb_id,
+                       use_llm=args.llm_summary, sleep=max(args.sleep, 0.3))
+        except Exception as e:
+            print(f"エラー: 補完処理に失敗しました: {e}", file=sys.stderr)
+            return 1
 
-    with open("bills.json", "w", encoding="utf-8") as f:
-        json.dump(records, f, ensure_ascii=False, indent=2)
-    with open("data_collected.js", "w", encoding="utf-8") as f:
-        f.write("window.BILLS = ")
-        json.dump(records, f, ensure_ascii=False, indent=2)
-        f.write(";\n")
-    print(f"[3/3] 出力: bills.json / data_collected.js（{len(records)}件）", file=sys.stderr)
+    errors = validate_records(
+        ordered_results, len(bills), len(targets), len(parsed_records),
+        existing_count=len(existing), existing_meeting_ref_count=existing_meeting_ref_count,
+        allow_large_decrease=args.allow_large_decrease,
+        partial=partial,
+    )
+    if errors:
+        print(f"検証失敗: 検出件数={len(bills)} 成功件数={len(parsed_records)} 失敗件数={len(failures)}", file=sys.stderr)
+        for no, reason in failures:
+            print(f"  失敗法案番号={no}: {reason}", file=sys.stderr)
+        for error in errors:
+            print(f"  - {error}", file=sys.stderr)
+        return 1
+    try:
+        save_records(ordered_results, args.output, write_public_js=default_output and not partial)
+    except Exception as e:
+        print(f"エラー: 保存に失敗しました（公開ファイルは更新していません）: {e}", file=sys.stderr)
+        return 1
+    destinations = f"{args.output} / data_collected.js" if default_output else args.output
+    print(f"[3/3] 出力: {destinations}（{len(ordered_results)}件）", file=sys.stderr)
+    meeting_ref_count = sum(
+        1 for record in ordered_results for ref in record.get("refs", [])
+        if ref.get("cat") == "会議録"
+    )
+    print(
+        f"      検出={len(bills)} 解析成功={len(parsed_records)} "
+        f"既存補完={len(ordered_results) - len(parsed_records)} 会議録={meeting_ref_count}",
+        file=sys.stderr,
+    )
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

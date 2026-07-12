@@ -8,6 +8,7 @@ data_collected.js を再出力する。collect→match の後（tagの前）に�
   python merge_submissions.py
 """
 import json, os
+from data_output import render_data_js
 
 SUB = "submissions.json"
 
@@ -40,9 +41,7 @@ def main():
         added += 1
     json.dump(bills, open("bills.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     with open("data_collected.js", "w", encoding="utf-8") as f:
-        f.write("window.BILLS = ")
-        json.dump(bills, f, ensure_ascii=False, indent=2)
-        f.write(";\n")
+        f.write(render_data_js(bills))
     print(f"提供情報を反映: {added}件（承認済 {len(subs)}件中）")
 
 

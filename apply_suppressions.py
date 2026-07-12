@@ -10,6 +10,7 @@ suppressions.json 形式: [{"bill_no":"閣法 第31号","url":"https://...","sta
   python apply_suppressions.py
 """
 import json, os
+from data_output import render_data_js
 
 SUP = "suppressions.json"
 
@@ -36,9 +37,7 @@ def main():
         removed += before - len(b["refs"])
     json.dump(bills, open("bills.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     with open("data_collected.js", "w", encoding="utf-8") as f:
-        f.write("window.BILLS = ")
-        json.dump(bills, f, ensure_ascii=False, indent=2)
-        f.write(";\n")
+        f.write(render_data_js(bills))
     print(f"取り下げ適用: {removed}件 除外（承認済 {len(sup)}件）")
 
 

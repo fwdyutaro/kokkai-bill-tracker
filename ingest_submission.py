@@ -11,21 +11,242 @@ CLI（ローカル/Action双方で利用）:
   python ingest_submission.py --bill "閣法 第31号" --url "https://..."
   python ingest_submission.py --issue-body "$BODY" --issue-title "$TITLE"
 """
-import argparse, json, re, sys
+import argparse
+from contextlib import contextmanager
+from dataclasses import dataclass
+import ipaddress
+import json
+import os
+from pathlib import Path
+import re
+import socket
+import sys
+import threading
+from urllib.parse import urljoin, urlsplit
+
 import requests
 from bs4 import BeautifulSoup
 import match_refs as M
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; bill-tracker/0.1; research)"}
+CONNECT_TIMEOUT = 5
+READ_TIMEOUT = 10
+MAX_HTML_BYTES = 2 * 1024 * 1024
+MAX_REDIRECTS = 3
+EXIT_MANUAL_REVIEW = 1
+EXIT_INVALID_INPUT = 2
+EXIT_FAILED = 3
+HTML_CONTENT_TYPES = {"text/html", "application/xhtml+xml"}
 BILL_NO_RE = re.compile(r"(閣法|衆法|参法)\s*第?\s*(\d+)\s*号")
 URL_RE = re.compile(r"https?://[^\s)>\]」]+")
 GENERIC_TITLES = ("国立国会図書館デジタルコレクション", "CiNii Research", "お探しのページ")
+_DNS_PIN_LOCK = threading.Lock()
+
+
+class SubmissionFetchError(RuntimeError):
+    """利用者向けURLを安全に取得できない場合の、機密情報を含まない例外。"""
+
+
+class UnsafeURLError(SubmissionFetchError):
+    """URLまたは名前解決結果が公開Webアクセスとして安全でない。"""
+
+
+@dataclass(frozen=True)
+class ValidatedURL:
+    url: str
+    hostname: str
+    address_info: tuple
+
+
+@dataclass(frozen=True)
+class FetchedHTML:
+    content: bytes
+    url: str
+
+
+def _normalise_hostname(hostname):
+    """比較とDNS固定に使うASCIIホスト名へ正規化する。"""
+    hostname = hostname.rstrip(".").lower()
+    if not hostname or "%" in hostname:
+        raise UnsafeURLError("ホスト名が不正です")
+    try:
+        return hostname.encode("idna").decode("ascii")
+    except UnicodeError as exc:
+        raise UnsafeURLError("ホスト名が不正です") from exc
+
+
+def _allowed_domains():
+    raw = os.environ.get("SUBMISSION_ALLOWED_DOMAINS", "")
+    result = []
+    for item in raw.split(","):
+        item = item.strip()
+        if item:
+            result.append(_normalise_hostname(item))
+    return tuple(result)
+
+
+def _is_public_address(address):
+    try:
+        ip = ipaddress.ip_address(address.split("%", 1)[0])
+    except ValueError:
+        return False
+    if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped:
+        ip = ip.ipv4_mapped
+    return (
+        ip.is_global
+        and not ip.is_private
+        and not ip.is_loopback
+        and not ip.is_link_local
+        and not ip.is_multicast
+        and not ip.is_reserved
+        and not ip.is_unspecified
+    )
+
+
+def validate_public_url(url):
+    """URLを検査してDNS結果を返す。実際の接続ではこの結果を固定して使う。"""
+    if not isinstance(url, str) or not url or any(ord(c) <= 32 for c in url):
+        raise UnsafeURLError("URLの形式が不正です")
+    try:
+        parsed = urlsplit(url)
+        port = parsed.port
+    except ValueError as exc:
+        raise UnsafeURLError("URLの形式が不正です") from exc
+    if parsed.scheme.lower() not in {"http", "https"}:
+        raise UnsafeURLError("http/https以外のURLは利用できません")
+    if not parsed.hostname:
+        raise UnsafeURLError("ホスト名がありません")
+    if parsed.username is not None or parsed.password is not None:
+        raise UnsafeURLError("認証情報を含むURLは利用できません")
+    if port is not None and port not in {80, 443}:
+        raise UnsafeURLError("許可されていないポートです")
+
+    hostname = _normalise_hostname(parsed.hostname)
+    if hostname == "localhost" or hostname.endswith(".localhost"):
+        raise UnsafeURLError("ローカルホストは利用できません")
+
+    allowlist = _allowed_domains()
+    if allowlist and not any(hostname == d or hostname.endswith("." + d) for d in allowlist):
+        raise UnsafeURLError("許可されていないドメインです")
+
+    lookup_port = port or (443 if parsed.scheme.lower() == "https" else 80)
+    try:
+        info = tuple(socket.getaddrinfo(hostname, lookup_port, 0, socket.SOCK_STREAM))
+    except socket.gaierror as exc:
+        raise UnsafeURLError("ホスト名を解決できません") from exc
+    if not info:
+        raise UnsafeURLError("ホスト名を解決できません")
+    if any(not _is_public_address(item[4][0]) for item in info):
+        raise UnsafeURLError("公開インターネット以外の接続先は利用できません")
+    return ValidatedURL(url=url, hostname=hostname, address_info=info)
+
+
+@contextmanager
+def _pinned_dns(validated):
+    """検査済みDNS結果をrequests/urllib3の接続中だけ固定する。
+
+    socket.getaddrinfo はプロセス全体の関数なので、ロックにより同一プロセス内の
+    HTTP取得を直列化する。ingest_submission.py は単一スレッドのCLIとして使う。
+    """
+    with _DNS_PIN_LOCK:
+        original = socket.getaddrinfo
+
+        def pinned(host, port, family=0, socktype=0, proto=0, flags=0):
+            comparable = host.decode("ascii") if isinstance(host, bytes) else str(host)
+            try:
+                comparable = _normalise_hostname(comparable)
+            except UnsafeURLError:
+                comparable = ""
+            if comparable != validated.hostname:
+                return original(host, port, family, socktype, proto, flags)
+            matches = []
+            for af, st, pr, canon, sockaddr in validated.address_info:
+                if family not in (0, af) or socktype not in (0, st) or proto not in (0, pr):
+                    continue
+                # 接続先ポートは呼出側の値を尊重し、IPだけを検査時の値に固定する。
+                target = (sockaddr[0], port, *sockaddr[2:])
+                matches.append((af, st, pr, canon, target))
+            if not matches:
+                raise socket.gaierror(socket.EAI_NONAME, "pinned DNS result unavailable")
+            return matches
+
+        socket.getaddrinfo = pinned
+        try:
+            yield
+        finally:
+            socket.getaddrinfo = original
+
+
+def fetch_public_html(url, _session=None):
+    """公開HTMLだけを、各リダイレクト先の再検査とサイズ制限付きで取得する。"""
+    session = _session or requests.Session()
+    owns_session = _session is None
+    session.trust_env = False  # 環境proxy・認証情報を投稿先へ引き継がない
+    current = url
+    try:
+        for redirect_count in range(MAX_REDIRECTS + 1):
+            validated = validate_public_url(current)
+            session.cookies.clear()
+            try:
+                with _pinned_dns(validated):
+                    response = session.get(
+                        current,
+                        allow_redirects=False,
+                        stream=True,
+                        timeout=(CONNECT_TIMEOUT, READ_TIMEOUT),
+                        headers=UA,
+                        verify=True,
+                    )
+            except requests.RequestException as exc:
+                raise SubmissionFetchError("URLへの接続または読み取りに失敗しました") from exc
+
+            try:
+                if response.status_code in {301, 302, 303, 307, 308}:
+                    location = response.headers.get("Location")
+                    if not location:
+                        raise SubmissionFetchError("リダイレクト先がありません")
+                    if redirect_count >= MAX_REDIRECTS:
+                        raise SubmissionFetchError("リダイレクト回数が上限を超えました")
+                    current = urljoin(current, location)
+                    continue
+                if response.status_code != 200:
+                    raise SubmissionFetchError("HTTP 200以外の応答でした")
+
+                media_type = response.headers.get("Content-Type", "").split(";", 1)[0].strip().lower()
+                if media_type not in HTML_CONTENT_TYPES:
+                    raise SubmissionFetchError("HTML/XHTML以外の応答は利用できません")
+                length = response.headers.get("Content-Length")
+                try:
+                    if length is not None and int(length) > MAX_HTML_BYTES:
+                        raise SubmissionFetchError("応答サイズが2 MiBを超えています")
+                except ValueError:
+                    pass
+
+                chunks = []
+                size = 0
+                for chunk in response.iter_content(chunk_size=64 * 1024):
+                    if not chunk:
+                        continue
+                    size += len(chunk)
+                    if size > MAX_HTML_BYTES:
+                        raise SubmissionFetchError("応答サイズが2 MiBを超えています")
+                    chunks.append(chunk)
+                return FetchedHTML(content=b"".join(chunks), url=current)
+            except requests.RequestException as exc:
+                raise SubmissionFetchError("URLへの接続または読み取りに失敗しました") from exc
+            finally:
+                response.close()
+    finally:
+        if owns_session:
+            session.close()
+
+    raise SubmissionFetchError("HTMLを取得できませんでした")
 
 
 def extract_meta(url):
     """URLからタイトル・概要・発行元を抽出。JS描画等で取れない場合は title=None。"""
-    r = requests.get(url, timeout=20, headers=UA)
-    soup = BeautifulSoup(r.content.decode(r.apparent_encoding or "utf-8", "replace"), "html.parser")
+    fetched = fetch_public_html(url)
+    soup = BeautifulSoup(fetched.content, "html.parser")
 
     def meta(*names):
         for n in names:
@@ -50,12 +271,12 @@ def extract_meta(url):
     # サイト名接尾辞を除去（「… | CiNii Research」「… - NHK」等）
     if title:
         title = re.split(r"\s*[|｜\-—–]\s*[^|｜\-—–]{2,30}$", title)[0].strip()
-    publisher = meta("og:site_name", "citation_journal_title") or url.split("/")[2]
+    publisher = meta("og:site_name", "citation_journal_title") or urlsplit(fetched.url).hostname
     desc = meta("og:description", "description", "citation_abstract") or ""
     # 取得できても汎用タイトルなら手動補完が必要
     manual = (not title) or any(g in title for g in GENERIC_TITLES)
     return {"title": title, "desc": desc[:200], "publisher": publisher,
-            "status": r.status_code, "manual": manual}
+            "status": 200, "manual": manual}
 
 
 def estimate_relevance(bill, title, desc=""):
@@ -113,7 +334,12 @@ def main():
     ap.add_argument("--out", help="JSONレコードの出力先")
     args = ap.parse_args()
 
-    bills = json.load(open("bills.json", encoding="utf-8"))
+    if args.out:
+        try:
+            Path(args.out).unlink(missing_ok=True)
+        except OSError as exc:
+            print(f"既存の掲載レコードを整理できませんでした: {type(exc).__name__}", file=sys.stderr)
+            return EXIT_FAILED
     if args.bill and args.url:
         bn = BILL_NO_RE.search(args.bill); bnt = (bn.group(1), bn.group(2)) if bn else None
         url = args.url
@@ -122,12 +348,29 @@ def main():
     if not bnt or not url:
         print("法案番号またはURLを解釈できませんでした。", file=sys.stderr)
         print("対象法案とURLを確認してください。")
-        return 2
+        return EXIT_INVALID_INPUT
 
-    rec, md = process(bnt, url, bills)
+    try:
+        bills = json.load(open("bills.json", encoding="utf-8"))
+        rec, md = process(bnt, url, bills)
+    except SubmissionFetchError as exc:
+        print(f"安全にURLを取得できませんでした: {exc}", file=sys.stderr)
+        print("URLを安全に取得できなかったため、手動確認が必要です。")
+        return EXIT_MANUAL_REVIEW
+    except Exception as exc:
+        # URLやrequests例外本文をログへ出さず、予期しない障害として区別する。
+        print(f"自動処理で予期しないエラーが発生しました: {type(exc).__name__}", file=sys.stderr)
+        return EXIT_FAILED
     print(md)
-    if rec and args.out:
-        json.dump(rec, open(args.out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    if not rec:
+        return EXIT_INVALID_INPUT
+    if args.out:
+        try:
+            with open(args.out, "w", encoding="utf-8") as target:
+                json.dump(rec, target, ensure_ascii=False, indent=2)
+        except Exception as exc:
+            print(f"掲載レコードを保存できませんでした: {type(exc).__name__}", file=sys.stderr)
+            return EXIT_FAILED
     return 0
 
 

@@ -15,6 +15,7 @@ Tier2は score ≥ 0.55 で自動採用（DESIGN_refs.md のスコア方針に�
 """
 import argparse, json, os, re, sqlite3, sys
 from datetime import date, timedelta
+from data_output import render_data_js
 try:
     import yaml
 except ImportError:
@@ -396,9 +397,7 @@ def main():
         json.dump(bills, open(args.infile, "w", encoding="utf-8"),
                   ensure_ascii=False, indent=2)
         with open("data_collected.js", "w", encoding="utf-8") as f:
-            f.write("window.BILLS = ")
-            json.dump(bills, f, ensure_ascii=False, indent=2)
-            f.write(";\n")
+            f.write(render_data_js(bills))
         print(f"出力: {args.infile} / data_collected.js")
 
 

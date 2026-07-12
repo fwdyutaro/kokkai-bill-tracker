@@ -39,7 +39,9 @@
 - `tag.py` … 検索用タグ付与（ステータス／所管／法令名／主題キーワード）
 - `ingest_submission.py` / `merge_submissions.py` … 参考情報の提供（Issue）処理と掲載反映
 - `apply_suppressions.py` … 承認済みの取り下げ依頼を反映して該当refを除外（`suppressions.json`）
-- `requirements.txt` … 依存パッケージ
+- `requirements-core.txt` … 日次更新・Issue処理用の依存パッケージ
+- `requirements-semantic.txt` … 意味検索を含む全機能用（`requirements.txt` は後方互換の入口）
+- `requirements-dev.txt` … テストなど開発用の依存パッケージ
 - `DEPLOY.md` / `.github/workflows/` … 公開方法・CI自動更新・情報提供Issue処理
 - `bills.json` / `data_collected.js` … パイプラインの出力（`window.BILLS` に直接流用可）
 - `refs.db` … 収集した参考文書のインデックス（SQLite）
@@ -55,7 +57,7 @@ python -m http.server 8777 --directory bill-tracker
 
 ```
 python collect.py --diet 221                      # 全法律案（省庁・提出理由も補完）
-python collect.py --diet 221 --only 31,32,33,13   # 議案番号で絞り込み
+python collect.py --diet 221 --only 31,32,33,13 --output tmp/sample.json --allow-partial-output  # 安全な部分実行
 python collect.py --diet 221 --no-enrich          # 参議院データのみ（高速）
 python collect.py --diet 221 --llm-summary        # 提出理由をLLMで3行要約（要 ANTHROPIC_API_KEY）
 python collect.py --diet 222 --clb-id <id>        # 新会期は内閣法制局の一覧IDを指定

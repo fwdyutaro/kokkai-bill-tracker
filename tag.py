@@ -13,6 +13,7 @@
 """
 import json, re
 import match_refs as M
+from data_output import render_data_js
 
 MAX_TAGS = 8
 
@@ -52,9 +53,7 @@ def main():
         b["tags"] = make_tags(b)
     json.dump(bills, open("bills.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     with open("data_collected.js", "w", encoding="utf-8") as f:
-        f.write("window.BILLS = ")
-        json.dump(bills, f, ensure_ascii=False, indent=2)
-        f.write(";\n")
+        f.write(render_data_js(bills))
     n = sum(len(b["tags"]) for b in bills)
     print(f"タグ付与: {len(bills)}法案 / 計{n}タグ")
     for b in bills[:3]:
