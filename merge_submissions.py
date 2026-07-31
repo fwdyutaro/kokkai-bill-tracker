@@ -8,6 +8,7 @@ data_collected.js を再出力する。collect→match の後（tagの前）に�
   python merge_submissions.py
 """
 import json, os
+import sessions
 from data_output import render_data_js
 
 SUB = "submissions.json"
@@ -22,13 +23,39 @@ def load_submissions():
     return []
 
 
+def index_by_no(bills):
+    """議案番号("閣法 第31号")→レコード。
+
+    bills.json は複数会期を保持するため、議案番号だけでは会期をまたいで衝突する。
+    Issue経由の提供情報は会期を持たないので、同じ番号が複数会期にある場合は
+    最新会期のレコードを採る（利用者が見ているのは既定表示の最新会期のため）。
+    """
+    index = {}
+    for b in bills:
+        no = b.get("no")
+        if not no:
+            continue
+        current = index.get(no)
+        if current is None or _diet_of(b) >= _diet_of(current):
+            index[no] = b
+    return index
+
+
+def _diet_of(record):
+    key = sessions.normalize_diet(record.get("diet")) or \
+          sessions.normalize_diet(str(record.get("id", "")).split("-", 1)[0])
+    return int(key) if key else -1
+
+
 def main():
     subs = [s for s in load_submissions() if s.get("status") == "approved"]
     bills = json.load(open("bills.json", encoding="utf-8"))
-    by_no = {b["no"]: b for b in bills}
+    by_no = index_by_no(bills)
+    by_id = {b["id"]: b for b in bills if b.get("id")}
     added = 0
     for s in subs:
-        b = by_no.get(s.get("bill_no"))
+        # bill_id があれば会期まで一意に決まる。無ければ議案番号で引く（従来互換）。
+        b = by_id.get(s.get("bill_id")) or by_no.get(s.get("bill_no"))
         if not b or not s.get("url"):
             continue
         if any(r["url"] == s["url"] for r in b["refs"]):

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>国会 法律案トラッカー（プロトタイプ）</title>
+<title>国会 法律案トラッカー（個人運営・非公式）</title>
 <style>
   :root{
     --bg:#0f1729; --panel:#16213a; --panel2:#1d2b48; --line:#2b3a5c;
@@ -30,13 +30,20 @@
   .wrap{max-width:1180px;margin:0 auto;padding:22px 28px 60px}
 
   /* dashboard */
-  .dash{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
+  .dash{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:22px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
   .card .num{font-size:30px;font-weight:700}
   .card .lbl{color:var(--muted);font-size:13px}
   .card.s-成立 .num{color:var(--ok)} .card.s-審議中 .num{color:var(--info)}
   .card.s-継続審査 .num{color:var(--warn)} .card.s-合計 .num{color:var(--txt)}
+  .card.s-審査未了 .num{color:var(--gray)}
   .card.s-廃案 .num{color:var(--danger)}
+
+  /* 閉会済み会期の注記 */
+  .session-note{background:rgba(132,146,173,.12);border:1px solid var(--line);
+      border-left:3px solid var(--gray);border-radius:10px;padding:10px 14px;
+      margin-bottom:16px;font-size:13px;color:var(--muted)}
+  .session-note b{color:var(--txt)}
 
   /* filters */
   .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
@@ -54,6 +61,7 @@
   .b-成立{background:rgba(39,192,147,.16);color:var(--ok)}
   .b-審議中{background:rgba(79,156,255,.16);color:var(--info)}
   .b-継続審査{background:rgba(240,169,59,.16);color:var(--warn)}
+  .b-審査未了{background:rgba(132,146,173,.20);color:var(--gray)}
   .b-廃案{background:rgba(255,107,107,.16);color:var(--danger)}
   .badge.type{background:var(--chip);color:var(--muted)}
   .badge.minis{background:var(--chip);color:#bcd0f5}
@@ -125,6 +133,9 @@
   .kaigi-item{display:block;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line)}
   .kaigi-item:last-child{border-bottom:none}
   .footer{color:var(--muted);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
+  @media(max-width:980px){
+    .dash{grid-template-columns:repeat(3,1fr)}
+  }
   @media(max-width:680px){
     .dash{grid-template-columns:repeat(2,1fr)}
     .header-row{display:block}
@@ -136,8 +147,9 @@
 <header>
   <div class="header-row">
     <div class="header-copy">
-      <h1>🏛 国会 法律案トラッカー <span style="font-size:12px;color:var(--muted)">— プロトタイプ</span></h1>
-      <p>提出された法律案のステータスを自動整理し、参考情報（立法補佐機関・審議会・シンクタンク・専門家解説）を付して提供する</p>
+      <h1>🏛 国会 法律案トラッカー <span style="font-size:12px;color:var(--muted)">— 個人運営・非公式</span></h1>
+      <p>個人が試験的に運営しているサイトです。国会に提出された法律案の審議状況と参考情報（立法補佐機関・審議会・シンクタンク・専門家解説）を自動で収集して表示しています。<br>
+         公式の情報ではありません。正確な内容は必ず一次資料でご確認ください。</p>
     </div>
     <div class="cabinet-rate" id="cabinetRate" aria-live="polite">閣法成立率を計算中…</div>
   </div>
@@ -146,10 +158,16 @@
 <div class="wrap">
   <div class="dash" id="dash"></div>
 
+  <div id="sessionNote"></div>
+
   <div class="filters">
+    <select id="fDiet">
+      <option value="">すべての会期</option>
+    </select>
     <select id="fStatus">
       <option value="">ステータス：すべて</option>
-      <option>成立</option><option>審議中</option><option>継続審査</option><option>廃案</option>
+      <option>成立</option><option>審議中</option><option>継続審査</option>
+      <option>審査未了</option><option>廃案</option>
     </select>
     <select id="fType">
       <option value="">提出区分：すべて</option>
@@ -165,8 +183,10 @@
   <div id="list"></div>
 
   <div class="footer">
-    データ出典：参議院 議案情報 / 衆議院 審査経過 / 内閣法制局（第221回国会・特別会）。<br>
-    本ページはデザイン検証用プロトタイプ。「概要」「参考情報の確信度」はAI付与の例であり、一次資料での確認が必要です。
+    データ出典：参議院 議案情報 / 衆議院 審査経過 / 内閣法制局 / 国立国会図書館 国会会議録検索システム。<br>
+    本サイトは個人が試験的に運営している非公式のものであり、国会・政府等とは関係ありません。
+    「概要」「参考情報の確信度」はAIによる自動生成・自動推定で、誤りを含むことがあります。
+    掲載内容は必ず一次資料でご確認ください。
   </div>
 </div>
 
@@ -175,20 +195,66 @@
 
 <script>
 const $=s=>document.querySelector(s);
-let bills=[];
+let allBills=[];   // 全会期のレコード
+let bills=[];      // 選択中の会期に絞ったレコード（集計・一覧の対象）
 const fmt=d=>{if(!d)return"";const[y,m,da]=d.split("-");return `${y}.${+m}.${+da}`};
 const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+// "221回" / 221 / "第221回" → 221（数値）。取れなければ null
+const dietNo=v=>{const m=String(v??"").match(/\d+/);return m?Number(m[0]):null};
+// "2026-07-25" → "令和8年7月25日"（令和以降のみ。それ以前は元の表記を返す）
+function wareki(iso){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(String(iso||"")))return String(iso||"");
+  const[y,m,d]=iso.split("-").map(Number);
+  if(y<2019)return `${y}年${m}月${d}日`;
+  const r=y-2018;
+  return `令和${r===1?"元":r}年${m}月${d}日`;
+}
+const sessionOf=diet=>(window.SESSIONS||[]).find(s=>dietNo(s.diet)===dietNo(diet))||null;
 
 // dashboard
 function dash(){
-  const c={成立:0,審議中:0,継続審査:0,廃案:0};
+  const c={成立:0,審議中:0,継続審査:0,審査未了:0,廃案:0};
   bills.forEach(b=>c[b.status]!==undefined&&c[b.status]++);
   $("#dash").innerHTML=`
     <div class="card s-合計"><div class="num">${bills.length}</div><div class="lbl">収録法案</div></div>
     <div class="card s-審議中"><div class="num">${c.審議中}</div><div class="lbl">審議中</div></div>
-    <div class="card s-成立"><div class="num">${c.成立}</div><div class="lbl">成立</div></div>
+    <div class="card s-成立"><div class="num">${c.成立}</div><div class="lbl">成立・公布済</div></div>
     <div class="card s-継続審査"><div class="num">${c.継続審査}</div><div class="lbl">継続審査</div></div>
+    <div class="card s-審査未了"><div class="num">${c.審査未了}</div><div class="lbl">審査未了</div></div>
     <div class="card s-廃案"><div class="num">${c.廃案}</div><div class="lbl">廃案</div></div>`;
+}
+// 会期セレクタ（データに含まれる会期を降順、最新をデフォルト選択）
+function setupDiet(){
+  const sel=$("#fDiet");
+  const nos=[...new Set(allBills.map(b=>dietNo(b.diet)).filter(n=>n!==null))]
+              .sort((a,b)=>b-a);
+  sel.length=1;                       // 「すべての会期」だけ残す
+  nos.forEach(n=>{
+    const s=sessionOf(n),o=document.createElement("option");
+    o.value=String(n);
+    o.textContent=`第${n}回国会${s&&s.name?`（${s.name}）`:""}`;
+    sel.appendChild(o);
+  });
+  if(nos.length)sel.value=String(nos[0]);   // 最新会期をデフォルト
+}
+// 選択中の会期でデータを絞り、集計・所管セレクタ・注記を作り直す
+function applyDiet(){
+  const v=$("#fDiet").value;
+  bills=v?allBills.filter(b=>dietNo(b.diet)===Number(v)):allBills.slice();
+  renderSessionNote(v);
+  setupMinistry();
+  dash();
+  renderCabinetRate();
+}
+function renderSessionNote(v){
+  const box=$("#sessionNote");
+  const s=v?sessionOf(v):null;
+  if(s&&s.to&&new Date(s.to+"T23:59:59+09:00")<new Date()){
+    box.innerHTML=`<div class="session-note"><b>第${dietNo(s.diet)}回国会${s.name?`（${esc(s.name)}）`:""}は${esc(wareki(s.to))}に閉会しました。</b>
+      閉会時点で議決に至らなかった法律案は「審査未了」、次の会期に引き継がれた法律案は「継続審査」として表示しています。</div>`;
+  }else{
+    box.innerHTML="";
+  }
 }
 function renderCabinetRate(){
   const cabinet=bills.filter(b=>b.type==="閣法"),
@@ -205,11 +271,13 @@ function renderCabinetRate(){
 }
 // ministry filter options（データ読み込み後に再構築）
 function setupMinistry(){
-  const sel=$("#fMinis");
+  const sel=$("#fMinis"),prev=sel.value;
   sel.length=1; // 「すべて」だけ残す
-  [...new Set(bills.map(b=>b.ministry))].sort().forEach(m=>{
+  const list=[...new Set(bills.map(b=>b.ministry))].sort();
+  list.forEach(m=>{
     const o=document.createElement("option");o.textContent=m;o.value=m;sel.appendChild(o);
   });
+  sel.value=list.includes(prev)?prev:"";   // 会期を跨いで存在しない所管はリセット
 }
 
 function render(){
@@ -233,6 +301,7 @@ function render(){
     </div>`).join("")||`<p style="color:var(--muted)">該当する法案がありません。</p>`;
 }
 ["#fStatus","#fType","#fMinis","#fText"].forEach(s=>$(s).addEventListener("input",render));
+$("#fDiet").addEventListener("input",()=>{applyDiet();render();});
 // リストのクリックはイベントデリゲーションで処理（タグはfilterTag、それ以外はドロワー展開）
 $("#list").addEventListener("click",e=>{
   const tag=e.target.closest(".tag");
@@ -250,7 +319,7 @@ function tlClass(it){
 function refTier(r){return{1:"一次・準一次",2:"立法補佐機関",3:"シンクタンク",4:"専門家解説"}[r]||""}
 
 function openBill(id){
-  const b=bills.find(x=>x.id===id);
+  const b=allBills.find(x=>x.id===id);
   const kaigi=b.refs.filter(r=>r.cat==="会議録");        // 会議録は折りたたみにまとめる
   const refsByTier={};
   b.refs.filter(r=>r.cat!=="会議録").forEach(r=>{(refsByTier[r.tier]=refsByTier[r.tier]||[]).push(r)});
@@ -326,7 +395,7 @@ document.addEventListener("keydown",e=>e.key==="Escape"&&closeBill());
   s.src="data_collected.js?t="+Date.now();
   s.onload=()=>{
     if(!window.BILLS){$("#list").innerHTML=`<p style="color:var(--danger)">データを読み込めませんでした。</p>`;return;}
-    bills=window.BILLS;setupMinistry();dash();renderCabinetRate();render();
+    allBills=window.BILLS;setupDiet();applyDiet();render();
   };
   s.onerror=()=>{$("#list").innerHTML=`<p style="color:var(--danger)">データが見つかりません。</p>`;};
   document.body.appendChild(s);

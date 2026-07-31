@@ -1,9 +1,13 @@
 name: update-bill-data
-# JST 火〜日 01:01 頃に更新する。月曜はローカル週次高品質処理が担当する。
+# JST 火〜日 01:01 頃に起動する。月曜はローカル週次高品質処理が担当する。
+# 閉会中は法案の更新がほぼ無いため、ジョブ冒頭のゲート（sessions.py should-run）で
+# 週1回（JST土曜）だけフルパイプラインを走らせ、それ以外の日はスキップする。
+# cron 自体は日次のまま触らない。会期が再開すれば sessions.yaml の更新だけで
+# 自動的に日次運用へ戻る（cronを書き換えると戻し忘れる）。
 on:
   schedule:
     - cron: "1 16 * * 1-6"    # UTC 月〜土 16:01 = JST 火〜日 01:01
-  workflow_dispatch: {}
+  workflow_dispatch: {}       # 手動実行は閉会中でも常にフル実行
 
 permissions:
   contents: write
@@ -12,7 +16,12 @@ concurrency:
   group: bill-tracker-data-update
   cancel-in-progress: false
 
-# 会期が変わったら、この1箇所（DIET）だけ書き換えればよい。
+# 会期が変わったときの手順（2箇所だけ）:
+#   1. sessions.yaml に新しい会期を追記する（diet / name / from / to: null / clb_id）。
+#      同時に、閉会した会期の to に閉会日を入れる。
+#   2. 下の DIET を新しい会期番号に更新する。
+# sessions.yaml に未登録の会期を DIET に指定すると collect.py が警告を出し、
+# 閉会による「審査未了」判定が行われない（登録忘れに気付けるようにしてある）。
 env:
   DIET: "221"
 
@@ -29,7 +38,18 @@ jobs:
       - name: Install deps
         run: pip install -r requirements-core.txt
 
+      # 開会中の会期があれば毎日、閉会中は週1回（JST土曜）だけ実行する。
+      # 閉会中でも crawl.py による参考文書（審議会・NDL資料）の収集には価値があるため、
+      # 週1回はスキップせずフルパイプラインを回す。
+      - name: Check session state
+        id: gate
+        run: |
+          python sessions.py should-run \
+            ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }} \
+            | tee -a "$GITHUB_OUTPUT"
+
       - name: Run pipeline
+        if: steps.gate.outputs.run == 'true'
         env:
           # LLMゲートを使う場合のみ。未設定なら match_refs はゲートをスキップ。
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -44,6 +64,7 @@ jobs:
           python tag.py                        # 検索用タグ付与
 
       - name: Commit updated data
+        if: steps.gate.outputs.run == 'true'
         run: |
           git config user.name "bill-tracker-bot"
           git config user.email "bot@users.noreply.github.com"
@@ -51,3 +72,8 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: update bill data ($(date -u +%F))"
           git pull --rebase origin "$GITHUB_REF_NAME"
           git push
+
+      - name: Skipped (out of session)
+        if: steps.gate.outputs.run != 'true'
+        run: |
+          echo "閉会中のためスキップしました。週次実行日はJST土曜、手動実行は常にフル実行です。"

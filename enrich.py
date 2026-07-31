@@ -16,10 +16,13 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
+import sessions
+
 UA = {"User-Agent": "bill-tracker/0.1 (research)"}
 SUMCACHE = "summaries.json"   # 提出理由ハッシュ→要約。再実行時の重複生成を回避
 
-# 国会回次 → 内閣法制局 一覧ページID（会期ごとに採番。新会期は要追加 or --clb-id で指定）
+# 国会回次 → 内閣法制局 一覧ページID。
+# 正は sessions.yaml の clb_id。ここは sessions.yaml が無い環境向けの後方互換フォールバック。
 CLB_INDEX = {"221": "5144"}
 CLB_LIST = "https://www.clb.go.jp/recent-laws/diet_bill/id={cid}"
 
@@ -36,7 +39,9 @@ def _get(url, enc="utf-8"):
 
 def build_ministry_map(diet, clb_id=None):
     """{閣法番号(str, ゼロ無し): {ministry, detail_url, ministry_url}} を返す。"""
-    cid = clb_id or CLB_INDEX.get(str(diet))
+    # 優先順位: --clb-id 指定 > sessions.yaml > 旧CLB_INDEX
+    cid = clb_id or sessions.clb_id(diet) or CLB_INDEX.get(
+        sessions.normalize_diet(diet) or str(diet))
     if not cid:
         return {}
     soup = BeautifulSoup(_get(CLB_LIST.format(cid=cid)), "html.parser")

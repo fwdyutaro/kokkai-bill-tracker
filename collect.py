@@ -6,7 +6,10 @@
 参議院の議案明細ページは衆参両院の審議経過を1ページに含むため、これを主軸にする。
 出力:
   - bills.json        … 正規化済みデータ（汎用）
-  - data_collected.js … プロトタイプサイト用 (window.BILLS = [...])
+  - data_collected.js … 公開サイト用 (window.BILLS / window.SESSIONS = [...])
+
+bills.json は複数会期を保持する。--diet で指定した会期のレコードだけを差し替え、
+他会期のレコードはそのまま残す（会期ごとのマージ）。
 
 使い方:
   python collect.py            # 第221回・全法律案
@@ -19,6 +22,7 @@ from urllib.parse import urljoin, quote
 import requests
 from bs4 import BeautifulSoup
 import enrich as clb
+import sessions
 from data_output import render_data_js
 
 KOKKAI_API = "https://kokkai.ndl.go.jp/api/meeting_list"
@@ -225,8 +229,20 @@ def build_timeline(d):
     return ev, promu, lawno
 
 
-def derive_status(d, timeline, promu):
-    """成立 / 継続審査 / 廃案 / 審議中 を判定し、ステータス詳細も返す。"""
+# 本会議で「可決」された議案とみなせる議決結果。
+# 修正議決（先議院が修正して可決した場合）も可決の一形態であり、
+# 後議院がそのまま可決すれば法律は成立する（憲法59条1項）。
+PASSED_PLENARY = ("可決", "修正")
+
+
+def derive_status(d, timeline, promu, session_closed=False):
+    """成立 / 継続審査 / 審査未了 / 廃案 / 審議中 を判定し、詳細も返す。
+
+    session_closed は「その会期が閉会済みで、かつ参議院サイトの反映猶予も
+    過ぎている」ことを表す。参議院サイトは審査未了を「未了」と記録するが、
+    委員会付託前の議案は提出日以外すべて空欄のままなので、閉会という
+    外部情報が無いと「審議中」と区別できない（sessions.py 参照）。
+    """
     s = d["sections"]
     head = d.get("head", {})
     committee_results = [s.get(k, {}).get("議決・継続結果", "") for k in
@@ -235,17 +251,28 @@ def derive_status(d, timeline, promu):
                        ("衆議院本会議経過", "参議院本会議経過")]
     results = committee_results + plenary_results
     blob = " ".join(results) + head.get("継続区分", "")
+    referred = any(s.get(k, {}).get("本付託日") for k in
+                   ("衆議院委員会等経過", "参議院委員会等経過"))
 
     if wareki_to_iso(promu):
         lawno = s.get("その他", {}).get("法律番号", "")
         return "成立", f"公布済（法律第{lawno}号）" if lawno else "公布済"
     # 法律案は両院の本会議で可決された時点で成立する。公布は成立後の別段階。
-    if all(result and "可決" in result for result in plenary_results):
+    if all(result and any(ok in result for ok in PASSED_PLENARY)
+           for result in plenary_results):
         return "成立", "両院可決（公布待ち）"
     if "継続" in blob:
         return "継続審査", "継続審査中"
+    # 参議院サイトは会期末に審査未了となった議案を「未了」と記録する。
+    # これはサイト側の明示的な記録なので、閉会猶予の対象外。
+    if "未了" in blob:
+        return "審査未了", "審査未了（閉会）"
     if "否決" in blob or "廃案" in blob:
         return "廃案", "否決・廃案"
+    if session_closed:
+        # 議決の記録が無いまま会期が閉じた議案。会期不継続の原則により審査未了。
+        return "審査未了", ("審査未了（閉会・委員会審査中）" if referred
+                            else "審査未了（閉会・未付託）")
     # 審議中: 直近イベントから現在地を作る
     last = timeline[-1] if timeline else None
     detail = "審議中"
@@ -266,9 +293,13 @@ def derive_status(d, timeline, promu):
     return "審議中", detail
 
 
-def normalize(raw, type_hint=None):
+def normalize(raw, type_hint=None, session_closed=None):
     timeline, promu, lawno = build_timeline(raw)
-    status, status_detail = derive_status(raw, timeline, promu)
+    if session_closed is None:
+        # 会期は明細ページの「提出回次」から取る（sessions.yaml 未登録なら False）。
+        session_closed = sessions.is_closed_for_status(raw.get("diet"))
+    status, status_detail = derive_status(raw, timeline, promu,
+                                          session_closed=session_closed)
     kind = type_hint or ("閣法" if "内閣提出" in raw["kind_raw"] else
                          "衆法" if "衆" in raw["kind_raw"] else
                          "参法" if "参" in raw["kind_raw"] else "")
@@ -294,7 +325,8 @@ def normalize(raw, type_hint=None):
         "submittedOn": submitted or "",
         "status": status,
         "statusDetail": status_detail,
-        "confidence": {"成立": 100, "審議中": 60, "継続審査": 25, "廃案": 0}.get(status, 50),
+        "confidence": {"成立": 100, "審議中": 60, "継続審査": 25,
+                       "審査未了": 0, "廃案": 0}.get(status, 50),
         "summary": "（提案理由・趣旨から自動要約する想定。本スクリプトでは未取得）",
         "summaryNote": "AI要約は別工程で付与（一次資料で要確認）",
         "tags": [],
@@ -304,6 +336,45 @@ def normalize(raw, type_hint=None):
 
 
 REQUIRED_RECORD_FIELDS = ("id", "no", "title", "status", "refs")
+
+
+def record_diet(record):
+    """レコードの会期番号を "221" 形式で返す。diet が無ければ id の接頭辞を見る。"""
+    key = sessions.normalize_diet(record.get("diet"))
+    if key:
+        return key
+    return sessions.normalize_diet(str(record.get("id", "")).split("-", 1)[0])
+
+
+def select_diet(records, diet):
+    """指定会期のレコードだけを抜き出す。"""
+    key = sessions.normalize_diet(diet)
+    return [r for r in records if record_diet(r) == key]
+
+
+def count_meeting_refs(records):
+    return sum(1 for r in records for ref in r.get("refs", [])
+               if ref.get("cat") == "会議録")
+
+
+def merge_by_diet(existing, records, diet):
+    """bills.json を会期単位でマージする。
+
+    指定会期のレコードだけを records で差し替え、他会期はそのまま残す。
+    差し替え位置は既存レコードの並び順を保つ（先頭出現位置に挿入）。
+    """
+    key = sessions.normalize_diet(diet)
+    merged, inserted = [], False
+    for record in existing:
+        if record_diet(record) == key:
+            if not inserted:
+                merged.extend(records)
+                inserted = True
+            continue        # 同一会期の既存レコードは新しい結果で置き換える
+        merged.append(record)
+    if not inserted:
+        merged.extend(records)
+    return merged
 
 
 def validate_records(records, detected_count, attempted_count, success_count,
@@ -440,10 +511,16 @@ def main():
         print(f"エラー: 既存出力を読み込めません: {e}", file=sys.stderr)
         return 1
     existing_by_id = {record.get("id"): record for record in existing if record.get("id")}
-    existing_meeting_ref_count = sum(
-        1 for record in existing for ref in record.get("refs", [])
-        if ref.get("cat") == "会議録"
-    )
+    # 安全ガードは同一会期内で比較する。他会期のレコードを混ぜると、
+    # 新会期の追加直後に「10%以上減少」で誤検知したり、逆に他会期の件数で
+    # 水増しされてガードが効かなくなる。
+    existing_same_diet = select_diet(existing, args.diet)
+    existing_meeting_ref_count = count_meeting_refs(existing_same_diet)
+
+    if sessions.get_session(args.diet) is None:
+        print(f"警告: sessions.yaml に第{args.diet}回国会の登録がありません。"
+              "会期の開閉が判定できないため、閉会による審査未了は判定されません。"
+              "sessions.yaml に会期を追記してください。", file=sys.stderr)
 
     only = set(x.strip() for x in args.only.split(",") if x.strip())
     print(f"[1/3] 一覧取得: 第{args.diet}回国会 ...", file=sys.stderr)
@@ -496,7 +573,8 @@ def main():
 
     errors = validate_records(
         ordered_results, len(bills), len(targets), len(parsed_records),
-        existing_count=len(existing), existing_meeting_ref_count=existing_meeting_ref_count,
+        existing_count=len(existing_same_diet),
+        existing_meeting_ref_count=existing_meeting_ref_count,
         allow_large_decrease=args.allow_large_decrease,
         partial=partial,
     )
@@ -507,20 +585,24 @@ def main():
         for error in errors:
             print(f"  - {error}", file=sys.stderr)
         return 1
+    # 会期ごとのマージ: 今回収集した会期だけを差し替え、他会期は保持する。
+    # （--only/--limit の部分収集は従来どおり指定した出力先をそのまま置き換える）
+    final_records = ordered_results if partial else merge_by_diet(
+        existing, ordered_results, args.diet)
     try:
-        save_records(ordered_results, args.output, write_public_js=default_output and not partial)
+        save_records(final_records, args.output, write_public_js=default_output and not partial)
     except Exception as e:
         print(f"エラー: 保存に失敗しました（公開ファイルは更新していません）: {e}", file=sys.stderr)
         return 1
     destinations = f"{args.output} / data_collected.js" if default_output else args.output
-    print(f"[3/3] 出力: {destinations}（{len(ordered_results)}件）", file=sys.stderr)
-    meeting_ref_count = sum(
-        1 for record in ordered_results for ref in record.get("refs", [])
-        if ref.get("cat") == "会議録"
-    )
+    other = len(final_records) - len(ordered_results)
+    print(f"[3/3] 出力: {destinations}（第{args.diet}回 {len(ordered_results)}件"
+          f"{f' / 他会期 {other}件 保持' if other else ''}・計{len(final_records)}件）",
+          file=sys.stderr)
     print(
         f"      検出={len(bills)} 解析成功={len(parsed_records)} "
-        f"既存補完={len(ordered_results) - len(parsed_records)} 会議録={meeting_ref_count}",
+        f"既存補完={len(ordered_results) - len(parsed_records)} "
+        f"会議録={count_meeting_refs(ordered_results)}",
         file=sys.stderr,
     )
     return 0

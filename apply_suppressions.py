@@ -26,7 +26,9 @@ def load():
 
 def main():
     sup = [s for s in load() if s.get("status") == "approved"]
-    # (bill_no, url) の集合
+    # (bill_no, url) の集合。bills.json は複数会期を保持するため議案番号は
+    # 会期をまたいで衝突しうるが、urlまで一致する必要があるので実害はない
+    # （同一URLが別会期の同番号法案にも紐付いていれば、そちらも除外される）。
     deny = {(s.get("bill_no"), s.get("url")) for s in sup if s.get("url")}
     bills = json.load(open("bills.json", encoding="utf-8"))
     removed = 0
