@@ -23,6 +23,10 @@
   .header-copy{min-width:0}
   header h1{margin:0;font-size:20px;letter-spacing:.02em}
   header p{margin:4px 0 0;color:var(--muted);font-size:13px}
+  .header-invite{margin-top:8px !important;padding:7px 11px;border-radius:8px;
+                 background:rgba(79,156,255,.10);border:1px solid rgba(79,156,255,.28)}
+  .header-invite b{color:var(--txt)}
+  .header-invite a{margin-left:4px;white-space:nowrap}
   .cabinet-rate{flex:0 0 auto;text-align:right;border:1px solid rgba(79,156,255,.32);
                 background:rgba(15,23,41,.38);border-radius:10px;padding:9px 12px;
                 font-size:13px;color:var(--muted);white-space:nowrap}
@@ -150,6 +154,8 @@
       <h1>🏛 国会 法律案トラッカー <span style="font-size:12px;color:var(--muted)">— 個人運営・非公式</span></h1>
       <p>個人が試験的に運営しているサイトです。国会に提出された法律案の審議状況と参考情報（立法補佐機関・審議会・シンクタンク・専門家解説）を自動で収集して表示しています。<br>
          公式の情報ではありません。正確な内容は必ず一次資料でご確認ください。</p>
+      <p class="header-invite">各法案の詳細から、関連する資料や記事のURLを<b>どなたでも提案</b>できます。見当違いな紐付けの取り下げもお知らせください。皆さまからの有益な情報をお待ちしています。
+         <a href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=submit-ref.yml" target="_blank" rel="noopener">参考情報を提供する ↗</a></p>
     </div>
     <div class="cabinet-rate" id="cabinetRate" aria-live="polite">閣法成立率を計算中…</div>
   </div>
