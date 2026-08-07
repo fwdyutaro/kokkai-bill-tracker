@@ -277,14 +277,15 @@ def main():
                     help="(互換用・現在は自動判定) LLMゲートを強制有効化")
     ap.add_argument("--no-llm-gate", action="store_true", help="LLMゲートを無効化")
     args = ap.parse_args()
-    # LLMゲート: Ollama か ANTHROPIC_API_KEY が使えれば既定で有効
+    # LLMゲート: Ollama/APIキーが使えれば判定し、無くてもキャッシュだけで適用する
     gate = None
     if not args.no_llm_gate:
         from llm_gate import Gate
         g = Gate()
         if g.available():
             gate = g
-            print(f"LLMゲート有効（{g.backend}）", file=sys.stderr)
+            mode = g.backend or f"キャッシュのみ・{len(g.cache)}件"
+            print(f"LLMゲート有効（{mode}）", file=sys.stderr)
 
     bills = json.load(open(args.infile, encoding="utf-8"))
     docs = load_docs(args.db)
@@ -391,7 +392,8 @@ def main():
     if gate:
         gate.save()
         st = gate.stats
-        print(f"\nLLMゲート: 採用{st['pass']} 除外{st['drop']} (キャッシュ命中{st['cached']})")
+        print(f"\nLLMゲート: 採用{st['pass']} 除外{st['drop']} "
+              f"(キャッシュ命中{st['cached']} 未判定{st.get('unjudged', 0)})")
     print(f"\n紐付け {total_attached} 件")
     if not args.dry:
         json.dump(bills, open(args.infile, "w", encoding="utf-8"),

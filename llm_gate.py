@@ -87,10 +87,19 @@ class Gate:
         self.backend = _backend()
         self.cache = _load_cache()
         self.dirty = False
-        self.stats = {"pass": 0, "drop": 0, "cached": 0}
+        self.stats = {"pass": 0, "drop": 0, "cached": 0, "unjudged": 0}
 
     def available(self):
-        return self.backend is not None
+        """バックエンドが無くても、判定キャッシュがあればゲートとして機能する。
+
+        CI（Ollama不在・APIキー無し）で丸ごと無効化すると、過去に「無関係」と
+        判定済みの紐付けが毎回復活して公開されてしまうため、キャッシュだけでも
+        適用する。
+        """
+        return self.backend is not None or bool(self.cache)
+
+    def cache_only(self):
+        return self.backend is None
 
     def _key(self, bill, doc):
         return hashlib.sha1(f"{bill['no']}|{doc['url']}".encode()).hexdigest()[:16]
@@ -100,6 +109,10 @@ class Gate:
         if key in self.cache:
             self.stats["cached"] += 1
             return self.cache[key]
+        if self.cache_only():
+            # 未判定はキャッシュに書かず、判定なしとして扱う（保持側に倒す）
+            self.stats["unjudged"] += 1
+            return None
         try:
             v = _judge_ollama(bill, doc) if self.backend == "ollama" else _judge_anthropic(bill, doc)
         except Exception as e:
@@ -116,6 +129,9 @@ class Gate:
                 out.append((sc, why, d))
                 continue
             v = self.judge(bill, d)
+            if v is None:                # キャッシュのみモードで未判定 → そのまま保持
+                out.append((sc, why, d))
+                continue
             if v.get("related"):
                 reason = (v.get("reason") or "").strip()
                 out.append((sc, why + (f"／LLM確認: {reason}" if reason else "／LLM確認済"), d))
