@@ -235,3 +235,33 @@ def test_main_unexpected_failure_returns_three(monkeypatch, tmp_path):
 
     assert ingest.main() == 3
     assert not output.exists()
+
+
+def test_find_bill_legacy_does_not_confuse_number_prefix(tmp_path):
+    bills = [
+        {"id": "221-閣法-10", "no": "閣法 第10号"},
+        {"id": "222-閣法-1", "no": "閣法 第1号"},
+    ]
+    assert ingest.find_bill(bills, ("閣法", "1"))["id"] == "222-閣法-1"
+
+
+def test_process_bill_id_and_bill_no_mismatch_is_manual(monkeypatch):
+    bill = {"id": "222-閣法-10", "no": "閣法 第10号", "title": "x", "summary": ""}
+    rec, _ = ingest.process(("閣法", "1"), "https://example.com", [bill], bill_id=bill["id"])
+    assert rec is None
+
+
+def test_parse_issue_extracts_bill_id_and_url_with_closing_quote():
+    parsed = ingest.parse_issue("", "bill_id: 222-閣法-1\n閣法 第1号\nhttps://example.com/ref」")
+    assert parsed[0] == "222-閣法-1"
+    assert parsed[2] == "https://example.com/ref"
+
+
+def test_main_accepts_explicit_bill_id(monkeypatch, tmp_path):
+    (tmp_path / "bills.json").write_text("[]", encoding="utf-8")
+    monkeypatch.chdir(tmp_path)
+    seen = {}
+    monkeypatch.setattr(ingest, "process", lambda bnt, url, bills, bill_id=None: (seen.update({"id": bill_id}) or ({"bill_id": bill_id}, "ok")))
+    monkeypatch.setattr(sys, "argv", ["ingest_submission.py", "--bill-id", "221-閣法-1", "--url", "https://example.com"])
+    assert ingest.main() == 0
+    assert seen["id"] == "221-閣法-1"

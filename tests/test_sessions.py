@@ -39,14 +39,16 @@ def test_load_sessions_sorted_and_normalized(yaml_path):
 
 
 def test_load_sessions_returns_empty_when_file_missing(tmp_path):
-    assert sessions.load_sessions(tmp_path / "nope.yaml", use_cache=False) == []
+    with pytest.raises(sessions.SessionConfigError):
+        sessions.load_sessions(tmp_path / "nope.yaml", use_cache=False)
 
 
 def test_load_sessions_survives_broken_yaml(tmp_path, capsys):
     path = tmp_path / "sessions.yaml"
     path.write_text("sessions: [ this: is: broken", encoding="utf-8")
-    assert sessions.load_sessions(path, use_cache=False) == []
-    assert "警告" in capsys.readouterr().err
+    with pytest.raises(sessions.SessionConfigError):
+        sessions.load_sessions(path, use_cache=False)
+    assert "warning" in capsys.readouterr().err
 
 
 @pytest.mark.parametrize("value", [221, "221", "221回", "第221回", "第221回国会"])
@@ -131,3 +133,22 @@ def test_repository_sessions_yaml_registers_the_current_diet():
 def test_should_run_cli_prints_github_output(capsys):
     assert sessions._main(["should-run", "--force"]) == 0
     assert capsys.readouterr().out.strip() == "run=true"
+
+
+@pytest.mark.parametrize("content", [
+    "sessions:\n  - diet: 1\n    to: null\n",
+    "sessions:\n  - diet: 1\n    from: 2026-01-02\n    to: 2026-01-01\n",
+    "sessions:\n  - diet: 1\n    from: 2026-01-01\n  - diet: 1\n    from: 2026-02-01\n",
+])
+def test_session_metadata_invalid_or_missing_dates_raise(tmp_path, content):
+    path = tmp_path / "sessions.yaml"
+    path.write_text(content, encoding="utf-8")
+    with pytest.raises(sessions.SessionConfigError):
+        sessions.load_sessions(path, use_cache=False)
+
+
+def test_session_datetime_timestamp_is_rejected(tmp_path):
+    path = tmp_path / "sessions.yaml"
+    path.write_text("sessions:\n  - diet: 1\n    from: 2026-01-01T00:00:00\n    to: null\n", encoding="utf-8")
+    with pytest.raises(sessions.SessionConfigError):
+        sessions.load_sessions(path, use_cache=False)

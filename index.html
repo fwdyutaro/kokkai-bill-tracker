@@ -340,7 +340,7 @@ function openBill(id){
         ${r.conf?`<div class="cf">自動紐付け確信度 <span class="bar"><i style="width:${esc(r.conf)}%"></i></span> ${esc(r.conf)}%</div>`:``}
         ${r.confNote?`<div class="cf">⚙ ${esc(r.confNote)}</div>`:``}
         ${String(r.confNote||"").startsWith("自動紐付け")?`<a class="rm" target="_blank" rel="noopener"
-           href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=remove-ref.yml&labels=removal&title=${encodeURIComponent('[取り下げ依頼] '+b.no)}&bill=${encodeURIComponent(b.no)}&url=${encodeURIComponent(r.url)}&reftitle=${encodeURIComponent(r.title)}">この紐付けは関係ない → 取り下げ依頼</a>`:``}
+           href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=remove-ref.yml&labels=removal&title=${encodeURIComponent('[取り下げ依頼] '+b.no)}&bill=${encodeURIComponent(b.no)}&bill_id=${encodeURIComponent(b.id||'')}&url=${encodeURIComponent(r.url)}&reftitle=${encodeURIComponent(r.title)}">この紐付けは関係ない → 取り下げ依頼</a>`:``}
       </div>`).join("")}`).join("");
   const kaigiHtml=kaigi.length?`
     <details class="kaigi">
@@ -383,7 +383,7 @@ function openBill(id){
       <div class="section">
         <h4>参考情報の提供</h4>
         <div class="ref">
-          <a class="t" href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=submit-ref.yml&title=${encodeURIComponent('[情報提供] '+b.no)}&bill=${encodeURIComponent(b.no)}" target="_blank" rel="noopener">＋ この法案の参考情報（NDLサーチ／CiNii／記事URL）を提供する ↗</a>
+          <a class="t" href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=submit-ref.yml&title=${encodeURIComponent('[情報提供] '+b.no)}&bill=${encodeURIComponent(b.no)}&bill_id=${encodeURIComponent(b.id||'')}" target="_blank" rel="noopener">＋ この法案の参考情報（NDLサーチ／CiNii／記事URL）を提供する ↗</a>
           <div class="cf">投稿（GitHub Issue）後、書誌情報と関連度を自動推定し、確認のうえ掲載します。</div>
         </div>
       </div>

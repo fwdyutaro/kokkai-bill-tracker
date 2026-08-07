@@ -54,8 +54,12 @@ def main():
     by_id = {b["id"]: b for b in bills if b.get("id")}
     added = 0
     for s in subs:
-        # bill_id があれば会期まで一意に決まる。無ければ議案番号で引く（従来互換）。
-        b = by_id.get(s.get("bill_id")) or by_no.get(s.get("bill_no"))
+        # bill_id は厳密一致。未知のIDを議案番号へフォールバックしない。
+        if s.get("bill_id"):
+            b = by_id.get(s.get("bill_id"))
+        else:
+            candidates = [x for x in bills if x.get("no") == s.get("bill_no")]
+            b = candidates[0] if len(candidates) == 1 else None
         if not b or not s.get("url"):
             continue
         if any(r["url"] == s["url"] for r in b["refs"]):

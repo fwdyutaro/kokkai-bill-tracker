@@ -38,6 +38,7 @@ EXIT_INVALID_INPUT = 2
 EXIT_FAILED = 3
 HTML_CONTENT_TYPES = {"text/html", "application/xhtml+xml"}
 BILL_NO_RE = re.compile(r"(閣法|衆法|参法)\s*第?\s*(\d+)\s*号")
+BILL_ID_RE = re.compile(r"\b(\d+-(?:閣法|衆法|参法)-?\d+)\b")
 URL_RE = re.compile(r"https?://[^\s)>\]」]+")
 GENERIC_TITLES = ("国立国会図書館デジタルコレクション", "CiNii Research", "お探しのページ")
 _DNS_PIN_LOCK = threading.Lock()
@@ -293,19 +294,37 @@ def estimate_relevance(bill, title, desc=""):
     return round(sc * 100), why
 
 
-def find_bill(bills, bill_no_tuple):
-    kind, num = bill_no_tuple
-    want = f"{kind} 第{int(num)}号"
-    return next((b for b in bills if b["no"] == want), None)
+def _normalise_bill_no(value):
+    match = BILL_NO_RE.search(str(value or ""))
+    return (match.group(1), int(match.group(2))) if match else None
 
 
-def process(bill_no_tuple, url, bills):
-    bill = find_bill(bills, bill_no_tuple)
+def _bill_candidates(bills, bill_no_tuple):
+    if not bill_no_tuple:
+        return []
+    wanted = (bill_no_tuple[0], int(bill_no_tuple[1]))
+    return [b for b in bills if _normalise_bill_no(b.get("no")) == wanted]
+
+
+def find_bill(bills, bill_no_tuple=None, bill_id=None):
+    if bill_id:
+        bill = next((b for b in bills if b.get("id") == bill_id), None)
+        if bill is not None and bill_no_tuple and _normalise_bill_no(bill.get("no")) != (bill_no_tuple[0], int(bill_no_tuple[1])):
+            return None
+        return bill
+    candidates = _bill_candidates(bills, bill_no_tuple)
+    return candidates[0] if len(candidates) == 1 else None
+
+
+def process(bill_no_tuple, url, bills, bill_id=None):
+    bill = find_bill(bills, bill_no_tuple, bill_id=bill_id)
     if not bill:
-        return None, f"対象法案が見つかりません: {bill_no_tuple}"
+        return None, f"対象法案が見つかりません: {bill_id or bill_no_tuple}"
+    if bill_id and bill_no_tuple and _normalise_bill_no(bill.get("no")) != (bill_no_tuple[0], int(bill_no_tuple[1])):
+        return None, "bill_id と議案番号が一致しません"
     meta = extract_meta(url)
     pct, why = estimate_relevance(bill, meta["title"], meta["desc"])
-    rec = {"bill_no": bill["no"], "title": meta["title"] or "(要手動補完)",
+    rec = {"bill_id": bill.get("id"), "bill_no": bill["no"], "title": meta["title"] or "(要手動補完)",
            "url": url, "publisher": meta["publisher"], "relevance": pct, "why": why,
            "manual": meta["manual"], "status": "pending"}
     md = (f"### 自動処理結果\n"
@@ -320,16 +339,27 @@ def process(bill_no_tuple, url, bills):
     return rec, md
 
 
-def parse_issue(title, body):
-    text = f"{title}\n{body}"
+def parse_issue_details(title, body):
+    text = f"{title}\n{body or ''}"
     bm = BILL_NO_RE.search(text)
+    im = BILL_ID_RE.search(text)
     um = URL_RE.search(body or "")
-    return (bm.group(1), bm.group(2)) if bm else None, (um.group(0) if um else None)
+    bnt = (bm.group(1), bm.group(2)) if bm else None
+    return (im.group(1) if im else None, bnt, um.group(0) if um else None)
+
+
+def parse_issue(title, body):
+    """旧API。bill_idなしのIssueは従来どおり (議案番号, URL) を返す。"""
+    details = parse_issue_details(title, body)
+    if details[0]:
+        return details
+    return details[1], details[2]
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bill"); ap.add_argument("--url")
+    ap.add_argument("--bill-id")
     ap.add_argument("--issue-title", default=""); ap.add_argument("--issue-body", default="")
     ap.add_argument("--out", help="JSONレコードの出力先")
     args = ap.parse_args()
@@ -342,17 +372,31 @@ def main():
             return EXIT_FAILED
     if args.bill and args.url:
         bn = BILL_NO_RE.search(args.bill); bnt = (bn.group(1), bn.group(2)) if bn else None
+        im = BILL_ID_RE.search(args.bill); inferred_id = im.group(1) if im else None
+        if args.bill_id and inferred_id and args.bill_id != inferred_id:
+            print("bill_id と議案番号の指定が一致しません。", file=sys.stderr)
+            return EXIT_MANUAL_REVIEW
+        bill_id = args.bill_id or inferred_id
         url = args.url
+    elif args.bill_id and args.url:
+        bill_id, bnt, url = args.bill_id, None, args.url
     else:
-        bnt, url = parse_issue(args.issue_title, args.issue_body)
-    if not bnt or not url:
+        bill_id, bnt, url = parse_issue_details(args.issue_title, args.issue_body)
+        if args.bill_id:
+            inferred_id = bill_id
+            if inferred_id and inferred_id != args.bill_id:
+                print("bill_id の指定がIssue本文と一致しません。", file=sys.stderr)
+                return EXIT_MANUAL_REVIEW
+            bill_id = args.bill_id
+    if (not bill_id and not bnt) or not url:
         print("法案番号またはURLを解釈できませんでした。", file=sys.stderr)
         print("対象法案とURLを確認してください。")
         return EXIT_INVALID_INPUT
 
     try:
         bills = json.load(open("bills.json", encoding="utf-8"))
-        rec, md = process(bnt, url, bills)
+        rec, md = (process(bnt, url, bills, bill_id=bill_id)
+                   if bill_id else process(bnt, url, bills))
     except SubmissionFetchError as exc:
         print(f"安全にURLを取得できませんでした: {exc}", file=sys.stderr)
         print("URLを安全に取得できなかったため、手動確認が必要です。")

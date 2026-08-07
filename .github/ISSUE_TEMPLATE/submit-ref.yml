@@ -17,6 +17,13 @@ body:
     validations:
       required: true
   - type: input
+    id: bill_id
+    attributes:
+      label: bill_id
+      description: サイトから事前入力された議案の一意ID（空欄の旧形式も受け付けます）
+    validations:
+      required: false
+  - type: input
     id: url
     attributes:
       label: 参考URL

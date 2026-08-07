@@ -30,6 +30,15 @@ CLOSE_GRACE_DAYS = 7
 _CACHE: dict[str, object] = {}
 
 
+class SessionConfigError(ValueError):
+    """sessions.yaml が存在しない、またはメタデータが不正。"""
+
+
+def _config_error(message):
+    print(f"警告: {message}", file=sys.stderr)
+    raise SessionConfigError(message)
+
+
 def jst_today(today=None) -> date:
     """引数を date に正規化する。未指定ならJSTの今日。"""
     if today is None:
@@ -62,8 +71,21 @@ def _parse_date(value):
         return None
 
 
+def _strict_date(value, field, index):
+    if isinstance(value, datetime) or not isinstance(value, str):
+        _config_error(f"session[{index}] {field} は ISO 日付が必要です")
+    value = value.strip()
+    try:
+        parsed = date.fromisoformat(value)
+    except ValueError as exc:
+        _config_error(f"session[{index}] {field} は ISO 日付が必要です")
+    if parsed.isoformat() != value:
+        _config_error(f"session[{index}] {field} は ISO 日付が必要です")
+    return parsed
+
+
 def load_sessions(path=None, use_cache=True) -> list[dict]:
-    """sessions.yaml を読んで会期dictのリストを返す。無ければ空リスト。
+    """sessions.yaml を読んで会期dictのリストを返す。欠落・不正時はSessionConfigError。
 
     返る各dictは {"diet": int, "name": str, "from": str|None,
                   "to": str|None, "clb_id": str|None} 形式（JSON化可能）。
@@ -72,29 +94,44 @@ def load_sessions(path=None, use_cache=True) -> list[dict]:
     key = str(target)
     if use_cache and key in _CACHE:
         return [dict(s) for s in _CACHE[key]]  # 呼び出し側の書き換えから守る
+    if not target.exists():
+        _config_error(f"sessions metadata not found: {target}")
+    try:
+        with target.open(encoding="utf-8") as f:
+            doc = yaml.safe_load(f) or {}
+    except Exception as e:
+        print(f"warning: failed to parse {target}: {e}", file=sys.stderr)
+        _config_error(f"invalid YAML: {target}")
+    raw = doc.get("sessions") if isinstance(doc, dict) else None
+    if not isinstance(raw, list):
+        _config_error(f"invalid sessions metadata: {target}")
     sessions: list[dict] = []
-    if target.exists():
-        try:
-            with target.open(encoding="utf-8") as f:
-                doc = yaml.safe_load(f) or {}
-            raw = doc.get("sessions") if isinstance(doc, dict) else doc
-            for item in raw or []:
-                if not isinstance(item, dict):
-                    continue
-                diet = normalize_diet(item.get("diet"))
-                if diet is None:
-                    continue
-                start, end = _parse_date(item.get("from")), _parse_date(item.get("to"))
-                sessions.append({
-                    "diet": int(diet),
-                    "name": item.get("name") or "",
-                    "from": start.isoformat() if start else None,
-                    "to": end.isoformat() if end else None,
-                    "clb_id": str(item["clb_id"]) if item.get("clb_id") else None,
-                })
-        except Exception as e:  # 壊れたYAMLでパイプライン全体を落とさない
-            print(f"警告: {target} を読み込めません: {e}", file=sys.stderr)
-            sessions = []
+    seen = set()
+    for index, item in enumerate(raw):
+        if not isinstance(item, dict):
+            _config_error(f"session[{index}] must be a mapping")
+        raw_diet = item.get("diet")
+        if isinstance(raw_diet, bool):
+            _config_error(f"session[{index}] diet is invalid")
+        diet_key = normalize_diet(raw_diet)
+        if diet_key is None:
+            _config_error(f"session[{index}] diet is invalid")
+        diet = int(diet_key)
+        if diet <= 0 or diet in seen:
+            _config_error(f"session[{index}] diet is invalid or duplicated")
+        seen.add(diet)
+        start = _strict_date(item.get("from"), "from", index)
+        raw_end = item.get("to")
+        end = None if raw_end is None else _strict_date(raw_end, "to", index)
+        if end is not None and end < start:
+            _config_error(f"session[{index}] to precedes from")
+        sessions.append({
+            "diet": diet,
+            "name": item.get("name") or "",
+            "from": start.isoformat(),
+            "to": end.isoformat() if end else None,
+            "clb_id": str(item["clb_id"]) if item.get("clb_id") else None,
+        })
     sessions.sort(key=lambda s: s["diet"])
     if use_cache:
         _CACHE[key] = [dict(s) for s in sessions]

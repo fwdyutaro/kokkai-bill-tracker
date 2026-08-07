@@ -4,9 +4,21 @@ rem 法律案トラッカー 週次高品質パイプライン（Ollama・e5・P
 setlocal
 cd /d %~dp0
 set PYTHONIOENCODING=utf-8
-rem 対象会期は sessions.yaml の最新回次から取得する（取れなければ既定値のまま）。
-set DIET=221
-for /f "usebackq delims=" %%i in (`python sessions.py latest`) do set DIET=%%i
+rem 対象会期は sessions.yaml の最新回次から取得する（取得不能なら停止）。
+set DIET=
+set "LATEST_FILE=%TEMP%\bill-tracker-latest-%RANDOM%.txt"
+python sessions.py latest > "%LATEST_FILE%"
+if errorlevel 1 (
+  del /q "%LATEST_FILE%" >nul 2>&1
+  echo latest diet の取得に失敗しました。
+  exit /b 1
+)
+set /p DIET=<"%LATEST_FILE%"
+del /q "%LATEST_FILE%" >nul 2>&1
+if not defined DIET (
+  echo latest diet が空です。
+  exit /b 1
+)
 echo 対象会期: 第%DIET%回国会
 
 echo [1/4] 議案ステータス収集・補強 ...

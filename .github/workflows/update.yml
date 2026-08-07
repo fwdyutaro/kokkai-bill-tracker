@@ -19,12 +19,9 @@ concurrency:
 # 会期が変わったときの手順（2箇所だけ）:
 #   1. sessions.yaml に新しい会期を追記する（diet / name / from / to: null / clb_id）。
 #      同時に、閉会した会期の to に閉会日を入れる。
-#   2. 下の DIET を新しい会期番号に更新する。
-# sessions.yaml に未登録の会期を DIET に指定すると collect.py が警告を出し、
-# 閉会による「審査未了」判定が行われない（登録忘れに気付けるようにしてある）。
-env:
-  DIET: "221"
-
+#   2. 対象回次は sessions.py latest から自動取得される。
+# sessions.yaml に未登録の会期がある場合は sessions.py の検証で停止し、
+# 登録忘れに気付けるようにしてある。
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -38,12 +35,22 @@ jobs:
       - name: Install deps
         run: pip install -r requirements-core.txt
 
+      - name: Resolve latest diet
+        id: diet
+        shell: bash
+        run: |
+          set -euo pipefail
+          diet="$(python sessions.py latest)"
+          test -n "$diet"
+          echo "diet=$diet" >> "$GITHUB_OUTPUT"
+
       # 開会中の会期があれば毎日、閉会中は週1回（JST土曜）だけ実行する。
       # 閉会中でも crawl.py による参考文書（審議会・NDL資料）の収集には価値があるため、
       # 週1回はスキップせずフルパイプラインを回す。
       - name: Check session state
         id: gate
         run: |
+          set -o pipefail
           python sessions.py should-run \
             ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }} \
             | tee -a "$GITHUB_OUTPUT"
@@ -56,7 +63,7 @@ jobs:
         run: |
           # 概要要約は summaries.json（ローカルでOllama生成・コミット済）を再利用。
           # CIにOllamaは無いが、キャッシュ済み法案は要約が維持される（著作権配慮で原文転載しない）。
-          python collect.py --diet $DIET --sleep 1.0 --llm-summary
+          python collect.py --diet "${{ steps.diet.outputs.diet }}" --sleep 1.0 --llm-summary
           python crawl.py --no-abstracts       # 要旨(PDF)はローカルで抽出。CIは毎晩の大量DLを避ける
           python match_refs.py --no-semantic   # CIではe5を使わず軽量運用（必要ならキャッシュして有効化）
           python merge_submissions.py          # 承認済みユーザー提供情報を反映

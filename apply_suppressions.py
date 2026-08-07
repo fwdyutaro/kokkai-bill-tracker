@@ -9,7 +9,7 @@ suppressions.json 形式: [{"bill_no":"閣法 第31号","url":"https://...","sta
 
   python apply_suppressions.py
 """
-import json, os
+import json, os, re
 from data_output import render_data_js
 
 SUP = "suppressions.json"
@@ -24,18 +24,33 @@ def load():
     return []
 
 
+_BILL_NO_RE = re.compile(r"(閣法|衆法|参法)\s*第?\s*(\d+)\s*号")
+
+
+def _bill_key(value):
+    m = _BILL_NO_RE.search(str(value or ""))
+    return (m.group(1), int(m.group(2))) if m else None
+
+
 def main():
     sup = [s for s in load() if s.get("status") == "approved"]
     # (bill_no, url) の集合。bills.json は複数会期を保持するため議案番号は
     # 会期をまたいで衝突しうるが、urlまで一致する必要があるので実害はない
     # （同一URLが別会期の同番号法案にも紐付いていれば、そちらも除外される）。
-    deny = {(s.get("bill_no"), s.get("url")) for s in sup if s.get("url")}
+    deny_ids = {(s.get("bill_id"), s.get("url")) for s in sup if s.get("bill_id") and s.get("url")}
+    deny_legacy = {(_bill_key(s.get("bill_no")), s.get("url")) for s in sup if not s.get("bill_id") and s.get("url")}
     bills = json.load(open("bills.json", encoding="utf-8"))
     removed = 0
     for b in bills:
         before = len(b["refs"])
-        b["refs"] = [r for r in b["refs"]
-                     if (b["no"], r["url"]) not in deny]
+        bkey = _bill_key(b.get("no"))
+        # An unknown bill_id must never fall back to bill_no; legacy entries
+        # apply only when exactly one bill has that number.
+        legacy_count = sum(1 for x in bills if _bill_key(x.get("no")) == bkey)
+        b["refs"] = [r for r in b["refs"] if not (
+            (b.get("id"), r.get("url")) in deny_ids or
+            (legacy_count == 1 and (bkey, r.get("url")) in deny_legacy)
+        )]
         removed += before - len(b["refs"])
     json.dump(bills, open("bills.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     with open("data_collected.js", "w", encoding="utf-8") as f:
