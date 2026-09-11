@@ -72,7 +72,7 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           git add suppressions.json data_collected.js bills.json
           git diff --cached --quiet || git commit -m "chore: 取り下げ依頼を反映 (#$NUM)"
-          git pull --rebase origin "$GITHUB_REF_NAME"
+          git pull --rebase --autostash origin "$GITHUB_REF_NAME"
           git push
       - name: Issueをクローズ
         if: steps.prepare.outputs.result == 'published-ready'

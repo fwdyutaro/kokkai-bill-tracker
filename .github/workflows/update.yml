@@ -75,9 +75,13 @@ jobs:
         run: |
           git config user.name "bill-tracker-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add data_collected.js bills.json summaries.json
+          # match_refs.py は gate_cache.json / meeting_dates.json も更新する。
+          # これらを add し忘れると作業ツリーが汚れたままになり、
+          # 直後の git pull --rebase が "cannot pull with rebase" で失敗する。
+          git add data_collected.js bills.json summaries.json gate_cache.json meeting_dates.json
           git diff --cached --quiet || git commit -m "chore: update bill data ($(date -u +%F))"
-          git pull --rebase origin "$GITHUB_REF_NAME"
+          # 追加の生成物で汚れても止まらないように autostash を付ける（保険）。
+          git pull --rebase --autostash origin "$GITHUB_REF_NAME"
           git push
 
       - name: Skipped (out of session)

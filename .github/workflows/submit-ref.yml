@@ -99,7 +99,7 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           git add submissions.json data_collected.js bills.json
           git diff --cached --quiet || git commit -m "feat: 提供情報を掲載 (#$NUM)"
-          git pull --rebase origin "$GITHUB_REF_NAME"
+          git pull --rebase --autostash origin "$GITHUB_REF_NAME"
           git push
       - name: Issueをクローズ
         if: steps.prepare.outputs.result == 'published-ready'
