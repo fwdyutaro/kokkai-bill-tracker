@@ -54,7 +54,7 @@ def _run_collect(tmp_path, monkeypatch, diet, numbers, existing):
     monkeypatch.setattr(collect, "parse_bill",
                         lambda url: {"n": int(url.rsplit("/", 1)[1].split(".", 1)[0])})
     monkeypatch.setattr(collect, "normalize",
-                        lambda raw, type_hint=None: record(raw["n"], diet=f"{diet}回"))
+                        lambda raw, type_hint=None, **_: record(raw["n"], diet=f"{diet}回"))
     monkeypatch.setattr("sys.argv", ["collect.py", "--diet", diet, "--output", str(output),
                                      "--no-enrich", "--sleep", "0"])
     code = collect.main()

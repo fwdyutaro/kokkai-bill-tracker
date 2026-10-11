@@ -12,7 +12,7 @@ bills.json は複数会期を保持する。--diet で指定した会期のレ�
 他会期のレコードはそのまま残す（会期ごとのマージ）。
 
 使い方:
-  python collect.py            # 第221回・全法律案
+  python collect.py            # sessions.yaml の最新会期・全法律案
   python collect.py --diet 221 --only 31,32,33,13 --output tmp/sample.json --allow-partial-output
   python collect.py --limit 5 --output tmp/sample.json --allow-partial-output
 """
@@ -128,6 +128,35 @@ def discover_bills(diet):
                     "url": urljoin(index_url, el["href"]),
                 })
     return out
+
+
+# 明細URL: m{掲載会期3桁}{種別2桁}{提出回次4桁}{提出番号3桁}.htm
+# 例) 第222回の一覧に載る第221回提出・衆法1号 → m222090221001.htm
+MEISAI_RE = re.compile(r"m\d{3}\d{2}(\d{4})(\d{3})\.htm$")
+
+
+def bill_ref_from_url(url):
+    """明細URLから (提出回次, 提出番号) を返す。形式外なら (None, 末尾3桁の番号)。"""
+    m = MEISAI_RE.search(url)
+    if m:
+        return str(int(m.group(1))), str(int(m.group(2)))
+    return None, url.rsplit(".", 1)[0][-3:].lstrip("0")
+
+
+def make_id(diet, kind, no, submitted_diet=None):
+    """レコードIDを作る。前会期からの継続法案は提出回次を含めて番号の衝突を避ける。
+
+    第222回の一覧には第221回提出の衆法1号と第222回提出の衆法1号が並びうる。
+    さらに第221回側にも同じ法案のレコード（閉会時点の状態）が残るので、
+    掲載会期・種別・提出回次・番号の組で一意にする。
+      当該会期の提出   → "222-衆法-1"（従来どおり）
+      前会期からの継続 → "222-衆法-221-1"
+    """
+    diet = sessions.normalize_diet(diet)
+    submitted = sessions.normalize_diet(submitted_diet)
+    if submitted and submitted != diet:
+        return f"{diet}-{kind}-{submitted}-{no}"
+    return f"{diet}-{kind}-{no}"
 
 
 def table_kv(table):
@@ -250,7 +279,9 @@ def derive_status(d, timeline, promu, session_closed=False):
     plenary_results = [s.get(k, {}).get("議決", "") for k in
                        ("衆議院本会議経過", "参議院本会議経過")]
     results = committee_results + plenary_results
-    blob = " ".join(results) + head.get("継続区分", "")
+    # head の「継続区分」（例: 衆継続）は前会期から *引き継がれてきた* 議案の印で、
+    # この会期の審議結果ではない。継続審査の判定は議決結果だけで行う。
+    blob = " ".join(results)
     referred = any(s.get(k, {}).get("本付託日") for k in
                    ("衆議院委員会等経過", "参議院委員会等経過"))
 
@@ -293,11 +324,21 @@ def derive_status(d, timeline, promu, session_closed=False):
     return "審議中", detail
 
 
-def normalize(raw, type_hint=None, session_closed=None):
+def normalize(raw, type_hint=None, session_closed=None, diet=None):
+    """明細ページの生データを公開用レコードにする。
+
+    diet は一覧を取得した（=レコードが属する）会期。前会期からの継続法案は
+    明細ページの「提出回次」が前会期になるが、審議経過は diet の会期のものなので、
+    会期の開閉判定・会議録検索・所属会期はすべて diet を基準にする。
+    未指定なら従来どおり「提出回次」を使う。
+    """
+    submitted_diet = sessions.normalize_diet(raw.get("diet"))
+    diet = sessions.normalize_diet(diet) or submitted_diet
+    carried = bool(submitted_diet and diet and submitted_diet != diet)
     timeline, promu, lawno = build_timeline(raw)
     if session_closed is None:
-        # 会期は明細ページの「提出回次」から取る（sessions.yaml 未登録なら False）。
-        session_closed = sessions.is_closed_for_status(raw.get("diet"))
+        # sessions.yaml 未登録の会期なら False（閉会による審査未了は推定しない）。
+        session_closed = sessions.is_closed_for_status(diet)
     status, status_detail = derive_status(raw, timeline, promu,
                                           session_closed=session_closed)
     kind = type_hint or ("閣法" if "内閣提出" in raw["kind_raw"] else
@@ -312,12 +353,14 @@ def normalize(raw, type_hint=None, session_closed=None):
     if raw.get("pdf"):
         refs.append({"tier": 1, "cat": "一次資料", "pub": "参議院",
                      "title": "提出法律案（PDF）", "url": raw["pdf"]})
-    refs += kokkai_refs(raw["title"], raw["diet"], raw["sections"])
+    refs += kokkai_refs(raw["title"], diet or "", raw["sections"])
     return {
-        "id": f"{raw['diet'].replace('回','')}-{kind}-{raw['no']}",
-        "diet": raw["diet"],
-        "dietLabel": f"第{raw['diet']}",
-        "no": f"{kind} 第{raw['no']}号",
+        "id": make_id(diet, kind, raw["no"], submitted_diet),
+        "diet": f"{diet}回" if diet else raw.get("diet", ""),
+        "submittedDiet": f"{submitted_diet}回" if submitted_diet else "",
+        "dietLabel": (f"第{diet}回（第{submitted_diet}回提出・継続）" if carried
+                      else f"第{diet}回" if diet else ""),
+        "no": f"{kind} 第{raw['no']}号" + (f"（第{submitted_diet}回提出）" if carried else ""),
         "type": kind,
         "title": raw["title"],
         "shortTitle": raw["title"][:40] + ("…" if len(raw["title"]) > 40 else ""),
@@ -355,6 +398,17 @@ def select_diet(records, diet):
 def count_meeting_refs(records):
     return sum(1 for r in records for ref in r.get("refs", [])
                if ref.get("cat") == "会議録")
+
+
+def duplicate_ids(records):
+    """重複しているidの一覧（出現順）。"""
+    seen, dups = set(), []
+    for record in records:
+        rid = record.get("id")
+        if rid in seen and rid not in dups:
+            dups.append(rid)
+        seen.add(rid)
+    return dups
 
 
 def merge_by_diet(existing, records, diet):
@@ -483,7 +537,8 @@ def _load_existing(path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--diet", default="221")
+    ap.add_argument("--diet", default=None,
+                    help="対象の国会回次。既定は sessions.yaml の最新会期")
     ap.add_argument("--only", default="", help="議案番号をカンマ区切りで指定")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--sleep", type=float, default=1.0, help="リクエスト間隔(秒)")
@@ -498,6 +553,12 @@ def main():
     ap.add_argument("--allow-large-decrease", action="store_true",
                     help="既存データから10%以上減少する更新を許可する")
     args = ap.parse_args()
+    if args.diet is None:
+        latest = sessions.latest_diet()
+        if latest is None:
+            ap.error("sessions.yaml に会期が無いため --diet を指定してください")
+        args.diet = str(latest)
+    args.diet = sessions.normalize_diet(args.diet) or args.diet
 
     partial = bool(args.only or args.limit)
     default_output = Path(args.output).resolve() == Path("bills.json").resolve()
@@ -534,19 +595,19 @@ def main():
 
     targets = []
     for b in bills:
-        no = b["url"].rsplit(".", 1)[0][-3:].lstrip("0")
+        submitted_diet, no = bill_ref_from_url(b["url"])
         if only and no not in only:
             continue
-        targets.append((b, no))
+        targets.append((b, no, submitted_diet))
         if args.limit and len(targets) >= args.limit:
             break
 
     parsed_records, ordered_results, failures = [], [], []
-    for b, no in targets:
+    for b, no, submitted_diet in targets:
         print(f"[2/3] 解析 {b['type']} {no}: {b['title'][:30]} ...", file=sys.stderr)
         try:
             raw = parse_bill(b["url"])
-            rec = normalize(raw, type_hint=b["type"])
+            rec = normalize(raw, type_hint=b["type"], diet=args.diet)
             parsed_records.append(rec)
             ordered_results.append(rec)
         except Exception as e:
@@ -554,7 +615,8 @@ def main():
             failures.append((no, str(e)))
             fallback = None
             if not partial:
-                fallback = existing_by_id.get(f"{args.diet}-{b['type']}-{no}")
+                fallback = existing_by_id.get(
+                    make_id(args.diet, b["type"], no, submitted_diet))
             if fallback:
                 print(f"      ! 既存レコードを維持: {fallback['id']}", file=sys.stderr)
                 ordered_results.append(fallback)
@@ -589,6 +651,12 @@ def main():
     # （--only/--limit の部分収集は従来どおり指定した出力先をそのまま置き換える）
     final_records = ordered_results if partial else merge_by_diet(
         existing, ordered_results, args.diet)
+    duplicated = duplicate_ids(final_records)
+    if duplicated:
+        # 会期をまたぐID衝突（継続法案の扱い誤りなど）を公開前に止める。
+        print(f"検証失敗: マージ後にidが重複しています: {', '.join(duplicated[:10])}",
+              file=sys.stderr)
+        return 1
     try:
         save_records(final_records, args.output, write_public_js=default_output and not partial)
     except Exception as e:
