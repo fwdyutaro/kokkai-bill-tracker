@@ -60,7 +60,8 @@ python -m http.server 8777 --directory bill-tracker
 ## 収集パイプラインの使い方
 
 ```
-python collect.py --diet 221                      # 全法律案（省庁・提出理由も補完）
+python collect.py                                 # sessions.yaml の最新会期・全法律案
+python collect.py --diet 221                      # 会期を指定（省庁・提出理由も補完）
 python collect.py --diet 221 --only 31,32,33,13 --output tmp/sample.json --allow-partial-output  # 安全な部分実行
 python collect.py --diet 221 --no-enrich          # 参議院データのみ（高速）
 python collect.py --diet 221 --llm-summary        # 提出理由をLLMで3行要約（既定はローカルOllama）
@@ -119,6 +120,11 @@ sessions:
     from: "2026-02-18"
     to: "2026-07-25"        # 閉会済み。会期中は null
     clb_id: "5144"          # 内閣法制局 一覧ページID
+  - diet: 222
+    name: 臨時会
+    from: "2026-10-05"
+    to: null                # 会期中
+    clb_id: "5339"
 ```
 
 ```
@@ -127,17 +133,30 @@ python sessions.py latest       # 最新の回次
 python sessions.py should-run   # CI用ゲート（run=true/false）
 ```
 
-**会期が変わったときの手順（2箇所だけ）**
+**会期が変わったときの手順（sessions.yaml だけ）**
 
 1. `sessions.yaml` に新しい会期を追記する（`to: null`）。同時に、閉会した会期の `to` に閉会日を入れる。
-2. `.github/workflows/update.yml` の `env.DIET` を新しい会期番号に更新する。
+   `clb_id` は内閣法制局「最近の法律・条約」の「第N回国会での内閣提出法律案」リンクの `id=` の値。
 
-`run_all.bat`（週次ローカル処理）は `python sessions.py latest` で対象会期を自動取得するので手当て不要。
+`.github/workflows/update.yml`・`run_all.bat`・`collect.py`（`--diet` 省略時）はいずれも
+`sessions.yaml` の最新会期を自動で対象にするので手当て不要。
 `sessions.yaml` に未登録の会期を `--diet` に指定すると `collect.py` が警告を出す（登録忘れの検知）。
 `clb_id` は `sessions.yaml` が優先され、未設定なら `enrich.py` の `CLB_INDEX`（後方互換）を見る。
 
 `bills.json` は複数会期を保持し、`collect.py --diet N` は **N の会期だけを差し替えて他会期は残す**。
-件数減少・会議録リンク減少の安全ガードも同一会期内で比較する。
+件数減少・会議録リンク減少の安全ガードも同一会期内で比較する。マージ後に id が重複する場合は保存しない。
+
+**前会期からの継続法案**は、新会期の一覧にも「提出回次＝前会期」のまま載る（例: 第222回の一覧の
+第221回衆法1号）。これは新会期のレコードとして扱い、前会期のレコード（閉会時点の状態）とは別に持つ。
+
+| | 前会期のレコード | 新会期のレコード |
+|---|---|---|
+| `id` | `221-衆法-1` | `222-衆法-221-1`（掲載会期-種別-提出回次-番号） |
+| `diet` / `submittedDiet` | `221回` / `221回` | `222回` / `221回` |
+| `no` | `衆法 第1号` | `衆法 第1号（第221回提出）` |
+| ステータス | 継続審査 | 新会期の審議経過から判定（閉会判定・会議録検索も新会期基準） |
+
+明細ページの `継続区分`（例: 衆継続）は「前会期から引き継がれてきた」印なので、継続審査の判定には使わない。
 
 ### ステータスの取りうる値
 
