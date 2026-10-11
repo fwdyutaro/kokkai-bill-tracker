@@ -38,7 +38,8 @@ EXIT_INVALID_INPUT = 2
 EXIT_FAILED = 3
 HTML_CONTENT_TYPES = {"text/html", "application/xhtml+xml"}
 BILL_NO_RE = re.compile(r"(閣法|衆法|参法)\s*第?\s*(\d+)\s*号")
-BILL_ID_RE = re.compile(r"\b(\d+-(?:閣法|衆法|参法)-?\d+)\b")
+# 継続法案は "222-衆法-221-1"（掲載会期-種別-提出回次-番号）
+BILL_ID_RE = re.compile(r"\b(\d+-(?:閣法|衆法|参法)-?\d+(?:-\d+)?)\b")
 URL_RE = re.compile(r"https?://[^\s)>\]」]+")
 GENERIC_TITLES = ("国立国会図書館デジタルコレクション", "CiNii Research", "お探しのページ")
 _DNS_PIN_LOCK = threading.Lock()
