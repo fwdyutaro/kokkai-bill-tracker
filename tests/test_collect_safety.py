@@ -77,7 +77,7 @@ def test_partial_run_writes_only_requested_json(tmp_path, monkeypatch):
     monkeypatch.setattr(collect, "discover_bills", lambda diet: bills)
     monkeypatch.setattr(collect, "parse_bill", lambda url: {"url": url})
     counter = iter(range(1, 4))
-    monkeypatch.setattr(collect, "normalize", lambda raw, type_hint=None: record(next(counter)))
+    monkeypatch.setattr(collect, "normalize", lambda raw, type_hint=None, **_: record(next(counter)))
     monkeypatch.setattr("sys.argv", ["collect.py", "--limit", "3", "--output", str(output),
                                        "--allow-partial-output", "--no-enrich", "--sleep", "0"])
     assert collect.main() == 0
@@ -99,8 +99,8 @@ def test_full_run_preserves_failed_existing_record(tmp_path, monkeypatch):
         return {"number": number}
 
     monkeypatch.setattr(collect, "parse_bill", parse)
-    monkeypatch.setattr(collect, "normalize", lambda raw, type_hint=None: record(raw["number"]))
-    monkeypatch.setattr("sys.argv", ["collect.py", "--output", str(output),
+    monkeypatch.setattr(collect, "normalize", lambda raw, type_hint=None, **_: record(raw["number"]))
+    monkeypatch.setattr("sys.argv", ["collect.py", "--diet", "221", "--output", str(output),
                                        "--no-enrich", "--sleep", "0"])
     assert collect.main() == 0
     saved = json.loads(output.read_text(encoding="utf-8"))

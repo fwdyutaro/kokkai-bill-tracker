@@ -265,3 +265,9 @@ def test_main_accepts_explicit_bill_id(monkeypatch, tmp_path):
     monkeypatch.setattr(sys, "argv", ["ingest_submission.py", "--bill-id", "221-閣法-1", "--url", "https://example.com"])
     assert ingest.main() == 0
     assert seen["id"] == "221-閣法-1"
+
+
+def test_parse_issue_extracts_carried_over_bill_id():
+    """前会期からの継続法案のID（掲載会期-種別-提出回次-番号）を途中で切らない。"""
+    parsed = ingest.parse_issue("", "bill_id: 222-衆法-221-1\n衆法 第1号\nhttps://example.com/ref")
+    assert parsed[0] == "222-衆法-221-1"

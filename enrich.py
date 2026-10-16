@@ -80,7 +80,11 @@ def fetch_reason(detail_url):
 
 
 def build_shugiin_map(diet):
-    """{(種別, 番号): {houan(本文URL), keika, status}} を返す（全法律案）。"""
+    """{(種別, 提出回次, 番号): {houan(本文URL), keika, status}} を返す（全法律案）。
+
+    衆議院の一覧には前会期からの継続法案も載る（1列目=提出回次）。番号だけで
+    引くと第221回の衆法1号と第222回の衆法1号が衝突するため、提出回次もキーに含める。
+    """
     soup = BeautifulSoup(_get(SHU_LIST.format(diet=diet), enc="shift_jis"), "html.parser")
     out = {}
     for table in soup.find_all("table"):
@@ -100,7 +104,8 @@ def build_shugiin_map(diet):
                 elif "/keika/" in href:
                     keika = href
             if honbun:
-                out[(kind, str(int(cells[1])))] = {
+                submitted = sessions.normalize_diet(cells[0]) or sessions.normalize_diet(diet)
+                out[(kind, submitted, str(int(cells[1])))] = {
                     "houan": honbun.replace("/honbun/", "/honbun/houan/"),
                     "keika": keika,
                     "status": cells[3],
@@ -197,7 +202,9 @@ def _set_summary(rec, reason, source, use_llm, cache=None):
 
 
 def _no(rec):
-    return str(int(rec["no"].split("第")[1].rstrip("号"))) if "第" in rec["no"] else None
+    """"閣法 第3号" / "衆法 第1号（第221回提出）" → "3" / "1"。"""
+    m = re.search(r"第\s*(\d+)\s*号", rec["no"])
+    return str(int(m.group(1))) if m else None
 
 
 def enrich(records, diet, clb_id=None, use_llm=False, sleep=0.4):
@@ -205,7 +212,19 @@ def enrich(records, diet, clb_id=None, use_llm=False, sleep=0.4):
     閣法: 内閣法制局から 主管省庁＋提出理由。衆法/参法: 衆議院本文から 理由。
     全法律案: 衆議院の本文ページを参考リンクに追加。
     """
+    diet_key = sessions.normalize_diet(diet) or str(diet)
     mmap = build_ministry_map(diet, clb_id)
+    # 内閣法制局の一覧は提出会期ごと。前会期からの継続閣法は元の会期の一覧で引く。
+    mmaps = {diet_key: mmap}
+
+    def ministry_map_for(submitted):
+        if submitted not in mmaps:
+            try:
+                mmaps[submitted] = build_ministry_map(submitted)
+            except Exception as e:
+                print(f"      ! 内閣法制局一覧（第{submitted}回）の取得失敗: {e}")
+                mmaps[submitted] = {}
+        return mmaps[submitted]
     try:
         smap = build_shugiin_map(diet)
     except Exception as e:
@@ -217,14 +236,16 @@ def enrich(records, diet, clb_id=None, use_llm=False, sleep=0.4):
 
     for rec in records:
         no = _no(rec)
-        sinfo = smap.get((rec["type"], no), {})
+        submitted = sessions.normalize_diet(
+            rec.get("submittedDiet") or rec.get("diet")) or diet_key
+        sinfo = smap.get((rec["type"], submitted, no), {})
         # 全法律案: 衆議院本文を一次資料リンクに追加
         if sinfo.get("houan"):
             rec["refs"].append({"tier": 1, "cat": "一次資料", "pub": "衆議院",
                                 "title": "提出時法律案・本文", "url": sinfo["houan"]})
 
         if rec["type"] == "閣法":
-            info = mmap.get(no)
+            info = ministry_map_for(submitted).get(no)
             if not info:
                 continue
             rec["ministry"] = info["ministry"]
