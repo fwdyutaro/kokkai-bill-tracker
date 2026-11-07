@@ -202,6 +202,12 @@ STAGE_RANK = {"提出": 0, "衆委付託": 1, "衆委議決": 2, "衆本": 3,
               "参受領": 4, "参委付託": 5, "参委議決": 6, "参本": 7, "公布": 9}
 
 
+# 委員会等経過の議決結果の欄名（値は 可決 / 修正 / 否決 / 継続審査 / 未了 など）。
+# 本会議経過と同じ「議決」。以前は存在しない「議決・継続結果」を見ていたため、
+# 委員会の結果がタイムラインにもステータス判定にも反映されていなかった。
+COMMITTEE_RESULT = "議決"
+
+
 def build_timeline(d):
     """生フィールドから時系列イベントを合成。先議区分で衆参の順を決める。"""
     s = d["sections"]
@@ -225,7 +231,7 @@ def build_timeline(d):
         add(com.get("本付託日"), prefix, f"{com.get('付託委員会等','委員会')}に付託",
             rank=STAGE_RANK.get(prefix+"委付託", 1))
         add(com.get("議決日"), prefix, f"{com.get('付託委員会等','委員会')} 議決",
-            com.get("議決・継続結果", ""), rank=STAGE_RANK.get(prefix+"委議決", 2))
+            com.get(COMMITTEE_RESULT, ""), rank=STAGE_RANK.get(prefix+"委議決", 2))
         res = hon.get("議決", "")
         # 採決方法セルには「（…投票結果はこちら）」等のリンク文言が混入するため除去
         clean = lambda v: re.split(r"[（(]", v or "", 1)[0].strip()
@@ -274,14 +280,16 @@ def derive_status(d, timeline, promu, session_closed=False):
     """
     s = d["sections"]
     head = d.get("head", {})
-    committee_results = [s.get(k, {}).get("議決・継続結果", "") for k in
-               ("衆議院委員会等経過", "参議院委員会等経過")]
+    committee_results = [s.get(k, {}).get(COMMITTEE_RESULT, "") for k in
+                         ("衆議院委員会等経過", "参議院委員会等経過")]
     plenary_results = [s.get(k, {}).get("議決", "") for k in
                        ("衆議院本会議経過", "参議院本会議経過")]
-    results = committee_results + plenary_results
     # head の「継続区分」（例: 衆継続）は前会期から *引き継がれてきた* 議案の印で、
     # この会期の審議結果ではない。継続審査の判定は議決結果だけで行う。
-    blob = " ".join(results)
+    blob = " ".join(committee_results + plenary_results)
+    # 委員会で否決されても、議案は委員長報告とともに本会議で採決される。
+    # 廃案（否決）は本会議の結果だけで判定し、委員会否決は「本会議採決待ち」とする。
+    plenary_blob = " ".join(plenary_results)
     referred = any(s.get(k, {}).get("本付託日") for k in
                    ("衆議院委員会等経過", "参議院委員会等経過"))
 
@@ -298,7 +306,7 @@ def derive_status(d, timeline, promu, session_closed=False):
     # これはサイト側の明示的な記録なので、閉会猶予の対象外。
     if "未了" in blob:
         return "審査未了", "審査未了（閉会）"
-    if "否決" in blob or "廃案" in blob:
+    if "否決" in plenary_blob or "廃案" in blob:
         return "廃案", "否決・廃案"
     if session_closed:
         # 議決の記録が無いまま会期が閉じた議案。会期不継続の原則により審査未了。
@@ -313,8 +321,10 @@ def derive_status(d, timeline, promu, session_closed=False):
             detail = f"{h}・本会議{r}（次院へ）"
         elif "本会議" in e:
             detail = f"{h}・本会議採決待ち"
-        elif "議決" in e and r == "可決":
-            detail = f"{h}・本会議採決待ち"        # 委員会可決済み
+        elif "議決" in e and r in PASSED_PLENARY:
+            detail = f"{h}・本会議採決待ち"        # 委員会可決（修正議決を含む）済み
+        elif "議決" in e and "否決" in r:
+            detail = f"{h}・委員会否決（本会議採決待ち）"
         elif "付託" in e:
             detail = f"{h}・委員会審査中"
         elif "受領" in e or "送付" in e:

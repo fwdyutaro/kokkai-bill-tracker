@@ -106,7 +106,7 @@
   .tl .e{font-size:13.5px}
   .tl .hs{font-size:11px;background:var(--chip);color:#bcd0f5;padding:1px 7px;border-radius:5px;margin-right:6px}
   .tl .res{font-size:11.5px;font-weight:600;margin-left:6px}
-  .res.可決,.res.成立{color:var(--ok)} .res.継続{color:var(--warn)} .res.予定{color:var(--info)}
+  .res.可決,.res.修正,.res.成立{color:var(--ok)} .res.継続,.res.継続審査{color:var(--warn)} .res.否決{color:var(--danger)} .res.予定{color:var(--info)}
 
   /* refs */
   .ref{background:var(--panel);border:1px solid var(--line);border-radius:10px;
@@ -318,8 +318,8 @@ $("#list").addEventListener("click",e=>{
 
 function tlClass(it){
   if(it.event.includes("待ち"))return"now";
-  if(["可決","成立"].includes(it.result))return"ok";
-  if(it.result==="継続")return"warn";
+  if(["可決","修正","成立"].includes(it.result))return"ok";   // 修正議決も可決の一形態
+  if((it.result||"").includes("継続"))return"warn";
   return"";
 }
 function refTier(r){return{1:"一次・準一次",2:"立法補佐機関",3:"シンクタンク",4:"専門家解説"}[r]||""}
