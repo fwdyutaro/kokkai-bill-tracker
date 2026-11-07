@@ -2,6 +2,7 @@ window.BILLS = [
   {
     "id": "221-閣法-1",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第1号",
     "type": "閣法",
@@ -37,7 +38,7 @@ window.BILLS = [
         "date": "2026-03-13",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -61,7 +62,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "財政金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -173,6 +174,7 @@ window.BILLS = [
   {
     "id": "221-閣法-2",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第2号",
     "type": "閣法",
@@ -191,8 +193,8 @@ window.BILLS = [
       "東日本大震災",
       "復興状況",
       "資金確保",
-      "実施期間",
-      "支援体制"
+      "支援体制",
+      "実施期間"
     ],
     "timeline": [
       {
@@ -211,7 +213,7 @@ window.BILLS = [
         "date": "2026-03-13",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -235,7 +237,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "財政金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -356,6 +358,7 @@ window.BILLS = [
   {
     "id": "221-閣法-3",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第3号",
     "type": "閣法",
@@ -371,11 +374,11 @@ window.BILLS = [
     "tags": [
       "成立",
       "財務省",
-      "研究開発",
-      "中所得者",
-      "優遇措置",
       "住宅購入",
-      "設備投資"
+      "研究開発",
+      "優遇措置",
+      "設備投資",
+      "中所得者"
     ],
     "timeline": [
       {
@@ -394,7 +397,7 @@ window.BILLS = [
         "date": "2026-03-13",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -418,7 +421,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "財政金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -531,12 +534,40 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5152"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "令和8年度税制改正案の概要",
+        "url": "https://dl.ndl.go.jp/pid/14660842",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.91）／LLM確認: 参考文書は、法案の趣旨である物価高への対応や低・中所得者への配慮（年収の壁）に向けた税制改正の内容を直接的に含むため。"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "令和7年度税制改正案の概要",
+        "url": "https://dl.ndl.go.jp/pid/14010532",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 法案の趣旨目的に合致する税制改正案の概要をまとめた資料であり、特に「103万円の壁」の引き上げなど所得税に関連する重要な論点が含まれているため。"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "令和6年度税制改正案の概要",
+        "url": "https://dl.ndl.go.jp/pid/13264245",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 参考文書は令和6年度の税制改正案の概要をまとめているものであり、法案の内容（所得税控除の引き上げ、設備投資・研究開発への優遇措置、防衛特別税の創除）と直接関連する内容が含まれているため。"
       }
     ]
   },
   {
     "id": "221-閣法-4",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第4号",
     "type": "閣法",
@@ -574,7 +605,7 @@ window.BILLS = [
         "date": "2026-03-13",
         "house": "衆",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -598,7 +629,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -696,6 +727,7 @@ window.BILLS = [
   {
     "id": "221-閣法-5",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第5号",
     "type": "閣法",
@@ -733,7 +765,7 @@ window.BILLS = [
         "date": "2026-03-13",
         "house": "衆",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -757,7 +789,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -842,12 +874,31 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5156"
+      },
+      {
+        "tier": 1,
+        "cat": "審議会・検討会",
+        "pub": "総務省",
+        "title": "令和8年度 持続可能な地域医療の確保に向けた公立病院の経営強化に関する検討会",
+        "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/jizoku_iryo_r08/index.html",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認済"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "令和８年度地方財政対策の概要と主な論点 －経済社会構造が変化する中での一般財源総額の確保－",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260303035.pdf",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 地方交付金の総額や計算方法の見直しに関する法案に対し、令和8年度の地方財政対策と一般財源確保の論点をまとめた資料は直接的に関連する。"
       }
     ]
   },
   {
     "id": "221-閣法-6",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第6号",
     "type": "閣法",
@@ -865,9 +916,9 @@ window.BILLS = [
       "財務省",
       "関税定率法",
       "個人用荷物",
+      "保税倉庫",
+      "暫定関税",
       "適用期限",
-      "通関業務",
-      "管理体制",
       "経済情勢"
     ],
     "timeline": [
@@ -887,7 +938,7 @@ window.BILLS = [
         "date": "2026-03-13",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -911,7 +962,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "財政金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -1016,6 +1067,7 @@ window.BILLS = [
   {
     "id": "221-閣法-7",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第7号",
     "type": "閣法",
@@ -1031,12 +1083,12 @@ window.BILLS = [
     "tags": [
       "成立",
       "金融庁",
-      "経営基盤",
-      "人口減少",
-      "資金提供",
       "協同組織",
+      "経営基盤",
+      "資金提供",
+      "資本増強",
       "社会情勢",
-      "資本増強"
+      "金融機関"
     ],
     "timeline": [
       {
@@ -1055,7 +1107,7 @@ window.BILLS = [
         "date": "2026-04-14",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-16",
@@ -1079,7 +1131,7 @@ window.BILLS = [
         "date": "2026-04-23",
         "house": "参",
         "event": "財政金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-24",
@@ -1171,21 +1223,13 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5162"
-      },
-      {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "経済はどこから縮むのか：人口減少下、地方小都市で加速する産業喪失と、職の東京一極集中",
-        "url": "http://www.rieti.go.jp/jp/publications/nts/26e063.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（人口減少）"
       }
     ]
   },
   {
     "id": "221-閣法-8",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第8号",
     "type": "閣法",
@@ -1221,7 +1265,7 @@ window.BILLS = [
         "date": "2026-03-13",
         "house": "衆",
         "event": "文部科学委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -1245,7 +1289,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "文教科学委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -1357,6 +1401,7 @@ window.BILLS = [
   {
     "id": "221-閣法-9",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第9号",
     "type": "閣法",
@@ -1373,8 +1418,8 @@ window.BILLS = [
       "成立",
       "文部科学省",
       "教職員定数の標準",
-      "教育環境",
-      "教育体制"
+      "教育体制",
+      "教育環境"
     ],
     "timeline": [
       {
@@ -1393,7 +1438,7 @@ window.BILLS = [
         "date": "2026-03-13",
         "house": "衆",
         "event": "文部科学委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -1417,7 +1462,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "文教科学委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -1508,6 +1553,7 @@ window.BILLS = [
   {
     "id": "221-閣法-10",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第10号",
     "type": "閣法",
@@ -1524,11 +1570,11 @@ window.BILLS = [
       "成立",
       "外務省",
       "在外公館の名称",
-      "外務公務員",
       "所在地名称",
+      "外務公務員",
+      "ラトビア",
       "単身赴任",
-      "勤務形態",
-      "ラトビア"
+      "勤務形態"
     ],
     "timeline": [
       {
@@ -1547,7 +1593,7 @@ window.BILLS = [
         "date": "2026-03-13",
         "house": "衆",
         "event": "外務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -1571,7 +1617,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "外交防衛委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -1662,6 +1708,7 @@ window.BILLS = [
   {
     "id": "221-閣法-11",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第11号",
     "type": "閣法",
@@ -1679,8 +1726,8 @@ window.BILLS = [
       "農林水産省",
       "日本中央競馬会",
       "特別積立金",
-      "特例措置",
-      "財源確保"
+      "財源確保",
+      "特例措置"
     ],
     "timeline": [
       {
@@ -1699,7 +1746,7 @@ window.BILLS = [
         "date": "2026-03-12",
         "house": "衆",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -1723,7 +1770,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -1821,6 +1868,7 @@ window.BILLS = [
   {
     "id": "221-閣法-12",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第12号",
     "type": "閣法",
@@ -1858,7 +1906,7 @@ window.BILLS = [
         "date": "2026-03-12",
         "house": "衆",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-13",
@@ -1882,7 +1930,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -1980,6 +2028,7 @@ window.BILLS = [
   {
     "id": "221-閣法-13",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第13号",
     "type": "閣法",
@@ -1997,8 +2046,8 @@ window.BILLS = [
       "内閣官房",
       "防災庁設置法",
       "スムーズ",
-      "専門組織",
-      "行政運営"
+      "行政運営",
+      "専門組織"
     ],
     "timeline": [
       {
@@ -2017,7 +2066,7 @@ window.BILLS = [
         "date": "2026-05-14",
         "house": "衆",
         "event": "災害対策特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-19",
@@ -2041,7 +2090,7 @@ window.BILLS = [
         "date": "2026-07-10",
         "house": "参",
         "event": "災害対策及び東日本大震災復興特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-13",
@@ -2198,12 +2247,22 @@ window.BILLS = [
         "url": "https://dl.ndl.go.jp/pid/14648417",
         "conf": 75,
         "confNote": "自動紐付け: 語彙類似（3-gram 0.30）／LLM確認: 参考文書は防災庁の設置に向けた政府の基本方針や海外事例との比較を含む議論を直接的に扱っており、法案の趣旨目的に合致しているため。"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "政府における防災担当組織の在り方 －防災庁をめぐる議論を中心に－",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2025pdf/20251202003.pdf",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 参考文書のタイトルと内容が法案の趣旨（防災庁の新設）に関する議論を直接的に扱っているため。"
       }
     ]
   },
   {
     "id": "221-閣法-14",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第14号",
     "type": "閣法",
@@ -2219,8 +2278,8 @@ window.BILLS = [
     "tags": [
       "成立",
       "内閣官房",
-      "体制構築",
-      "役割分担"
+      "役割分担",
+      "体制構築"
     ],
     "timeline": [
       {
@@ -2239,7 +2298,7 @@ window.BILLS = [
         "date": "2026-05-14",
         "house": "衆",
         "event": "災害対策特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-19",
@@ -2263,7 +2322,7 @@ window.BILLS = [
         "date": "2026-07-10",
         "house": "参",
         "event": "災害対策及び東日本大震災復興特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-13",
@@ -2390,12 +2449,22 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5177"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "防災庁設置をめぐる議論",
+        "url": "https://dl.ndl.go.jp/pid/14648417",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.90）／LLM確認: 参考文書は防災庁の設置に向けた政府の方針や背景を論述しており、法案の趣旨である防災庁設立に伴う体制整備に直接関連する。"
       }
     ]
   },
   {
     "id": "221-閣法-15",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第15号",
     "type": "閣法",
@@ -2411,12 +2480,12 @@ window.BILLS = [
     "tags": [
       "成立",
       "経済産業省",
-      "海外市場",
       "安定確保",
+      "海外市場",
+      "認定制度",
       "事業内容",
-      "貿易保険",
-      "国際情勢",
-      "認定制度"
+      "重要物資",
+      "国際情勢"
     ],
     "timeline": [
       {
@@ -2435,7 +2504,7 @@ window.BILLS = [
         "date": "2026-05-13",
         "house": "衆",
         "event": "経済産業委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-14",
@@ -2459,7 +2528,7 @@ window.BILLS = [
         "date": "2026-05-28",
         "house": "参",
         "event": "経済産業委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-29",
@@ -2565,12 +2634,31 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5179"
+      },
+      {
+        "tier": 3,
+        "cat": "シンクタンク",
+        "pub": "RIETI（経済産業研究所）",
+        "title": "経済安全保障に対応する企業行動の多面性：製造業企業アンケートに基づく調達先見直し・輸出管理対応・投資見直しに関する実証分析",
+        "url": "http://www.rieti.go.jp/jp/publications/nts/26j026.html?ref=rss",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認済"
+      },
+      {
+        "tier": 3,
+        "cat": "シンクタンク",
+        "pub": "RIETI（経済産業研究所）",
+        "title": "経済安全保障に対応する企業行動の多面性：製造業企業アンケートに基づく調達先見直し・輸出管理対応・投資見直しに関する実証分析",
+        "url": "http://www.rieti.go.jp/jp/publications/summary/26050009.html?ref=rss",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 法案の目的である事業内容の変更や海外市場開拓、重要物資の確保に向けた企業の対応策を検討する上で、製造業における調達先見直しや輸出管理などの実証分析データは極めて重要な参考情報となります。"
       }
     ]
   },
   {
     "id": "221-閣法-16",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第16号",
     "type": "閣法",
@@ -2587,9 +2675,9 @@ window.BILLS = [
       "成立",
       "国土交通省",
       "物資の流通の効率化",
-      "トラック",
       "運送体制",
-      "中継輸送"
+      "中継輸送",
+      "トラック"
     ],
     "timeline": [
       {
@@ -2608,7 +2696,7 @@ window.BILLS = [
         "date": "2026-04-10",
         "house": "衆",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-14",
@@ -2632,7 +2720,7 @@ window.BILLS = [
         "date": "2026-05-12",
         "house": "参",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-13",
@@ -2716,6 +2804,7 @@ window.BILLS = [
   {
     "id": "221-閣法-17",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第17号",
     "type": "閣法",
@@ -2732,9 +2821,9 @@ window.BILLS = [
       "成立",
       "環境省",
       "環境省設置法",
+      "地方拠点",
       "スムーズ",
-      "行政運営",
-      "地方拠点"
+      "行政運営"
     ],
     "timeline": [
       {
@@ -2753,7 +2842,7 @@ window.BILLS = [
         "date": "2026-04-14",
         "house": "衆",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-16",
@@ -2777,7 +2866,7 @@ window.BILLS = [
         "date": "2026-05-14",
         "house": "参",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-15",
@@ -2861,6 +2950,7 @@ window.BILLS = [
   {
     "id": "221-閣法-18",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第18号",
     "type": "閣法",
@@ -2878,10 +2968,10 @@ window.BILLS = [
       "防衛省",
       "防衛省設置法",
       "防衛副大臣",
-      "人材確保",
-      "任務遂行",
       "人員調整",
-      "組織再編"
+      "組織再編",
+      "人材確保",
+      "任務遂行"
     ],
     "timeline": [
       {
@@ -2900,7 +2990,7 @@ window.BILLS = [
         "date": "2026-04-24",
         "house": "衆",
         "event": "安全保障委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-28",
@@ -2924,7 +3014,7 @@ window.BILLS = [
         "date": "2026-06-25",
         "house": "参",
         "event": "外交防衛委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-26",
@@ -3031,6 +3121,7 @@ window.BILLS = [
   {
     "id": "221-閣法-19",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第19号",
     "type": "閣法",
@@ -3066,7 +3157,7 @@ window.BILLS = [
         "date": "2026-04-14",
         "house": "衆",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-16",
@@ -3090,7 +3181,7 @@ window.BILLS = [
         "date": "2026-04-23",
         "house": "参",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-24",
@@ -3174,6 +3265,7 @@ window.BILLS = [
   {
     "id": "221-閣法-20",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第20号",
     "type": "閣法",
@@ -3191,10 +3283,10 @@ window.BILLS = [
       "法務省",
       "短期滞在者",
       "出入国管理",
+      "在留資格",
       "入国審査",
-      "認証制度",
       "管理体制",
-      "在留資格"
+      "認証制度"
     ],
     "timeline": [
       {
@@ -3213,7 +3305,7 @@ window.BILLS = [
         "date": "2026-04-24",
         "house": "衆",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-28",
@@ -3237,7 +3329,7 @@ window.BILLS = [
         "date": "2026-05-28",
         "house": "参",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-29",
@@ -3349,6 +3441,7 @@ window.BILLS = [
   {
     "id": "221-閣法-21",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第21号",
     "type": "閣法",
@@ -3364,8 +3457,8 @@ window.BILLS = [
     "tags": [
       "成立",
       "外務省",
-      "発行手数料",
       "パスポート",
+      "発行手数料",
       "事務費用"
     ],
     "timeline": [
@@ -3385,7 +3478,7 @@ window.BILLS = [
         "date": "2026-04-10",
         "house": "衆",
         "event": "外務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-14",
@@ -3409,7 +3502,7 @@ window.BILLS = [
         "date": "2026-04-23",
         "house": "参",
         "event": "外交防衛委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-24",
@@ -3493,6 +3586,7 @@ window.BILLS = [
   {
     "id": "221-閣法-22",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第22号",
     "type": "閣法",
@@ -3510,9 +3604,9 @@ window.BILLS = [
       "国土交通省",
       "都市再生特別措置法",
       "所有者不明",
+      "地域主導",
       "公共施設",
-      "管理体制",
-      "地域主導"
+      "管理体制"
     ],
     "timeline": [
       {
@@ -3531,7 +3625,7 @@ window.BILLS = [
         "date": "2026-04-22",
         "house": "衆",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-23",
@@ -3555,7 +3649,7 @@ window.BILLS = [
         "date": "2026-05-19",
         "house": "参",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-20",
@@ -3639,6 +3733,7 @@ window.BILLS = [
   {
     "id": "221-閣法-23",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第23号",
     "type": "閣法",
@@ -3655,9 +3750,9 @@ window.BILLS = [
       "成立",
       "国土交通省",
       "地域公共交通の活性化",
+      "鉄道事業",
       "代用輸送",
-      "交通課題",
-      "鉄道事業"
+      "交通課題"
     ],
     "timeline": [
       {
@@ -3676,7 +3771,7 @@ window.BILLS = [
         "date": "2026-05-13",
         "house": "衆",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-14",
@@ -3700,7 +3795,7 @@ window.BILLS = [
         "date": "2026-06-02",
         "house": "参",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-03",
@@ -3784,6 +3879,7 @@ window.BILLS = [
   {
     "id": "221-閣法-24",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第24号",
     "type": "閣法",
@@ -3801,8 +3897,8 @@ window.BILLS = [
       "内閣官房",
       "国家情報会議設置法",
       "国家情報会議",
-      "重要事項",
-      "業務内容"
+      "業務内容",
+      "重要事項"
     ],
     "timeline": [
       {
@@ -3821,7 +3917,7 @@ window.BILLS = [
         "date": "2026-04-22",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-23",
@@ -3845,7 +3941,7 @@ window.BILLS = [
         "date": "2026-05-26",
         "house": "参",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-27",
@@ -4043,6 +4139,7 @@ window.BILLS = [
   {
     "id": "221-閣法-25",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第25号",
     "type": "閣法",
@@ -4059,11 +4156,11 @@ window.BILLS = [
       "成立",
       "厚生労働省",
       "健康保険法",
-      "医療保険制度",
       "労働環境改善",
-      "医療機関",
+      "医療保険制度",
       "持続可能",
-      "スタッフ"
+      "スタッフ",
+      "医療機関"
     ],
     "timeline": [
       {
@@ -4082,7 +4179,7 @@ window.BILLS = [
         "date": "2026-04-24",
         "house": "衆",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-28",
@@ -4106,7 +4203,7 @@ window.BILLS = [
         "date": "2026-05-28",
         "house": "参",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-29",
@@ -4239,6 +4336,7 @@ window.BILLS = [
   {
     "id": "221-閣法-26",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第26号",
     "type": "閣法",
@@ -4256,10 +4354,10 @@ window.BILLS = [
       "経済産業省",
       "産業技術力強化法",
       "産業技術",
-      "研究開発",
+      "支援体制",
       "認定手続",
-      "研究機関",
-      "支援体制"
+      "研究開発",
+      "研究機関"
     ],
     "timeline": [
       {
@@ -4278,7 +4376,7 @@ window.BILLS = [
         "date": "2026-05-29",
         "house": "衆",
         "event": "経済産業委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-02",
@@ -4302,7 +4400,7 @@ window.BILLS = [
         "date": "2026-06-11",
         "house": "参",
         "event": "経済産業委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-12",
@@ -4400,6 +4498,7 @@ window.BILLS = [
   {
     "id": "221-閣法-27",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第27号",
     "type": "閣法",
@@ -4436,7 +4535,7 @@ window.BILLS = [
         "date": "2026-05-13",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-14",
@@ -4460,7 +4559,7 @@ window.BILLS = [
         "date": "2026-05-28",
         "house": "参",
         "event": "財政金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-29",
@@ -4558,6 +4657,7 @@ window.BILLS = [
   {
     "id": "221-閣法-28",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第28号",
     "type": "閣法",
@@ -4595,7 +4695,7 @@ window.BILLS = [
         "date": "2026-04-14",
         "house": "衆",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-16",
@@ -4619,7 +4719,7 @@ window.BILLS = [
         "date": "2026-04-23",
         "house": "参",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-24",
@@ -4703,6 +4803,7 @@ window.BILLS = [
   {
     "id": "221-閣法-29",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第29号",
     "type": "閣法",
@@ -4720,9 +4821,9 @@ window.BILLS = [
       "農林水産省",
       "農業近代化資金融通法",
       "生産性向上",
-      "規模拡大",
+      "スムーズ",
       "長期融資",
-      "スムーズ"
+      "規模拡大"
     ],
     "timeline": [
       {
@@ -4741,7 +4842,7 @@ window.BILLS = [
         "date": "2026-04-14",
         "house": "衆",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-16",
@@ -4765,7 +4866,7 @@ window.BILLS = [
         "date": "2026-04-23",
         "house": "参",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-24",
@@ -4849,6 +4950,7 @@ window.BILLS = [
   {
     "id": "221-閣法-30",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第30号",
     "type": "閣法",
@@ -4869,7 +4971,7 @@ window.BILLS = [
       "輸送網強化",
       "調査研究",
       "支援体制",
-      "官民連携"
+      "基盤整備"
     ],
     "timeline": [
       {
@@ -4888,7 +4990,7 @@ window.BILLS = [
         "date": "2026-05-15",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "修正"
       },
       {
         "date": "2026-05-19",
@@ -4912,7 +5014,7 @@ window.BILLS = [
         "date": "2026-06-09",
         "house": "参",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-10",
@@ -5033,13 +5135,14 @@ window.BILLS = [
         "title": "ハイテク時代の経済安全保障―官民連携によるインテリジェンス機能の構築",
         "url": "http://www.rieti.go.jp/jp/special/special_report/263.html?ref=rss",
         "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（官民連携）"
+        "confNote": "自動紐付け: 趣旨キーワード一致（官民連携）／LLM確認済"
       }
     ]
   },
   {
     "id": "221-閣法-31",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第31号",
     "type": "閣法",
@@ -5056,8 +5159,8 @@ window.BILLS = [
       "成立",
       "警察庁",
       "飛行禁止区域",
-      "ドローン",
-      "重要施設"
+      "重要施設",
+      "ドローン"
     ],
     "timeline": [
       {
@@ -5076,7 +5179,7 @@ window.BILLS = [
         "date": "2026-05-22",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-26",
@@ -5100,7 +5203,7 @@ window.BILLS = [
         "date": "2026-06-16",
         "house": "参",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-17",
@@ -5201,12 +5304,22 @@ window.BILLS = [
         "url": "https://www.npa.go.jp/bureau/security/kogatamujinki/council/council.html#sec1",
         "conf": 82,
         "confNote": "自動紐付け: 所管一致＋関連語（ドローン）／LLM確認: 「違法なドローン飛行対策に関する検討会」は、法案の目的であるドローンによる被害防止と安全確保のための政策立案や議論の背景となる重要な情報源です。"
+      },
+      {
+        "tier": 1,
+        "cat": "審議会・検討会",
+        "pub": "警察庁",
+        "title": "有識者検討会（報告書・概要）",
+        "url": "https://www.npa.go.jp/bureau/security/kogatamujinki/council/kaighishiryou/houkokusyogaiyou.pdf",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.91）／LLM確認: ドローンによる重要施設への被害防止と、そのための必要最小限の規制に関する議論が含まれており、法案の趣旨目的と合致しているため。"
       }
     ]
   },
   {
     "id": "221-閣法-32",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第32号",
     "type": "閣法",
@@ -5224,9 +5337,9 @@ window.BILLS = [
       "総務省",
       "関連事業者",
       "支援機構",
-      "経営安定",
+      "国内企業",
       "処分期限",
-      "国内企業"
+      "経営安定"
     ],
     "timeline": [
       {
@@ -5245,7 +5358,7 @@ window.BILLS = [
         "date": "2026-04-14",
         "house": "衆",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-16",
@@ -5269,7 +5382,7 @@ window.BILLS = [
         "date": "2026-04-23",
         "house": "参",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-24",
@@ -5362,6 +5475,7 @@ window.BILLS = [
   {
     "id": "221-閣法-33",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第33号",
     "type": "閣法",
@@ -5377,9 +5491,9 @@ window.BILLS = [
     "tags": [
       "成立",
       "総務省",
+      "本人確認",
       "携帯電話",
       "音声以外",
-      "本人確認",
       "不正利用"
     ],
     "timeline": [
@@ -5399,7 +5513,7 @@ window.BILLS = [
         "date": "2026-05-12",
         "house": "衆",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-14",
@@ -5423,7 +5537,7 @@ window.BILLS = [
         "date": "2026-05-21",
         "house": "参",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-22",
@@ -5525,6 +5639,7 @@ window.BILLS = [
   {
     "id": "221-閣法-34",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第34号",
     "type": "閣法",
@@ -5543,9 +5658,9 @@ window.BILLS = [
       "定形郵便物",
       "郵便事業者",
       "民間事業者",
-      "競争環境",
       "経営状況",
-      "価格上限"
+      "価格上限",
+      "競争環境"
     ],
     "timeline": [
       {
@@ -5564,7 +5679,7 @@ window.BILLS = [
         "date": "2026-05-28",
         "house": "衆",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-02",
@@ -5588,7 +5703,7 @@ window.BILLS = [
         "date": "2026-06-11",
         "house": "参",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-12",
@@ -5690,6 +5805,7 @@ window.BILLS = [
   {
     "id": "221-閣法-35",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第35号",
     "type": "閣法",
@@ -5708,8 +5824,8 @@ window.BILLS = [
       "家畜伝染病予防法",
       "ランピースキン",
       "感染症対策",
-      "防疫体制",
-      "ワクチン"
+      "ワクチン",
+      "防疫体制"
     ],
     "timeline": [
       {
@@ -5728,7 +5844,7 @@ window.BILLS = [
         "date": "2026-04-22",
         "house": "衆",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-23",
@@ -5752,7 +5868,7 @@ window.BILLS = [
         "date": "2026-05-14",
         "house": "参",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-15",
@@ -5836,6 +5952,7 @@ window.BILLS = [
   {
     "id": "221-閣法-36",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第36号",
     "type": "閣法",
@@ -5851,8 +5968,8 @@ window.BILLS = [
     "tags": [
       "成立",
       "経済産業省",
-      "電力供給体制",
       "大規模発電所",
+      "電力供給体制",
       "協力義務付",
       "メーカー",
       "資金確保",
@@ -5875,7 +5992,7 @@ window.BILLS = [
         "date": "2026-06-19",
         "house": "衆",
         "event": "経済産業委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-25",
@@ -5899,7 +6016,7 @@ window.BILLS = [
         "date": "2026-07-16",
         "house": "参",
         "event": "経済産業委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-17",
@@ -6020,6 +6137,7 @@ window.BILLS = [
   {
     "id": "221-閣法-37",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第37号",
     "type": "閣法",
@@ -6054,7 +6172,7 @@ window.BILLS = [
         "date": "2026-04-23",
         "house": "衆",
         "event": "地域活性化・こども政策・デジタル社会形成に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-28",
@@ -6078,7 +6196,7 @@ window.BILLS = [
         "date": "2026-05-22",
         "house": "参",
         "event": "沖縄・北方問題及び地方に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-27",
@@ -6162,6 +6280,7 @@ window.BILLS = [
   {
     "id": "221-閣法-38",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第38号",
     "type": "閣法",
@@ -6178,11 +6297,11 @@ window.BILLS = [
       "成立",
       "国土交通省",
       "下水道体制",
-      "維持管理",
-      "人口減少",
-      "管理状況",
       "持続可能",
-      "自治体間"
+      "自治体間",
+      "管理状況",
+      "連携強化",
+      "維持管理"
     ],
     "timeline": [
       {
@@ -6201,7 +6320,7 @@ window.BILLS = [
         "date": "2026-05-22",
         "house": "衆",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-26",
@@ -6225,7 +6344,7 @@ window.BILLS = [
         "date": "2026-07-14",
         "house": "参",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-15",
@@ -6305,15 +6424,6 @@ window.BILLS = [
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5241"
       },
       {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "経済はどこから縮むのか：人口減少下、地方小都市で加速する産業喪失と、職の東京一極集中",
-        "url": "http://www.rieti.go.jp/jp/publications/nts/26e063.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（人口減少）"
-      },
-      {
         "tier": 2,
         "cat": "立法補佐機関",
         "pub": "参議院 常任委員会調査室「立法と調査」",
@@ -6327,6 +6437,7 @@ window.BILLS = [
   {
     "id": "221-閣法-39",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第39号",
     "type": "閣法",
@@ -6342,11 +6453,11 @@ window.BILLS = [
     "tags": [
       "成立",
       "国土交通省",
-      "エネルギー",
       "炭素排出量",
+      "エネルギー",
+      "脱炭素化",
       "計画策定",
-      "認証制度",
-      "脱炭素化"
+      "認証制度"
     ],
     "timeline": [
       {
@@ -6365,7 +6476,7 @@ window.BILLS = [
         "date": "2026-06-03",
         "house": "衆",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-04",
@@ -6389,7 +6500,7 @@ window.BILLS = [
         "date": "2026-07-23",
         "house": "参",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-24",
@@ -6478,28 +6589,20 @@ window.BILLS = [
         "confNote": "自動紐付け: 所管一致＋語彙類似（0.33）／LLM確認: 「建築物エネルギー消費性能基準等小委員会」は、法案の趣旨に合致する建物エネルギー消費性能に関する専門的な検討会会合の内容を議論するための場であり、関連性が高い。"
       },
       {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "脱炭素化とエネルギー安全保障を踏まえたエネルギー需給シナリオ分析",
-        "url": "http://www.rieti.go.jp/jp/publications/nts/26j043.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（脱炭素化）"
-      },
-      {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "脱炭素化とエネルギー安全保障を踏まえたエネルギー需給シナリオ分析",
-        "url": "http://www.rieti.go.jp/jp/publications/summary/26100010.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（脱炭素化）"
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "建築物のライフサイクルカーボン評価の促進 －建築物省エネ法の一部改正案－",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260430058.pdf",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 参考文書は法案の趣旨目的に合致する建築物省エネ法の改正案に関する調査報告書であり、直接的な関連性がある。"
       }
     ]
   },
   {
     "id": "221-閣法-40",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第40号",
     "type": "閣法",
@@ -6515,10 +6618,10 @@ window.BILLS = [
     "tags": [
       "成立",
       "内閣府",
+      "ロケット",
       "損害賠償",
-      "人工衛星",
       "宇宙開発",
-      "ロケット"
+      "人工衛星"
     ],
     "timeline": [
       {
@@ -6537,7 +6640,7 @@ window.BILLS = [
         "date": "2026-04-22",
         "house": "参",
         "event": "デジタル社会の形成及び人工知能の活用等に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-24",
@@ -6561,7 +6664,7 @@ window.BILLS = [
         "date": "2026-06-10",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-11",
@@ -6645,6 +6748,7 @@ window.BILLS = [
   {
     "id": "221-閣法-41",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第41号",
     "type": "閣法",
@@ -6662,9 +6766,9 @@ window.BILLS = [
       "内閣府",
       "関係者同士",
       "最先端技術",
+      "研究成果",
       "先端技術",
-      "ビジネス",
-      "研究成果"
+      "ビジネス"
     ],
     "timeline": [
       {
@@ -6683,7 +6787,7 @@ window.BILLS = [
         "date": "2026-06-24",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "修正"
       },
       {
         "date": "2026-06-25",
@@ -6707,7 +6811,7 @@ window.BILLS = [
         "date": "2026-07-10",
         "house": "参",
         "event": "デジタル社会の形成及び人工知能の活用等に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-13",
@@ -6805,6 +6909,7 @@ window.BILLS = [
   {
     "id": "221-閣法-42",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第42号",
     "type": "閣法",
@@ -6839,7 +6944,7 @@ window.BILLS = [
         "date": "2026-04-16",
         "house": "参",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-17",
@@ -6863,7 +6968,7 @@ window.BILLS = [
         "date": "2026-06-24",
         "house": "衆",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-25",
@@ -6956,6 +7061,7 @@ window.BILLS = [
   {
     "id": "221-閣法-43",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第43号",
     "type": "閣法",
@@ -6992,7 +7098,7 @@ window.BILLS = [
         "date": "2026-05-22",
         "house": "衆",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-26",
@@ -7016,7 +7122,7 @@ window.BILLS = [
         "date": "2026-06-16",
         "house": "参",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-17",
@@ -7145,12 +7251,22 @@ window.BILLS = [
         "url": "https://dl.ndl.go.jp/pid/14560833",
         "conf": 78,
         "confNote": "自動紐付け: 趣旨キーワード一致（成年後見制度）／LLM確認: 法案の趣旨目的に合致する成年後見制度の現状と課題に関する専門的な調査報告書であるため。"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
+        "title": "遺言制度の改正の動向―電子遺言を中心に―",
+        "url": "https://dl.ndl.go.jp/pid/14931497",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 法案の趣旨に含まれる電子遺言書の作成を可能にするための改正が含まれており、参考文書がその内容と直接関連しています。"
       }
     ]
   },
   {
     "id": "221-閣法-44",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第44号",
     "type": "閣法",
@@ -7185,7 +7301,7 @@ window.BILLS = [
         "date": "2026-05-22",
         "house": "衆",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-26",
@@ -7209,7 +7325,7 @@ window.BILLS = [
         "date": "2026-06-16",
         "house": "参",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-17",
@@ -7321,6 +7437,7 @@ window.BILLS = [
   {
     "id": "221-閣法-45",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第45号",
     "type": "閣法",
@@ -7338,10 +7455,10 @@ window.BILLS = [
       "厚生労働省",
       "社会福祉法",
       "人口減少地域",
+      "有料老人",
       "スタッフ",
       "資格制度",
-      "有料老人",
-      "ニーズ"
+      "ホーム"
     ],
     "timeline": [
       {
@@ -7360,7 +7477,7 @@ window.BILLS = [
         "date": "2026-05-22",
         "house": "衆",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-26",
@@ -7384,7 +7501,7 @@ window.BILLS = [
         "date": "2026-06-18",
         "house": "参",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-19",
@@ -7489,6 +7606,7 @@ window.BILLS = [
   {
     "id": "221-閣法-46",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第46号",
     "type": "閣法",
@@ -7509,7 +7627,7 @@ window.BILLS = [
       "生産性向上",
       "研究設備",
       "供給体制",
-      "気候変動"
+      "生産環境"
     ],
     "timeline": [
       {
@@ -7528,7 +7646,7 @@ window.BILLS = [
         "date": "2026-06-16",
         "house": "衆",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-19",
@@ -7552,7 +7670,7 @@ window.BILLS = [
         "date": "2026-07-16",
         "house": "参",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-17",
@@ -7650,6 +7768,7 @@ window.BILLS = [
   {
     "id": "221-閣法-47",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第47号",
     "type": "閣法",
@@ -7666,8 +7785,8 @@ window.BILLS = [
       "成立",
       "農林水産省",
       "損害賠償額",
-      "計算方法",
-      "有効期間"
+      "有効期間",
+      "計算方法"
     ],
     "timeline": [
       {
@@ -7686,7 +7805,7 @@ window.BILLS = [
         "date": "2026-06-16",
         "house": "衆",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-19",
@@ -7710,7 +7829,7 @@ window.BILLS = [
         "date": "2026-07-16",
         "house": "参",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-17",
@@ -7808,6 +7927,7 @@ window.BILLS = [
   {
     "id": "221-閣法-48",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第48号",
     "type": "閣法",
@@ -7824,10 +7944,10 @@ window.BILLS = [
       "成立",
       "農林水産省",
       "主要食糧の需給",
-      "価格高騰",
+      "加工業者",
       "生産調整",
       "在庫確保",
-      "加工業者"
+      "価格高騰"
     ],
     "timeline": [
       {
@@ -7846,7 +7966,7 @@ window.BILLS = [
         "date": "2026-06-02",
         "house": "衆",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-03",
@@ -7870,7 +7990,7 @@ window.BILLS = [
         "date": "2026-07-07",
         "house": "参",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-08",
@@ -7991,6 +8111,7 @@ window.BILLS = [
   {
     "id": "221-閣法-49",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第49号",
     "type": "閣法",
@@ -8008,10 +8129,10 @@ window.BILLS = [
       "環境省",
       "太陽電池廃棄物の再資源化",
       "リサイクル",
-      "再資源化",
       "太陽電池",
-      "処理体制",
-      "報告制度"
+      "報告制度",
+      "再資源化",
+      "処理体制"
     ],
     "timeline": [
       {
@@ -8030,7 +8151,7 @@ window.BILLS = [
         "date": "2026-04-28",
         "house": "衆",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-12",
@@ -8054,7 +8175,7 @@ window.BILLS = [
         "date": "2026-05-28",
         "house": "参",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-29",
@@ -8162,12 +8283,31 @@ window.BILLS = [
         "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260430069.pdf",
         "conf": 92,
         "confNote": "自動紐付け: 法案名が一致"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "諸外国の太陽光パネルリサイクル政策",
+        "url": "https://dl.ndl.go.jp/pid/14949740",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 参考文書は太陽光パネルのリサイクル政策に関する諸外国の動向を調査したものであり、法案の趣旨目的に合致しており、特に拡大生産者責任（EPR）などの制度設計の参考にできるため。"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "環境行政の主な課題",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260316165.pdf",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.88）／LLM確認済"
       }
     ]
   },
   {
     "id": "221-閣法-50",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第50号",
     "type": "閣法",
@@ -8203,7 +8343,7 @@ window.BILLS = [
         "date": "2026-05-15",
         "house": "衆",
         "event": "安全保障委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-19",
@@ -8227,7 +8367,7 @@ window.BILLS = [
         "date": "2026-06-09",
         "house": "参",
         "event": "外交防衛委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-10",
@@ -8334,6 +8474,7 @@ window.BILLS = [
   {
     "id": "221-閣法-51",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第51号",
     "type": "閣法",
@@ -8350,8 +8491,8 @@ window.BILLS = [
       "成立",
       "警察庁",
       "犯罪による収益の移転防止",
-      "預金口座",
-      "代行業者"
+      "代行業者",
+      "預金口座"
     ],
     "timeline": [
       {
@@ -8370,7 +8511,7 @@ window.BILLS = [
         "date": "2026-04-16",
         "house": "参",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-17",
@@ -8394,7 +8535,7 @@ window.BILLS = [
         "date": "2026-05-29",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-02",
@@ -8492,6 +8633,7 @@ window.BILLS = [
   {
     "id": "221-閣法-52",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第52号",
     "type": "閣法",
@@ -8508,10 +8650,10 @@ window.BILLS = [
       "成立",
       "環境省",
       "南極地域の環境の保護",
-      "対応義務",
       "科学調査",
-      "事前確認",
-      "緊急事態"
+      "対応義務",
+      "緊急事態",
+      "事前確認"
     ],
     "timeline": [
       {
@@ -8530,7 +8672,7 @@ window.BILLS = [
         "date": "2026-04-16",
         "house": "参",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-17",
@@ -8554,7 +8696,7 @@ window.BILLS = [
         "date": "2026-05-29",
         "house": "衆",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-02",
@@ -8632,12 +8774,22 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5279"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "南極環境保護法改正案をめぐる国会論議",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260806133.pdf",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.90）／LLM確認: 参考文書は法案の名称と内容に関する国会論議を直接扱うため、関連性が高い。"
       }
     ]
   },
   {
     "id": "221-閣法-53",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第53号",
     "type": "閣法",
@@ -8655,9 +8807,9 @@ window.BILLS = [
       "内閣官房",
       "情報処理の促進",
       "データベース",
-      "予算管理",
+      "体制強化",
       "関連組織",
-      "体制強化"
+      "予算管理"
     ],
     "timeline": [
       {
@@ -8676,7 +8828,7 @@ window.BILLS = [
         "date": "2026-05-21",
         "house": "衆",
         "event": "地域活性化・こども政策・デジタル社会形成に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-26",
@@ -8700,7 +8852,7 @@ window.BILLS = [
         "date": "2026-07-08",
         "house": "参",
         "event": "デジタル社会の形成及び人工知能の活用等に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-10",
@@ -8819,24 +8971,25 @@ window.BILLS = [
         "cat": "シンクタンク",
         "pub": "RIETI（経済産業研究所）",
         "title": "台湾のAPEC提案プロジェクトにおける気候変動関連性の実証分析――APECプロジェクトデータベースによる悉皆調査――",
-        "url": "http://www.rieti.go.jp/jp/publications/nts/26j044.html?ref=rss",
+        "url": "http://www.rieti.go.jp/jp/publications/summary/26100011.html?ref=rss",
         "conf": 78,
-        "confNote": "自動紐付け: 趣旨キーワード一致（データベース）"
+        "confNote": "自動紐付け: 趣旨キーワード一致（データベース）／LLM確認済"
       },
       {
         "tier": 3,
         "cat": "シンクタンク",
         "pub": "RIETI（経済産業研究所）",
         "title": "台湾のAPEC提案プロジェクトにおける気候変動関連性の実証分析――APECプロジェクトデータベースによる悉皆調査――",
-        "url": "http://www.rieti.go.jp/jp/publications/summary/26100011.html?ref=rss",
+        "url": "http://www.rieti.go.jp/jp/publications/nts/26j044.html?ref=rss",
         "conf": 78,
-        "confNote": "自動紐付け: 趣旨キーワード一致（データベース）"
+        "confNote": "自動紐付け: 趣旨キーワード一致（データベース）／LLM確認済"
       }
     ]
   },
   {
     "id": "221-閣法-54",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第54号",
     "type": "閣法",
@@ -8854,8 +9007,8 @@ window.BILLS = [
       "個人情報保護委員会",
       "身体的特徴",
       "情報提供",
-      "バランス",
-      "統計作成"
+      "統計作成",
+      "バランス"
     ],
     "timeline": [
       {
@@ -8874,7 +9027,7 @@ window.BILLS = [
         "date": "2026-05-21",
         "house": "衆",
         "event": "地域活性化・こども政策・デジタル社会形成に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-26",
@@ -8898,7 +9051,7 @@ window.BILLS = [
         "date": "2026-07-08",
         "house": "参",
         "event": "デジタル社会の形成及び人工知能の活用等に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-10",
@@ -9026,6 +9179,7 @@ window.BILLS = [
   {
     "id": "221-閣法-55",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第55号",
     "type": "閣法",
@@ -9062,7 +9216,7 @@ window.BILLS = [
         "date": "2026-04-24",
         "house": "衆",
         "event": "文部科学委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-04-28",
@@ -9086,7 +9240,7 @@ window.BILLS = [
         "date": "2026-06-09",
         "house": "参",
         "event": "文教科学委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-10",
@@ -9186,6 +9340,7 @@ window.BILLS = [
   {
     "id": "221-閣法-56",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第56号",
     "type": "閣法",
@@ -9204,9 +9359,9 @@ window.BILLS = [
       "労働者災害補償保険法",
       "セーフティネット",
       "年金支給",
-      "事業形態",
       "暫定措置",
-      "労働災害"
+      "労働災害",
+      "加入要件"
     ],
     "timeline": [
       {
@@ -9225,7 +9380,7 @@ window.BILLS = [
         "date": "2026-05-29",
         "house": "衆",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-02",
@@ -9249,7 +9404,7 @@ window.BILLS = [
         "date": "2026-07-09",
         "house": "参",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-10",
@@ -9333,6 +9488,7 @@ window.BILLS = [
   {
     "id": "221-閣法-57",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第57号",
     "type": "閣法",
@@ -9372,7 +9528,7 @@ window.BILLS = [
         "date": "2026-06-10",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-11",
@@ -9396,7 +9552,7 @@ window.BILLS = [
         "date": "2026-07-14",
         "house": "参",
         "event": "財政金融委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-15",
@@ -9519,6 +9675,7 @@ window.BILLS = [
   {
     "id": "221-閣法-58",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第58号",
     "type": "閣法",
@@ -9536,8 +9693,8 @@ window.BILLS = [
       "厚生労働省",
       "ヒトゲノム編集胚",
       "遺伝子変化",
-      "原則禁止",
       "管理指針",
+      "原則禁止",
       "ゲノム"
     ],
     "timeline": [
@@ -9557,7 +9714,7 @@ window.BILLS = [
         "date": "2026-06-12",
         "house": "衆",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-16",
@@ -9581,7 +9738,7 @@ window.BILLS = [
         "date": "2026-07-16",
         "house": "参",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-17",
@@ -9659,12 +9816,22 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5293"
+      },
+      {
+        "tier": 1,
+        "cat": "審議会・検討会",
+        "pub": "厚生労働省",
+        "title": "厚生科学審議会科学技術部会ゲノム編集技術等を用いたヒト受精胚等の臨床利用のあり方に関する専門委員会",
+        "url": "https://www.mhlw.go.jp/stf/shingi/shingi-kousei_467561_00003.html",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.88）／LLM確認: ゲノム編集技術を用いたヒト受精胚の取り扱いに関する専門委員会の報告書は、法案の趣旨であるヒトゲノム編集胚の規制と安全性の確保に直接関連する。"
       }
     ]
   },
   {
     "id": "221-閣法-59",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第59号",
     "type": "閣法",
@@ -9683,8 +9850,8 @@ window.BILLS = [
       "廃棄物の処理",
       "清掃に関する法律",
       "プラスチック",
-      "処分場所",
       "健康被害",
+      "処分場所",
       "連携強化"
     ],
     "timeline": [
@@ -9704,7 +9871,7 @@ window.BILLS = [
         "date": "2026-05-22",
         "house": "衆",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-26",
@@ -9728,7 +9895,7 @@ window.BILLS = [
         "date": "2026-06-11",
         "house": "参",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-12",
@@ -9819,6 +9986,7 @@ window.BILLS = [
   {
     "id": "221-閣法-60",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第60号",
     "type": "閣法",
@@ -9853,7 +10021,7 @@ window.BILLS = [
         "date": "2026-05-22",
         "house": "衆",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-26",
@@ -9877,7 +10045,7 @@ window.BILLS = [
         "date": "2026-06-11",
         "house": "参",
         "event": "環境委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-12",
@@ -9968,6 +10136,7 @@ window.BILLS = [
   {
     "id": "221-閣法-61",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第61号",
     "type": "閣法",
@@ -10002,7 +10171,7 @@ window.BILLS = [
         "date": "2026-06-12",
         "house": "衆",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "修正"
       },
       {
         "date": "2026-06-16",
@@ -10026,7 +10195,7 @@ window.BILLS = [
         "date": "2026-07-16",
         "house": "参",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-17",
@@ -10208,6 +10377,7 @@ window.BILLS = [
   {
     "id": "221-閣法-62",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第62号",
     "type": "閣法",
@@ -10241,7 +10411,7 @@ window.BILLS = [
         "date": "2026-06-03",
         "house": "衆",
         "event": "文部科学委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-04",
@@ -10265,7 +10435,7 @@ window.BILLS = [
         "date": "2026-06-16",
         "house": "参",
         "event": "文教科学委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-17",
@@ -10343,12 +10513,22 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5302"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "2026年著作権法改正の国会論議 －レコード演奏・伝達権の創設に向けた課題－",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260806106.pdf",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 参考文書がレコード演奏・伝達権の創設に向けた課題を論じているため、録音された楽曲の権利保護に関する法案の趣旨に合致している。"
       }
     ]
   },
   {
     "id": "221-閣法-63",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第63号",
     "type": "閣法",
@@ -10386,7 +10566,7 @@ window.BILLS = [
         "date": "2026-06-26",
         "house": "衆",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-30",
@@ -10410,7 +10590,7 @@ window.BILLS = [
         "date": "2026-07-23",
         "house": "参",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-24",
@@ -10505,6 +10685,7 @@ window.BILLS = [
   {
     "id": "221-閣法-64",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "閣法 第64号",
     "type": "閣法",
@@ -10539,7 +10720,7 @@ window.BILLS = [
         "date": "2026-07-10",
         "house": "衆",
         "event": "議院運営委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-10",
@@ -10563,7 +10744,7 @@ window.BILLS = [
         "date": "2026-07-16",
         "house": "参",
         "event": "皇室典範等の一部を改正する法律案特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-17",
@@ -10668,6 +10849,7 @@ window.BILLS = [
   {
     "id": "221-衆法-1",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第1号",
     "type": "衆法",
@@ -10683,8 +10865,8 @@ window.BILLS = [
     "tags": [
       "継続審査",
       "政治資金規正法",
-      "政治活動",
-      "労働組合"
+      "労働組合",
+      "政治活動"
     ],
     "timeline": [
       {
@@ -10703,7 +10885,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "政治改革に関する特別委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -10781,6 +10963,7 @@ window.BILLS = [
   {
     "id": "221-衆法-2",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第2号",
     "type": "衆法",
@@ -10795,8 +10978,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "財政状況",
       "国債発行",
+      "財政状況",
       "予算運営"
     ],
     "timeline": [
@@ -10816,7 +10999,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -10853,12 +11036,31 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105002.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "令和８年度地方財政対策の概要と主な論点 －経済社会構造が変化する中での一般財源総額の確保－",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260303035.pdf",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認: 地方財政対策の議論において、国債発行に関する特別ルールや一般財源の確保は重要な要素であり、地方財政への影響を考慮する際に参考になる。"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "令和8年度予算案の概要",
+        "url": "https://dl.ndl.go.jp/pid/14660844",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.88）／LLM確認: 予算案の概要が国債発行に関する特別ルールを定める法律の審議において、財政状況や必要経費の把握に不可欠な基礎情報となるため。"
       }
     ]
   },
   {
     "id": "221-衆法-3",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第3号",
     "type": "衆法",
@@ -10874,9 +11076,9 @@ window.BILLS = [
     "tags": [
       "廃案",
       "情報収集能力",
-      "国際情勢",
+      "基本方針",
       "体制整備",
-      "基本方針"
+      "国際情勢"
     ],
     "timeline": [
       {
@@ -10895,7 +11097,7 @@ window.BILLS = [
         "date": "2026-04-22",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "否決"
       },
       {
         "date": "2026-04-23",
@@ -10952,6 +11154,7 @@ window.BILLS = [
   {
     "id": "221-衆法-4",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第4号",
     "type": "衆法",
@@ -10998,7 +11201,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -11054,6 +11257,7 @@ window.BILLS = [
   {
     "id": "221-衆法-5",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第5号",
     "type": "衆法",
@@ -11100,7 +11304,7 @@ window.BILLS = [
         "date": "2026-03-31",
         "house": "参",
         "event": "災害対策及び東日本大震災復興特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-03-31",
@@ -11149,6 +11353,7 @@ window.BILLS = [
   {
     "id": "221-衆法-6",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第6号",
     "type": "衆法",
@@ -11182,7 +11387,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "文部科学委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -11225,6 +11430,7 @@ window.BILLS = [
   {
     "id": "221-衆法-7",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第7号",
     "type": "衆法",
@@ -11258,7 +11464,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "厚生労働委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -11331,6 +11537,7 @@ window.BILLS = [
   {
     "id": "221-衆法-8",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第8号",
     "type": "衆法",
@@ -11377,7 +11584,7 @@ window.BILLS = [
         "date": "2026-05-19",
         "house": "参",
         "event": "農林水産委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-20",
@@ -11449,6 +11656,7 @@ window.BILLS = [
   {
     "id": "221-衆法-9",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第9号",
     "type": "衆法",
@@ -11482,7 +11690,7 @@ window.BILLS = [
         "date": "2026-06-12",
         "house": "衆",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "否決"
       },
       {
         "date": "2026-06-16",
@@ -11644,6 +11852,7 @@ window.BILLS = [
   {
     "id": "221-衆法-10",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第10号",
     "type": "衆法",
@@ -11659,11 +11868,11 @@ window.BILLS = [
     "tags": [
       "成立",
       "国会議員の歳費、旅費",
-      "一定期間据",
       "法律改正前",
-      "支給割合",
+      "一定期間据",
       "期末手当",
-      "国会議員"
+      "国会議員",
+      "支給割合"
     ],
     "timeline": [
       {
@@ -11694,7 +11903,7 @@ window.BILLS = [
         "date": "2026-05-29",
         "house": "参",
         "event": "議院運営委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-05-29",
@@ -11750,6 +11959,7 @@ window.BILLS = [
   {
     "id": "221-衆法-11",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第11号",
     "type": "衆法",
@@ -11766,9 +11976,9 @@ window.BILLS = [
       "成立",
       "日本国憲法の改正手続",
       "超短波放送",
+      "国民投票",
       "スムーズ",
       "憲法改正",
-      "国民投票",
       "広報活動"
     ],
     "timeline": [
@@ -11788,7 +11998,7 @@ window.BILLS = [
         "date": "2026-06-18",
         "house": "衆",
         "event": "憲法審査会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-19",
@@ -11812,7 +12022,7 @@ window.BILLS = [
         "date": "2026-07-22",
         "house": "参",
         "event": "憲法審査会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-24",
@@ -11905,6 +12115,7 @@ window.BILLS = [
   {
     "id": "221-衆法-12",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第12号",
     "type": "衆法",
@@ -11938,7 +12149,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "政治改革に関する特別委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -12025,6 +12236,7 @@ window.BILLS = [
   {
     "id": "221-衆法-13",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第13号",
     "type": "衆法",
@@ -12040,9 +12252,9 @@ window.BILLS = [
     "tags": [
       "成立",
       "郵政民営化法",
+      "地域貢献",
       "支援拡充",
       "社会情勢",
-      "地域貢献",
       "株式売却"
     ],
     "timeline": [
@@ -12074,7 +12286,7 @@ window.BILLS = [
         "date": "2026-06-18",
         "house": "参",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-19",
@@ -12137,6 +12349,7 @@ window.BILLS = [
   {
     "id": "221-衆法-14",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第14号",
     "type": "衆法",
@@ -12153,8 +12366,8 @@ window.BILLS = [
       "継続審査",
       "政治資金規正法",
       "パーティー",
-      "政治団体",
-      "政治活動"
+      "政治活動",
+      "政治団体"
     ],
     "timeline": [
       {
@@ -12173,7 +12386,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "政治改革に関する特別委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -12251,6 +12464,7 @@ window.BILLS = [
   {
     "id": "221-衆法-15",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第15号",
     "type": "衆法",
@@ -12300,7 +12514,7 @@ window.BILLS = [
         "date": "2026-06-19",
         "house": "参",
         "event": "議院運営委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-19",
@@ -12356,6 +12570,7 @@ window.BILLS = [
   {
     "id": "221-衆法-16",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第16号",
     "type": "衆法",
@@ -12370,8 +12585,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "社会情勢",
-      "軽自動車"
+      "軽自動車",
+      "社会情勢"
     ],
     "timeline": [
       {
@@ -12390,7 +12605,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -12433,6 +12648,7 @@ window.BILLS = [
   {
     "id": "221-衆法-17",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第17号",
     "type": "衆法",
@@ -12468,7 +12684,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -12511,6 +12727,7 @@ window.BILLS = [
   {
     "id": "221-衆法-18",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第18号",
     "type": "衆法",
@@ -12544,7 +12761,7 @@ window.BILLS = [
         "date": "2026-06-26",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-30",
@@ -12568,7 +12785,7 @@ window.BILLS = [
         "date": "2026-07-16",
         "house": "参",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-17",
@@ -12659,6 +12876,7 @@ window.BILLS = [
   {
     "id": "221-衆法-19",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第19号",
     "type": "衆法",
@@ -12676,9 +12894,9 @@ window.BILLS = [
       "自動車盗難対策",
       "自動車盗難対策等の推進",
       "自動車盗難",
+      "基本方針",
       "集団窃盗",
-      "盗難被害",
-      "基本方針"
+      "盗難被害"
     ],
     "timeline": [
       {
@@ -12697,7 +12915,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -12740,6 +12958,7 @@ window.BILLS = [
   {
     "id": "221-衆法-20",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第20号",
     "type": "衆法",
@@ -12776,7 +12995,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -12819,6 +13038,7 @@ window.BILLS = [
   {
     "id": "221-衆法-21",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第21号",
     "type": "衆法",
@@ -12853,7 +13073,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "法務委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -12896,6 +13116,7 @@ window.BILLS = [
   {
     "id": "221-衆法-22",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第22号",
     "type": "衆法",
@@ -12911,8 +13132,8 @@ window.BILLS = [
     "tags": [
       "成立",
       "有人国境離島地域の保全",
-      "対象地域",
       "地域社会",
+      "対象地域",
       "管理強化",
       "観光促進"
     ],
@@ -12945,7 +13166,7 @@ window.BILLS = [
         "date": "2026-07-07",
         "house": "参",
         "event": "内閣委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-08",
@@ -13001,6 +13222,7 @@ window.BILLS = [
   {
     "id": "221-衆法-23",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第23号",
     "type": "衆法",
@@ -13049,7 +13271,7 @@ window.BILLS = [
         "date": "2026-07-14",
         "house": "参",
         "event": "文教科学委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-15",
@@ -13107,6 +13329,7 @@ window.BILLS = [
   {
     "id": "221-衆法-24",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第24号",
     "type": "衆法",
@@ -13121,12 +13344,12 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "大都市制度",
       "少子高齢化",
-      "行政運営",
-      "人口減少",
+      "大都市制度",
       "自治体間",
-      "役割分担"
+      "行政運営",
+      "役割分担",
+      "人口減少"
     ],
     "timeline": [
       {
@@ -13145,7 +13368,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "地域活性化・こども政策・デジタル社会形成に関する特別委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -13210,21 +13433,13 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105024.htm"
-      },
-      {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "経済はどこから縮むのか：人口減少下、地方小都市で加速する産業喪失と、職の東京一極集中",
-        "url": "http://www.rieti.go.jp/jp/publications/nts/26e063.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（人口減少）"
       }
     ]
   },
   {
     "id": "221-衆法-25",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第25号",
     "type": "衆法",
@@ -13240,8 +13455,8 @@ window.BILLS = [
     "tags": [
       "廃案",
       "議会議員",
-      "住民投票",
-      "市町村長"
+      "市町村長",
+      "住民投票"
     ],
     "timeline": [
       {
@@ -13260,7 +13475,7 @@ window.BILLS = [
         "date": "2026-07-15",
         "house": "衆",
         "event": "地域活性化・こども政策・デジタル社会形成に関する特別委員会 議決",
-        "result": ""
+        "result": "否決"
       },
       {
         "date": "2026-07-15",
@@ -13324,6 +13539,7 @@ window.BILLS = [
   {
     "id": "221-衆法-26",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第26号",
     "type": "衆法",
@@ -13340,10 +13556,10 @@ window.BILLS = [
       "成立",
       "インターネット",
       "生成画像",
+      "資料配布",
       "選挙活動",
-      "表示義務",
       "選挙環境",
-      "資料配布"
+      "表示義務"
     ],
     "timeline": [
       {
@@ -13362,7 +13578,7 @@ window.BILLS = [
         "date": "2026-06-25",
         "house": "衆",
         "event": "政治改革に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-06-26",
@@ -13386,7 +13602,7 @@ window.BILLS = [
         "date": "2026-07-10",
         "house": "参",
         "event": "政治改革に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-13",
@@ -13442,6 +13658,7 @@ window.BILLS = [
   {
     "id": "221-衆法-27",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第27号",
     "type": "衆法",
@@ -13474,7 +13691,7 @@ window.BILLS = [
         "date": "2026-07-15",
         "house": "衆",
         "event": "地域活性化・こども政策・デジタル社会形成に関する特別委員会 議決",
-        "result": ""
+        "result": "修正"
       },
       {
         "date": "2026-07-15",
@@ -13498,7 +13715,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "参",
         "event": "沖縄・北方問題及び地方に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-24",
@@ -13610,6 +13827,7 @@ window.BILLS = [
   {
     "id": "221-衆法-28",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第28号",
     "type": "衆法",
@@ -13644,7 +13862,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "政治改革に関する特別委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -13707,25 +13925,26 @@ window.BILLS = [
         "tier": 2,
         "cat": "立法補佐機関",
         "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
-        "title": "米英仏独の国会議員の選挙制度 : 概要とその戦後の変遷（資料）",
-        "url": "https://dl.ndl.go.jp/pid/14953090",
+        "title": "ドイツ連邦議会の新選挙制度―超過・調整議席の廃止と2025年総選挙―",
+        "url": "https://dl.ndl.go.jp/pid/14439388",
         "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（選挙制度）／LLM確認: 米英仏独の国会議員の選挙制度に関する比較研究は、衆議院の選挙制度見直しや定数削減を議論する際の国際比較の視点を提供するため関連します。"
+        "confNote": "自動紐付け: 趣旨キーワード一致（選挙制度）／LLM確認: ドイツの連邦議会における超過・調整議席の廃止を含む新選挙制度への移行に関する議論は、日本の衆議院選挙制度改革および定数削減に向けた検討材料として直接的に関連する。"
       },
       {
         "tier": 2,
         "cat": "立法補佐機関",
         "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
-        "title": "ドイツ連邦議会の新選挙制度―超過・調整議席の廃止と2025年総選挙―",
-        "url": "https://dl.ndl.go.jp/pid/14439388",
+        "title": "米英仏独の国会議員の選挙制度 : 概要とその戦後の変遷（資料）",
+        "url": "https://dl.ndl.go.jp/pid/14953090",
         "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（選挙制度）／LLM確認: ドイツの連邦議会における超過・調整議席の廃止を含む新選挙制度への移行に関する議論は、日本の衆議院選挙制度改革および定数削減に向けた検討材料として直接的に関連する。"
+        "confNote": "自動紐付け: 趣旨キーワード一致（選挙制度）／LLM確認: 米英仏独の国会議員の選挙制度に関する比較研究は、衆議院の選挙制度見直しや定数削減を議論する際の国際比較の視点を提供するため関連します。"
       }
     ]
   },
   {
     "id": "221-衆法-29",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第29号",
     "type": "衆法",
@@ -13743,10 +13962,10 @@ window.BILLS = [
       "医療的ケア児",
       "その家族に対する支援",
       "重症心身障害者",
-      "日常生活",
-      "社会生活",
       "就労支援",
-      "基本理念"
+      "機能向上",
+      "支援体制",
+      "日常生活"
     ],
     "timeline": [
       {
@@ -13777,7 +13996,7 @@ window.BILLS = [
         "date": "2026-07-22",
         "house": "参",
         "event": "こども・子育て・若者活躍に関する特別委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-24",
@@ -13820,21 +14039,13 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105029.htm"
-      },
-      {
-        "tier": 2,
-        "cat": "立法補佐機関",
-        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
-        "title": "データセンターをめぐる動向",
-        "url": "https://dl.ndl.go.jp/pid/14632278",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（センター）"
       }
     ]
   },
   {
     "id": "221-衆法-30",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第30号",
     "type": "衆法",
@@ -13868,7 +14079,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "財務金融委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -13911,6 +14122,7 @@ window.BILLS = [
   {
     "id": "221-衆法-31",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第31号",
     "type": "衆法",
@@ -13925,8 +14137,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "最低限度",
-      "物価高騰"
+      "物価高騰",
+      "最低限度"
     ],
     "timeline": [
       {
@@ -13945,7 +14157,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "総務委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -13982,12 +14194,22 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105031.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "個人住民税における課税最低限と非課税限度額制度 －制度の概要と近年の改正を踏まえて－",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260806162.pdf",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.88）／LLM確認: 個人住民税の課税最低限と非課税限度額制度に関する技術的な詳細や近年の改正状況を把握するための基礎知識として関連する。"
       }
     ]
   },
   {
     "id": "221-衆法-32",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第32号",
     "type": "衆法",
@@ -14003,10 +14225,10 @@ window.BILLS = [
     "tags": [
       "継続審査",
       "受託中小企業振興法",
-      "経営環境",
-      "人材育成",
       "中小企業",
-      "サポート"
+      "サポート",
+      "人材育成",
+      "経営環境"
     ],
     "timeline": [
       {
@@ -14025,7 +14247,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "経済産業委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -14062,21 +14284,13 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105032.htm"
-      },
-      {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "日本の中小企業の災害復興における認識の乖離と自発的戦略",
-        "url": "http://www.rieti.go.jp/jp/publications/nts/26e066.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（中小企業）"
       }
     ]
   },
   {
     "id": "221-衆法-33",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第33号",
     "type": "衆法",
@@ -14113,7 +14327,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "経済産業委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -14150,21 +14364,13 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105033.htm"
-      },
-      {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "日本の中小企業の災害復興における認識の乖離と自発的戦略",
-        "url": "http://www.rieti.go.jp/jp/publications/nts/26e066.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（中小企業）"
       }
     ]
   },
   {
     "id": "221-衆法-34",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第34号",
     "type": "衆法",
@@ -14199,7 +14405,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "議院運営委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -14242,6 +14448,7 @@ window.BILLS = [
   {
     "id": "221-衆法-35",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第35号",
     "type": "衆法",
@@ -14256,8 +14463,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "準備時間",
-      "スムーズ"
+      "スムーズ",
+      "準備時間"
     ],
     "timeline": [
       {
@@ -14276,7 +14483,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "政治改革に関する特別委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -14326,6 +14533,7 @@ window.BILLS = [
   {
     "id": "221-衆法-36",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第36号",
     "type": "衆法",
@@ -14342,8 +14550,8 @@ window.BILLS = [
       "継続審査",
       "非居住住宅税",
       "超短期所有住宅",
-      "住宅価格",
-      "住宅不足"
+      "住宅不足",
+      "住宅価格"
     ],
     "timeline": [
       {
@@ -14362,7 +14570,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -14408,12 +14616,22 @@ window.BILLS = [
         "url": "https://dl.ndl.go.jp/pid/14952368",
         "conf": 71,
         "confNote": "自動紐付け: 趣旨キーワード一致（住宅価格）／LLM確認: 住宅価格の高騰（特に東京23区）と投資家による購入が課題となっている現状を分析しており、法案の目的である投機的動きの抑制と住宅供給促進への対策策定に直接関連する。"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "空き家対策の現状と課題―空き家の管理・活用拡大に向けた状況―",
+        "url": "https://dl.ndl.go.jp/pid/14461454",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.88）／LLM確認: 空き家問題への対応策としての法案内容と、空き家管理・活用に関する調査報告書の内容が直接関連する。"
       }
     ]
   },
   {
     "id": "221-衆法-37",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第37号",
     "type": "衆法",
@@ -14428,11 +14646,11 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "自動車産業",
       "自動車分野",
+      "自動車産業",
       "脱炭素社会",
-      "脱炭素化",
-      "基本方針"
+      "基本方針",
+      "脱炭素化"
     ],
     "timeline": [
       {
@@ -14451,7 +14669,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "衆",
         "event": "経済産業委員会 議決",
-        "result": ""
+        "result": "継続審査"
       },
       {
         "date": "2026-07-24",
@@ -14488,39 +14706,13 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105037.htm"
-      },
-      {
-        "tier": 2,
-        "cat": "立法補佐機関",
-        "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
-        "title": "我が国の電力供給に関する制度―安定供給と脱炭素化に向けた動向―",
-        "url": "https://dl.ndl.go.jp/pid/14118369",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（脱炭素化）／LLM確認: 自動車産業の脱炭素化には、電力供給体制の変革や再生可能エネルギーへの転換といったエネルギー政策との密接な関係があるため。"
-      },
-      {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "脱炭素化とエネルギー安全保障を踏まえたエネルギー需給シナリオ分析",
-        "url": "http://www.rieti.go.jp/jp/publications/nts/26j043.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（脱炭素化）"
-      },
-      {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "脱炭素化とエネルギー安全保障を踏まえたエネルギー需給シナリオ分析",
-        "url": "http://www.rieti.go.jp/jp/publications/summary/26100010.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（脱炭素化）"
       }
     ]
   },
   {
     "id": "221-衆法-38",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "衆法 第38号",
     "type": "衆法",
@@ -14535,9 +14727,9 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "成立",
-      "資格取得",
+      "工事監理",
       "契約内容",
-      "工事監理"
+      "資格取得"
     ],
     "timeline": [
       {
@@ -14568,7 +14760,7 @@ window.BILLS = [
         "date": "2026-07-23",
         "house": "参",
         "event": "国土交通委員会 議決",
-        "result": ""
+        "result": "可決"
       },
       {
         "date": "2026-07-24",
@@ -14624,6 +14816,7 @@ window.BILLS = [
   {
     "id": "221-参法-1",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第1号",
     "type": "参法",
@@ -14677,6 +14870,7 @@ window.BILLS = [
   {
     "id": "221-参法-2",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第2号",
     "type": "参法",
@@ -14730,6 +14924,7 @@ window.BILLS = [
   {
     "id": "221-参法-3",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第3号",
     "type": "参法",
@@ -14776,12 +14971,31 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22106003.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "令和８年度税制改正の概要 －「強い経済」の実現に向けた税制改正－",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260303019.pdf",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.87）／LLM確認: 「令和8年度税制改正の概要」というタイトルから、所得税法の一部を改正する法律案（扶養控除の拡大）に関する議論や方針が記載されている可能性が高いため。"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "令和8年度税制改正案の概要",
+        "url": "https://dl.ndl.go.jp/pid/14660842",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.87）／LLM確認: 税制改正案の概要に関する公的な調査報告書であり、所得税法の一部を改正する法律案（扶養控除の拡大）の内容が議論される場である税制改正において関連性が高い。"
       }
     ]
   },
   {
     "id": "221-参法-4",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第4号",
     "type": "参法",
@@ -14833,6 +15047,7 @@ window.BILLS = [
   {
     "id": "221-参法-5",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第5号",
     "type": "参法",
@@ -14895,6 +15110,7 @@ window.BILLS = [
   {
     "id": "221-参法-6",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第6号",
     "type": "参法",
@@ -14910,10 +15126,10 @@ window.BILLS = [
     "tags": [
       "審査未了",
       "重要経済安保情報の保護",
-      "外国政府",
-      "調査項目",
       "保護体制",
+      "外国政府",
       "機密情報",
+      "調査項目",
       "重要書類",
       "情報漏洩"
     ],
@@ -14952,6 +15168,7 @@ window.BILLS = [
   {
     "id": "221-参法-7",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第7号",
     "type": "参法",
@@ -15002,6 +15219,7 @@ window.BILLS = [
   {
     "id": "221-参法-8",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第8号",
     "type": "参法",
@@ -15053,6 +15271,7 @@ window.BILLS = [
   {
     "id": "221-参法-9",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第9号",
     "type": "参法",
@@ -15105,6 +15324,7 @@ window.BILLS = [
   {
     "id": "221-参法-10",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第10号",
     "type": "参法",
@@ -15121,8 +15341,8 @@ window.BILLS = [
       "審査未了",
       "児童扶養手当法",
       "児童扶養手当",
-      "所得制限",
-      "就労促進"
+      "就労促進",
+      "所得制限"
     ],
     "timeline": [
       {
@@ -15159,6 +15379,7 @@ window.BILLS = [
   {
     "id": "221-参法-11",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第11号",
     "type": "参法",
@@ -15167,7 +15388,7 @@ window.BILLS = [
     "ministry": "—（議員提出）",
     "submittedOn": "2026-06-24",
     "status": "審査未了",
-    "statusDetail": "審査未了（閉会・委員会審査中）",
+    "statusDetail": "審査未了（閉会）",
     "confidence": 0,
     "summary": "食料の安定供給と自給率向上のため、公的な研究機関が質の高い農作物の新種を継続的に開発できる体制を整えます。これにより、持続可能な農業の発展を目指します。",
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
@@ -15175,8 +15396,8 @@ window.BILLS = [
       "審査未了",
       "自給率向上",
       "研究機関",
-      "安定供給",
-      "持続可能"
+      "持続可能",
+      "安定供給"
     ],
     "timeline": [
       {
@@ -15249,6 +15470,7 @@ window.BILLS = [
   {
     "id": "221-参法-12",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第12号",
     "type": "参法",
@@ -15264,8 +15486,8 @@ window.BILLS = [
     "tags": [
       "審査未了",
       "政治資金規正法",
-      "政治活動",
-      "労働組合"
+      "労働組合",
+      "政治活動"
     ],
     "timeline": [
       {
@@ -15302,6 +15524,7 @@ window.BILLS = [
   {
     "id": "221-参法-13",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第13号",
     "type": "参法",
@@ -15318,8 +15541,8 @@ window.BILLS = [
       "審査未了",
       "公職選挙法及び地方自治法",
       "地方議会議員",
-      "立候補年齢",
-      "参議院議員"
+      "参議院議員",
+      "立候補年齢"
     ],
     "timeline": [
       {
@@ -15356,6 +15579,7 @@ window.BILLS = [
   {
     "id": "221-参法-14",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第14号",
     "type": "参法",
@@ -15409,6 +15633,7 @@ window.BILLS = [
   {
     "id": "221-参法-15",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第15号",
     "type": "参法",
@@ -15460,6 +15685,7 @@ window.BILLS = [
   {
     "id": "221-参法-16",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第16号",
     "type": "参法",
@@ -15510,6 +15736,7 @@ window.BILLS = [
   {
     "id": "221-参法-17",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第17号",
     "type": "参法",
@@ -15563,6 +15790,7 @@ window.BILLS = [
   {
     "id": "221-参法-18",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第18号",
     "type": "参法",
@@ -15577,8 +15805,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "廃案",
-      "選挙期間",
       "スムーズ",
+      "選挙期間",
       "住民投票"
     ],
     "timeline": [
@@ -15598,7 +15826,7 @@ window.BILLS = [
         "date": "2026-07-24",
         "house": "参",
         "event": "沖縄・北方問題及び地方に関する特別委員会 議決",
-        "result": ""
+        "result": "否決"
       },
       {
         "date": "2026-07-24",
@@ -15662,6 +15890,7 @@ window.BILLS = [
   {
     "id": "221-参法-19",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第19号",
     "type": "参法",
@@ -15715,6 +15944,7 @@ window.BILLS = [
   {
     "id": "221-参法-20",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第20号",
     "type": "参法",
@@ -15723,18 +15953,18 @@ window.BILLS = [
     "ministry": "—（議員提出）",
     "submittedOn": "2026-07-15",
     "status": "審査未了",
-    "statusDetail": "審査未了（閉会・委員会審査中）",
+    "statusDetail": "審査未了（閉会）",
     "confidence": 0,
     "summary": "少子高齢化や人口減少への対応のため、自治体間の役割分担を明確にして行政運営の効率化を図ります。あわせて、地域の拠点となる都市の機能を高めるための新しい大都市制度を整備し、地方の発展を促すことを目的としています。",
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "審査未了",
-      "大都市制度",
       "少子高齢化",
-      "行政運営",
-      "人口減少",
+      "大都市制度",
       "自治体間",
-      "役割分担"
+      "行政運営",
+      "役割分担",
+      "人口減少"
     ],
     "timeline": [
       {
@@ -15799,21 +16029,13 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22106020.htm"
-      },
-      {
-        "tier": 3,
-        "cat": "シンクタンク",
-        "pub": "RIETI（経済産業研究所）",
-        "title": "経済はどこから縮むのか：人口減少下、地方小都市で加速する産業喪失と、職の東京一極集中",
-        "url": "http://www.rieti.go.jp/jp/publications/nts/26e063.html?ref=rss",
-        "conf": 71,
-        "confNote": "自動紐付け: 趣旨キーワード一致（人口減少）"
       }
     ]
   },
   {
     "id": "221-参法-21",
     "diet": "221回",
+    "submittedDiet": "221回",
     "dietLabel": "第221回",
     "no": "参法 第21号",
     "type": "参法",
@@ -15951,6 +16173,15 @@ window.BILLS = [
         "pub": "内閣法制局",
         "title": "提案理由・概要（詳細ページ）",
         "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5343"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "飲食料品の消費税減税をめぐる論点",
+        "url": "https://dl.ndl.go.jp/pid/15019906",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.90）／LLM確認済"
       }
     ]
   },
@@ -17897,8 +18128,8 @@ window.BILLS = [
     "tags": [
       "審議中",
       "政治資金規正法",
-      "政治活動",
-      "労働組合"
+      "労働組合",
+      "政治活動"
     ],
     "timeline": [
       {
@@ -17963,8 +18194,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "審議中",
-      "財政状況",
       "国債発行",
+      "財政状況",
       "予算運営"
     ],
     "timeline": [
@@ -18002,6 +18233,24 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105002.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "令和８年度地方財政対策の概要と主な論点 －経済社会構造が変化する中での一般財源総額の確保－",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260303035.pdf",
+        "conf": 70,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.89）／LLM確認済"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "令和8年度予算案の概要",
+        "url": "https://dl.ndl.go.jp/pid/14660844",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.88）／LLM確認済"
       }
     ]
   },
@@ -18231,8 +18480,8 @@ window.BILLS = [
       "審議中",
       "政治資金規正法",
       "パーティー",
-      "政治団体",
-      "政治活動"
+      "政治活動",
+      "政治団体"
     ],
     "timeline": [
       {
@@ -18297,8 +18546,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "審議中",
-      "社会情勢",
-      "軽自動車"
+      "軽自動車",
+      "社会情勢"
     ],
     "timeline": [
       {
@@ -18426,9 +18675,9 @@ window.BILLS = [
       "自動車盗難対策",
       "自動車盗難対策等の推進",
       "自動車盗難",
+      "基本方針",
       "集団窃盗",
-      "盗難被害",
-      "基本方針"
+      "盗難被害"
     ],
     "timeline": [
       {
@@ -18613,12 +18862,12 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "審議中",
-      "大都市制度",
       "少子高齢化",
-      "行政運営",
-      "人口減少",
+      "大都市制度",
       "自治体間",
-      "役割分担"
+      "行政運営",
+      "役割分担",
+      "人口減少"
     ],
     "timeline": [
       {
@@ -18834,8 +19083,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "審議中",
-      "最低限度",
-      "物価高騰"
+      "物価高騰",
+      "最低限度"
     ],
     "timeline": [
       {
@@ -18879,6 +19128,15 @@ window.BILLS = [
         "pub": "衆議院",
         "title": "提出時法律案・本文",
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105031.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "参議院 常任委員会調査室「立法と調査」",
+        "title": "個人住民税における課税最低限と非課税限度額制度 －制度の概要と近年の改正を踏まえて－",
+        "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260806162.pdf",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.88）／LLM確認済"
       }
     ]
   },
@@ -18901,10 +19159,10 @@ window.BILLS = [
     "tags": [
       "審議中",
       "受託中小企業振興法",
-      "経営環境",
-      "人材育成",
       "中小企業",
-      "サポート"
+      "サポート",
+      "人材育成",
+      "経営環境"
     ],
     "timeline": [
       {
@@ -19121,8 +19379,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "審議中",
-      "準備時間",
-      "スムーズ"
+      "スムーズ",
+      "準備時間"
     ],
     "timeline": [
       {
@@ -19189,8 +19447,8 @@ window.BILLS = [
       "審議中",
       "非居住住宅税",
       "超短期所有住宅",
-      "住宅価格",
-      "住宅不足"
+      "住宅不足",
+      "住宅価格"
     ],
     "timeline": [
       {
@@ -19236,6 +19494,15 @@ window.BILLS = [
         "url": "https://dl.ndl.go.jp/pid/14952368",
         "conf": 71,
         "confNote": "自動紐付け: 趣旨キーワード一致（住宅価格）"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "空き家対策の現状と課題―空き家の管理・活用拡大に向けた状況―",
+        "url": "https://dl.ndl.go.jp/pid/14461454",
+        "conf": 69,
+        "confNote": "自動紐付け: 意味類似・要確認候補（multilingual-e5 0.88）／LLM確認済"
       }
     ]
   },
@@ -19257,11 +19524,11 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "審議中",
-      "自動車産業",
       "自動車分野",
+      "自動車産業",
       "脱炭素社会",
-      "脱炭素化",
-      "基本方針"
+      "基本方針",
+      "脱炭素化"
     ],
     "timeline": [
       {
