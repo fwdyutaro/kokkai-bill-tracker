@@ -189,10 +189,10 @@ window.BILLS = [
       "成立",
       "財務省",
       "東日本大震災",
-      "支援体制",
-      "実施期間",
+      "復興状況",
       "資金確保",
-      "復興状況"
+      "実施期間",
+      "支援体制"
     ],
     "timeline": [
       {
@@ -372,10 +372,10 @@ window.BILLS = [
       "成立",
       "財務省",
       "研究開発",
+      "中所得者",
       "優遇措置",
       "住宅購入",
-      "設備投資",
-      "中所得者"
+      "設備投資"
     ],
     "timeline": [
       {
@@ -553,9 +553,9 @@ window.BILLS = [
       "成立",
       "総務省",
       "自動車関連",
-      "税制見直",
+      "経済状況",
       "支援強化",
-      "経済状況"
+      "税制見直"
     ],
     "timeline": [
       {
@@ -865,10 +865,10 @@ window.BILLS = [
       "財務省",
       "関税定率法",
       "個人用荷物",
-      "経済情勢",
       "適用期限",
       "通関業務",
-      "暫定関税"
+      "管理体制",
+      "経済情勢"
     ],
     "timeline": [
       {
@@ -1031,12 +1031,12 @@ window.BILLS = [
     "tags": [
       "成立",
       "金融庁",
-      "資金提供",
       "経営基盤",
       "人口減少",
+      "資金提供",
       "協同組織",
-      "資本増強",
-      "社会情勢"
+      "社会情勢",
+      "資本増強"
     ],
     "timeline": [
       {
@@ -1526,8 +1526,8 @@ window.BILLS = [
       "在外公館の名称",
       "外務公務員",
       "所在地名称",
-      "勤務形態",
       "単身赴任",
+      "勤務形態",
       "ラトビア"
     ],
     "timeline": [
@@ -1679,8 +1679,8 @@ window.BILLS = [
       "農林水産省",
       "日本中央競馬会",
       "特別積立金",
-      "財源確保",
-      "特例措置"
+      "特例措置",
+      "財源確保"
     ],
     "timeline": [
       {
@@ -1837,9 +1837,9 @@ window.BILLS = [
       "成立",
       "農林水産省",
       "日本中央競馬会法",
-      "運営体制",
+      "持続可能",
       "外部利用",
-      "持続可能"
+      "運営体制"
     ],
     "timeline": [
       {
@@ -1996,8 +1996,8 @@ window.BILLS = [
       "成立",
       "内閣官房",
       "防災庁設置法",
-      "専門組織",
       "スムーズ",
+      "専門組織",
       "行政運営"
     ],
     "timeline": [
@@ -2411,12 +2411,12 @@ window.BILLS = [
     "tags": [
       "成立",
       "経済産業省",
-      "国際情勢",
-      "貿易保険",
       "海外市場",
       "安定確保",
       "事業内容",
-      "重要物資"
+      "貿易保険",
+      "国際情勢",
+      "認定制度"
     ],
     "timeline": [
       {
@@ -2587,9 +2587,9 @@ window.BILLS = [
       "成立",
       "国土交通省",
       "物資の流通の効率化",
-      "中継輸送",
       "トラック",
-      "運送体制"
+      "運送体制",
+      "中継輸送"
     ],
     "timeline": [
       {
@@ -2733,8 +2733,8 @@ window.BILLS = [
       "環境省",
       "環境省設置法",
       "スムーズ",
-      "地方拠点",
-      "行政運営"
+      "行政運営",
+      "地方拠点"
     ],
     "timeline": [
       {
@@ -2878,10 +2878,10 @@ window.BILLS = [
       "防衛省",
       "防衛省設置法",
       "防衛副大臣",
-      "組織再編",
+      "人材確保",
       "任務遂行",
       "人員調整",
-      "人材確保"
+      "組織再編"
     ],
     "timeline": [
       {
@@ -3191,10 +3191,10 @@ window.BILLS = [
       "法務省",
       "短期滞在者",
       "出入国管理",
-      "在留資格",
+      "入国審査",
       "認証制度",
       "管理体制",
-      "入国審査"
+      "在留資格"
     ],
     "timeline": [
       {
@@ -3510,9 +3510,9 @@ window.BILLS = [
       "国土交通省",
       "都市再生特別措置法",
       "所有者不明",
+      "公共施設",
       "管理体制",
-      "地域主導",
-      "公共施設"
+      "地域主導"
     ],
     "timeline": [
       {
@@ -3801,8 +3801,8 @@ window.BILLS = [
       "内閣官房",
       "国家情報会議設置法",
       "国家情報会議",
-      "業務内容",
-      "重要事項"
+      "重要事項",
+      "業務内容"
     ],
     "timeline": [
       {
@@ -4061,8 +4061,8 @@ window.BILLS = [
       "健康保険法",
       "医療保険制度",
       "労働環境改善",
-      "持続可能",
       "医療機関",
+      "持続可能",
       "スタッフ"
     ],
     "timeline": [
@@ -4255,11 +4255,11 @@ window.BILLS = [
       "成立",
       "経済産業省",
       "産業技術力強化法",
-      "支援体制",
-      "研究機関",
-      "研究開発",
       "産業技術",
-      "認定手続"
+      "研究開発",
+      "認定手続",
+      "研究機関",
+      "支援体制"
     ],
     "timeline": [
       {
@@ -4720,9 +4720,9 @@ window.BILLS = [
       "農林水産省",
       "農業近代化資金融通法",
       "生産性向上",
-      "スムーズ",
+      "規模拡大",
       "長期融資",
-      "規模拡大"
+      "スムーズ"
     ],
     "timeline": [
       {
@@ -4867,9 +4867,9 @@ window.BILLS = [
       "株式会社国際協力銀行法",
       "安全保障環境",
       "輸送網強化",
-      "基盤整備",
+      "調査研究",
       "支援体制",
-      "調査研究"
+      "官民連携"
     ],
     "timeline": [
       {
@@ -5223,10 +5223,10 @@ window.BILLS = [
       "成立",
       "総務省",
       "関連事業者",
-      "処分期限",
+      "支援機構",
       "経営安定",
-      "国内企業",
-      "支援機構"
+      "処分期限",
+      "国内企業"
     ],
     "timeline": [
       {
@@ -5379,8 +5379,8 @@ window.BILLS = [
       "総務省",
       "携帯電話",
       "音声以外",
-      "不正利用",
-      "本人確認"
+      "本人確認",
+      "不正利用"
     ],
     "timeline": [
       {
@@ -5544,8 +5544,8 @@ window.BILLS = [
       "郵便事業者",
       "民間事業者",
       "競争環境",
-      "価格上限",
-      "経営状況"
+      "経営状況",
+      "価格上限"
     ],
     "timeline": [
       {
@@ -5851,10 +5851,10 @@ window.BILLS = [
     "tags": [
       "成立",
       "経済産業省",
-      "大規模発電所",
       "電力供給体制",
+      "大規模発電所",
       "協力義務付",
-      "送電設備",
+      "メーカー",
       "資金確保",
       "安定供給"
     ],
@@ -6178,11 +6178,11 @@ window.BILLS = [
       "成立",
       "国土交通省",
       "下水道体制",
-      "持続可能",
-      "自治体間",
-      "管理状況",
       "維持管理",
-      "人口減少"
+      "人口減少",
+      "管理状況",
+      "持続可能",
+      "自治体間"
     ],
     "timeline": [
       {
@@ -6344,8 +6344,8 @@ window.BILLS = [
       "国土交通省",
       "エネルギー",
       "炭素排出量",
-      "認証制度",
       "計画策定",
+      "認証制度",
       "脱炭素化"
     ],
     "timeline": [
@@ -6515,10 +6515,10 @@ window.BILLS = [
     "tags": [
       "成立",
       "内閣府",
-      "ロケット",
-      "人工衛星",
       "損害賠償",
-      "宇宙開発"
+      "人工衛星",
+      "宇宙開発",
+      "ロケット"
     ],
     "timeline": [
       {
@@ -6660,11 +6660,11 @@ window.BILLS = [
     "tags": [
       "成立",
       "内閣府",
-      "最先端技術",
       "関係者同士",
+      "最先端技術",
+      "先端技術",
       "ビジネス",
-      "研究成果",
-      "先端技術"
+      "研究成果"
     ],
     "timeline": [
       {
@@ -7338,9 +7338,9 @@ window.BILLS = [
       "厚生労働省",
       "社会福祉法",
       "人口減少地域",
-      "有料老人",
-      "資格制度",
       "スタッフ",
+      "資格制度",
+      "有料老人",
       "ニーズ"
     ],
     "timeline": [
@@ -7507,8 +7507,8 @@ window.BILLS = [
       "重要品種の育成",
       "その種苗の生産の振興",
       "生産性向上",
-      "生産環境",
       "研究設備",
+      "供給体制",
       "気候変動"
     ],
     "timeline": [
@@ -7666,8 +7666,8 @@ window.BILLS = [
       "成立",
       "農林水産省",
       "損害賠償額",
-      "有効期間",
-      "計算方法"
+      "計算方法",
+      "有効期間"
     ],
     "timeline": [
       {
@@ -7825,9 +7825,9 @@ window.BILLS = [
       "農林水産省",
       "主要食糧の需給",
       "価格高騰",
-      "加工業者",
+      "生産調整",
       "在庫確保",
-      "生産調整"
+      "加工業者"
     ],
     "timeline": [
       {
@@ -8008,10 +8008,10 @@ window.BILLS = [
       "環境省",
       "太陽電池廃棄物の再資源化",
       "リサイクル",
-      "処理体制",
-      "報告制度",
       "再資源化",
-      "太陽電池"
+      "太陽電池",
+      "処理体制",
+      "報告制度"
     ],
     "timeline": [
       {
@@ -8508,10 +8508,10 @@ window.BILLS = [
       "成立",
       "環境省",
       "南極地域の環境の保護",
+      "対応義務",
       "科学調査",
-      "緊急事態",
       "事前確認",
-      "対応義務"
+      "緊急事態"
     ],
     "timeline": [
       {
@@ -8655,9 +8655,9 @@ window.BILLS = [
       "内閣官房",
       "情報処理の促進",
       "データベース",
-      "体制強化",
+      "予算管理",
       "関連組織",
-      "予算管理"
+      "体制強化"
     ],
     "timeline": [
       {
@@ -8854,8 +8854,8 @@ window.BILLS = [
       "個人情報保護委員会",
       "身体的特徴",
       "情報提供",
-      "統計作成",
-      "バランス"
+      "バランス",
+      "統計作成"
     ],
     "timeline": [
       {
@@ -9203,10 +9203,10 @@ window.BILLS = [
       "厚生労働省",
       "労働者災害補償保険法",
       "セーフティネット",
-      "暫定措置",
       "年金支給",
-      "加入要件",
-      "事業形態"
+      "事業形態",
+      "暫定措置",
+      "労働災害"
     ],
     "timeline": [
       {
@@ -9349,9 +9349,9 @@ window.BILLS = [
       "成立",
       "金融庁",
       "金融商品取引法",
-      "有価証券",
-      "暗号資産",
       "金融商品",
+      "暗号資産",
+      "有価証券",
       "資金供給",
       "不正取引"
     ],
@@ -9536,8 +9536,8 @@ window.BILLS = [
       "厚生労働省",
       "ヒトゲノム編集胚",
       "遺伝子変化",
-      "管理指針",
       "原則禁止",
+      "管理指針",
       "ゲノム"
     ],
     "timeline": [
@@ -9683,9 +9683,9 @@ window.BILLS = [
       "廃棄物の処理",
       "清掃に関する法律",
       "プラスチック",
-      "体制整備",
-      "連携強化",
-      "処分場所"
+      "処分場所",
+      "健康被害",
+      "連携強化"
     ],
     "timeline": [
       {
@@ -10796,8 +10796,8 @@ window.BILLS = [
     "tags": [
       "継続審査",
       "財政状況",
-      "予算運営",
-      "国債発行"
+      "国債発行",
+      "予算運営"
     ],
     "timeline": [
       {
@@ -11345,8 +11345,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "成立",
-      "農林水産",
-      "安定確保"
+      "安定確保",
+      "農林水産"
     ],
     "timeline": [
       {
@@ -11659,11 +11659,11 @@ window.BILLS = [
     "tags": [
       "成立",
       "国会議員の歳費、旅費",
-      "法律改正前",
       "一定期間据",
+      "法律改正前",
+      "支給割合",
       "期末手当",
-      "国会議員",
-      "支給割合"
+      "国会議員"
     ],
     "timeline": [
       {
@@ -11768,8 +11768,8 @@ window.BILLS = [
       "超短波放送",
       "スムーズ",
       "憲法改正",
-      "広報活動",
-      "国民投票"
+      "国民投票",
+      "広報活動"
     ],
     "timeline": [
       {
@@ -12153,8 +12153,8 @@ window.BILLS = [
       "継続審査",
       "政治資金規正法",
       "パーティー",
-      "政治活動",
-      "政治団体"
+      "政治団体",
+      "政治活動"
     ],
     "timeline": [
       {
@@ -12370,8 +12370,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "軽自動車",
-      "社会情勢"
+      "社会情勢",
+      "軽自動車"
     ],
     "timeline": [
       {
@@ -12448,8 +12448,8 @@ window.BILLS = [
     "tags": [
       "継続審査",
       "自動車重量税",
-      "社会情勢",
-      "特例措置"
+      "特例措置",
+      "社会情勢"
     ],
     "timeline": [
       {
@@ -12755,8 +12755,8 @@ window.BILLS = [
     "tags": [
       "継続審査",
       "盗難自動車等の処分の防止",
-      "盗難車両",
       "身元確認",
+      "盗難車両",
       "取引相手"
     ],
     "timeline": [
@@ -12911,10 +12911,10 @@ window.BILLS = [
     "tags": [
       "成立",
       "有人国境離島地域の保全",
-      "観光促進",
+      "対象地域",
       "地域社会",
       "管理強化",
-      "対象地域"
+      "観光促進"
     ],
     "timeline": [
       {
@@ -13017,8 +13017,8 @@ window.BILLS = [
       "成立",
       "通信教育振興法",
       "学校の定時制教育",
-      "高校教育",
-      "役割分担"
+      "役割分担",
+      "高校教育"
     ],
     "timeline": [
       {
@@ -13123,10 +13123,10 @@ window.BILLS = [
       "継続審査",
       "大都市制度",
       "少子高齢化",
-      "自治体間",
-      "役割分担",
+      "行政運営",
       "人口減少",
-      "行政運営"
+      "自治体間",
+      "役割分担"
     ],
     "timeline": [
       {
@@ -13339,11 +13339,11 @@ window.BILLS = [
     "tags": [
       "成立",
       "インターネット",
-      "資料配布",
       "生成画像",
       "選挙活動",
+      "表示義務",
       "選挙環境",
-      "表示義務"
+      "資料配布"
     ],
     "timeline": [
       {
@@ -13743,10 +13743,10 @@ window.BILLS = [
       "医療的ケア児",
       "その家族に対する支援",
       "重症心身障害者",
+      "日常生活",
+      "社会生活",
       "就労支援",
-      "センター",
-      "支援体制",
-      "支援対象"
+      "基本理念"
     ],
     "timeline": [
       {
@@ -14003,10 +14003,10 @@ window.BILLS = [
     "tags": [
       "継続審査",
       "受託中小企業振興法",
+      "経営環境",
       "人材育成",
       "中小企業",
-      "サポート",
-      "経営環境"
+      "サポート"
     ],
     "timeline": [
       {
@@ -14091,10 +14091,10 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "中小企業",
+      "製造現場",
       "産業全体",
       "人手不足",
-      "製造現場"
+      "中小企業"
     ],
     "timeline": [
       {
@@ -14179,8 +14179,8 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "行政機関",
-      "事務作業"
+      "事務作業",
+      "行政機関"
     ],
     "timeline": [
       {
@@ -14342,8 +14342,8 @@ window.BILLS = [
       "継続審査",
       "非居住住宅税",
       "超短期所有住宅",
-      "住宅不足",
-      "住宅価格"
+      "住宅価格",
+      "住宅不足"
     ],
     "timeline": [
       {
@@ -14428,11 +14428,11 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "継続審査",
-      "脱炭素社会",
-      "自動車分野",
       "自動車産業",
-      "基本方針",
-      "脱炭素化"
+      "自動車分野",
+      "脱炭素社会",
+      "脱炭素化",
+      "基本方針"
     ],
     "timeline": [
       {
@@ -14535,9 +14535,9 @@ window.BILLS = [
     "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
     "tags": [
       "成立",
-      "工事監理",
       "資格取得",
-      "契約内容"
+      "契約内容",
+      "工事監理"
     ],
     "timeline": [
       {
@@ -14910,10 +14910,10 @@ window.BILLS = [
     "tags": [
       "審査未了",
       "重要経済安保情報の保護",
-      "保護体制",
       "外国政府",
-      "機密情報",
       "調査項目",
+      "保護体制",
+      "機密情報",
       "重要書類",
       "情報漏洩"
     ],
@@ -15121,8 +15121,8 @@ window.BILLS = [
       "審査未了",
       "児童扶養手当法",
       "児童扶養手当",
-      "就労促進",
-      "所得制限"
+      "所得制限",
+      "就労促進"
     ],
     "timeline": [
       {
@@ -15174,8 +15174,8 @@ window.BILLS = [
     "tags": [
       "審査未了",
       "自給率向上",
-      "安定供給",
       "研究機関",
+      "安定供給",
       "持続可能"
     ],
     "timeline": [
@@ -15318,8 +15318,8 @@ window.BILLS = [
       "審査未了",
       "公職選挙法及び地方自治法",
       "地方議会議員",
-      "参議院議員",
-      "立候補年齢"
+      "立候補年齢",
+      "参議院議員"
     ],
     "timeline": [
       {
@@ -15731,10 +15731,10 @@ window.BILLS = [
       "審査未了",
       "大都市制度",
       "少子高齢化",
-      "自治体間",
-      "役割分担",
+      "行政運営",
       "人口減少",
-      "行政運営"
+      "自治体間",
+      "役割分担"
     ],
     "timeline": [
       {
@@ -15861,6 +15861,3581 @@ window.BILLS = [
         "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22106021.htm"
       }
     ]
+  },
+  {
+    "id": "222-閣法-1",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第1号",
+    "type": "閣法",
+    "title": "租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案",
+    "shortTitle": "租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ…",
+    "ministry": "内閣官房",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会付託待ち",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "内閣官房",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-20",
+        "house": "衆",
+        "event": "財務金融委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "財務金融委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "本会議 採決（多数・起立）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-11-06",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222001.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220012220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209001.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "内閣官房",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.cas.go.jp/jp/houan/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5343"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-2",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第2号",
+    "type": "閣法",
+    "title": "一般職の職員の給与に関する法律等の一部を改正する法律案",
+    "shortTitle": "一般職の職員の給与に関する法律等の一部を改正する法律案",
+    "ministry": "内閣官房",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会審査中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "内閣官房",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-22",
+        "house": "衆",
+        "event": "内閣委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-28",
+        "house": "衆",
+        "event": "内閣委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      },
+      {
+        "date": "2026-11-04",
+        "house": "参",
+        "event": "内閣委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222002.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220022220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209002.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "内閣官房",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.cas.go.jp/jp/houan/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5345"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-3",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第3号",
+    "type": "閣法",
+    "title": "特別職の職員の給与に関する法律及び二千二十七年国際園芸博覧会政府委員の設置に関する臨時措置法の一部を改正する法律案",
+    "shortTitle": "特別職の職員の給与に関する法律及び二千二十七年国際園芸博覧会政府委員の設置に関す…",
+    "ministry": "内閣官房",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会審査中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "内閣官房",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-22",
+        "house": "衆",
+        "event": "内閣委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-28",
+        "house": "衆",
+        "event": "内閣委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（多数・起立）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      },
+      {
+        "date": "2026-11-04",
+        "house": "参",
+        "event": "内閣委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222003.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220032220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209003.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "内閣官房",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.cas.go.jp/jp/houan/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5347"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-4",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第4号",
+    "type": "閣法",
+    "title": "国家公務員災害補償法及び国家公務員共済組合法の一部を改正する法律案",
+    "shortTitle": "国家公務員災害補償法及び国家公務員共済組合法の一部を改正する法律案",
+    "ministry": "内閣官房",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会審査中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "内閣官房",
+      "国家公務員災害補償法",
+      "国家公務員共済組合法",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-22",
+        "house": "衆",
+        "event": "内閣委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-28",
+        "house": "衆",
+        "event": "内閣委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      },
+      {
+        "date": "2026-11-04",
+        "house": "参",
+        "event": "内閣委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222004.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220042220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209004.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "内閣官房",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.cas.go.jp/jp/houan/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5349"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-5",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第5号",
+    "type": "閣法",
+    "title": "地方公務員災害補償法及び地方公務員等共済組合法の一部を改正する法律案",
+    "shortTitle": "地方公務員災害補償法及び地方公務員等共済組合法の一部を改正する法律案",
+    "ministry": "総務省",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会付託待ち",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "総務省",
+      "地方公務員災害補償法",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-27",
+        "house": "衆",
+        "event": "総務委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-29",
+        "house": "衆",
+        "event": "総務委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222005.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220052220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209005.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "総務省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.soumu.go.jp/menu_hourei/k_houan.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5351"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-6",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第6号",
+    "type": "閣法",
+    "title": "裁判官の報酬等に関する法律の一部を改正する法律案",
+    "shortTitle": "裁判官の報酬等に関する法律の一部を改正する法律案",
+    "ministry": "法務省",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会審査中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "法務省",
+      "裁判官の報酬",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-22",
+        "house": "衆",
+        "event": "法務委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-28",
+        "house": "衆",
+        "event": "法務委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      },
+      {
+        "date": "2026-11-04",
+        "house": "参",
+        "event": "法務委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222006.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220062220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 法務委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122205206X00120261021"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 参議院 法務委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122215206X00120261022"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209006.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "法務省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.moj.go.jp/houan1/houan_index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5353"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-7",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第7号",
+    "type": "閣法",
+    "title": "検察官の俸給等に関する法律の一部を改正する法律案",
+    "shortTitle": "検察官の俸給等に関する法律の一部を改正する法律案",
+    "ministry": "法務省",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会審査中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "法務省",
+      "検察官の俸給",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-22",
+        "house": "衆",
+        "event": "法務委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-28",
+        "house": "衆",
+        "event": "法務委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      },
+      {
+        "date": "2026-11-04",
+        "house": "参",
+        "event": "法務委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222007.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220072220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 法務委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122205206X00120261021"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 参議院 法務委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122215206X00120261022"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209007.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "法務省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.moj.go.jp/houan1/houan_index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5355"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-8",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第8号",
+    "type": "閣法",
+    "title": "公立学校の学校医、学校歯科医及び学校薬剤師の公務災害補償に関する法律の一部を改正する法律案",
+    "shortTitle": "公立学校の学校医、学校歯科医及び学校薬剤師の公務災害補償に関する法律の一部を改正…",
+    "ministry": "文部科学省",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会付託待ち",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "文部科学省",
+      "学校薬剤師の公務災害補償",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-27",
+        "house": "衆",
+        "event": "文部科学委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "文部科学委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-11-06",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222008.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220082220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209008.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "文部科学省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.mext.go.jp/b_menu/houan/main.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5357"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-9",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第9号",
+    "type": "閣法",
+    "title": "特定Ｂ型肝炎ウイルス感染者給付金等の支給に関する特別措置法の一部を改正する法律案",
+    "shortTitle": "特定Ｂ型肝炎ウイルス感染者給付金等の支給に関する特別措置法の一部を改正する法律案",
+    "ministry": "厚生労働省",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会付託待ち",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "厚生労働省",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-27",
+        "house": "衆",
+        "event": "厚生労働委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "厚生労働委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-11-06",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222009.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220092220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209009.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "厚生労働省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.mhlw.go.jp/shokanhourei/teishutsuhouan/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5359"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-10",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第10号",
+    "type": "閣法",
+    "title": "防衛省の職員の給与等に関する法律の一部を改正する法律案",
+    "shortTitle": "防衛省の職員の給与等に関する法律の一部を改正する法律案",
+    "ministry": "防衛省",
+    "submittedOn": "2026-10-09",
+    "status": "審議中",
+    "statusDetail": "参・委員会審査中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "防衛省",
+      "防衛省の職員の給与",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-09",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-22",
+        "house": "衆",
+        "event": "安全保障委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-27",
+        "house": "衆",
+        "event": "安全保障委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      },
+      {
+        "date": "2026-11-04",
+        "house": "参",
+        "event": "外交防衛委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222010.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220102220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209010.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "防衛省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.mod.go.jp/j/presiding/houan/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5361"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-11",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第11号",
+    "type": "閣法",
+    "title": "原油等の安定的な輸送の確保のための指定水路の利用の合理化に関する法律案",
+    "shortTitle": "原油等の安定的な輸送の確保のための指定水路の利用の合理化に関する法律案",
+    "ministry": "経済産業省",
+    "submittedOn": "2026-10-13",
+    "status": "審議中",
+    "statusDetail": "審議中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "経済産業省",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-13",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-22",
+        "house": "衆",
+        "event": "経済産業委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "経済産業委員会 議決",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222011.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220112220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209011.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "経済産業省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.meti.go.jp/intro/law/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5363"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-12",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第12号",
+    "type": "閣法",
+    "title": "特定貨物保険契約及び特定船舶保険契約の履行の確保に関する特別措置法案",
+    "shortTitle": "特定貨物保険契約及び特定船舶保険契約の履行の確保に関する特別措置法案",
+    "ministry": "経済産業省",
+    "submittedOn": "2026-10-13",
+    "status": "審議中",
+    "statusDetail": "審議中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "経済産業省",
+      "特定貨物保険契約",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-13",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-22",
+        "house": "衆",
+        "event": "経済産業委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "経済産業委員会 議決",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222012.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220122220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209012.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "経済産業省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.meti.go.jp/intro/law/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5365"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-13",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第13号",
+    "type": "閣法",
+    "title": "独立行政法人エネルギー・金属鉱物資源機構法の一部を改正する法律案",
+    "shortTitle": "独立行政法人エネルギー・金属鉱物資源機構法の一部を改正する法律案",
+    "ministry": "経済産業省",
+    "submittedOn": "2026-10-13",
+    "status": "審議中",
+    "statusDetail": "提出（付託前）",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "経済産業省",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-13",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222013.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220132220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209013.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "経済産業省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.meti.go.jp/intro/law/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5367"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-14",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第14号",
+    "type": "閣法",
+    "title": "公害健康被害の補償等に関する法律の一部を改正する法律案",
+    "shortTitle": "公害健康被害の補償等に関する法律の一部を改正する法律案",
+    "ministry": "環境省",
+    "submittedOn": "2026-10-13",
+    "status": "審議中",
+    "statusDetail": "参・委員会付託待ち",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "環境省",
+      "公害健康被害の補償",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-13",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-26",
+        "house": "衆",
+        "event": "環境委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "環境委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "本会議 採決（多数・起立）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-11-06",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222014.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220142220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209014.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "環境省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.env.go.jp/press/press_05706.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5369"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-15",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第15号",
+    "type": "閣法",
+    "title": "警察官職務執行法の一部を改正する法律案",
+    "shortTitle": "警察官職務執行法の一部を改正する法律案",
+    "ministry": "警察庁",
+    "submittedOn": "2026-10-16",
+    "status": "審議中",
+    "statusDetail": "審議中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "警察庁",
+      "警察官職務執行法",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-16",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "内閣委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "内閣委員会 議決",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222015.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220152220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 参議院 内閣委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122214889X00120261022"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209015.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "警察庁",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.npa.go.jp/laws/kokkai/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5371"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-16",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第16号",
+    "type": "閣法",
+    "title": "地方公共団体の議会の議員及び長の選挙期日等の臨時特例に関する法律案",
+    "shortTitle": "地方公共団体の議会の議員及び長の選挙期日等の臨時特例に関する法律案",
+    "ministry": "総務省",
+    "submittedOn": "2026-10-16",
+    "status": "審議中",
+    "statusDetail": "審議中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "総務省",
+      "長の選挙期日",
+      "地方公共団体の議会の議員",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-16",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-23",
+        "house": "衆",
+        "event": "政治改革に関する特別委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-28",
+        "house": "衆",
+        "event": "政治改革に関する特別委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      },
+      {
+        "date": "2026-11-02",
+        "house": "参",
+        "event": "政治改革に関する特別委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "参",
+        "event": "政治改革に関する特別委員会 議決",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222016.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220162220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209016.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "総務省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.soumu.go.jp/menu_hourei/k_houan.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5373"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-17",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第17号",
+    "type": "閣法",
+    "title": "特定タンカーに係る特定賠償義務履行担保契約等に関する特別措置法の一部を改正する法律案",
+    "shortTitle": "特定タンカーに係る特定賠償義務履行担保契約等に関する特別措置法の一部を改正する法…",
+    "ministry": "国土交通省",
+    "submittedOn": "2026-10-16",
+    "status": "審議中",
+    "statusDetail": "参・委員会付託待ち",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "国土交通省",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-16",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-22",
+        "house": "衆",
+        "event": "国土交通委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-10-28",
+        "house": "衆",
+        "event": "国土交通委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222017.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220172220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209017.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "国土交通省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.mlit.go.jp/report/press/kaiji06_hh_000405.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5375"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-18",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第18号",
+    "type": "閣法",
+    "title": "重要施設周辺及び国境離島等における土地等の利用状況の調査及び利用の規制等に関する法律の一部を改正する法律案",
+    "shortTitle": "重要施設周辺及び国境離島等における土地等の利用状況の調査及び利用の規制等に関する…",
+    "ministry": "内閣府",
+    "submittedOn": "2026-10-23",
+    "status": "審議中",
+    "statusDetail": "提出（付託前）",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "内閣府",
+      "重要施設周辺",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-23",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222018.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220182220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209018.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "内閣府",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.cao.go.jp/houan/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5383"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-19",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第19号",
+    "type": "閣法",
+    "title": "法人等の実質的支配者に係る情報の把握等に関する法律案",
+    "shortTitle": "法人等の実質的支配者に係る情報の把握等に関する法律案",
+    "ministry": "内閣官房",
+    "submittedOn": "2026-10-23",
+    "status": "審議中",
+    "statusDetail": "提出（付託前）",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "内閣官房",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-23",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222019.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220192220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209019.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "内閣官房",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.cas.go.jp/jp/houan/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5385"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-20",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第20号",
+    "type": "閣法",
+    "title": "法人等の実質的支配者に係る情報の把握等に関する法律の施行に伴う関係法律の整備等に関する法律案",
+    "shortTitle": "法人等の実質的支配者に係る情報の把握等に関する法律の施行に伴う関係法律の整備等に…",
+    "ministry": "内閣官房",
+    "submittedOn": "2026-10-23",
+    "status": "審議中",
+    "statusDetail": "提出（付託前）",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "内閣官房",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-23",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222020.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220202220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209020.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "内閣官房",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.cas.go.jp/jp/houan/index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5388"
+      }
+    ]
+  },
+  {
+    "id": "222-閣法-21",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "閣法 第21号",
+    "type": "閣法",
+    "title": "商法及び国際海上物品運送法の一部を改正する法律案",
+    "shortTitle": "商法及び国際海上物品運送法の一部を改正する法律案",
+    "ministry": "法務省",
+    "submittedOn": "2026-10-23",
+    "status": "審議中",
+    "statusDetail": "審議中",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "内閣法制局『提出理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "法務省",
+      "国際海上物品運送法",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-23",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-29",
+        "house": "衆",
+        "event": "法務委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "法務委員会 議決",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222080222021.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0802220212220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22209021.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "所管省庁",
+        "pub": "法務省",
+        "title": "所管省庁の法案ページ",
+        "url": "https://www.moj.go.jp/houan1/houan_index.html"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "内閣法制局",
+        "title": "提案理由・概要（詳細ページ）",
+        "url": "https://www.clb.go.jp/recent-laws/diet_bill/detail/id=5390"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-1",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "衆法 第1号",
+    "type": "衆法",
+    "title": "就業者の租税及び社会保険料による負担の軽減のために講ずべき措置に関する法律案",
+    "shortTitle": "就業者の租税及び社会保険料による負担の軽減のために講ずべき措置に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-10-20",
+    "status": "廃案",
+    "statusDetail": "否決・廃案",
+    "confidence": 0,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "衆議院 提出法律案の『理由』（要約未生成）",
+    "tags": [
+      "廃案",
+      "就業者の租税",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-20",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-11-02",
+        "house": "衆",
+        "event": "財務金融委員会に付託",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "財務金融委員会 議決",
+        "result": ""
+      },
+      {
+        "date": "2026-11-06",
+        "house": "衆",
+        "event": "本会議 採決（少数・起立）",
+        "result": "否決"
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090222001.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902220012220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22205001.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-2",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "衆法 第2号",
+    "type": "衆法",
+    "title": "国会議員の秘書の給与等に関する法律の一部を改正する法律案",
+    "shortTitle": "国会議員の秘書の給与等に関する法律の一部を改正する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-10-30",
+    "status": "審議中",
+    "statusDetail": "参・委員会付託待ち",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "衆議院 提出法律案の『理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "国会議員の秘書の給与",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-30",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-30",
+        "house": "衆",
+        "event": "本会議 採決（全会一致・異議の有無）",
+        "result": "可決"
+      },
+      {
+        "date": "2026-10-30",
+        "house": "参",
+        "event": "参議院 受領／送付",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090222002.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22205002.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-1",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第1号（第221回提出）",
+    "type": "衆法",
+    "title": "政治資金規正法の一部を改正する法律案",
+    "shortTitle": "政治資金規正法の一部を改正する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-03-02",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "政治に対する国民の信頼を取り戻すため、企業や労働組合など\nの団体が行う政治活動への寄付について、ルールをより厳格にする\nものです。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "政治資金規正法",
+      "政治活動",
+      "労働組合"
+    ],
+    "timeline": [
+      {
+        "date": "2026-03-02",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "政治改革に関する特別委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221001.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210012210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 政治改革に関する特別委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204575X00120261005"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105001.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-2",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第2号（第221回提出）",
+    "type": "衆法",
+    "title": "令和八年度における公債の発行の特例に関する法律案",
+    "shortTitle": "令和八年度における公債の発行の特例に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-03-10",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "令和8年度の国の財政状況に合わせ、適切な予算運営を行うために、その年の国債発行に関する特別なルールを定めるための法律です。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "財政状況",
+      "国債発行",
+      "予算運営"
+    ],
+    "timeline": [
+      {
+        "date": "2026-03-10",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "財務金融委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221002.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210022210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105002.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-6",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第6号（第221回提出）",
+    "type": "衆法",
+    "title": "障害者及びその家族に対する福祉、教育等に係る支援に関する施策の総合的な推進に関する法律案",
+    "shortTitle": "障害者及びその家族に対する福祉、教育等に係る支援に関する施策の総合的な推進に関す…",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-03-27",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "18歳以上や卒業後の障害者が自立に向けた学習・就労の機会を得られるよう支援を強化します。\n家族の負担を減らしつつ、福祉や教育の分野で途切れることのないサポート体制を整えます。\nこれにより、障害者とその家族がより豊かに暮らせる環境づくりを目指すものです。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "サポート"
+    ],
+    "timeline": [
+      {
+        "date": "2026-03-27",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "文部科学委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221006.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210062210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 文部科学委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122205124X00120261023"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105006.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-7",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第7号（第221回提出）",
+    "type": "衆法",
+    "title": "全ての国民が安心して医療を受けられる環境の整備を図るための高額療養費等の制度の在り方に係る措置に関する法律案",
+    "shortTitle": "全ての国民が安心して医療を受けられる環境の整備を図るための高額療養費等の制度の在…",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-04-20",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "高額療養費制度は、国民の命や暮らしを守るために不可欠な仕組みです。\n誰もが安心して医療を受けられる環境を作るため、この制度の内容を整えるためのルールを定めることを目的としています。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "高額療養費制度"
+    ],
+    "timeline": [
+      {
+        "date": "2026-04-20",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "厚生労働委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221007.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210072210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 厚生労働委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204260X00120261021"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105007.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
+        "title": "スウェーデンの医療制度と高額療養費制度改革",
+        "url": "https://dl.ndl.go.jp/pid/14953088",
+        "conf": 80,
+        "confNote": "自動紐付け: 趣旨キーワード一致（高額療養費制度）"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-12",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第12号（第221回提出）",
+    "type": "衆法",
+    "title": "政党等の政治資金の収入に関する制度の在り方に係る措置に関する法律案",
+    "shortTitle": "政党等の政治資金の収入に関する制度の在り方に係る措置に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-06-10",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "近年の政治資金をめぐる問題を受け、国民の信頼を取り戻すために政党などの資金の集まり方を見直します。\nその結果を踏まえ、より適切なルール作りや法律の整備を行うことを目的としています。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "政治資金"
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-10",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "政治改革に関する特別委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221012.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210122210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105012.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "米英仏における政治資金監督・規制機関",
+        "url": "https://dl.ndl.go.jp/pid/14980929",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（政治資金）"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-14",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第14号（第221回提出）",
+    "type": "衆法",
+    "title": "政治資金規正法の一部を改正する法律案",
+    "shortTitle": "政治資金規正法の一部を改正する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-06-12",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "国民の信頼を取り戻すため、企業や団体による政治活動への寄付やパーティー代の支払いを禁止します。\nあわせて、政治団体への寄付に上限を設けることで、不透明な資金の流れを防ぎます。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "政治資金規正法",
+      "パーティー",
+      "政治団体",
+      "政治活動"
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-12",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "政治改革に関する特別委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221014.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210142210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 政治改革に関する特別委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204575X00120261005"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105014.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-16",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第16号（第221回提出）",
+    "type": "衆法",
+    "title": "自動車税及び軽自動車税の税率の上乗せに係る特例の廃止に関する法律案",
+    "shortTitle": "自動車税及び軽自動車税の税率の上乗せに係る特例の廃止に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-06-16",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "社会情勢の変化に合わせて、自動車や軽自動車の税金に上乗せされている特例を廃止します。\nこれにより、車を所有する人の税負担を軽減することを目指しています。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "社会情勢",
+      "軽自動車"
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-16",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "総務委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221016.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210162210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 総務委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204601X00120261022"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105016.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-17",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第17号（第221回提出）",
+    "type": "衆法",
+    "title": "自動車重量税率の上乗せに係る特例の廃止に関する法律案",
+    "shortTitle": "自動車重量税率の上乗せに係る特例の廃止に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-06-16",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "自動車重量税の特別ルールは、制定から長い年月が経ち、現在の社会情勢に合わなくなっています。\n国民の負担を軽減するため、この特例措置を廃止する規定を設けるものです。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "自動車重量税",
+      "特例措置",
+      "社会情勢"
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-16",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "財務金融委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221017.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210172210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105017.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-19",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第19号（第221回提出）",
+    "type": "衆法",
+    "title": "自動車盗難対策等の推進に関する法律案",
+    "shortTitle": "自動車盗難対策等の推進に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-06-23",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "自動車盗難を防ぐための基本方針を定め、実態に合わせた多角的な対策を進めます。\nあわせて店舗での集団窃盗など性質の似た犯罪への対策も強化することで、\n車両に関連する盗難被害を総合的に防ぐことを目指します。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "自動車盗難対策",
+      "自動車盗難対策等の推進",
+      "自動車盗難",
+      "集団窃盗",
+      "盗難被害",
+      "基本方針"
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-23",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "内閣委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221019.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210192210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105019.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-20",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第20号（第221回提出）",
+    "type": "衆法",
+    "title": "盗難自動車等の処分の防止に関する法律案",
+    "shortTitle": "盗難自動車等の処分の防止に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-06-23",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "盗まれた車が容易に処分されるのを防ぐため、解体や保管を行う業者に対して取引相手の身元確認を義務付けます。\nこの仕組みにより、盗難車両の流通を断ち切り、窃盗の抑止を目指します。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "盗難自動車等の処分の防止",
+      "身元確認",
+      "盗難車両",
+      "取引相手"
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-23",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "内閣委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221020.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210202210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105020.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-21",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第21号（第221回提出）",
+    "type": "衆法",
+    "title": "組織的な犯罪の処罰及び犯罪収益の規制等に関する法律及び刑事訴訟法の一部を改正する法律案",
+    "shortTitle": "組織的な犯罪の処罰及び犯罪収益の規制等に関する法律及び刑事訴訟法の一部を改正する…",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-06-23",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "組織的な窃盗や盗品の売買といった犯罪が増えている現状を受け、\n団体の活動として行われるこれらの行為に対して、\nより重い刑罰を科すことを目的とした法案です。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "犯罪収益の規制",
+      "組織的な犯罪の処罰"
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-23",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "法務委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221021.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210212210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 法務委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122205206X00120261021"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105021.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-24",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第24号（第221回提出）",
+    "type": "衆法",
+    "title": "特別市の設置に係る制度の整備の推進に関する法律案",
+    "shortTitle": "特別市の設置に係る制度の整備の推進に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-06-24",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "少子高齢化や人口減少への対応のため、自治体間の役割分担を明確にして行政運営の効率化を図ります。あわせて、地域の拠点となる都市の機能を高めるための新しい大都市制度を整備し、地方の発展を促すことを目的としています。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "大都市制度",
+      "少子高齢化",
+      "行政運営",
+      "人口減少",
+      "自治体間",
+      "役割分担"
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-24",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "地域活性化・こども政策・デジタル社会形成に関する特別委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221024.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210242210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 地域活性化・こども政策・デジタル社会形成に関する特別委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122205367X00120261005"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105024.htm"
+      },
+      {
+        "tier": 3,
+        "cat": "シンクタンク",
+        "pub": "RIETI（経済産業研究所）",
+        "title": "経済はどこから縮むのか：人口減少下、地方小都市で加速する産業喪失と、職の東京一極集中",
+        "url": "http://www.rieti.go.jp/jp/publications/nts/26e063.html?ref=rss",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（人口減少）"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-28",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第28号（第221回提出）",
+    "type": "衆法",
+    "title": "衆議院議員の選挙制度改革及び定数削減に関する法律案",
+    "shortTitle": "衆議院議員の選挙制度改革及び定数削減に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-06-24",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "衆議院の選挙制度の見直しや定数の削減について、具体的な進め方と期限を明確にします。\nあわせて、期限内に対応が進まない場合にどのような措置をとるかも定めるための法律です。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "衆議院議員の選挙制度改革",
+      "選挙制度"
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-24",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "政治改革に関する特別委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221028.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210282210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 政治改革に関する特別委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204575X00120261005"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105028.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
+        "title": "米英仏独の国会議員の選挙制度 : 概要とその戦後の変遷（資料）",
+        "url": "https://dl.ndl.go.jp/pid/14953090",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（選挙制度）"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
+        "title": "ドイツ連邦議会の新選挙制度―超過・調整議席の廃止と2025年総選挙―",
+        "url": "https://dl.ndl.go.jp/pid/14439388",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（選挙制度）"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-30",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第30号（第221回提出）",
+    "type": "衆法",
+    "title": "賃金上昇を上回る所得税の負担増加に対処するために所得税に関し講ずべき措置に関する法律案",
+    "shortTitle": "賃金上昇を上回る所得税の負担増加に対処するために所得税に関し講ずべき措置に関する…",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-07-15",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "物価高で生活費が増える中、賃金の伸びよりも税の負担が重くなる問題に対処します。\n所得による基礎控除の不公平な格差を正し、国民の負担を軽減する仕組みを作ります。\nこれにより、実質的な手取り額を守り、より適切な税制へと改善することを目指します。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "基礎控除"
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-15",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "財務金融委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221030.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210302210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105030.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-31",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第31号（第221回提出）",
+    "type": "衆法",
+    "title": "賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案",
+    "shortTitle": "賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措…",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-07-15",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "物価高騰で生活費が増える中、給料の伸びよりも住民税の負担が重くなることは国民の暮らしを圧迫します。\n誰もが健康で文化的な最低限度の生活を送れるよう、給与の上昇を超える住民税の増加に対する対策を定めるための法律です。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "最低限度",
+      "物価高騰"
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-15",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "総務委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221031.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210312210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 総務委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204601X00120261022"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105031.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-32",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第32号（第221回提出）",
+    "type": "衆法",
+    "title": "受託中小企業振興法の一部を改正する法律案",
+    "shortTitle": "受託中小企業振興法の一部を改正する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-07-15",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "下請け中小企業の成長を支えるため、人材育成や適正な報酬の確保に関する基準を追加します。\nあわせて、国が補助金の申請などの手続きをサポートする体制を整え、事業者の経営環境を向上させることを目指しています。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "受託中小企業振興法",
+      "経営環境",
+      "人材育成",
+      "中小企業",
+      "サポート"
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-15",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "経済産業委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221032.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210322210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 経済産業委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204080X00120261021"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105032.htm"
+      },
+      {
+        "tier": 3,
+        "cat": "シンクタンク",
+        "pub": "RIETI（経済産業研究所）",
+        "title": "日本の中小企業の災害復興における認識の乖離と自発的戦略",
+        "url": "http://www.rieti.go.jp/jp/publications/nts/26e066.html?ref=rss",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（中小企業）"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-33",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第33号（第221回提出）",
+    "type": "衆法",
+    "title": "ものづくり基盤技術振興基本法の一部を改正する法律案",
+    "shortTitle": "ものづくり基盤技術振興基本法の一部を改正する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-07-15",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "人手不足に悩む製造現場を支えるため、この法律を改正します。\n特に多くを占める中小企業に対し、働く人の確保や教育の支援を充実させます。\nこれにより、ものづくり産業全体の底上げを図ります。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "製造現場",
+      "産業全体",
+      "人手不足",
+      "中小企業"
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-15",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "経済産業委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221033.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210332210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 経済産業委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204080X00120261021"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105033.htm"
+      },
+      {
+        "tier": 3,
+        "cat": "シンクタンク",
+        "pub": "RIETI（経済産業研究所）",
+        "title": "日本の中小企業の災害復興における認識の乖離と自発的戦略",
+        "url": "http://www.rieti.go.jp/jp/publications/nts/26e066.html?ref=rss",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（中小企業）"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-34",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第34号（第221回提出）",
+    "type": "衆法",
+    "title": "新型コロナウイルス感染症対策検証委員会等の設置等に関する法律案",
+    "shortTitle": "新型コロナウイルス感染症対策検証委員会等の設置等に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-07-16",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "行政機関が資料の提供を求められた際、委員会が認める正当な理由がある場合には、その提出を省略できるルールを定めます。\nこれにより、不必要な事務作業や手続きの負担を軽減します。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "事務作業",
+      "行政機関"
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-16",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "議院運営委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221034.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210342210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 議院運営委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204024X00120261005"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105034.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-35",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第35号（第221回提出）",
+    "type": "衆法",
+    "title": "公職選挙法の一部を改正する法律案",
+    "shortTitle": "公職選挙法の一部を改正する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-07-16",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "選挙の運営や立候補の届出など、事前の準備時間を十分に確保するため、選挙の日程を決めることができる期間を制限します。\nこれにより、余裕を持ってスムーズに選挙を実施できるようにすることを目指しています。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "準備時間",
+      "スムーズ"
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-16",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "政治改革に関する特別委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221035.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210352210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 政治改革に関する特別委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204575X00120261005"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105035.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-36",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第36号（第221回提出）",
+    "type": "衆法",
+    "title": "非居住住宅税及び超短期所有住宅等の譲渡に係る事業所得等の課税の特例の創設等に関する法律案",
+    "shortTitle": "非居住住宅税及び超短期所有住宅等の譲渡に係る事業所得等の課税の特例の創設等に関す…",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-07-16",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "投資目的の取引や空き家保有による住宅価格・家賃の高騰を抑えるため、特定の物件への課税ルールを設けます。\nこれにより投機的な動きを抑制し、実際に住みたい人が入居できる住宅の供給を促します。\nこの法律は、深刻な住宅不足を解消し、より多くの人が住める環境を作ることを目的としています。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "非居住住宅税",
+      "超短期所有住宅",
+      "住宅価格",
+      "住宅不足"
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-16",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "国土交通委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221036.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210362210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105036.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+        "title": "住宅価格高騰をめぐる動向 : 東京23区のマンション価格を中心として",
+        "url": "https://dl.ndl.go.jp/pid/14952368",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（住宅価格）"
+      }
+    ]
+  },
+  {
+    "id": "222-衆法-221-37",
+    "diet": "222回",
+    "submittedDiet": "221回",
+    "dietLabel": "第222回（第221回提出・継続）",
+    "no": "衆法 第37号（第221回提出）",
+    "type": "衆法",
+    "title": "自動車産業における脱炭素化の推進に関する法律案",
+    "shortTitle": "自動車産業における脱炭素化の推進に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-07-16",
+    "status": "審議中",
+    "statusDetail": "衆・委員会審査中",
+    "confidence": 60,
+    "summary": "2050年までの脱炭素社会の実現に向け、経済の柱である自動車産業の脱炭素化を推進します。\n国際的な情勢の変化に対応するため、国が取り組むべき基本方針や施策の枠組みを定めます。\nこれにより、自動車分野における脱炭素への取り組みを計画的かつ総合的に進めることを目的としています。",
+    "summaryNote": "衆議院 提出法律案の『理由』をAIが要約（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "自動車産業",
+      "自動車分野",
+      "脱炭素社会",
+      "脱炭素化",
+      "基本方針"
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-16",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      },
+      {
+        "date": "2026-10-05",
+        "house": "衆",
+        "event": "経済産業委員会に付託",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222090221037.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t0902210372210.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "会議録",
+        "pub": "国立国会図書館",
+        "title": "第222回 衆議院 経済産業委員会 第1号",
+        "url": "https://kokkai.ndl.go.jp/#/detail?minId=122204080X00120261021"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22105037.htm"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
+        "title": "航空燃料の脱炭素化に向けた取組 : SAF導入をめぐる国内外の動向",
+        "url": "https://dl.ndl.go.jp/pid/14990195",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（脱炭素化）"
+      },
+      {
+        "tier": 2,
+        "cat": "立法補佐機関",
+        "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
+        "title": "我が国の電力供給に関する制度―安定供給と脱炭素化に向けた動向―",
+        "url": "https://dl.ndl.go.jp/pid/14118369",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（脱炭素化）"
+      },
+      {
+        "tier": 3,
+        "cat": "シンクタンク",
+        "pub": "RIETI（経済産業研究所）",
+        "title": "脱炭素化とエネルギー安全保障を踏まえたエネルギー需給シナリオ分析",
+        "url": "http://www.rieti.go.jp/jp/publications/nts/26j043.html?ref=rss",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（脱炭素化）"
+      },
+      {
+        "tier": 3,
+        "cat": "シンクタンク",
+        "pub": "RIETI（経済産業研究所）",
+        "title": "脱炭素化とエネルギー安全保障を踏まえたエネルギー需給シナリオ分析",
+        "url": "http://www.rieti.go.jp/jp/publications/summary/26100010.html?ref=rss",
+        "conf": 71,
+        "confNote": "自動紐付け: 趣旨キーワード一致（脱炭素化）"
+      }
+    ]
+  },
+  {
+    "id": "222-参法-1",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "参法 第1号",
+    "type": "参法",
+    "title": "旧氏を通称として使用する機会の拡大を図るための措置等に関する法律案",
+    "shortTitle": "旧氏を通称として使用する機会の拡大を図るための措置等に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-10-06",
+    "status": "審議中",
+    "statusDetail": "提出（付託前）",
+    "confidence": 60,
+    "summary": "（概要はローカルLLMで生成。未生成のため一次資料をご確認ください）",
+    "summaryNote": "衆議院 提出法律案の『理由』（要約未生成）",
+    "tags": [
+      "審議中",
+      "一次資料",
+      "ローカル"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-06",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222100222001.htm"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "提出法律案（PDF）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/pdf/t1002220012220.pdf"
+      },
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "衆議院",
+        "title": "提出時法律案・本文",
+        "url": "https://www.shugiin.go.jp/internet/itdb_gian.nsf/html/gian/honbun/houan/g22206001.htm"
+      }
+    ]
+  },
+  {
+    "id": "222-参法-2",
+    "diet": "222回",
+    "submittedDiet": "222回",
+    "dietLabel": "第222回",
+    "no": "参法 第2号",
+    "type": "参法",
+    "title": "消費税の税率を当分の間の措置として引き下げる等のために講ずべき措置に関する法律案",
+    "shortTitle": "消費税の税率を当分の間の措置として引き下げる等のために講ずべき措置に関する法律案",
+    "ministry": "—（議員提出）",
+    "submittedOn": "2026-10-30",
+    "status": "審議中",
+    "statusDetail": "提出（付託前）",
+    "confidence": 60,
+    "summary": "（提案理由・趣旨から自動要約する想定。本スクリプトでは未取得）",
+    "summaryNote": "AI要約は別工程で付与（一次資料で要確認）",
+    "tags": [
+      "審議中",
+      "スクリプト",
+      "自動要約",
+      "提案理由"
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-30",
+        "house": "提出",
+        "event": "国会に法律案を提出",
+        "result": ""
+      }
+    ],
+    "refs": [
+      {
+        "tier": 1,
+        "cat": "一次資料",
+        "pub": "参議院",
+        "title": "議案情報（審議経過）",
+        "url": "https://www.sangiin.go.jp/japanese/joho1/kousei/gian/222/meisai/m222100222002.htm"
+      }
+    ]
   }
 ];
 window.BILLS_UPDATED_AT = "2026-11-07";
@@ -15871,5 +19446,12 @@ window.SESSIONS = [
     "from": "2026-02-18",
     "to": "2026-07-25",
     "clb_id": "5144"
+  },
+  {
+    "diet": 222,
+    "name": "臨時会",
+    "from": "2026-10-05",
+    "to": null,
+    "clb_id": "5339"
   }
 ];
