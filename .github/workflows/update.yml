@@ -65,6 +65,7 @@ jobs:
           # CIにOllamaは無いが、キャッシュ済み法案は要約が維持される（著作権配慮で原文転載しない）。
           python collect.py --diet "${{ steps.diet.outputs.diet }}" --sleep 1.0 --llm-summary
           python crawl.py --no-abstracts       # 要旨(PDF)はローカルで抽出。CIは毎晩の大量DLを避ける
+                                               # （報告書PDFの法令名抽出は新規分だけなのでCIでも行う）
           python match_refs.py --no-semantic   # CIではe5を使わず軽量運用（必要ならキャッシュして有効化）
           python merge_submissions.py          # 承認済みユーザー提供情報を反映
           python apply_suppressions.py         # 承認済み取り下げ依頼を反映（除外）
@@ -75,10 +76,11 @@ jobs:
         run: |
           git config user.name "bill-tracker-bot"
           git config user.email "bot@users.noreply.github.com"
-          # match_refs.py は gate_cache.json / meeting_dates.json も更新する。
+          # match_refs.py は gate_cache.json / meeting_dates.json も、crawl.py は
+          # report_laws.json（報告書PDFが言及する法令名）も更新する。
           # これらを add し忘れると作業ツリーが汚れたままになり、
           # 直後の git pull --rebase が "cannot pull with rebase" で失敗する。
-          git add data_collected.js bills.json summaries.json gate_cache.json meeting_dates.json
+          git add data_collected.js bills.json summaries.json gate_cache.json meeting_dates.json report_laws.json
           git diff --cached --quiet || git commit -m "chore: update bill data ($(date -u +%F))"
           # 追加の生成物で汚れても止まらないように autostash を付ける（保険）。
           git pull --rebase --autostash origin "$GITHUB_REF_NAME"

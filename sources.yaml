@@ -54,6 +54,17 @@ sources:
     mode: links
     url: https://www.soumu.go.jp/menu_sosiki/kenkyu/kenkyu_back.html
 
+  # 警察庁「懇談会等・有識者会議」一覧。各会議ページまでたどり、提言・報告書PDFも収録する。
+  # 報告書が言及する法令名は report_laws.json に抽出され、改正法案との紐付けに使われる。
+  - id: npa_council_index
+    tier: 1
+    category: 審議会・検討会
+    publisher: 警察庁
+    ministry: 警察庁
+    method: ministry_index
+    mode: follow
+    url: https://www.npa.go.jp/policies/council/index.html
+
   - id: npa_drone_council
     tier: 1
     category: 審議会・検討会

@@ -11,7 +11,8 @@ $GeneratedFiles = @(
     "data_collected.js",
     "summaries.json",
     "gate_cache.json",
-    "meeting_dates.json"
+    "meeting_dates.json",
+    "report_laws.json"
 )
 $BotName = "bill-tracker-bot"
 $BotEmail = "bot@users.noreply.github.com"
