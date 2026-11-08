@@ -15,6 +15,7 @@ Tier2は score ≥ 0.55 で自動採用（DESIGN_refs.md のスコア方針に�
 """
 import argparse, json, os, re, sqlite3, sys
 from datetime import date, timedelta
+from apply_suppressions import _bill_key
 from data_output import render_data_js
 try:
     import yaml
@@ -267,12 +268,143 @@ def score_shingikai(bill, doc, keywords):
     return 0.0, ""
 
 
+# ---- 取り下げ（承認済み suppressions.json）の判定 ------------------------------
+def load_suppression_check(path="suppressions.json"):
+    """承認済み取り下げに該当するかを返す関数 check(bill, url) を作る。
+
+    apply_suppressions.py と同じく bill_id 付きの依頼は ID で照合し、bill_id の
+    無い旧形式は議案番号で照合する。候補生成段階では過剰に除外しても実害が無いため、
+    旧形式は同番号の全レコードに効かせ、従来どおり bill_no の完全一致も除外する。
+    """
+    entries = []
+    if os.path.exists(path):
+        try:
+            entries = [x for x in json.load(open(path, encoding="utf-8"))
+                       if x.get("status") == "approved" and x.get("url")]
+        except Exception:
+            entries = []
+    by_id = {(x["bill_id"], x["url"]) for x in entries if x.get("bill_id")}
+    by_no = {(x.get("bill_no"), x["url"]) for x in entries if x.get("bill_no")}
+    legacy = {(_bill_key(x.get("bill_no")), x["url"]) for x in entries
+              if not x.get("bill_id") and _bill_key(x.get("bill_no"))}
+
+    def check(bill, url):
+        return ((bill.get("id"), url) in by_id
+                or (bill.get("no"), url) in by_no
+                or (_bill_key(bill.get("no")), url) in legacy)
+    return check
+
+
+# ---- 意味類似候補のキャッシュ（週次ローカル処理 → 日次CIへの引き継ぎ） -----------
+# CI は e5 を持たず、collect.py が最新会期のレコードを毎晩作り直すため、週次処理が
+# 付けた意味類似リンクは翌晩に消える。週次処理（権威ある意味類似バックエンド使用時）が
+# 「各法案に付いている意味類似リンク」を semantic_cache.json に保存し、意味類似を
+# 計算できない実行ではそれを再適用する。再適用時も取り下げとLLMゲートを必ず通す。
+SEMANTIC_CACHE = "semantic_cache.json"
+SEMANTIC_CACHE_VERSION = 1
+SEMANTIC_MARK = "意味類似"
+AUTHORITATIVE_SEM_BACKENDS = ("multilingual-e5",)
+_NOTE_PREFIX = "自動紐付け: "
+
+
+def bill_fingerprint(bill):
+    """IDの付け替え・再利用で別法案に誤適用しないための照合キー。"""
+    return {"no": norm(bill.get("no")), "title": norm(bill.get("title"))}
+
+
+def fingerprint_matches(entry, bill):
+    return {k: entry.get(k) for k in ("no", "title")} == bill_fingerprint(bill)
+
+
+def base_why(conf_note):
+    """confNote から LLM注記を除いた紐付け根拠（ゲート再通過時に注記を付け直す）。"""
+    why = conf_note or ""
+    if why.startswith(_NOTE_PREFIX):
+        why = why[len(_NOTE_PREFIX):]
+    return why.split("／LLM確認", 1)[0]
+
+
+def load_semantic_cache(path=SEMANTIC_CACHE):
+    try:
+        data = json.load(open(path, encoding="utf-8"))
+    except Exception:
+        return {}
+    if not isinstance(data, dict) or data.get("version") != SEMANTIC_CACHE_VERSION:
+        return {}
+    bills = data.get("bills")
+    return bills if isinstance(bills, dict) else {}
+
+
+def build_semantic_cache(bills, suppressed=None, gate=None):
+    """各法案に現在付いている意味類似リンクを {bill_id: entry} にまとめる。
+
+    取り下げ済み・LLMゲートで「無関係」と判定済みのものは保存しない。
+    """
+    out = {}
+    for b in bills:
+        bid = b.get("id")
+        if not bid:
+            continue
+        cands = []
+        for r in b.get("refs", []):
+            note, url = r.get("confNote") or "", r.get("url")
+            if SEMANTIC_MARK not in note or not url:
+                continue
+            if suppressed and suppressed(b, url):
+                continue
+            if gate is not None:
+                v = gate.cached_verdict(b, {"url": url, "title": r.get("title") or ""})
+                if v is not None and not v.get("related"):
+                    continue
+            cands.append({
+                "url": url, "score": round((r.get("conf") or 0) / 100, 2),
+                "why": base_why(note), "tier": r.get("tier"), "cat": r.get("cat"),
+                "pub": r.get("pub"), "title": r.get("title"),
+            })
+        if cands:
+            out[bid] = {**bill_fingerprint(b),
+                        "candidates": sorted(cands, key=lambda c: c["url"])}
+    return dict(sorted(out.items()))
+
+
+def save_semantic_cache(entries, path=SEMANTIC_CACHE):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump({"version": SEMANTIC_CACHE_VERSION, "bills": entries}, f,
+                  ensure_ascii=False, indent=1)
+        f.write("\n")
+
+
+def replay_candidates(bill, entry, taken, suppressed=None):
+    """キャッシュ済みの意味類似候補を (score, why, doc) で返す（ゲート前）。
+
+    IDが一致しても議案番号・件名が変わっていれば別法案とみなし適用しない。
+    既に付いているURL・取り下げ済みURLは除く。
+    """
+    if not entry or not fingerprint_matches(entry, bill):
+        return []
+    out = []
+    for c in entry.get("candidates") or []:
+        url = c.get("url")
+        if not url or url in taken or SEMANTIC_MARK not in (c.get("why") or ""):
+            continue
+        if suppressed and suppressed(bill, url):
+            continue
+        doc = {"tier": c.get("tier"), "category": c.get("cat"), "publisher": c.get("pub") or "",
+               "title": c.get("title") or "", "url": url}
+        out.append((float(c.get("score") or 0), c["why"], doc))
+        taken = taken | {url}
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--in", dest="infile", default="bills.json")
     ap.add_argument("--db", default="refs.db")
     ap.add_argument("--dry", action="store_true")
-    ap.add_argument("--no-semantic", action="store_true", help="意味類似を無効化")
+    ap.add_argument("--no-semantic", action="store_true",
+                    help="意味類似の計算を無効化（週次処理の結果は semantic_cache.json から再適用）")
+    ap.add_argument("--no-semantic-cache", action="store_true",
+                    help="semantic_cache.json の再適用・更新をしない")
     ap.add_argument("--llm-gate", action="store_true",
                     help="(互換用・現在は自動判定) LLMゲートを強制有効化")
     ap.add_argument("--no-llm-gate", action="store_true", help="LLMゲートを無効化")
@@ -300,19 +432,18 @@ def main():
 
     sem = None if args.no_semantic else build_semantic(bills, docs)
     sims, sem_th, sem_backend = sem if sem else (None, 1.0, None)
+    # 権威ある意味類似（e5）を計算できた実行はキャッシュを更新し、
+    # できなかった実行（CI の --no-semantic 等）はキャッシュを再適用する。
+    sem_authoritative = sims is not None and sem_backend in AUTHORITATIVE_SEM_BACKENDS
+    sem_cache = {} if (args.no_semantic_cache or sem_authoritative) else load_semantic_cache()
     print(f"法案 {len(bills)} 件 × 文書 {len(docs)} 件で照合"
-          f"{f'（意味類似: {sem_backend}, 閾値{sem_th}）' if sims is not None else ''} ...\n")
+          f"{f'（意味類似: {sem_backend}, 閾値{sem_th}）' if sims is not None else ''}"
+          f"{f'（意味類似キャッシュ: {len(sem_cache)}法案分を再適用）' if sem_cache else ''} ...\n")
 
     # 却下済み(bill,url)ペアは候補から除外（取り下げ依頼の還流。top-5枠も空けられる）
-    suppressed = set()
-    if os.path.exists("suppressions.json"):
-        try:
-            for x in json.load(open("suppressions.json", encoding="utf-8")):
-                if x.get("status") == "approved" and x.get("url"):
-                    suppressed.add((x.get("bill_no"), x["url"]))
-        except Exception:
-            pass
+    suppressed = load_suppression_check()
     mcache = load_meeting_dates()
+    replay_stats = {"cand": 0, "kept": 0, "mismatch": 0}
 
     total_attached = 0
     for bi, b in enumerate(bills):
@@ -336,7 +467,7 @@ def main():
                     if hit:
                         sc, why = min(0.8, 0.58 + len(hit) / 30), f"趣旨キーワード一致（{hit}）"
             if sc >= ATTACH_THRESHOLD and d["url"] not in existing \
-                    and (b["no"], d["url"]) not in suppressed \
+                    and not suppressed(b, d["url"]) \
                     and time_ok(d, b.get("submittedOn")):
                 cands.append((sc, why, d))
 
@@ -361,7 +492,7 @@ def main():
                     continue
                 if not time_ok(d, b.get("submittedOn")):
                     continue
-                if (b["no"], d["url"]) in suppressed:
+                if suppressed(b, d["url"]):
                     continue
                 cands.append((min(0.7, 0.4 + cos / 3),
                               f"意味類似・要確認候補（{sem_backend} {cos:.2f}）", d))
@@ -369,11 +500,27 @@ def main():
                 # ゲート有効時は候補生成を緩めてLLM検証に委ねる（再現↑・精度はゲートが担保）
                 if picked >= (3 if gate else 1):
                     break
+        # 週次処理で得た意味類似候補の再適用（時期・所管の検証は計算時に済んでいる）
+        replayed = []
+        entry = sem_cache.get(b.get("id"))
+        if entry and not fingerprint_matches(entry, b):
+            replay_stats["mismatch"] += 1
+        elif entry:
+            taken = existing | {d["url"] for _, _, d in cands}
+            replayed = replay_candidates(b, entry, taken, suppressed)
         # 審議会候補の開催時期チェック（候補になった会議ページのみ取得）
         cands = [(sc, why, d) for sc, why, d in cands
                  if shingikai_time_ok(d, b.get("submittedOn"), mcache)]
         if gate:
             cands = gate.filter(b, cands, verbose=args.dry)
+        if replayed:
+            replay_stats["cand"] += len(replayed)
+            # 「関連する」と判定済みのものだけ再適用する。ゲートが無い・未判定なら
+            # 検証できないので出さない（却下済みリンクの復活を防ぐ）。
+            replayed = gate.filter(b, replayed, verbose=args.dry, require_verdict=True) \
+                if gate else []
+            replay_stats["kept"] += len(replayed)
+            cands += replayed
         cands.sort(key=lambda x: -x[0])
         for sc, why, d in cands[:5]:               # 1法案あたり上位5件まで
             b["refs"].append({
@@ -394,7 +541,14 @@ def main():
         st = gate.stats
         print(f"\nLLMゲート: 採用{st['pass']} 除外{st['drop']} "
               f"(キャッシュ命中{st['cached']} 未判定{st.get('unjudged', 0)})")
+    if sem_cache:
+        print(f"意味類似キャッシュ: 候補{replay_stats['cand']} 再適用{replay_stats['kept']} "
+              f"(ID不一致でスキップ{replay_stats['mismatch']}法案)")
     print(f"\n紐付け {total_attached} 件")
+    if sem_authoritative and not args.dry and not args.no_semantic_cache:
+        entries = build_semantic_cache(bills, suppressed, gate)
+        save_semantic_cache(entries)
+        print(f"意味類似キャッシュを更新: {SEMANTIC_CACHE}（{len(entries)}法案）")
     if not args.dry:
         json.dump(bills, open(args.infile, "w", encoding="utf-8"),
                   ensure_ascii=False, indent=2)

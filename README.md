@@ -237,6 +237,11 @@ python sessions.py should-run   # CI用ゲート（run=true/false）
   類似度を算出。**要旨は crawl.py が立法と調査・NDLのPDF冒頭から抽出**（refs.db の abstract 列。
   CI では `--no-abstracts` でスキップ）。同義語（太陽光パネル↔太陽電池 等）を橋渡しできる。
   候補は法案ごと top-3（ゲート無効時は top-1）＋平均からのマージン要件。`--no-semantic` で無効化可。
+  e5 で実行したとき（週次ローカル処理）は各法案の意味類似リンクを `semantic_cache.json` に保存し、
+  e5 の無い実行（CI の `--no-semantic`）ではそれを再適用する。collect.py が最新会期のレコードを
+  毎晩作り直しても、週次処理のリンクが消えないようにするため。再適用は法案IDに加えて議案番号・件名が
+  一致する場合に限り、取り下げ済みは除外し、LLMゲートで「関連する」と判定済み（`gate_cache.json`）の
+  ものだけを採用する（未判定・無関係判定は復活させない）。`--no-semantic-cache` で再適用・更新を止められる。
 - **LLM関連判定ゲート**（`llm_gate.py`）… ローカルLLM(Ollama, gemma4) → Anthropic の順で
   自動選択し、**利用可能なら既定で有効**（`--no-llm-gate` で無効化）。弱い候補（意味類似・
   趣旨KW・語彙類似・審議会の関連語一致）を「関連する/しない＋一文根拠」で検証し、
