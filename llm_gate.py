@@ -104,6 +104,10 @@ class Gate:
     def _key(self, bill, doc):
         return hashlib.sha1(f"{bill['no']}|{doc['url']}".encode()).hexdigest()[:16]
 
+    def cached_verdict(self, bill, doc):
+        """キャッシュ済みの判定だけを返す（未判定は None。バックエンドは呼ばない）。"""
+        return self.cache.get(self._key(bill, doc))
+
     def judge(self, bill, doc):
         key = self._key(bill, doc)
         if key in self.cache:
@@ -121,16 +125,22 @@ class Gate:
         self.dirty = True
         return v
 
-    def filter(self, bill, cands, verbose=False):
-        """cands=[(score, why, doc)] のうち弱い根拠のものをLLMで検証して絞る。"""
+    def filter(self, bill, cands, verbose=False, require_verdict=False):
+        """cands=[(score, why, doc)] のうち弱い根拠のものをLLMで検証して絞る。
+
+        require_verdict=True のときは「関連する」と判定済みのものだけを残す
+        （未判定は除外）。週次処理の結果をキャッシュから再適用する候補に使う。
+        """
         out = []
         for sc, why, d in cands:
-            if not any(s in why for s in SOFT):     # 強い根拠はそのまま採用
-                out.append((sc, why, d))
+            if not require_verdict and not any(s in why for s in SOFT):
+                out.append((sc, why, d))     # 強い根拠はそのまま採用
                 continue
             v = self.judge(bill, d)
-            if v is None:                # キャッシュのみモードで未判定 → そのまま保持
-                out.append((sc, why, d))
+            if v is None:
+                if require_verdict:      # 検証できない再適用候補は出さない（安全側）
+                    continue
+                out.append((sc, why, d))  # キャッシュのみモードで未判定 → そのまま保持
                 continue
             if v.get("related"):
                 reason = (v.get("reason") or "").strip()

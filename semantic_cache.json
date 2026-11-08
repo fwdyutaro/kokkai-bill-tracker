@@ -1,0 +1,377 @@
+{
+ "version": 1,
+ "bills": {
+  "221-参法-3": {
+   "no": "参法第3号",
+   "title": "所得税法の一部を改正する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/14660842",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.87）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "令和8年度税制改正案の概要"
+    },
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260303019.pdf",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.87）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "令和８年度税制改正の概要 －「強い経済」の実現に向けた税制改正－"
+    }
+   ]
+  },
+  "221-衆法-2": {
+   "no": "衆法第2号",
+   "title": "令和八年度における公債の発行の特例に関する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/14660844",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.88）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "令和8年度予算案の概要"
+    },
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260303035.pdf",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "令和８年度地方財政対策の概要と主な論点 －経済社会構造が変化する中での一般財源総額の確保－"
+    }
+   ]
+  },
+  "221-衆法-31": {
+   "no": "衆法第31号",
+   "title": "賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案",
+   "candidates": [
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260806162.pdf",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.88）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "個人住民税における課税最低限と非課税限度額制度 －制度の概要と近年の改正を踏まえて－"
+    }
+   ]
+  },
+  "221-衆法-36": {
+   "no": "衆法第36号",
+   "title": "非居住住宅税及び超短期所有住宅等の譲渡に係る事業所得等の課税の特例の創設等に関する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/14461454",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.88）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "空き家対策の現状と課題―空き家の管理・活用拡大に向けた状況―"
+    }
+   ]
+  },
+  "221-閣法-13": {
+   "no": "閣法第13号",
+   "title": "防災庁設置法案",
+   "candidates": [
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2025pdf/20251202003.pdf",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "政府における防災担当組織の在り方 －防災庁をめぐる議論を中心に－"
+    }
+   ]
+  },
+  "221-閣法-14": {
+   "no": "閣法第14号",
+   "title": "防災庁設置法の施行に伴う関係法律の整備等に関する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/14648417",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.90）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "防災庁設置をめぐる議論"
+    }
+   ]
+  },
+  "221-閣法-15": {
+   "no": "閣法第15号",
+   "title": "経済社会情勢の変化を踏まえた企業の事業活動の持続的な発展を図るための産業競争力強化法等の一部を改正する法律案",
+   "candidates": [
+    {
+     "url": "http://www.rieti.go.jp/jp/publications/nts/26j026.html?ref=rss",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 3,
+     "cat": "シンクタンク",
+     "pub": "RIETI（経済産業研究所）",
+     "title": "経済安全保障に対応する企業行動の多面性：製造業企業アンケートに基づく調達先見直し・輸出管理対応・投資見直しに関する実証分析"
+    },
+    {
+     "url": "http://www.rieti.go.jp/jp/publications/summary/26050009.html?ref=rss",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 3,
+     "cat": "シンクタンク",
+     "pub": "RIETI（経済産業研究所）",
+     "title": "経済安全保障に対応する企業行動の多面性：製造業企業アンケートに基づく調達先見直し・輸出管理対応・投資見直しに関する実証分析"
+    }
+   ]
+  },
+  "221-閣法-3": {
+   "no": "閣法第3号",
+   "title": "所得税法等の一部を改正する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/13264245",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "令和6年度税制改正案の概要"
+    },
+    {
+     "url": "https://dl.ndl.go.jp/pid/14010532",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "令和7年度税制改正案の概要"
+    },
+    {
+     "url": "https://dl.ndl.go.jp/pid/14660842",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.91）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "令和8年度税制改正案の概要"
+    }
+   ]
+  },
+  "221-閣法-31": {
+   "no": "閣法第31号",
+   "title": "重要施設の周辺地域の上空における小型無人機等の飛行の禁止に関する法律の一部を改正する法律案",
+   "candidates": [
+    {
+     "url": "https://www.npa.go.jp/bureau/security/kogatamujinki/council/kaighishiryou/houkokusyogaiyou.pdf",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.91）",
+     "tier": 1,
+     "cat": "審議会・検討会",
+     "pub": "警察庁",
+     "title": "有識者検討会（報告書・概要）"
+    }
+   ]
+  },
+  "221-閣法-39": {
+   "no": "閣法第39号",
+   "title": "建築物のエネルギー消費性能の向上等に関する法律の一部を改正する法律案",
+   "candidates": [
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260430058.pdf",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "建築物のライフサイクルカーボン評価の促進 －建築物省エネ法の一部改正案－"
+    }
+   ]
+  },
+  "221-閣法-43": {
+   "no": "閣法第43号",
+   "title": "民法等の一部を改正する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/14931497",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（レファレンス）",
+     "title": "遺言制度の改正の動向―電子遺言を中心に―"
+    }
+   ]
+  },
+  "221-閣法-49": {
+   "no": "閣法第49号",
+   "title": "太陽電池廃棄物の再資源化等の推進に関する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/14949740",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "諸外国の太陽光パネルリサイクル政策"
+    },
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260316165.pdf",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.88）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "環境行政の主な課題"
+    }
+   ]
+  },
+  "221-閣法-5": {
+   "no": "閣法第5号",
+   "title": "地方交付税法等の一部を改正する法律案",
+   "candidates": [
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260303035.pdf",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "令和８年度地方財政対策の概要と主な論点 －経済社会構造が変化する中での一般財源総額の確保－"
+    },
+    {
+     "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/jizoku_iryo_r08/index.html",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 1,
+     "cat": "審議会・検討会",
+     "pub": "総務省",
+     "title": "令和8年度 持続可能な地域医療の確保に向けた公立病院の経営強化に関する検討会"
+    }
+   ]
+  },
+  "221-閣法-52": {
+   "no": "閣法第52号",
+   "title": "南極地域の環境の保護に関する法律の一部を改正する法律案",
+   "candidates": [
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260806133.pdf",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.90）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "南極環境保護法改正案をめぐる国会論議"
+    }
+   ]
+  },
+  "221-閣法-58": {
+   "no": "閣法第58号",
+   "title": "ヒトゲノム編集胚等の取扱いの規制に関する法律案",
+   "candidates": [
+    {
+     "url": "https://www.mhlw.go.jp/stf/shingi/shingi-kousei_467561_00003.html",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.88）",
+     "tier": 1,
+     "cat": "審議会・検討会",
+     "pub": "厚生労働省",
+     "title": "厚生科学審議会科学技術部会ゲノム編集技術等を用いたヒト受精胚等の臨床利用のあり方に関する専門委員会"
+    }
+   ]
+  },
+  "221-閣法-62": {
+   "no": "閣法第62号",
+   "title": "著作権法の一部を改正する法律案",
+   "candidates": [
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260806106.pdf",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "2026年著作権法改正の国会論議 －レコード演奏・伝達権の創設に向けた課題－"
+    }
+   ]
+  },
+  "222-衆法-221-2": {
+   "no": "衆法第2号（第221回提出）",
+   "title": "令和八年度における公債の発行の特例に関する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/14660844",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.88）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "令和8年度予算案の概要"
+    },
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260303035.pdf",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.89）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "令和８年度地方財政対策の概要と主な論点 －経済社会構造が変化する中での一般財源総額の確保－"
+    }
+   ]
+  },
+  "222-衆法-221-31": {
+   "no": "衆法第31号（第221回提出）",
+   "title": "賃金上昇を上回る個人住民税の負担増加等に対処するために個人住民税に関し講ずべき措置に関する法律案",
+   "candidates": [
+    {
+     "url": "https://www.sangiin.go.jp/japanese/annai/chousa/rippou_chousa/backnumber/2026pdf/20260806162.pdf",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.88）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "参議院 常任委員会調査室「立法と調査」",
+     "title": "個人住民税における課税最低限と非課税限度額制度 －制度の概要と近年の改正を踏まえて－"
+    }
+   ]
+  },
+  "222-衆法-221-36": {
+   "no": "衆法第36号（第221回提出）",
+   "title": "非居住住宅税及び超短期所有住宅等の譲渡に係る事業所得等の課税の特例の創設等に関する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/14461454",
+     "score": 0.69,
+     "why": "意味類似・要確認候補（multilingual-e5 0.88）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "空き家対策の現状と課題―空き家の管理・活用拡大に向けた状況―"
+    }
+   ]
+  },
+  "222-閣法-1": {
+   "no": "閣法第1号",
+   "title": "租税及び社会保険料による負担の軽減のための飲食料品に係る消費税率の臨時的な引下げ及び就業者負担軽減支援金の支給に関する法律案",
+   "candidates": [
+    {
+     "url": "https://dl.ndl.go.jp/pid/15019906",
+     "score": 0.7,
+     "why": "意味類似・要確認候補（multilingual-e5 0.90）",
+     "tier": 2,
+     "cat": "立法補佐機関",
+     "pub": "国立国会図書館 調査及び立法考査局（調査と情報）",
+     "title": "飲食料品の消費税減税をめぐる論点"
+    }
+   ]
+  }
+ }
+}
