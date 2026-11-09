@@ -1,5 +1,9 @@
 [CmdletBinding()]
-param()
+param(
+    # The site is published from this branch. Running from any other branch
+    # would push the weekly results somewhere the site never reads.
+    [string]$PublishBranch = "main"
+)
 
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
@@ -12,6 +16,7 @@ $GeneratedFiles = @(
     "summaries.json",
     "gate_cache.json",
     "meeting_dates.json",
+    "report_laws.json",
     "semantic_cache.json"
 )
 $BotName = "bill-tracker-bot"
@@ -116,6 +121,9 @@ try {
     $branch = Get-GitOutput @("branch", "--show-current")
     if (-not $branch) {
         throw "The weekly publisher cannot run from a detached HEAD."
+    }
+    if ($branch -ne $PublishBranch) {
+        throw "The checkout is on '$branch', not '$PublishBranch'. Switch to '$PublishBranch' (git switch $PublishBranch) and run again; the weekly results would otherwise be published to the wrong branch."
     }
 
     Invoke-LoggedNative "git fetch" "git" @("fetch", "origin", $branch)

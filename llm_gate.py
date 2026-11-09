@@ -44,6 +44,7 @@ def _prompt(bill, doc):
             f"法案の趣旨: {(bill.get('summary') or '')[:300]}\n"
             f"参考文書タイトル: {doc['title']}\n"
             + (f"参考文書の冒頭: {ab[:300]}\n" if ab else "")
+            + (f"参考文書の補足: {doc['note']}\n" if doc.get("note") else "")
             + '\nJSONのみで答えてください: {"related": true/false, "reason": "一文"}')
 
 

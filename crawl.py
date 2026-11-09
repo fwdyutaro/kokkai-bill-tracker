@@ -9,7 +9,7 @@ sources.yaml の各ソースを巡回し、文書(タイトル・URL・発行日
 """
 import argparse, hashlib, re, sqlite3, sys, time
 from datetime import datetime
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 import requests, yaml, feedparser
 from bs4 import BeautifulSoup
 
@@ -24,6 +24,10 @@ def db_init(con):
         content_hash TEXT, fetched_at TEXT)""")
     try:  # 要旨列（PDF冒頭から抽出。意味マッチとLLM判定の材料）
         con.execute("ALTER TABLE documents ADD COLUMN abstract TEXT")
+    except sqlite3.OperationalError:
+        pass  # 追加済み
+    try:  # 報告書PDFが属する会議ページのURL（会議ページと報告書を組で扱うため）
+        con.execute("ALTER TABLE documents ADD COLUMN parent_url TEXT")
     except sqlite3.OperationalError:
         pass  # 追加済み
     con.commit()
@@ -42,21 +46,23 @@ def canon(url):
     return f"https://dl.ndl.go.jp/pid/{m.group(1)}" if m else url
 
 
-def upsert(con, src, title, url, published_at, ministry=None):
+def upsert(con, src, title, url, published_at, ministry=None, parent_url=None):
     url = canon(url)
     title = re.sub(r"\s+", " ", title or "").strip()
     if not title or not url:
         return 0
     h = hashlib.sha1((title + url).encode("utf-8")).hexdigest()[:12]
     con.execute("""INSERT INTO documents
-        (id,source_id,tier,category,publisher,title,url,published_at,ministry,content_hash,fetched_at)
-        VALUES(?,?,?,?,?,?,?,?,?,?,?)
+        (id,source_id,tier,category,publisher,title,url,published_at,ministry,content_hash,
+         fetched_at,parent_url)
+        VALUES(?,?,?,?,?,?,?,?,?,?,?,?)
         ON CONFLICT(id) DO UPDATE SET title=excluded.title,
           published_at=excluded.published_at, content_hash=excluded.content_hash,
-          fetched_at=excluded.fetched_at""",
+          fetched_at=excluded.fetched_at,
+          parent_url=COALESCE(excluded.parent_url, documents.parent_url)""",
         (doc_id(url), src["id"], src["tier"], src["category"], src["publisher"],
          title, url, published_at, ministry or src.get("ministry"), h,
-         datetime.now().isoformat(timespec="seconds")))
+         datetime.now().isoformat(timespec="seconds"), parent_url))
     return 1
 
 
@@ -159,12 +165,15 @@ MEETING_KW = re.compile(r"検討会|研究会|懇談会|審議会|協議会|委�
 
 def crawl_ministry_index(con, src):
     """省庁の審議会・研究会ページを巡回。
-    mode=links: 一覧から会議名リンクを抽出（総務省など）
-    mode=page : ページ自体を1会議として扱い、報告書PDFも収録（警察庁など）
+    mode=links : 一覧から会議名リンクを抽出（総務省など）
+    mode=page  : ページ自体を1会議として扱い、報告書PDFも収録（個別に登録した会議）
+    mode=follow: 一覧の各会議ページまでたどり、会議名と報告書・提言PDFを収録（警察庁など）
     """
     soup = BeautifulSoup(get_html(src["url"]), "html.parser")
     mode = src.get("mode", "links")
     n = 0
+    if mode == "follow":
+        return crawl_council_pages(con, src, soup)
     if mode == "page":
         # 会議名(h1) ＋ 部会/WG名(h2/h3) を内容語として個別にインデックス化。
         # 抽象的な会議名でも、配下WG名(例「不適正利用対策WG」)が主題語を含むため拾える。
@@ -184,12 +193,103 @@ def crawl_ministry_index(con, src):
             t = a.get_text(" ", strip=True)
             href = urljoin(src["url"], a["href"])
             if href.lower().endswith(".pdf") and ("報告" in t or "houkoku" in href.lower() or t in ("本文", "概要")):
-                n += upsert(con, src, f"{main}（報告書・{t}）", href, "", src.get("ministry"))
+                n += upsert(con, src, f"{main}（報告書・{t}）", href, "", src.get("ministry"),
+                            parent_url=src["url"])
     else:
         for a in soup.find_all("a", href=True):
             t = a.get_text(" ", strip=True)
             if len(t) >= 8 and MEETING_KW.search(t) and "一覧" not in t and "はこちら" not in t:
                 n += upsert(con, src, t, urljoin(src["url"], a["href"]), "", src.get("ministry"))
+    return n
+
+
+# 報告書・提言等（会議の成果物）とみなすPDFの見出し語。議事次第・資料・議事概要は対象外。
+REPORT_KW = re.compile(r"報告|提言|取りまとめ|とりまとめ|中間整理|最終整理|答申|意見書")
+REPORT_EXCLUDE = re.compile(r"議事|資料|構成員|名簿|開催要綱|次第")
+# 見出し末尾のファイルサイズ表記（例: 報告書（544KB）／概要 (35KB)）
+FILE_SIZE = re.compile(r"[（(]\s*(?:PDF\s*[:：]?\s*)?[\d.,]+\s*[KMG]i?B\s*[)）]", re.I)
+# 「第１回検討会」等の各回の会合（会議そのものではない）
+MEETING_NO = re.compile(r"^第\s*[0-9０-９一二三四五六七八九十]+\s*回")
+
+
+def is_council_heading(text):
+    """会議ページ内の見出しが会議名（部会・WG・期ごとの検討会）か。各回の会合は除く。"""
+    return len(text) >= 8 and bool(MEETING_KW.search(text)) and not MEETING_NO.match(text)
+
+
+def council_links(soup, base_url):
+    """会議一覧ページから、同じサイト内の会議ページへのリンク (会議名, URL) を返す。"""
+    host = urlparse(base_url).netloc
+    seen, out = set(), []
+    for a in soup.find_all("a", href=True):
+        t = a.get_text(" ", strip=True)
+        href = urljoin(base_url, a["href"]).split("#")[0]
+        if (len(t) < 6 or not MEETING_KW.search(t) or "一覧" in t
+                or href.lower().endswith(".pdf") or urlparse(href).netloc != host
+                or href == base_url or href in seen):
+            continue
+        seen.add(href)
+        out.append((t, href))
+    return out
+
+
+def report_pdfs(soup, page_url):
+    """会議ページから報告書・提言等のPDFを (見出し, URL, リンク要素) で返す。
+
+    リンク文字が「本文」「概要」だけのことが多い（例: 提言［本文／概要］）ため、
+    リンクを含む段落の、リンクより前の文字列を見出しとして使う。
+    """
+    out, seen = [], set()
+    for a in soup.find_all("a", href=True):
+        href = urljoin(page_url, a["href"])
+        if not href.lower().endswith(".pdf") or href in seen:
+            continue
+        text = a.get_text(" ", strip=True)
+        block = a.find_parent(["p", "li", "td", "dd", "dt"])
+        lead = ""
+        if block:
+            lead = re.split(r"[［\[（(【]", block.get_text("", strip=True), 1)[0].strip()
+            if lead == text:
+                lead = ""
+        label = text if REPORT_KW.search(text) or not lead else f"{lead}・{text}"
+        label = re.sub(r"\s+", "", FILE_SIZE.sub("", label))
+        if not REPORT_KW.search(label) or REPORT_EXCLUDE.search(label):
+            continue
+        seen.add(href)
+        out.append((label, href, a))
+    return out
+
+
+def crawl_council_pages(con, src, index_soup):
+    """mode=follow: 一覧 → 各会議ページ → 会議名・部会名・報告書PDF。"""
+    n = 0
+    for name, url in council_links(index_soup, src["url"]):
+        try:
+            soup = BeautifulSoup(get_html(url), "html.parser")
+        except Exception as e:
+            print(f"    ! {url} skip: {e}", file=sys.stderr)
+            continue
+        # 会議名は一覧のリンク文字を優先（会議ページの h1 は「有識者検討会」等と短いことがある）
+        n += upsert(con, src, name, url, "", src.get("ministry"))
+        # 1ページに複数の期・部会が並ぶ場合（例: 令和8年～／令和2年～3年の検討会）、
+        # h2/h3 の会議名を個別の文書（ページ内アンカー）として登録する。
+        sections = {}
+        for i, h in enumerate(soup.find_all(["h2", "h3"]), 1):
+            t = h.get_text(" ", strip=True)
+            if is_council_heading(t) and t != name:
+                sections[id(h)] = (t, f"{url}#sec{i}")
+                n += upsert(con, src, t, f"{url}#sec{i}", "", src.get("ministry"))
+        for label, href, a in report_pdfs(soup, url):
+            # 報告書は直前の h2 の会議に属するとみなす。h2 が会議名でない区画（例: 調査研究）は
+            # その見出しを名前にし、紐付け先はページ全体の会議とする。
+            h2 = a.find_previous("h2")
+            owner, owner_url = name, url
+            if h2 is not None:
+                h2_text = h2.get_text(" ", strip=True)
+                owner, owner_url = sections.get(id(h2), (h2_text or name, url))
+            n += upsert(con, src, f"{owner}（{label}）", href, "", src.get("ministry"),
+                        parent_url=owner_url)
+        time.sleep(src.get("sleep", 0.5))
     return n
 
 
@@ -258,6 +358,8 @@ def main():
     ap.add_argument("--stats", action="store_true")
     ap.add_argument("--no-abstracts", action="store_true", help="要旨(PDF冒頭)抽出を行わない")
     ap.add_argument("--abstracts-only", action="store_true", help="巡回せず要旨抽出のみ")
+    ap.add_argument("--no-report-laws", action="store_true",
+                    help="報告書PDFの法令名抽出（report_laws.json の更新）を行わない")
     args = ap.parse_args()
     con = sqlite3.connect(DB)
     db_init(con)
@@ -287,6 +389,13 @@ def main():
         print(f"完了: {total}件（refs.db）", file=sys.stderr)
     if not args.no_abstracts:
         enrich_abstracts(con)
+    # 報告書PDFの法令名抽出は新しいPDFだけの増分処理で軽いため、CI（--no-abstracts）でも行う。
+    # 結果は report_laws.json に残り、CI と週次処理の照合で共有される。
+    if not args.no_report_laws and not args.abstracts_only:
+        import report_laws
+        cache = report_laws.load_cache()
+        if report_laws.update_cache(con, get, cache):
+            report_laws.save_cache(cache)
 
 
 if __name__ == "__main__":
