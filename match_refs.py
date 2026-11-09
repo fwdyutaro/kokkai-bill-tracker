@@ -13,10 +13,11 @@ refs.db の文書を法案(bills.json)に紐付け、Tier2参考リンクとし�
   弱  : 文字3-gram Jaccard ≥ 0.22                          → conf 0.4+
 Tier2は score ≥ 0.55 で自動採用（DESIGN_refs.md のスコア方針に準拠）。
 """
-import argparse, json, os, re, sqlite3, sys
+import argparse, json, os, re, sqlite3, sys, unicodedata
 from datetime import date, timedelta
 from apply_suppressions import _bill_key
 from data_output import render_data_js
+import report_laws
 try:
     import yaml
 except ImportError:
@@ -155,13 +156,12 @@ def build_semantic(bills, docs):
 
 def load_docs(db="refs.db"):
     con = sqlite3.connect(db)
-    cols = ["tier", "category", "publisher", "title", "url", "published_at", "ministry", "abstract"]
-    try:
-        rows = con.execute(
-            "SELECT tier,category,publisher,title,url,published_at,ministry,abstract FROM documents")
-    except sqlite3.OperationalError:   # abstract列が無い旧DB
-        rows = ((*r, None) for r in con.execute(
-            "SELECT tier,category,publisher,title,url,published_at,ministry FROM documents"))
+    cols = ["tier", "category", "publisher", "title", "url", "published_at", "ministry",
+            "abstract", "parent_url"]
+    have = {r[1] for r in con.execute("PRAGMA table_info(documents)")}
+    # 旧DB（abstract / parent_url 列が無い）でも読めるよう、無い列は NULL で補う
+    select = ",".join(c if c in have else f"NULL AS {c}" for c in cols)
+    rows = con.execute(f"SELECT {select} FROM documents")
     return [dict(zip(cols, r)) for r in rows]
 
 
@@ -212,6 +212,20 @@ def keywords_from_purpose(summary):
 # ---- 審議会の開催時期検証（候補になった会議ページのみ取得・キャッシュ） ------
 MEETING_DATE_CACHE = "meeting_dates.json"
 _DATE_PAT = re.compile(r"(20\d\d)\s*[年./-]\s*(\d{1,2})")
+# 和暦（令和）。省庁の会議ページは「令和８年８月10日」のように全角数字が混じる
+_REIWA_PAT = re.compile(r"令和\s*(\d{1,2}|元)\s*年\s*(\d{1,2})\s*月")
+
+
+def page_months(html):
+    """ページ内に現れる年月を 'YYYY-MM' の集合で返す（西暦・令和の両方）。"""
+    html = unicodedata.normalize("NFKC", html or "")
+    months = {f"{y}-{int(m):02d}" for y, m in _DATE_PAT.findall(html)
+              if 1 <= int(m) <= 12 and 2000 <= int(y) <= 2099}
+    for y, m in _REIWA_PAT.findall(html):
+        year = 2018 + (1 if y == "元" else int(y))
+        if 1 <= int(m) <= 12:
+            months.add(f"{year}-{int(m):02d}")
+    return months
 
 
 def load_meeting_dates():
@@ -229,9 +243,7 @@ def latest_meeting_month(url, cache):
         return cache[url]
     try:
         from crawl import get_html
-        html = get_html(url)
-        months = [f"{y}-{int(m):02d}" for y, m in _DATE_PAT.findall(html)
-                  if 1 <= int(m) <= 12 and 2000 <= int(y) <= 2099]
+        months = page_months(get_html(url))
         val = max(months) if months else ""
     except Exception:
         val = ""
@@ -396,6 +408,62 @@ def replay_candidates(bill, entry, taken, suppressed=None):
     return out
 
 
+# ---- 報告書・提言が改正対象の法令に言及しているか ---------------------------
+# 件名・趣旨の語が会議名と重ならない改正法案でも、前段の審議会・検討会の報告書は
+# 「〇〇法の中に規定することが考えられる」のように改正先の法令名を書くことが多い
+# （report_laws.py 参照）。所管一致・開催時期・LLMゲートは他の審議会候補と同じ。
+
+# この数を超える会議の報告書に出てくる法令名は、その省庁では汎用とみなして使わない
+MAX_LAW_COUNCILS = 3
+# 骨子・案・中間取りまとめより最終版を優先して添付する
+_DRAFT_RE = re.compile(r"骨子|素案|たたき台|中間|（案）|\(案\)|案）")
+
+
+def build_report_index(docs, laws_cache):
+    """{会議ページURL: {"doc": 会議ページ, "reports": [(報告書doc, 言及)]}} を作る。"""
+    by_url = {d["url"]: d for d in docs}
+    index = {}
+    for d in docs:
+        parent = d.get("parent_url")
+        if d["category"] != "審議会・検討会" or not parent or parent not in by_url:
+            continue
+        entry = laws_cache.get(d["url"])
+        # 改正・規定の文脈での言及（amend）だけを使う。単に法令名に触れた報告書は拾わない
+        if not entry or not entry.get("amend"):
+            continue
+        c = index.setdefault(parent, {"doc": by_url[parent], "reports": []})
+        c["reports"].append((d, entry["amend"]))
+    return index
+
+
+def law_mention_candidates(bill, index, mcache, max_councils=MAX_LAW_COUNCILS):
+    """件名の改正対象法令に言及する同所管の会議ページと、その代表的な報告書を候補にする。"""
+    ministry = bill.get("ministry") or ""
+    out = []
+    for law in report_laws.amended_laws(bill["title"]):
+        councils = []
+        for c in index.values():
+            cm = c["doc"].get("ministry")
+            if not cm or cm not in ministry:
+                continue
+            reps = [(report_laws.mentions_law(m, law), r) for r, m in c["reports"]]
+            reps = [(n, r) for n, r in reps if n > 0]
+            if reps:
+                councils.append((c, reps))
+        if not councils or len(councils) > max_councils:
+            continue
+        for c, reps in councils:
+            if not shingikai_time_ok(c["doc"], bill.get("submittedOn"), mcache):
+                continue
+            total = sum(n for n, _ in reps)
+            _, best = max(reps, key=lambda x: (not _DRAFT_RE.search(x[1]["title"]), x[0]))
+            note = f"この会議の報告書・提言は「{law}」の改正・規定に{total}回言及している"
+            why = f"所管一致＋報告書が改正対象の法令に言及（{law}）"
+            out.append((0.84, why, dict(c["doc"], note=note)))
+            out.append((0.83, why, dict(best, note=note)))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--in", dest="infile", default="bills.json")
@@ -444,6 +512,7 @@ def main():
     suppressed = load_suppression_check()
     mcache = load_meeting_dates()
     replay_stats = {"cand": 0, "kept": 0, "mismatch": 0}
+    report_index = build_report_index(docs, report_laws.load_cache())
 
     total_attached = 0
     for bi, b in enumerate(bills):
@@ -500,17 +569,27 @@ def main():
                 # ゲート有効時は候補生成を緩めてLLM検証に委ねる（再現↑・精度はゲートが担保）
                 if picked >= (3 if gate else 1):
                     break
+        # 審議会候補の開催時期チェック（候補になった会議ページのみ取得）
+        cands = [(sc, why, d) for sc, why, d in cands
+                 if shingikai_time_ok(d, b.get("submittedOn"), mcache)]
+        # 報告書が改正対象の法令に言及する会議（開催時期は関数内で確認済み）
+        have = {d["url"] for _, _, d in cands}
+        # 同じ会議ページ（ページ内アンカー違いを含む）が既に付いていれば重ねて付けない
+        pages = {u.split("#")[0] for u in existing | have}
+        for sc, why, d in law_mention_candidates(b, report_index, mcache):
+            if (d["url"] in existing or d["url"] in have or d["url"].split("#")[0] in pages
+                    or suppressed(b, d["url"])):
+                continue
+            have.add(d["url"])
+            pages.add(d["url"].split("#")[0])
+            cands.append((sc, why, d))
         # 週次処理で得た意味類似候補の再適用（時期・所管の検証は計算時に済んでいる）
         replayed = []
         entry = sem_cache.get(b.get("id"))
         if entry and not fingerprint_matches(entry, b):
             replay_stats["mismatch"] += 1
         elif entry:
-            taken = existing | {d["url"] for _, _, d in cands}
-            replayed = replay_candidates(b, entry, taken, suppressed)
-        # 審議会候補の開催時期チェック（候補になった会議ページのみ取得）
-        cands = [(sc, why, d) for sc, why, d in cands
-                 if shingikai_time_ok(d, b.get("submittedOn"), mcache)]
+            replayed = replay_candidates(b, entry, existing | have, suppressed)
         if gate:
             cands = gate.filter(b, cands, verbose=args.dry)
         if replayed:

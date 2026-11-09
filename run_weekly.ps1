@@ -12,6 +12,7 @@ $GeneratedFiles = @(
     "summaries.json",
     "gate_cache.json",
     "meeting_dates.json",
+    "report_laws.json",
     "semantic_cache.json"
 )
 $BotName = "bill-tracker-bot"

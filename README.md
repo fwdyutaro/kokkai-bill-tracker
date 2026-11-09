@@ -36,6 +36,8 @@
 - `sources.yaml` / `crawl.py` … 参考リンクのソース台帳とクローラ（→ `refs.db`）
 - `aliases.yaml` … 法案の通称・関連キーワード辞書（審議会等との紐付けの鍵）
 - `match_refs.py` … 参考文書を法案に紐付け（語彙＋所管＋趣旨＋意味類似でスコア化）
+- `report_laws.py` / `report_laws.json` … 審議会・検討会の報告書／提言PDFが改正・規定の文脈で言及する
+  法令名のインデックス（本文は保存しない）。改正法案と前段の会議の紐付けに使う
 - `llm_gate.py` … 弱い候補をLLMで関連性検証（任意・要APIキー）
 - `linkcheck.py` … 参考リンクの死活チェック（＋Wayback提案）
 - `run_all.bat` … 週次高品質パイプライン（Ollama要約・PDF抽出・e5照合を含む）一括実行
@@ -100,6 +102,13 @@ python apply_suppressions.py        # 承認済み取り下げ依頼を反映（
 python tag.py                       # 検索用タグ付与
 run_all.bat                # Ollama要約→PDF抽出→e5照合→提供/取り下げ反映→タグ→死活（週次高品質）
 ```
+
+審議会・検討会は、件名や趣旨の語が会議名と重ならない改正法案でも、その会議の報告書・提言が
+改正対象の法令に「〇〇法を改正」「〇〇法の中に規定」などの形で触れていれば紐付く
+（例: 警察官職務執行法の一部を改正する法律案 ↔ 匿名・流動型犯罪グループによる犯罪被害対策のための
+技術的措置に関する有識者検討会）。会議一覧ページを `sources.yaml` に `mode: follow` で登録すると、
+各会議ページと報告書PDFまでたどる。PDFから取り出した法令名は `report_laws.json` に残り、
+PDFを読み直さないCIでも同じ照合ができる。
 
 実行順は `collect.py` → `crawl.py` → `match_refs.py` → `merge_submissions.py` →
 `apply_suppressions.py` → `tag.py`（`run_all.bat` / `.github/workflows/update.yml` と同一）。
