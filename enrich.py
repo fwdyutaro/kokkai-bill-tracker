@@ -11,7 +11,7 @@
 （著作権配慮で提出理由の原文を転載しない）。要約は summaries.json にキャッシュし再実行を高速化。
 フラグ無し（開発時）は提出理由の原文をそのまま入れる。
 """
-import os, re, time, json, hashlib
+import os, re, sys, time, json, hashlib
 from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
@@ -133,17 +133,47 @@ SUMMARY_INSTR = ("次の法律案の提出理由を、一般市民向けに3行�
                  "前置きや見出しは不要、要約本文のみ出力。")
 
 
-def _ollama_summarize(prompt):
-    """ローカルLLM(Ollama)で要約。著作権配慮で原文転載を避けるための既定経路。"""
+_ollama_unreachable_reported = False
+
+
+def _warn(msg):
+    print(f"      ! {msg}", file=sys.stderr)
+
+
+def _ollama_summarize(prompt, label=""):
+    """ローカルLLM(Ollama)で要約。著作権配慮で原文転載を避けるための既定経路。
+
+    失敗理由（タイムアウト・HTTPエラー・空応答）は stderr に出す。黙って None を返すと
+    「要約未生成」の原因が build.log から追えないため。Ollama 自体に接続できない場合
+    （CI など）は1回だけ報告する。
+    """
+    global _ollama_unreachable_reported
     try:
         r = requests.post(f"{OLLAMA_URL}/api/generate",
                           json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False,
                                 "options": {"temperature": 0.2}}, timeout=180)
-        if r.status_code == 200:
-            return (r.json().get("response") or "").strip() or None
-    except Exception:
+    except requests.exceptions.ConnectionError:
+        if not _ollama_unreachable_reported:
+            _warn(f"Ollama に接続できません（{OLLAMA_URL}）。以降の要約は生成しません")
+            _ollama_unreachable_reported = True
         return None
-    return None
+    except Exception as e:
+        _warn(f"Ollama要約失敗 {label}: {type(e).__name__}: {str(e)[:120]}")
+        return None
+    if r.status_code != 200:
+        _warn(f"Ollama要約失敗 {label}: HTTP {r.status_code} {r.text[:120]}")
+        return None
+    try:
+        body = r.json()
+    except ValueError:
+        _warn(f"Ollama要約失敗 {label}: JSONでない応答 {r.text[:120]}")
+        return None
+    out = (body.get("response") or "").strip()
+    if not out:
+        _warn(f"Ollama要約失敗 {label}: 空の応答（done_reason={body.get('done_reason')}, "
+              f"eval_count={body.get('eval_count')}）")
+        return None
+    return out
 
 
 def llm_summarize(reason_text, title):
@@ -151,7 +181,7 @@ def llm_summarize(reason_text, title):
     if not reason_text:
         return None
     prompt = f"{SUMMARY_INSTR}\n\n法案名: {title}\n提出理由:\n{reason_text}"
-    out = _ollama_summarize(prompt)          # 1) ローカルLLM（無料・原文非転載）
+    out = _ollama_summarize(prompt, title[:30])   # 1) ローカルLLM（無料・原文非転載）
     if out:
         return out
     if not os.environ.get("ANTHROPIC_API_KEY"):   # 2) Anthropic（キーがあれば）

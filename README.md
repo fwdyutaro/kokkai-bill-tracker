@@ -200,7 +200,8 @@ python sessions.py should-run   # CI用ゲート（run=true/false）
   開始フォルダーは `D:\py\bill-tracker` とする。
 
 週次スクリプトは開始時の未コミット変更と処理中のリモート更新を検出すると、安全のためcommit/pushせず
-非ゼロで終了する。ログはUTF-8で `build.log` に保存し、commit対象は公開用生成物だけに限定する。
+非ゼロで終了する。チェックアウトが公開ブランチ（既定 `main`。`-PublishBranch` で変更可）以外の
+ブランチにある場合も、結果を誤ったブランチへ公開しないよう開始時に停止する。ログはUTF-8で `build.log` に保存し、commit対象は公開用生成物だけに限定する。
 
 ## 参考情報の提供（ユーザー投稿）
 
