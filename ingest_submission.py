@@ -33,6 +33,7 @@ CONNECT_TIMEOUT = 5
 READ_TIMEOUT = 10
 MAX_HTML_BYTES = 2 * 1024 * 1024
 MAX_REDIRECTS = 3
+MAX_TITLE_CHARS = 300
 EXIT_MANUAL_REVIEW = 1
 EXIT_INVALID_INPUT = 2
 EXIT_FAILED = 3
@@ -273,6 +274,8 @@ def extract_meta(url):
     # サイト名接尾辞を除去（「… | CiNii Research」「… - NHK」等）
     if title:
         title = re.split(r"\s*[|｜\-—–]\s*[^|｜\-—–]{2,30}$", title)[0].strip()
+        # 外部ページ由来の文字列をそのまま公開・コメント埋め込みしないよう長さを制限する
+        title = title[:MAX_TITLE_CHARS]
     publisher = meta("og:site_name", "citation_journal_title") or urlsplit(fetched.url).hostname
     desc = meta("og:description", "description", "citation_abstract") or ""
     # 取得できても汎用タイトルなら手動補完が必要

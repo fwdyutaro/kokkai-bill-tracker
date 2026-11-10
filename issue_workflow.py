@@ -2,6 +2,8 @@
 """GitHub Issue 承認ワークフローの、ローカルで検証可能な状態判定。"""
 
 import argparse
+import base64
+import hashlib
 import json
 import os
 import re
@@ -154,6 +156,91 @@ def _normalise_bill_no(value):
     return (match.group(1), int(match.group(2))) if match else None
 
 
+# ---- 確認済み内容の固定（承認時の差し替え防止） --------------------------------
+# 自動処理のコメント末尾に「処理した時点のIssue件名・本文のハッシュ」と掲載レコードを
+# 埋め込み、approved ラベル付与時に照合する。メンテナが確認した後に投稿者が本文や
+# リンク先ページを書き換えても、確認していない内容は掲載・取り下げされない。
+REVIEW_BOT_LOGIN = "github-actions[bot]"
+REVIEW_MARKER_RE = re.compile(
+    r"<!-- bill-tracker-review v1 sha256=([0-9a-f]{64})(?: record=([A-Za-z0-9+/=]+))? -->")
+RECORD_FIELDS = ("bill_id", "bill_no", "title", "url", "publisher", "relevance", "why",
+                 "manual", "status")
+
+
+def issue_fingerprint(title, body):
+    """Issueの件名＋本文のハッシュ。改行コードと前後の空白の違いは無視する。"""
+    def clean(value):
+        return "\n".join(str(value or "").splitlines()).strip()
+    text = json.dumps([clean(title), clean(body)], ensure_ascii=False)
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def make_review_marker(title, body, record=None):
+    """コメント末尾に付ける不可視マーカーを作る。
+
+    record は base64 化して埋め込む（外部ページ由来のタイトルがHTMLコメントを
+    閉じたり、偽のマーカーを作ったりできないようにする）。
+    """
+    marker = f"<!-- bill-tracker-review v1 sha256={issue_fingerprint(title, body)}"
+    if record is not None:
+        payload = json.dumps(record, ensure_ascii=False, sort_keys=True).encode("utf-8")
+        marker += " record=" + base64.b64encode(payload).decode("ascii")
+    return marker + " -->"
+
+
+def load_comments(path):
+    """`gh api ... --jq '.[] | {login: .user.login, body: .body}'` の出力（JSON Lines）を読む。"""
+    comments = []
+    with Path(path).open(encoding="utf-8") as source:
+        for line in source:
+            line = line.strip()
+            if not line:
+                continue
+            item = json.loads(line)
+            if isinstance(item, dict):
+                comments.append(item)
+    return comments
+
+
+def check_review(title, body, comments, need_record=False):
+    """承認してよいかを (result, detail, record) で返す。result は "ok" か "manual_review"。
+
+    bot 自身の最新の自動処理コメントだけを信用し、そのコメントの最後のマーカー
+    （ワークフローが末尾に付けたもの）を使う。
+    """
+    marker = None
+    for comment in comments:            # APIは古い順に返すので、後のコメントで上書きする
+        if comment.get("login") != REVIEW_BOT_LOGIN:
+            continue
+        found = REVIEW_MARKER_RE.findall(str(comment.get("body") or ""))
+        if found:
+            marker = found[-1]
+    if marker is None:
+        return ("manual_review",
+                "自動処理の記録が見つかりません。Issue本文を編集して自動処理をやり直してください",
+                None)
+    digest, payload = marker
+    if digest != issue_fingerprint(title, body):
+        return ("manual_review",
+                "自動処理の後にIssueの内容が変更されています。"
+                "最新の自動処理結果を確認してから approved を付け直してください",
+                None)
+    if not need_record:
+        return "ok", "確認済みの内容と一致しました", None
+    if not payload:
+        return "manual_review", "自動処理に失敗したため、手動確認が必要です", None
+    try:
+        record = json.loads(base64.b64decode(payload, validate=True).decode("utf-8"))
+    except Exception:
+        return "manual_review", "自動処理の記録を読み取れません", None
+    if (not isinstance(record, dict)
+            or not re.fullmatch(r"https?://[^\s]+", str(record.get("url") or ""))
+            or not (record.get("bill_id") or record.get("bill_no"))):
+        return "manual_review", "自動処理の記録に必須項目がありません", None
+    return ("ok", "確認済みの内容と一致しました",
+            {key: record[key] for key in RECORD_FIELDS if key in record})
+
+
 def set_output(name, value):
     output = os.environ.get("GITHUB_OUTPUT")
     if output:
@@ -179,7 +266,33 @@ def main():
     verify.add_argument("--title", default="")
     verify.add_argument("--body", default="")
     verify.add_argument("--bills", default="bills.json")
+    marker = commands.add_parser("review-marker")
+    marker.add_argument("--title", default="")
+    marker.add_argument("--body", default="")
+    marker.add_argument("--record", default=None, help="掲載レコード（無ければハッシュのみ）")
+    check = commands.add_parser("check-review")
+    check.add_argument("--title", default="")
+    check.add_argument("--body", default="")
+    check.add_argument("--comments", required=True, help="IssueコメントのJSON Lines")
+    check.add_argument("--out", default=None, help="確認済みの掲載レコードの出力先")
     args = parser.parse_args()
+
+    if args.command == "review-marker":
+        record = load_json(args.record, None) if args.record else None
+        print(make_review_marker(args.title, args.body,
+                                 record if isinstance(record, dict) else None))
+        return 0
+    if args.command == "check-review":
+        if args.out:
+            Path(args.out).unlink(missing_ok=True)   # 古い rec.json を掲載に使わせない
+        result, detail, record = check_review(
+            args.title, args.body, load_comments(args.comments), need_record=bool(args.out))
+        if result == "ok" and args.out:
+            write_json(args.out, record)
+        set_output("result", result)
+        set_output("detail", detail)
+        print(detail)
+        return 0
 
     if args.command == "approve-submission":
         detail = approve_submission(args.record, args.submissions, args.bills)

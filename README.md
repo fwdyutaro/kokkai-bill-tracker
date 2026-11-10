@@ -213,6 +213,10 @@ python sessions.py should-run   # CI用ゲート（run=true/false）
    （NDLデジコレ等のJS描画ページはタイトル自動取得不可→コメントで手動補完）
 2. メンテナが内容を確認し `approved` ラベル → `submissions.json` に取り込み、
    `merge_submissions.py` がサイトデータへ「提供情報」(Tier4)として反映、Issueをクローズ。
+   掲載されるのは **1 の自動処理コメントに記録した内容そのもの**（承認時にURLは再取得しない）。
+   コメント末尾の不可視マーカー（Issue件名・本文のハッシュ＋掲載レコード）と承認時点の
+   Issueを照合し、確認後に本文が編集されていれば掲載せず `needs-review` に戻す
+   （取り下げ依頼も同様）。本文が編集されると自動処理がやり直され、最新のコメントが基準になる。
 3. 日次・週次ビルドは match→**merge_submissions**→**apply_suppressions**→tag の順で、
    再生成後も提供情報の掲載・取り下げ依頼の除外を維持。
 
