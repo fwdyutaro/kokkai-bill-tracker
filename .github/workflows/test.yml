@@ -1,0 +1,31 @@
+name: test
+# プルリクエストと main への push でテストを実行する（読み取り権限のみ・シークレット不使用）。
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "bills.json"
+      - "data_collected.js"
+      - "summaries.json"
+      - "gate_cache.json"
+      - "meeting_dates.json"
+      - "report_laws.json"
+      - "semantic_cache.json"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements-dev.txt
+      - run: python -m pytest -q

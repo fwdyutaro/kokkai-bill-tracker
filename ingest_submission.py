@@ -246,6 +246,17 @@ def fetch_public_html(url, _session=None):
     raise SubmissionFetchError("HTMLを取得できませんでした")
 
 
+# 末尾のサイト名（「… | CiNii Research」「… - NHK」）。縦棒は空白なしでも区切りとみなすが、
+# ハイフン類は前後に空白があるものだけを区切りとする（「COVID-19対策」等の語中のハイフンを
+# 区切りと誤認して題名を削らないため）。
+SITE_SUFFIX_RE = re.compile(
+    r"(?:\s*[|｜]\s*|\s+[\-—–]\s+)(?:(?!\s[\-—–]\s)[^|｜]){2,30}$")
+
+
+def strip_site_suffix(title):
+    return SITE_SUFFIX_RE.split(title or "", maxsplit=1)[0].strip()
+
+
 def extract_meta(url):
     """URLからタイトル・概要・発行元を抽出。JS描画等で取れない場合は title=None。"""
     fetched = fetch_public_html(url)
@@ -273,7 +284,7 @@ def extract_meta(url):
         title = soup.title.get_text(strip=True)
     # サイト名接尾辞を除去（「… | CiNii Research」「… - NHK」等）
     if title:
-        title = re.split(r"\s*[|｜\-—–]\s*[^|｜\-—–]{2,30}$", title)[0].strip()
+        title = strip_site_suffix(title)
         # 外部ページ由来の文字列をそのまま公開・コメント埋め込みしないよう長さを制限する
         title = title[:MAX_TITLE_CHARS]
     publisher = meta("og:site_name", "citation_journal_title") or urlsplit(fetched.url).hostname

@@ -615,10 +615,13 @@ def main():
             for sc, why, d in cands[:5]:
                 print(f"    {round(sc*100):3d}%  [{d['publisher'][:12]}] {d['title'][:46]}  〈{why}〉")
 
-    json.dump(mcache, open(MEETING_DATE_CACHE, "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+    # --dry は「書き込まずレポートのみ」。判定・開催時期のキャッシュも書き換えない。
+    if not args.dry:
+        json.dump(mcache, open(MEETING_DATE_CACHE, "w", encoding="utf-8"),
+                  ensure_ascii=False, indent=1)
     if gate:
-        gate.save()
+        if not args.dry:
+            gate.save()
         st = gate.stats
         print(f"\nLLMゲート: 採用{st['pass']} 除外{st['drop']} "
               f"(キャッシュ命中{st['cached']} 未判定{st.get('unjudged', 0)} "

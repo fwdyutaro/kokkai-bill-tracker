@@ -60,10 +60,11 @@ jobs:
         env:
           # LLMゲートを使う場合のみ。未設定なら match_refs はゲートをスキップ。
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DIET: ${{ steps.diet.outputs.diet }}
         run: |
           # 概要要約は summaries.json（ローカルでOllama生成・コミット済）を再利用。
           # CIにOllamaは無いが、キャッシュ済み法案は要約が維持される（著作権配慮で原文転載しない）。
-          python collect.py --diet "${{ steps.diet.outputs.diet }}" --sleep 1.0 --llm-summary
+          python collect.py --diet "$DIET" --sleep 1.0 --llm-summary
           python crawl.py --no-abstracts       # 要旨(PDF)はローカルで抽出。CIは毎晩の大量DLを避ける
                                                # （報告書PDFの法令名抽出は新規分だけなのでCIでも行う）
           python match_refs.py --no-semantic   # CIではe5を使わず、週次処理の結果を semantic_cache.json から再適用

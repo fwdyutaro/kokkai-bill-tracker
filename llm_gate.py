@@ -17,7 +17,9 @@ import requests
 SOFT = ("意味類似", "趣旨キーワード", "語彙類似", "所管一致")
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "gemma4:12b")
-ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
+# Anthropic のモデルIDはここ1か所で管理する（enrich.py の要約もこの値を使う）。
+# モデルが廃止されたら ANTHROPIC_MODEL 環境変数かこの既定値を更新する。
+ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL") or "claude-haiku-4-5-20251001"
 CACHE = "gate_cache.json"
 
 _SYSTEM = ("あなたは立法情報の編集者です。参考文書がその法案の審議の参考として"
