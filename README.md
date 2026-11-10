@@ -145,6 +145,8 @@ python sessions.py should-run   # CI用ゲート（run=true/false）
 **会期が変わったときの手順（sessions.yaml だけ）**
 
 1. `sessions.yaml` に新しい会期を追記する（`to: null`）。同時に、閉会した会期の `to` に閉会日を入れる。
+   会期末の予定日を `planned_to` に入れておくと、その日を過ぎても `to` が未入力のとき
+   日次CIが警告を出す（閉会日の入れ忘れ防止。会期が延長されたら `planned_to` を更新する）。
    `clb_id` は内閣法制局「最近の法律・条約」の「第N回国会での内閣提出法律案」リンクの `id=` の値。
 
 `.github/workflows/update.yml`・`run_all.bat`・`collect.py`（`--diet` 省略時）はいずれも
