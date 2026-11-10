@@ -2,13 +2,15 @@ name: remove-reference
 # 取り下げ依頼Issueを処理する。
 #  - 投稿時: 内容を確認用にコメント＋ needs-review ラベル
 #  - approved ラベル付与時: suppressions.json に追加し、サイトから除外してIssueをクローズ
+#
+# 受付コメントの末尾にIssue本文のハッシュを埋め込み、承認時に照合する
+# （承認の直前に投稿者が対象URLを差し替えても取り下げは行わない）。
 on:
   issues:
     types: [opened, edited, labeled]
 
-permissions:
-  contents: write
-  issues: write
+# 権限はジョブごとに必要最小限を付与する。
+permissions: {}
 
 concurrency:
   group: bill-tracker-data-update
@@ -18,27 +20,54 @@ jobs:
   ack:
     if: (contains(join(github.event.issue.labels.*.name), 'removal') || startsWith(github.event.issue.title, '[取り下げ依頼]')) && github.event.action != 'labeled'
     runs-on: ubuntu-latest
+    # 誰でも起動できるジョブ。リポジトリへは書き込ませない。
+    permissions:
+      contents: read
+      issues: write
     steps:
+      - uses: actions/checkout@v4
       - env:
           GH_TOKEN: ${{ github.token }}
           NUM: ${{ github.event.issue.number }}
+          T: ${{ github.event.issue.title }}
+          B: ${{ github.event.issue.body }}
         run: |
           gh label create removal -R "$GITHUB_REPOSITORY" --color "D93F0B" --description "参考情報の取り下げ依頼" --force
           gh label create needs-review -R "$GITHUB_REPOSITORY" --color "FBCA04" --description "メンテナによる確認が必要" --force
-          gh issue comment "$NUM" -R "$GITHUB_REPOSITORY" \
-            -b "取り下げ依頼を受け付けました。内容を確認のうえ、問題なければ除外します（メンテナが approved ラベルを付与）。"
+          {
+            echo "取り下げ依頼を受け付けました。内容を確認のうえ、問題なければ除外します（メンテナが approved ラベルを付与）。"
+            echo
+            # 承認時の照合用マーカー（本文ハッシュ）。issue_workflow.py は標準ライブラリのみで動く。
+            python3 issue_workflow.py review-marker --title "$T" --body "$B"
+          } > comment.md
+          gh issue comment "$NUM" -R "$GITHUB_REPOSITORY" -F comment.md
           gh issue edit "$NUM" -R "$GITHUB_REPOSITORY" --add-label removal --add-label needs-review
 
   remove:
     if: github.event.action == 'labeled' && github.event.label.name == 'approved' && (contains(join(github.event.issue.labels.*.name), 'removal') || startsWith(github.event.issue.title, '[取り下げ依頼]'))
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -r requirements-core.txt
+      - name: 確認済みの内容と照合
+        id: review
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUM: ${{ github.event.issue.number }}
+          T: ${{ github.event.issue.title }}
+          B: ${{ github.event.issue.body }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/issues/$NUM/comments" --paginate \
+            --jq '.[] | {login: .user.login, body: .body}' > comments.jsonl
+          python issue_workflow.py check-review --title "$T" --body "$B" --comments comments.jsonl
       - name: suppressions.json へ追加→除外を適用
         id: prepare
+        if: steps.review.outputs.result == 'ok'
         env:
           T: ${{ github.event.issue.title }}
           B: ${{ github.event.issue.body }}
@@ -56,13 +85,22 @@ jobs:
           python apply_suppressions.py
           python issue_workflow.py verify-removal --title "$T" --body "$B"
       - name: 手動確認へ戻す
-        if: steps.prepare.outputs.result == 'manual_review'
+        if: steps.review.outputs.result == 'manual_review' || steps.prepare.outputs.result == 'manual_review'
         env:
           GH_TOKEN: ${{ github.token }}
           NUM: ${{ github.event.issue.number }}
+          # 式の値はシェルへ直接埋め込まず、環境変数で渡す。
+          REVIEW_RESULT: ${{ steps.review.outputs.result }}
+          REVIEW_DETAIL: ${{ steps.review.outputs.detail }}
+          PREPARE_DETAIL: ${{ steps.prepare.outputs.detail }}
         run: |
+          if [ "$REVIEW_RESULT" = "manual_review" ]; then
+            detail="$REVIEW_DETAIL"
+          else
+            detail="$PREPARE_DETAIL"
+          fi
           gh issue edit "$NUM" -R "$GITHUB_REPOSITORY" --remove-label approved --add-label needs-review
-          gh issue comment "$NUM" -R "$GITHUB_REPOSITORY" -b "${{ steps.prepare.outputs.detail }}。Issueは閉じず、取り下げも行っていません。"
+          gh issue comment "$NUM" -R "$GITHUB_REPOSITORY" -b "${detail}。Issueは閉じず、取り下げも行っていません。"
       - name: コミット＆push
         if: steps.prepare.outputs.result == 'published-ready'
         env:

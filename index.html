@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- スクリプトは同一オリジンのファイル（app.js / data_collected.js）だけを許可する。
+     インラインのスクリプトやイベント属性は実行されないので、データに混入しても動かない。 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>国会 法律案トラッカー（個人運営・非公式）</title>
 <style>
   :root{
@@ -60,6 +64,7 @@
   .bill{background:var(--panel);border:1px solid var(--line);border-radius:12px;
         padding:16px 18px;margin-bottom:12px;cursor:pointer;transition:.15s}
   .bill:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .bill:focus-visible,.dhead .x:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   .bill .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
   .badge{font-size:11.5px;padding:2px 9px;border-radius:999px;font-weight:600;white-space:nowrap}
   .b-成立{background:rgba(39,192,147,.16);color:var(--ok)}
@@ -81,12 +86,15 @@
   .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;z-index:40}
   .drawer{position:fixed;top:0;right:0;height:100%;width:min(680px,94vw);background:var(--bg);
           border-left:1px solid var(--line);overflow-y:auto;transform:translateX(100%);
-          transition:.25s;z-index:50;padding:0}
-  .drawer.open{transform:translateX(0)}
+          transition:transform .25s,visibility 0s .25s;z-index:50;padding:0;
+          visibility:hidden}   /* 閉じている間は中のリンクにフォーカスさせない */
+  .drawer.open{transform:translateX(0);visibility:visible;transition:transform .25s}
   .overlay.open{display:block}
   .dhead{padding:20px 24px;border-bottom:1px solid var(--line);position:sticky;top:0;
          background:var(--bg);z-index:2}
-  .dhead .x{float:right;cursor:pointer;color:var(--muted);font-size:22px;line-height:1}
+  .dhead .x{float:right;cursor:pointer;color:var(--muted);font-size:22px;line-height:1;
+            background:none;border:0;padding:2px 6px;border-radius:6px;font-family:inherit}
+  .dhead .x:hover{color:var(--txt)}
   .dbody{padding:20px 24px}
   .section{margin-bottom:26px}
   .section h4{font-size:13px;color:var(--muted);text-transform:none;letter-spacing:.04em;
@@ -167,22 +175,28 @@
   <div id="sessionNote"></div>
 
   <div class="filters">
-    <select id="fDiet">
+    <select id="fDiet" aria-label="会期">
       <option value="">すべての会期</option>
     </select>
-    <select id="fStatus">
+    <select id="fStatus" aria-label="ステータス">
       <option value="">ステータス：すべて</option>
       <option>成立</option><option>審議中</option><option>継続審査</option>
       <option>審査未了</option><option>廃案</option>
     </select>
-    <select id="fType">
+    <select id="fType" aria-label="提出区分">
       <option value="">提出区分：すべて</option>
       <option>閣法</option><option>衆法</option><option>参法</option>
     </select>
-    <select id="fMinis">
+    <select id="fMinis" aria-label="所管">
       <option value="">所管：すべて</option>
     </select>
-    <input id="fText" placeholder="キーワード（法案名・タグ）">
+    <select id="fSort" aria-label="並び順">
+      <option value="">並び順：掲載順</option>
+      <option value="moved">最近動きがあった順</option>
+      <option value="submitted">提出日が新しい順</option>
+    </select>
+    <input id="fText" type="search" aria-label="キーワード検索"
+           placeholder="キーワード（法案名・番号・所管・概要・タグ）">
     <span class="count" id="count"></span>
   </div>
 
@@ -197,215 +211,9 @@
 </div>
 
 <div class="overlay" id="overlay"></div>
-<div class="drawer" id="drawer"></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true"></div>
+<noscript><p style="padding:0 28px">このサイトの表示には JavaScript が必要です。</p></noscript>
 
-<script>
-const $=s=>document.querySelector(s);
-let allBills=[];   // 全会期のレコード
-let bills=[];      // 選択中の会期に絞ったレコード（集計・一覧の対象）
-const fmt=d=>{if(!d)return"";const[y,m,da]=d.split("-");return `${y}.${+m}.${+da}`};
-const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
-// "221回" / 221 / "第221回" → 221（数値）。取れなければ null
-const dietNo=v=>{const m=String(v??"").match(/\d+/);return m?Number(m[0]):null};
-// "2026-07-25" → "令和8年7月25日"（令和以降のみ。それ以前は元の表記を返す）
-function wareki(iso){
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(String(iso||"")))return String(iso||"");
-  const[y,m,d]=iso.split("-").map(Number);
-  if(y<2019)return `${y}年${m}月${d}日`;
-  const r=y-2018;
-  return `令和${r===1?"元":r}年${m}月${d}日`;
-}
-const sessionOf=diet=>(window.SESSIONS||[]).find(s=>dietNo(s.diet)===dietNo(diet))||null;
-
-// dashboard
-function dash(){
-  const c={成立:0,審議中:0,継続審査:0,審査未了:0,廃案:0};
-  bills.forEach(b=>c[b.status]!==undefined&&c[b.status]++);
-  $("#dash").innerHTML=`
-    <div class="card s-合計"><div class="num">${bills.length}</div><div class="lbl">収録法案</div></div>
-    <div class="card s-審議中"><div class="num">${c.審議中}</div><div class="lbl">審議中</div></div>
-    <div class="card s-成立"><div class="num">${c.成立}</div><div class="lbl">成立・公布済</div></div>
-    <div class="card s-継続審査"><div class="num">${c.継続審査}</div><div class="lbl">継続審査</div></div>
-    <div class="card s-審査未了"><div class="num">${c.審査未了}</div><div class="lbl">審査未了</div></div>
-    <div class="card s-廃案"><div class="num">${c.廃案}</div><div class="lbl">廃案</div></div>`;
-}
-// 会期セレクタ（データに含まれる会期を降順、最新をデフォルト選択）
-function setupDiet(){
-  const sel=$("#fDiet");
-  const nos=[...new Set(allBills.map(b=>dietNo(b.diet)).filter(n=>n!==null))]
-              .sort((a,b)=>b-a);
-  sel.length=1;                       // 「すべての会期」だけ残す
-  nos.forEach(n=>{
-    const s=sessionOf(n),o=document.createElement("option");
-    o.value=String(n);
-    o.textContent=`第${n}回国会${s&&s.name?`（${s.name}）`:""}`;
-    sel.appendChild(o);
-  });
-  if(nos.length)sel.value=String(nos[0]);   // 最新会期をデフォルト
-}
-// 選択中の会期でデータを絞り、集計・所管セレクタ・注記を作り直す
-function applyDiet(){
-  const v=$("#fDiet").value;
-  bills=v?allBills.filter(b=>dietNo(b.diet)===Number(v)):allBills.slice();
-  renderSessionNote(v);
-  setupMinistry();
-  dash();
-  renderCabinetRate();
-}
-function renderSessionNote(v){
-  const box=$("#sessionNote");
-  const s=v?sessionOf(v):null;
-  if(s&&s.to&&new Date(s.to+"T23:59:59+09:00")<new Date()){
-    box.innerHTML=`<div class="session-note"><b>第${dietNo(s.diet)}回国会${s.name?`（${esc(s.name)}）`:""}は${esc(wareki(s.to))}に閉会しました。</b>
-      閉会時点で議決に至らなかった法律案は「審査未了」、次の会期に引き継がれた法律案は「継続審査」として表示しています。</div>`;
-  }else{
-    box.innerHTML="";
-  }
-}
-function renderCabinetRate(){
-  const cabinet=bills.filter(b=>b.type==="閣法"),
-        enacted=cabinet.filter(b=>b.status==="成立").length,
-        total=cabinet.length,
-        pct=total?Math.round(enacted/total*100):0,
-        updated=String(window.BILLS_UPDATED_AT||"");
-  let dateLabel="更新日不明";
-  if(/^\d{4}-\d{2}-\d{2}$/.test(updated)){
-    const [,month,day]=updated.split("-");
-    dateLabel=`${Number(month)}月${Number(day)}日現在`;
-  }
-  $("#cabinetRate").innerHTML=`閣法成立率 <b>${pct}%（${enacted}/${total}）</b>（${dateLabel}）`;
-}
-// ministry filter options（データ読み込み後に再構築）
-function setupMinistry(){
-  const sel=$("#fMinis"),prev=sel.value;
-  sel.length=1; // 「すべて」だけ残す
-  const list=[...new Set(bills.map(b=>b.ministry))].sort();
-  list.forEach(m=>{
-    const o=document.createElement("option");o.textContent=m;o.value=m;sel.appendChild(o);
-  });
-  sel.value=list.includes(prev)?prev:"";   // 会期を跨いで存在しない所管はリセット
-}
-
-function render(){
-  const fs=$("#fStatus").value,ft=$("#fType").value,fm=$("#fMinis").value,
-        q=$("#fText").value.trim();
-  const out=bills.filter(b=>
-    (!fs||b.status===fs)&&(!ft||b.type===ft)&&(!fm||b.ministry===fm)&&
-    (!q||(b.title+b.shortTitle+(b.tags||[]).join("")).includes(q)));
-  $("#count").textContent=`${out.length} 件`;
-  $("#list").innerHTML=out.map(b=>`
-    <div class="bill" data-id="${esc(b.id)}">
-      <div class="top">
-        <span class="badge b-${b.status}">${esc(b.status)}</span>
-        <span class="badge type">${esc(b.no)}</span>
-        <span class="badge minis">${esc(b.ministry)}</span>
-        <span class="conf" style="margin-left:auto">成立確度 <b>${esc(b.confidence)}%</b></span>
-      </div>
-      <h3>${esc(b.shortTitle)}</h3>
-      <div class="meta">${esc(b.dietLabel)}｜提出 ${fmt(b.submittedOn)}｜${esc(b.statusDetail)}</div>
-      <div class="tags">${(b.tags||[]).map(t=>`<span class="tag" data-tag="${esc(t)}">#${esc(t)}</span>`).join("")}</div>
-    </div>`).join("")||`<p style="color:var(--muted)">該当する法案がありません。</p>`;
-}
-["#fStatus","#fType","#fMinis","#fText"].forEach(s=>$(s).addEventListener("input",render));
-$("#fDiet").addEventListener("input",()=>{applyDiet();render();});
-// リストのクリックはイベントデリゲーションで処理（タグはfilterTag、それ以外はドロワー展開）
-$("#list").addEventListener("click",e=>{
-  const tag=e.target.closest(".tag");
-  if(tag){e.stopPropagation();filterTag(tag.dataset.tag);return;}
-  const bill=e.target.closest(".bill");
-  if(bill)openBill(bill.dataset.id);
-});
-
-function tlClass(it){
-  if(it.event.includes("待ち"))return"now";
-  if(["可決","修正","成立"].includes(it.result))return"ok";   // 修正議決も可決の一形態
-  if((it.result||"").includes("継続"))return"warn";
-  return"";
-}
-function refTier(r){return{1:"一次・準一次",2:"立法補佐機関",3:"シンクタンク",4:"専門家解説"}[r]||""}
-
-function openBill(id){
-  const b=allBills.find(x=>x.id===id);
-  const kaigi=b.refs.filter(r=>r.cat==="会議録");        // 会議録は折りたたみにまとめる
-  const refsByTier={};
-  b.refs.filter(r=>r.cat!=="会議録").forEach(r=>{(refsByTier[r.tier]=refsByTier[r.tier]||[]).push(r)});
-  const refHtml=[1,2,3,4].filter(t=>refsByTier[t]).map(t=>`
-    ${refsByTier[t].map(r=>`
-      <div class="ref">
-        <div class="r1">
-          <span class="cat tier${r.tier}">${esc(r.cat)}</span>
-          <span class="pub">${esc(r.pub)}</span>
-        </div>
-        <a class="t" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)} ↗</a>
-        ${r.conf?`<div class="cf">自動紐付け確信度 <span class="bar"><i style="width:${esc(r.conf)}%"></i></span> ${esc(r.conf)}%</div>`:``}
-        ${r.confNote?`<div class="cf">⚙ ${esc(r.confNote)}</div>`:``}
-        ${String(r.confNote||"").startsWith("自動紐付け")?`<a class="rm" target="_blank" rel="noopener"
-           href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=remove-ref.yml&labels=removal&title=${encodeURIComponent('[取り下げ依頼] '+b.no)}&bill=${encodeURIComponent(b.no)}&bill_id=${encodeURIComponent(b.id||'')}&url=${encodeURIComponent(r.url)}&reftitle=${encodeURIComponent(r.title)}">この紐付けは関係ない → 取り下げ依頼</a>`:``}
-      </div>`).join("")}`).join("");
-  const kaigiHtml=kaigi.length?`
-    <details class="kaigi">
-      <summary><span class="cat tier1">会議録</span> 国会会議録 <b>${kaigi.length}</b>件 <span class="chev">▶</span></summary>
-      <div class="kaigi-list">${kaigi.map(r=>`
-        <a class="kaigi-item" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)} ↗</a>`).join("")}</div>
-    </details>`:``;
-
-  $("#drawer").innerHTML=`
-    <div class="dhead">
-      <span class="x" onclick="closeBill()">✕</span>
-      <div class="top" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
-        <span class="badge b-${b.status}">${esc(b.status)}・${esc(b.statusDetail)}</span>
-        <span class="badge type">${esc(b.no)}</span>
-        <span class="badge minis">${esc(b.ministry)}</span>
-      </div>
-      <h2 style="margin:0;font-size:17px">${esc(b.title)}</h2>
-      <p style="margin:6px 0 0;color:var(--muted);font-size:12.5px">
-        ${esc(b.dietLabel)}｜提出 ${fmt(b.submittedOn)}｜成立確度（機械推定）<b style="color:var(--txt)">${esc(b.confidence)}%</b></p>
-    </div>
-    <div class="dbody">
-      <div class="section">
-        <h4>概要（AI生成）</h4>
-        <div class="ai">${esc(b.summary)}<div class="note">⚠ ${esc(b.summaryNote)}</div></div>
-      </div>
-      <div class="section">
-        <h4>審議のタイムライン</h4>
-        <div class="tl">${b.timeline.map(it=>`
-          <div class="it ${tlClass(it)}">
-            <div class="d">${fmt(it.date)}</div>
-            <div class="e"><span class="hs">${esc(it.house)}</span>${esc(it.event)}
-              ${it.result?`<span class="res ${esc(it.result)}">【${esc(it.result)}】</span>`:``}</div>
-          </div>`).join("")}</div>
-      </div>
-      <div class="section">
-        <h4>参考情報（信頼度別）</h4>
-        ${refHtml}
-        ${kaigiHtml}
-      </div>
-      <div class="section">
-        <h4>参考情報の提供</h4>
-        <div class="ref">
-          <a class="t" href="https://github.com/fwdyutaro/kokkai-bill-tracker/issues/new?template=submit-ref.yml&title=${encodeURIComponent('[情報提供] '+b.no)}&bill=${encodeURIComponent(b.no)}&bill_id=${encodeURIComponent(b.id||'')}" target="_blank" rel="noopener">＋ この法案の参考情報（NDLサーチ／CiNii／記事URL）を提供する ↗</a>
-          <div class="cf">投稿（GitHub Issue）後、書誌情報と関連度を自動推定し、確認のうえ掲載します。</div>
-        </div>
-      </div>
-    </div>`;
-  $("#drawer").classList.add("open");$("#overlay").classList.add("open");
-}
-function filterTag(t){$("#fText").value=t;render();window.scrollTo({top:0,behavior:"smooth"});}
-function closeBill(){$("#drawer").classList.remove("open");$("#overlay").classList.remove("open")}
-$("#overlay").addEventListener("click",closeBill);
-document.addEventListener("keydown",e=>e.key==="Escape"&&closeBill());
-
-// データ読み込み（収集パイプライン出力）
-(function loadData(){
-  const s=document.createElement("script");
-  s.src="data_collected.js?t="+Date.now();
-  s.onload=()=>{
-    if(!window.BILLS){$("#list").innerHTML=`<p style="color:var(--danger)">データを読み込めませんでした。</p>`;return;}
-    allBills=window.BILLS;setupDiet();applyDiet();render();
-  };
-  s.onerror=()=>{$("#list").innerHTML=`<p style="color:var(--danger)">データが見つかりません。</p>`;};
-  document.body.appendChild(s);
-})();
-</script>
+<script src="app.js"></script>
 </body>
 </html>

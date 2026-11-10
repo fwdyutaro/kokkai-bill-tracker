@@ -26,7 +26,9 @@
 
 ## ファイル
 
-- `index.html` … UI・描画ロジック（依存ライブラリなし。`data_collected.js` を読み込む）
+- `index.html` / `app.js` … UI（HTML・CSS）と描画ロジック（依存ライブラリなし。`data_collected.js` を読み込む）。
+  CSP でインラインスクリプトを禁止しているため、スクリプトは `app.js` に置く。
+  各法案は `#bill=<id>` の固定URLで直接開ける
 - `collect.py` … 収集スクリプト（参議院 議案情報をスクレイピング → 正規化JSON）。
   あわせて会議録検索API（件名＝正式名称×会期×付託委員会）で該当**会議録の一覧**を取得し、
   各会議を `第N回 院 委員会 第n号` → `#/detail?minId=<issueID>` の個別リンクとして付与（0件は非掲載）
@@ -145,6 +147,8 @@ python sessions.py should-run   # CI用ゲート（run=true/false）
 **会期が変わったときの手順（sessions.yaml だけ）**
 
 1. `sessions.yaml` に新しい会期を追記する（`to: null`）。同時に、閉会した会期の `to` に閉会日を入れる。
+   会期末の予定日を `planned_to` に入れておくと、その日を過ぎても `to` が未入力のとき
+   日次CIが警告を出す（閉会日の入れ忘れ防止。会期が延長されたら `planned_to` を更新する）。
    `clb_id` は内閣法制局「最近の法律・条約」の「第N回国会での内閣提出法律案」リンクの `id=` の値。
 
 `.github/workflows/update.yml`・`run_all.bat`・`collect.py`（`--diet` 省略時）はいずれも
@@ -213,6 +217,10 @@ python sessions.py should-run   # CI用ゲート（run=true/false）
    （NDLデジコレ等のJS描画ページはタイトル自動取得不可→コメントで手動補完）
 2. メンテナが内容を確認し `approved` ラベル → `submissions.json` に取り込み、
    `merge_submissions.py` がサイトデータへ「提供情報」(Tier4)として反映、Issueをクローズ。
+   掲載されるのは **1 の自動処理コメントに記録した内容そのもの**（承認時にURLは再取得しない）。
+   コメント末尾の不可視マーカー（Issue件名・本文のハッシュ＋掲載レコード）と承認時点の
+   Issueを照合し、確認後に本文が編集されていれば掲載せず `needs-review` に戻す
+   （取り下げ依頼も同様）。本文が編集されると自動処理がやり直され、最新のコメントが基準になる。
 3. 日次・週次ビルドは match→**merge_submissions**→**apply_suppressions**→tag の順で、
    再生成後も提供情報の掲載・取り下げ依頼の除外を維持。
 

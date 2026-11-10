@@ -125,13 +125,21 @@ def load_sessions(path=None, use_cache=True) -> list[dict]:
         end = None if raw_end is None else _strict_date(raw_end, "to", index)
         if end is not None and end < start:
             _config_error(f"session[{index}] to precedes from")
-        sessions.append({
+        entry = {
             "diet": diet,
             "name": item.get("name") or "",
             "from": start.isoformat(),
             "to": end.isoformat() if end else None,
             "clb_id": str(item["clb_id"]) if item.get("clb_id") else None,
-        })
+        }
+        # 会期末の予定日（任意）。閉会日 to の入れ忘れを検出するためだけに使う。
+        raw_planned = item.get("planned_to")
+        if raw_planned is not None:
+            planned = _strict_date(raw_planned, "planned_to", index)
+            if planned < start:
+                _config_error(f"session[{index}] planned_to precedes from")
+            entry["planned_to"] = planned.isoformat()
+        sessions.append(entry)
     sessions.sort(key=lambda s: s["diet"])
     if use_cache:
         _CACHE[key] = [dict(s) for s in sessions]
@@ -202,6 +210,28 @@ def has_open_session(today=None, path=None) -> bool:
     return bool(open_sessions(today, path))
 
 
+def overdue_sessions(today=None, path=None) -> list[dict]:
+    """会期末の予定日を過ぎたのに閉会日が未入力の会期。
+
+    to が null のままだと、閉会後も「審議中」の表示と日次実行が続く。
+    会期が延長された場合は planned_to を、閉会した場合は to を更新する。
+    """
+    now = jst_today(today)
+    out = []
+    for s in load_sessions(path):
+        planned = _parse_date(s.get("planned_to"))
+        if s["to"] is None and planned and now > planned:
+            out.append(s)
+    return out
+
+
+def overdue_warnings(today=None, path=None) -> list[str]:
+    return [f"第{s['diet']}回国会{s['name']}の会期末予定日（{s['planned_to']}）を過ぎていますが、"
+            "sessions.yaml の to が未入力です。閉会したなら to に閉会日を、"
+            "延長されたなら planned_to を更新してください。"
+            for s in overdue_sessions(today, path)]
+
+
 def clb_id(diet, path=None) -> str | None:
     """内閣法制局 一覧ページID。未登録なら None。"""
     s = get_session(diet, path)
@@ -244,9 +274,14 @@ def _main(argv=None) -> int:
         for s in load_sessions():
             state = "開会中" if is_open(s["diet"], today) else "閉会"
             print(f"第{s['diet']}回 {s['name']}  {s['from']} 〜 {s['to'] or '（会期中）'}  {state}")
+        for message in overdue_warnings(today):
+            print(f"警告: {message}", file=sys.stderr)
         return 0
     run, reason = should_run_full(today, force=args.force)
     print(reason, file=sys.stderr)
+    # GitHub Actions の警告注釈として出す。標準出力は GITHUB_OUTPUT に流すため stderr を使う。
+    for message in overdue_warnings(today):
+        print(f"::warning title=sessions.yaml の更新が必要::{message}", file=sys.stderr)
     print(f"run={'true' if run else 'false'}")
     return 0
 

@@ -14,7 +14,7 @@ import requests, yaml, feedparser
 from bs4 import BeautifulSoup
 
 DB = "refs.db"
-UA = {"User-Agent": "bill-tracker/0.1 (research; contact: example@example.com)"}
+UA = {"User-Agent": "bill-tracker/0.1 (research; https://github.com/fwdyutaro/kokkai-bill-tracker)"}
 
 
 def db_init(con):

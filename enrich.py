@@ -17,6 +17,7 @@ import requests
 from bs4 import BeautifulSoup
 
 import sessions
+from llm_gate import ANTHROPIC_MODEL
 
 UA = {"User-Agent": "bill-tracker/0.1 (research)"}
 SUMCACHE = "summaries.json"   # 提出理由ハッシュ→要約。再実行時の重複生成を回避
@@ -189,7 +190,7 @@ def llm_summarize(reason_text, title):
     try:
         import anthropic
         msg = anthropic.Anthropic().messages.create(
-            model="claude-haiku-4-5-20251001", max_tokens=300,
+            model=ANTHROPIC_MODEL, max_tokens=300,
             system="あなたは立法情報サイトの編集者です。" + SUMMARY_INSTR,
             messages=[{"role": "user", "content": f"法案名: {title}\n提出理由:\n{reason_text}"}])
         return msg.content[0].text.strip()

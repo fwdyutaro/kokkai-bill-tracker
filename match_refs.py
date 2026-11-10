@@ -488,6 +488,8 @@ def main():
             print(f"LLMゲート有効（{mode}）", file=sys.stderr)
 
     bills = json.load(open(args.infile, encoding="utf-8"))
+    if gate:
+        gate.set_bills(bills)   # 旧形式キャッシュの引き継ぎ可否（議案番号の重複）を判定
     docs = load_docs(args.db)
     aliases = load_aliases()
 
@@ -613,13 +615,17 @@ def main():
             for sc, why, d in cands[:5]:
                 print(f"    {round(sc*100):3d}%  [{d['publisher'][:12]}] {d['title'][:46]}  〈{why}〉")
 
-    json.dump(mcache, open(MEETING_DATE_CACHE, "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+    # --dry は「書き込まずレポートのみ」。判定・開催時期のキャッシュも書き換えない。
+    if not args.dry:
+        json.dump(mcache, open(MEETING_DATE_CACHE, "w", encoding="utf-8"),
+                  ensure_ascii=False, indent=1)
     if gate:
-        gate.save()
+        if not args.dry:
+            gate.save()
         st = gate.stats
         print(f"\nLLMゲート: 採用{st['pass']} 除外{st['drop']} "
-              f"(キャッシュ命中{st['cached']} 未判定{st.get('unjudged', 0)})")
+              f"(キャッシュ命中{st['cached']} 未判定{st.get('unjudged', 0)} "
+              f"判定失敗{st.get('failed', 0)})")
     if sem_cache:
         print(f"意味類似キャッシュ: 候補{replay_stats['cand']} 再適用{replay_stats['kept']} "
               f"(ID不一致でスキップ{replay_stats['mismatch']}法案)")

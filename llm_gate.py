@@ -8,7 +8,7 @@ yes/no＋一文根拠で検証し、無関係を除去・関連は根拠を付�
 どちらも無ければ何もしない（候補をそのまま返す）。
 判定は gate_cache.json にキャッシュし、日次実行での再判定を避ける。
 """
-import hashlib, json, os
+import hashlib, json, os, sys
 
 import requests
 
@@ -17,7 +17,9 @@ import requests
 SOFT = ("意味類似", "趣旨キーワード", "語彙類似", "所管一致")
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "gemma4:12b")
-ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
+# Anthropic のモデルIDはここ1か所で管理する（enrich.py の要約もこの値を使う）。
+# モデルが廃止されたら ANTHROPIC_MODEL 環境変数かこの既定値を更新する。
+ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL") or "claude-haiku-4-5-20251001"
 CACHE = "gate_cache.json"
 
 _SYSTEM = ("あなたは立法情報の編集者です。参考文書がその法案の審議の参考として"
@@ -52,7 +54,14 @@ def _parse(txt):
     try:
         return json.loads(txt[txt.find("{"): txt.rfind("}") + 1])
     except Exception:
-        return {"related": True, "reason": ""}   # 解析失敗時は残す（安全側）
+        return None   # 解析失敗は「未判定」。偽の判定をキャッシュに残さない
+
+
+def _verdict(parsed):
+    """LLM応答を判定として使える形に検証する。形式外は None（未判定）。"""
+    if not isinstance(parsed, dict) or not isinstance(parsed.get("related"), bool):
+        return None
+    return {"related": parsed["related"], "reason": str(parsed.get("reason") or "")}
 
 
 def _judge_ollama(bill, doc):
@@ -63,7 +72,7 @@ def _judge_ollama(bill, doc):
                             "options": {"temperature": 0.1, "num_predict": 150}},
                       timeout=180)
     r.raise_for_status()
-    return _parse(r.json().get("response") or "")
+    return _verdict(_parse(r.json().get("response") or ""))
 
 
 def _judge_anthropic(bill, doc):
@@ -71,7 +80,7 @@ def _judge_anthropic(bill, doc):
     msg = anthropic.Anthropic().messages.create(
         model=ANTHROPIC_MODEL, max_tokens=150, system=_SYSTEM,
         messages=[{"role": "user", "content": _prompt(bill, doc)}])
-    return _parse(msg.content[0].text.strip())
+    return _verdict(_parse(msg.content[0].text.strip()))
 
 
 def _load_cache():
@@ -88,7 +97,21 @@ class Gate:
         self.backend = _backend()
         self.cache = _load_cache()
         self.dirty = False
-        self.stats = {"pass": 0, "drop": 0, "cached": 0, "unjudged": 0}
+        self.stats = {"pass": 0, "drop": 0, "cached": 0, "unjudged": 0, "failed": 0}
+        # 旧キー（議案番号ベース）を引き継いでよい議案番号。set_bills() で設定する。
+        self._unique_nos = None
+
+    def set_bills(self, bills):
+        """旧形式キャッシュの引き継ぎ可否を決めるため、全法案を知らせる。
+
+        旧キーは「議案番号|URL」で、同じ議案番号が複数会期にあると別法案の判定を
+        流用してしまう。議案番号が全会期を通じて一意な法案だけ旧キーを引き継ぎ、
+        重複する番号の法案は判定し直す。
+        """
+        counts = {}
+        for b in bills:
+            counts[b.get("no")] = counts.get(b.get("no"), 0) + 1
+        self._unique_nos = {no for no, n in counts.items() if no and n == 1}
 
     def available(self):
         """バックエンドが無くても、判定キャッシュがあればゲートとして機能する。
@@ -103,17 +126,37 @@ class Gate:
         return self.backend is None
 
     def _key(self, bill, doc):
+        # 議案番号は会期をまたいで重複する（第221回と第222回の「閣法 第1号」）ため、
+        # 会期を含む一意な id をキーにする。id の無い旧レコードだけ議案番号で代用。
+        ident = bill.get("id") or bill["no"]
+        return hashlib.sha1(f"{ident}|{doc['url']}".encode()).hexdigest()[:16]
+
+    def _legacy_key(self, bill, doc):
         return hashlib.sha1(f"{bill['no']}|{doc['url']}".encode()).hexdigest()[:16]
+
+    def _lookup(self, bill, doc):
+        """キャッシュ済みの判定を返す。旧キーの判定は安全な場合だけ新キーへ移す。"""
+        key = self._key(bill, doc)
+        if key in self.cache:
+            return self.cache[key]
+        unique_nos = getattr(self, "_unique_nos", None)
+        if unique_nos and bill.get("no") in unique_nos:
+            legacy = self._legacy_key(bill, doc)
+            if legacy != key and legacy in self.cache:
+                self.cache[key] = self.cache[legacy]
+                self.dirty = True
+                return self.cache[key]
+        return None
 
     def cached_verdict(self, bill, doc):
         """キャッシュ済みの判定だけを返す（未判定は None。バックエンドは呼ばない）。"""
-        return self.cache.get(self._key(bill, doc))
+        return self._lookup(bill, doc)
 
     def judge(self, bill, doc):
-        key = self._key(bill, doc)
-        if key in self.cache:
+        cached = self._lookup(bill, doc)
+        if cached is not None:
             self.stats["cached"] += 1
-            return self.cache[key]
+            return cached
         if self.cache_only():
             # 未判定はキャッシュに書かず、判定なしとして扱う（保持側に倒す）
             self.stats["unjudged"] += 1
@@ -121,8 +164,14 @@ class Gate:
         try:
             v = _judge_ollama(bill, doc) if self.backend == "ollama" else _judge_anthropic(bill, doc)
         except Exception as e:
-            v = {"related": True, "reason": f"判定失敗のため保持({str(e)[:30]})"}
-        self.cache[key] = v
+            print(f"    ! LLM判定失敗（未判定として扱う）: {type(e).__name__}", file=sys.stderr)
+            v = None
+        if v is None:
+            # 一時的な障害や形式外の応答を「関連あり」として残すと、再判定されないまま
+            # 公開され続ける。キャッシュせず未判定として返し、次回の実行で判定し直す。
+            self.stats["failed"] += 1
+            return None
+        self.cache[self._key(bill, doc)] = v
         self.dirty = True
         return v
 
@@ -141,7 +190,7 @@ class Gate:
             if v is None:
                 if require_verdict:      # 検証できない再適用候補は出さない（安全側）
                     continue
-                out.append((sc, why, d))  # キャッシュのみモードで未判定 → そのまま保持
+                out.append((sc, why, d))  # 未判定（キャッシュのみ・判定失敗）→ そのまま保持
                 continue
             if v.get("related"):
                 reason = (v.get("reason") or "").strip()

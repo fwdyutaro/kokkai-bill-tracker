@@ -271,3 +271,17 @@ def test_parse_issue_extracts_carried_over_bill_id():
     """前会期からの継続法案のID（掲載会期-種別-提出回次-番号）を途中で切らない。"""
     parsed = ingest.parse_issue("", "bill_id: 222-衆法-221-1\n衆法 第1号\nhttps://example.com/ref")
     assert parsed[0] == "222-衆法-221-1"
+
+
+@pytest.mark.parametrize("raw, expected", [
+    ("改正法の概要 | CiNii Research", "改正法の概要"),
+    ("改正法の概要｜法律事務所", "改正法の概要"),
+    ("改正法の概要 - NHK", "改正法の概要"),
+    ("改正法の概要 | ブログ | Our Eyes", "改正法の概要 | ブログ"),
+    # 語中のハイフンは区切りではない（以前は「…とCOVID」に削られていた）
+    ("デジタル規制の動向とCOVID-19対策", "デジタル規制の動向とCOVID-19対策"),
+    ("AI-based regulation", "AI-based regulation"),
+    ("改正法の概要", "改正法の概要"),
+])
+def test_site_suffix_is_stripped_without_cutting_hyphenated_words(raw, expected):
+    assert ingest.strip_site_suffix(raw) == expected

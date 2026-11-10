@@ -152,3 +152,40 @@ def test_session_datetime_timestamp_is_rejected(tmp_path):
     path.write_text("sessions:\n  - diet: 1\n    from: 2026-01-01T00:00:00\n    to: null\n", encoding="utf-8")
     with pytest.raises(sessions.SessionConfigError):
         sessions.load_sessions(path, use_cache=False)
+
+
+# ---- 会期末予定日（planned_to）による閉会日の入れ忘れ検出 ----------------------
+def _write_planned(tmp_path, to="null", planned='"2026-12-12"'):
+    path = tmp_path / "sessions_planned.yaml"
+    path.write_text(
+        "sessions:\n"
+        "  - diet: 222\n"
+        "    name: 臨時会\n"
+        '    from: "2026-10-05"\n'
+        f"    to: {to}\n"
+        f"    planned_to: {planned}\n",
+        encoding="utf-8")
+    return path
+
+
+def test_planned_to_is_loaded(tmp_path):
+    path = _write_planned(tmp_path)
+    assert sessions.load_sessions(path, use_cache=False)[0]["planned_to"] == "2026-12-12"
+
+
+def test_no_warning_until_planned_end_has_passed(tmp_path):
+    path = _write_planned(tmp_path)
+    assert sessions.overdue_warnings("2026-12-12", path) == []
+    assert len(sessions.overdue_warnings("2026-12-13", path)) == 1
+    assert "第222回" in sessions.overdue_warnings("2026-12-13", path)[0]
+
+
+def test_no_warning_once_the_closing_date_is_entered(tmp_path):
+    path = _write_planned(tmp_path, to='"2026-12-12"')
+    assert sessions.overdue_warnings("2027-01-10", path) == []
+
+
+def test_invalid_planned_to_is_rejected(tmp_path):
+    path = _write_planned(tmp_path, planned='"2026-09-01"')   # 召集日より前
+    with pytest.raises(sessions.SessionConfigError):
+        sessions.load_sessions(path, use_cache=False)
